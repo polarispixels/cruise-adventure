@@ -1,0 +1,134 @@
+# Builds the game on every push to main and on version tags.
+# main  -> tests, web build deployed to GitHub Pages, signed APK as a workflow artifact
+# vX.Y.Z -> the same, plus a GitHub Release with cruise-adventure-vX.Y.Z.apk attached
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: 4.7.2
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Godot templates
+        run: &setup |
+          if [ "$HOME" != "/root" ]; then
+            mkdir -p ~/.local/share/godot/export_templates ~/.config
+            mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/
+            mv /root/.config/godot ~/.config/godot
+          fi
+      - name: Import
+        run: godot --headless --import
+      - name: Test
+        run: godot --headless --script res://tests/run_tests.gd
+
+  web:
+    needs: test
+    runs-on: ubuntu-latest
+    container: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Godot templates
+        run: *setup
+      - name: Import
+        run: godot --headless --import
+      - name: Export web
+        run: |
+          mkdir -p build/web
+          godot --headless --export-release "Web" build/web/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/web
+
+  deploy-pages:
+    needs: web
+    # The github-pages environment only accepts the default branch; tag commits are already on main.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+  android:
+    needs: test
+    runs-on: ubuntu-latest
+    container: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check tag matches project version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          version=$(sed -n 's/^config\/version="\(.*\)"/\1/p' project.godot)
+          if [ "${GITHUB_REF_NAME#v}" != "$version" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match config/version=\"$version\" in project.godot"
+            exit 1
+          fi
+      - name: Set up Godot templates
+        run: *setup
+      - name: Set up release keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+          echo "GODOT_ANDROID_KEYSTORE_RELEASE_PATH=$RUNNER_TEMP/release.keystore" >> "$GITHUB_ENV"
+      - name: Import
+        run: godot --headless --import
+      - name: Export APK
+        env:
+          GODOT_ANDROID_KEYSTORE_RELEASE_USER: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+          GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          mkdir -p build/android
+          godot --headless --export-release "Android" build/android/cruise-adventure.apk
+          case "$GITHUB_REF" in
+            refs/tags/v*) name="cruise-adventure-${GITHUB_REF_NAME}.apk" ;;
+            *) name="cruise-adventure-$(echo "$GITHUB_SHA" | cut -c1-7).apk" ;;
+          esac
+          mv build/android/cruise-adventure.apk "build/android/$name"
+          test -s "build/android/$name"
+      - name: Remove keystore
+        if: always()
+        run: rm -f "$RUNNER_TEMP/release.keystore"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: build/android/*.apk
+          if-no-files-found: error
+
+  release:
+    needs: android
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: android-apk
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v v="$version" '$0 ~ "^## \\[" v "\\]" {on=1; next} /^## /{on=0} on' CHANGELOG.md > notes.md
+          [ -s notes.md ] || echo "Cruise Adventure $GITHUB_REF_NAME" > notes.md
+          gh release create "$GITHUB_REF_NAME" "cruise-adventure-${GITHUB_REF_NAME}.apk" \
+            --title "$GITHUB_REF_NAME" --notes-file notes.md
