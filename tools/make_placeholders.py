@@ -207,6 +207,49 @@ def icon():
     save(img, "icon.png", w, h)
 
 
+def _ui_round_button(d, size, glyph):
+    d.ellipse(s(8, 8, size - 8, size - 8), fill=CHECK, outline=CHECK_DARK, width=12 * SS)
+    c = size / 2
+    if glyph == "replay":
+        d.arc(s(c - 90, c - 90, c + 90, c + 90), start=-30, end=260, fill="#FFFFFF", width=32 * SS)
+        a = math.radians(-30)
+        x, y, r = c + 90 * math.cos(a), c + 90 * math.sin(a), 44
+        d.polygon(pts([(x - r, y - 12), (x + r, y - 12), (x, y + r)]), fill="#FFFFFF")
+    else:  # home
+        d.polygon(pts([(c, c - 110), (c - 120, c), (c + 120, c)]), fill="#FFFFFF")
+        d.rectangle(s(c - 80, c - 10, c + 80, c + 100), fill="#FFFFFF")
+        d.rectangle(s(c - 24, c + 30, c + 24, c + 100), fill=CHECK)
+
+
+def ui(name, dst):
+    """UI placeholders for v0.2. Replaced by real art with no code changes."""
+    sizes = {"replay": (384, 384), "home": (384, 384), "zipper-pull": (128, 128),
+             "card-glow": (260, 230), "target-slot": (320, 320), "dim": (8, 8)}
+    w, h = sizes[name]
+    img, d = canvas(w, h)
+    if name in ("replay", "home"):
+        _ui_round_button(d, w, name)
+    elif name == "zipper-pull":
+        d.rounded_rectangle(s(34, 8, 94, 120), radius=20 * SS, fill="#2A2A2A", outline="#FFFFFF", width=6 * SS)
+        d.ellipse(s(52, 22, 76, 46), fill=(0, 0, 0, 0))
+    elif name == "card-glow":
+        glow, gd = canvas(w, h)
+        gd.rounded_rectangle(s(14, 14, w - 14, h - 14), radius=30 * SS, outline="#FFE45C", width=18 * SS)
+        img = glow.filter(ImageFilter.GaussianBlur(6 * SS))
+        ImageDraw.Draw(img).rounded_rectangle(s(14, 14, w - 14, h - 14), radius=30 * SS, outline="#FFD23F", width=8 * SS)
+    elif name == "target-slot":
+        step = 28
+        for i in range(0, 4 * (w - 40), step * 2):
+            side, off = divmod(i, w - 40)
+            x0, y0 = [(20 + off, 20), (w - 20, 20 + off), (w - 20 - off, h - 20), (20, h - 20 - off)][side]
+            x1, y1 = [(x0 + step, y0), (x0, y0 + step), (x0 - step, y0), (x0, y0 - step)][side]
+            d.line(s(x0, y0, x1, y1), fill="#FFFFFF", width=10 * SS)
+    elif name == "dim":
+        d.rectangle(s(0, 0, w, h), fill=(0, 0, 0, 153))
+    Path(dst).parent.mkdir(parents=True, exist_ok=True)
+    img.resize((w, h), Image.LANCZOS).save(dst)
+
+
 if __name__ == "__main__":
     bedroom()
     bed()
