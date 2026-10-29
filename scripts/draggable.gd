@@ -86,16 +86,31 @@ func reset() -> void:
 	is_dragging = false
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		_drop_where_it_is()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	var point := get_global_mouse_position()
 	var handled := false
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		handled = begin_drag(point) if event.pressed else end_drag(point)
+		if event.pressed:
+			# A press while still dragging means the last release was lost.
+			_drop_where_it_is()
+			handled = begin_drag(point)
+		else:
+			handled = end_drag(point)
 	elif event is InputEventMouseMotion and is_dragging:
 		drag_to(point)
 		handled = true
 	if handled:
 		get_viewport().set_input_as_handled()
+
+
+func _drop_where_it_is() -> void:
+	if is_dragging:
+		end_drag(global_position - _grab_offset)
 
 
 func _grab_rect() -> Rect2:

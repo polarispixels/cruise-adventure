@@ -2,7 +2,7 @@
 # Run Godot 4.7.2 (headless) inside the same Docker image CI uses.
 # Usage: tools/godot.sh --headless --import
 set -euo pipefail
-IMAGE="barichello/godot-ci:4.7.2"
+IMAGE="barichello/godot-ci:4.7.2@sha256:cdcca31e9194fd59a68a63f4b1b9c3981716819c520cd6f7966c5d72ca7246bd"  # pinned by digest; keep in sync with .github/workflows/build.yml
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DOCKER="$(command -v docker || true)"
 MOUNT="$ROOT"
