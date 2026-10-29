@@ -58,5 +58,8 @@ func _run() -> void:
 			else:
 				failed += 1
 				print("FAIL ", test_name, ": ", "; ".join(_failures))
+	# Let queued frees run so nothing leaks at exit.
+	await process_frame
+	await process_frame
 	print("%d passed, %d failed" % [passed, failed])
 	quit(1 if failed > 0 or passed == 0 else 0)
