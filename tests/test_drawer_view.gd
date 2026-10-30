@@ -124,3 +124,21 @@ func test_touch_match(t) -> void:
 	await t.tree.create_timer(0.5).timeout
 	t.eq(_found, ["shirt"] as Array[String], "found by touch")
 	view.free()
+
+
+func test_locked_item_uses_other_things_as_choices(t) -> void:
+	var view: DrawerView = load("res://scenes/drawer_view.tscn").instantiate()
+	t.tree.root.add_child(view)
+	var jack: KidProfile = load("res://data/jack.tres")
+	var others: Array[String] = ["book", "tablet", "special"]
+	view.open(jack, load("res://data/becca.tres"), "buddy", 4, null, others)
+	await t.tree.process_frame
+	t.eq(view.choices().size(), 4, "four choices")
+	t.eq(view.correct_choice().texture, jack.prop("buddy-card"), "the real buddy")
+	var expected := {}
+	for item in others:
+		expected[jack.prop(item + "-card")] = true
+	for c in view.choices():
+		if c != view.correct_choice():
+			t.check(expected.has(c.texture), "distractor is another toy")
+	view.free()
