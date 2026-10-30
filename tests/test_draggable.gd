@@ -6,7 +6,8 @@ const HOME := Vector2(480, 600)
 
 
 func _make(t) -> Node2D:
-	var item: Node2D = load("res://scenes/shirt.tscn").instantiate()
+	var item: Node2D = load("res://scenes/item.tscn").instantiate()
+	item.texture = load("res://assets/props/jack/shirt-card.png")
 	item.position = HOME
 	item.drop_zone = ZONE
 	item.snap_point = SNAP
@@ -88,3 +89,31 @@ func test_reset_restores(t) -> void:
 	t.eq(item.is_placed, false, "not placed")
 	t.eq(item.begin_drag(HOME), true, "draggable again")
 	item.queue_free()
+
+
+func test_rejected_drop_returns_home(t) -> void:
+	var item: Node2D = await _make(t)
+	item.accept_drop = false
+	var placed := [0]
+	var rejected := [0]
+	item.placed.connect(func(_i): placed[0] += 1)
+	item.rejected.connect(func(_i): rejected[0] += 1)
+	t.eq(_drop_in_suitcase(item), false, "drop refused")
+	t.eq(rejected[0], 1, "rejected once")
+	t.eq(placed[0], 0, "never placed")
+	t.eq(item.is_placed, false, "not placed")
+	await _wait(t, 0.8)
+	t.check(item.global_position.distance_to(HOME) < 1.0, "home, at %s" % item.global_position)
+	t.eq(item.rotation, 0.0, "wiggle settled")
+	item.free()
+
+
+func test_home_scale_respected(t) -> void:
+	var item: Node2D = await _make(t)
+	item.home_scale = 0.5
+	item.begin_drag(HOME)
+	t.eq(item.scale, Vector2.ONE * 0.5 * item.LIFT_SCALE, "lifted from rest scale")
+	item.end_drag(Vector2(100, 1000))
+	await _wait(t, 0.6)
+	t.eq(item.scale, Vector2.ONE * 0.5, "back to rest scale")
+	item.free()

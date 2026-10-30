@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="Texture2D" path="res://assets/art/bedroom.png" id="2_bedroom"]
 [ext_resource type="Texture2D" path="res://assets/art/bed.png" id="3_bed"]
 [ext_resource type="Texture2D" path="res://assets/art/suitcase.png" id="4_suitcase"]
 [ext_resource type="Texture2D" path="res://assets/art/slot.png" id="5_slot"]
-[ext_resource type="PackedScene" path="res://scenes/shirt.tscn" id="6_shirt"]
+[ext_resource type="PackedScene" path="res://scenes/item.tscn" id="6_shirt"]
+[ext_resource type="Texture2D" path="res://assets/art/shirt.png" id="9_shirt_tex"]
 [ext_resource type="Texture2D" path="res://assets/art/check.png" id="7_check"]
 [ext_resource type="Texture2D" path="res://assets/art/replay.png" id="8_replay"]
 [ext_resource type="AudioStream" path="res://assets/audio/chime.ogg" id="9_chime"]
@@ -39,6 +40,7 @@ position = Vector2(1400, 660)
 texture = ExtResource("5_slot")
 
 [node name="Shirt" parent="." instance=ExtResource("6_shirt")]
+texture = ExtResource("9_shirt_tex")
 position = Vector2(480, 600)
 
 [node name="Stars" type="Node2D" parent="."]
