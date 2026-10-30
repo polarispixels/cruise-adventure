@@ -55,7 +55,9 @@ func test_becca_gets_two_choices(t) -> void:
 	t.eq(view.choices().size(), 2, "two choices")
 	var accepting := view.choices().filter(func(c): return c.accept_drop)
 	t.eq(accepting.size(), 1, "exactly one accepts")
-	t.eq(view.correct_choice().texture, load("res://data/becca.tres").prop("shirt-card"), "the card shirt")
+	var colors := (load("res://data/becca.tres") as KidProfile).colors("shirt")
+	t.check(colors.has(view.correct_choice().texture), "correct is one of the 8 colors")
+	t.eq(view.correct_choice().texture, view.get_node("Target").texture, "target shows the answer")
 	view.free()
 
 

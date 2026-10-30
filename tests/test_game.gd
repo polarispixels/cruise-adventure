@@ -36,8 +36,45 @@ func test_profiles_differ_only_in_data(t) -> void:
 	t.eq(becca.hint_delay, 6.0, "becca hint")
 	t.eq(jack.choices, 4, "jack choices")
 	t.eq(jack.hint_delay, 8.0, "jack hint")
-	t.eq(becca.distractors("shirt").size(), 1, "becca distractors")
-	t.eq(jack.distractors("shirt").size(), 3, "jack distractors")
+	t.eq(becca.min_color_gap, 3, "becca color gap")
+	t.eq(jack.min_color_gap, 1, "jack color gap")
+	t.eq(becca.colors("shirt").size(), KidProfile.COLOR_STEPS, "8 colors")
+
+
+func _pick(kid: KidProfile, seed_value: int) -> Array[Texture2D]:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_value
+	return kid.pick_colors("shirt", rng)
+
+
+func test_becca_colors_far_apart(t) -> void:
+	var becca: KidProfile = load("res://data/becca.tres")
+	var all := becca.colors("shirt")
+	for s in 50:
+		var pick := _pick(becca, s)
+		t.eq(pick.size(), 2, "becca pick size")
+		if pick.size() != 2:
+			continue
+		var d: int = absi(all.find(pick[0]) - all.find(pick[1]))
+		d = mini(d, KidProfile.COLOR_STEPS - d)
+		t.check(all.has(pick[0]) and d >= 3, "seed %d gap %d" % [s, d])
+
+
+func test_jack_colors_distinct(t) -> void:
+	var jack: KidProfile = load("res://data/jack.tres")
+	for s in 50:
+		var seen := {}
+		for tex in _pick(jack, s):
+			seen[tex] = true
+		t.eq(seen.size(), 4, "seed %d distinct" % s)
+
+
+func test_target_color_varies(t) -> void:
+	var jack: KidProfile = load("res://data/jack.tres")
+	var targets := {}
+	for s in 50:
+		targets[jack.colors("shirt").find(_pick(jack, s)[0])] = true
+	t.check(targets.size() >= 4, "target varies: %d" % targets.size())
 
 
 func test_profile_textures_load(t) -> void:

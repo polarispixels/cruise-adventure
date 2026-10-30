@@ -11,3 +11,4 @@ hint_delay = 8.0
 intro_video = "res://assets/video/jack-intro.ogv"
 outfits = 6
 done_video = "res://assets/video/becca-done.ogv"
+min_color_gap = 1

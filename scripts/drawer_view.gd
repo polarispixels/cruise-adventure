@@ -35,13 +35,14 @@ func open(kid: KidProfile, helper: KidProfile, item: String, rng_seed: int = -1)
 	wrong_count = 0
 	_helper.kid = helper
 	_helper.set_pose("idle")
-	_target.texture = kid.prop(item + "-card")
-	var textures: Array[Texture2D] = [kid.prop(item + "-card")]
-	textures.append_array(kid.distractors(item))
-	var correct_texture := textures[0]
 	var rng := RandomNumberGenerator.new()
 	if rng_seed >= 0:
 		rng.seed = rng_seed
+	else:
+		rng.randomize()
+	var textures := kid.pick_colors(item, rng)
+	var correct_texture := textures[0]
+	_target.texture = correct_texture
 	for i in range(textures.size() - 1, 0, -1):
 		var j := rng.randi_range(0, i)
 		var swap := textures[i]

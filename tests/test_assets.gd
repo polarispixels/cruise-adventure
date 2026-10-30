@@ -33,6 +33,6 @@ func test_variants_match_card_size(t) -> void:
 	for kid in ["jack", "becca"]:
 		for item in ["shirt", "shorts", "underwear", "socks"]:
 			var card: Texture2D = load("res://assets/props/%s/%s-card.png" % [kid, item])
-			for alt in ["alt-1", "alt-2", "alt-3"]:
+			for alt in ["alt-1", "alt-2", "alt-3", "alt-4", "alt-5", "alt-6", "alt-7"]:
 				var tex: Texture2D = load("res://assets/props/%s/%s-%s.png" % [kid, item, alt])
 				t.check(card != null and tex != null and tex.get_size() == card.get_size(), "%s %s %s size" % [kid, item, alt])
