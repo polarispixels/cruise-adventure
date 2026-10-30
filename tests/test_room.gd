@@ -8,8 +8,13 @@ var _to_screen := Transform2D.IDENTITY
 var _requests: Array[String] = []
 
 
-func _make(t, kid_id := "becca", outfits := 1, done_video := "") -> Node2D:
+func _make(t, kid_id := "becca", outfits := 1, done_video := "", level := 0) -> Node2D:
+	var progress: Node = t.tree.root.get_node("Progress")
+	progress.path = "user://test_room_progress.json"
+	progress.reset()
+	t.tree.root.get_node("Voice").enabled = false
 	var game: Node = t.tree.root.get_node("Game")
+	game.level = level
 	game.navigate = false
 	game.last_scene_request = ""
 	_requests.clear()
@@ -112,6 +117,15 @@ func _advance(t, room: Node2D, target: int) -> void:
 			Step.CLOSE:
 				await _tap(t, room.suitcase_point())
 				await _until(t, func(): return room.step != at)
+			Step.PACK_ITEMS:
+				var loose: Array = room.loose_items()
+				if loose.is_empty():
+					await _until(t, func(): return room.step != at)
+				else:
+					var item: Draggable = loose[0]
+					await _drag(t, item.global_position, item.snap_point)
+					var left: int = loose.size() - 1
+					await _until(t, func(): return room.step != at or room.loose_items().size() == left)
 			Step.ZIP:
 				var zipper: Zipper = room.get_node("Stage/Suitcase/Zipper")
 				await _drag(t, zipper.to_global(zipper.start), zipper.to_global(zipper.end))
@@ -302,10 +316,10 @@ func test_replay_starts_clean(t) -> void:
 	room.free()
 
 
-func test_home_goes_to_title(t) -> void:
+func test_home_goes_to_map(t) -> void:
 	var room := await _make(t)
 	room.get_node("Finish/HomeButton").pressed.emit()
-	t.eq(_requests.back(), "res://scenes/title.tscn", "home")
+	t.eq(_requests.back(), "res://scenes/map.tscn", "back to the card")
 	room.free()
 
 
@@ -313,3 +327,62 @@ func test_background_covers_tall_screens(t) -> void:
 	var script: GDScript = load("res://scripts/room.gd")
 	t.check(absf(script.cover_scale(Vector2(1920, 1200), Vector2(1672, 941)) - 1.2752) < 0.001, "16:10")
 	t.check(absf(script.cover_scale(Vector2(1920, 1080), Vector2(1672, 941)) - 1.1483) < 0.001, "16:9")
+
+
+func test_level_2_rolls_pajamas(t) -> void:
+	var room := await _make(t, "becca", 4, "", 1)
+	await _advance(t, room, Step.FINDING)
+	t.eq(room.get_node("DrawerView").correct_choice().texture in load("res://data/becca.tres").colors("pajamas"), true, "pajamas first")
+	await _advance(t, room, Step.DONE)
+	t.eq(room.packed_count(), 1, "one round only, whatever the outfit count")
+	t.check(1 in t.tree.root.get_node("Progress").levels_done("becca"), "level saved as done")
+	room.free()
+
+
+func test_level_3_packs_items_one_by_one(t) -> void:
+	var room := await _make(t, "jack", 1, "", 2)
+	t.check(room.get_node("Stage/Spot").visible, "basket on the floor")
+	await _advance(t, room, Step.OPENED)
+	t.eq(room.cue, "spot", "basket pulses")
+	await _advance(t, room, Step.PACK_ITEMS)
+	t.eq(room.loose_items().size(), 4, "four things on the rug")
+	t.eq(room.cue, "items", "they pulse")
+	await _advance(t, room, Step.CLOSE)
+	t.eq(room.packed_count(), 4, "all four in the suitcase")
+	await _advance(t, room, Step.DONE)
+	t.eq(room.step, Step.DONE, "done")
+	room.free()
+
+
+func test_level_4_hugs_the_buddy(t) -> void:
+	var room := await _make(t, "becca", 1, "", 3)
+	var player: Character = room.get_node("Stage/Player")
+	var hugged := [false]
+	var watch := func(): if player.pose == "hug": hugged[0] = true
+	t.tree.process_frame.connect(watch)
+	await _advance(t, room, Step.FINDING)
+	var view: DrawerView = room.get_node("DrawerView")
+	await _until(t, func(): return view.visible)
+	var item := view.correct_choice()
+	item.begin_drag(item.global_position)
+	item.end_drag(view.TARGET_CENTER)
+	await _until(t, func(): return hugged[0], 3.0)
+	t.check(hugged[0], "hugs the buddy")
+	t.eq(t.tree.root.get_node("Voice").last_line, "hug-buddy", "helper says hug it")
+	t.tree.process_frame.disconnect(watch)
+	room.free()
+
+
+func test_voice_follows_steps(t) -> void:
+	var room := await _make(t, "becca", 1, "", 0)
+	var voice: Node = t.tree.root.get_node("Voice")
+	t.eq(voice.last_line, "open-suitcase", "open the suitcase")
+	await _advance(t, room, Step.OPENED)
+	t.eq(voice.last_line, "open-drawer", "open the drawer")
+	await _advance(t, room, Step.FINDING)
+	t.eq(voice.last_line, "find-shirt", "find the shirt")
+	room.free()
+	room = await _make(t, "becca", 1, "", 3)
+	await _advance(t, room, Step.OPENED)
+	t.eq(voice.last_line, "open-toybox", "toy box level")
+	room.free()

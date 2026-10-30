@@ -1,0 +1,6 @@
+[
+ {"items": ["shirt", "shorts", "underwear", "socks"], "spot": "drawer", "roll": true, "rounds": "outfits"},
+ {"items": ["pajamas", "swimsuit", "hoodie", "nice-outfit"], "spot": "drawer", "roll": true, "rounds": 1},
+ {"items": ["sandals", "hat", "hairbrush", "toothbrush"], "spot": "basket", "roll": false, "rounds": 1},
+ {"items": ["buddy", "book", "tablet", "special"], "spot": "toybox", "roll": false, "rounds": 1, "hug": "buddy"}
+]

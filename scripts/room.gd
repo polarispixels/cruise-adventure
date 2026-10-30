@@ -1,19 +1,31 @@
-# A child's room: open the suitcase, then for each outfit tap the dresser,
-# find four things in the drawer, roll them into a bundle and pack it. Then
-# close the lid, zip, and watch the done video. Whatever comes next pulses.
-# Positions come from data/room_layout.json in background pixels; difficulty
-# and outfit count from Game.kid.
+# A child's room for one level (one card row). Open the suitcase, then for
+# each round tap the search spot (dresser, basket or toy box), find the row's
+# four things, and pack them: rolled into a bundle (clothes) or one by one.
+# Then close the lid, zip, and watch the done video. Whatever comes next
+# pulses and the helper sibling says it out loud.
+# Levels come from data/levels.json; positions from data/room_layout.json in
+# background pixels; difficulty and outfit count from Game.kid.
 extends Node2D
 
 signal step_changed(step: Step)
 
-enum Step { START, OPENED, FINDING, ROLL, PACK_BUNDLE, CLOSE, ZIP, DONE }
+enum Step { START, OPENED, FINDING, ROLL, PACK_BUNDLE, PACK_ITEMS, CLOSE, ZIP, DONE }
 
-const ITEMS: Array[String] = ["shirt", "shorts", "underwear", "socks"]
+const LEVELS := "res://data/levels.json"
 const LAYOUT := "res://data/room_layout.json"
 const BG_SIZE := Vector2(1672, 941)
 const CASE_CENTER := Vector2(768, 512)
 const STAR_TEXTURE := preload("res://assets/art/star.png")
+const ITEM_SCENE := preload("res://scenes/item.tscn")
+const SPOT_OPEN := {
+	"drawer": "res://assets/props/shared/open-drawer.png",
+	"basket": "res://assets/props/shared/basket-open.png",
+	"toybox": "res://assets/props/shared/toybox-open.png",
+}
+const SPOT_CLOSED := {
+	"basket": "res://assets/props/shared/basket-closed.png",
+	"toybox": "res://assets/props/shared/toybox-closed.png",
+}
 const STAR_COUNT := 8
 const STAR_DISTANCE := 260.0
 const STAR_TIME := 0.7
@@ -24,19 +36,25 @@ const CUE_TIME := 0.45
 
 var step := Step.START
 var item_index := 0
+## Which round (outfit) of this level is being packed.
 var outfit_index := 0
-## What's pulsing right now: "suitcase", "dresser", "layup", "bundle", "zipper" or "".
+## What's pulsing right now: "suitcase", "spot", "layup", "bundle", "items", "zipper" or "".
 var cue := ""
 
 var _layout: Dictionary
+var _level: Dictionary
+var _items: Array
+var _rounds := 1
 var _busy := false
 var _idle := 0.0
 var _hinting := false
 var _cue_tween: Tween
+var _loose: Array[Draggable] = []
 
 @onready var _stage: Node2D = $Stage
 @onready var _background: Sprite2D = $Stage/Background
 @onready var _dresser_glow: Sprite2D = $Stage/DresserGlow
+@onready var _spot: Sprite2D = $Stage/Spot
 @onready var _suitcase: Node2D = $Stage/Suitcase
 @onready var _back: Sprite2D = $Stage/Suitcase/Back
 @onready var _packed: Node2D = $Stage/Suitcase/Packed
@@ -64,7 +82,11 @@ static func cover_scale(view: Vector2, tex: Vector2) -> float:
 
 func _ready() -> void:
 	_layout = JSON.parse_string(FileAccess.get_file_as_string(LAYOUT))
+	var levels: Array = JSON.parse_string(FileAccess.get_file_as_string(LEVELS))
+	_level = levels[clampi(Game.level, 0, levels.size() - 1)]
+	_items = _level.items
 	var kid := Game.kid
+	_rounds = kid.outfits if str(_level.rounds) == "outfits" else int(_level.rounds)
 	_background.texture = kid.room()
 	_back.texture = kid.prop("suitcase-open-back")
 	_front.texture = kid.prop("suitcase-open-front")
@@ -88,8 +110,14 @@ func _ready() -> void:
 	_drawer_slide.position = _bg("drawer_from")
 	_drawer_slide.scale = Vector2.ONE * _layout.drawer_scale
 	_place_dresser_glow()
+	_spot.visible = _level.spot != "drawer"
+	if _spot.visible:
+		_spot.texture = load(SPOT_CLOSED[_level.spot])
+		_spot.position = _bg("spot_center")
+		_spot.scale = Vector2.ONE * _layout.spot_scale
 	_bundle.placed.connect(_on_bundle_placed)
 	_drawer.found.connect(on_found)
+	_drawer.missed.connect(func(): _say("try-again"))
 	_done_player.finished.connect(_show_finish)
 	$Finish/ReplayButton.pressed.connect(replay)
 	$Finish/HomeButton.pressed.connect(home)
@@ -103,6 +131,7 @@ func _ready() -> void:
 	_done_video.visible = false
 	_drawer_slide.visible = false
 	_set_cue("suitcase")
+	_say("open-suitcase")
 
 
 # --- Steps -------------------------------------------------------------------
@@ -122,7 +151,7 @@ func tap_suitcase() -> void:
 		t.tween_property(_card, "position", corner, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		t.tween_property(_card, "scale", Vector2.ONE * _card_scale(), 0.5)
 		t.chain().tween_callback(func():
-			_card.highlight(0)
+			_card.highlight(0, Game.level)
 			_busy = false
 			_go(Step.OPENED))
 	elif step == Step.CLOSE:
@@ -141,20 +170,31 @@ func tap_suitcase() -> void:
 			_go(Step.ZIP))
 
 
-func tap_dresser() -> void:
+## Opens the level's search spot: the dresser drawer, the basket or the toy box.
+func tap_spot() -> void:
 	if _busy or step != Step.OPENED:
 		return
 	_busy = true
 	_set_cue("")
-	_drawer_slide.visible = true
-	_drawer_slide.position = _bg("drawer_from")
 	var t := create_tween()
-	t.tween_property(_drawer_slide, "position", _bg("drawer_from") + _vec("drawer_slide"), 0.3) \
-		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	if _level.spot == "drawer":
+		_drawer_slide.visible = true
+		_drawer_slide.position = _bg("drawer_from")
+		t.tween_property(_drawer_slide, "position", _bg("drawer_from") + _vec("drawer_slide"), 0.3) \
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	else:
+		var rest := _spot.scale
+		t.tween_property(_spot, "scale", rest * Vector2(1.08, 0.92), 0.12)
+		t.tween_property(_spot, "scale", rest, 0.18)
 	t.tween_callback(func():
 		_busy = false
 		_open_drawer()
 		_go(Step.FINDING))
+
+
+## v0.2 name, kept for the drawer levels.
+func tap_dresser() -> void:
+	tap_spot()
 
 
 func on_found(_item: String) -> void:
@@ -162,25 +202,32 @@ func on_found(_item: String) -> void:
 		return
 	_busy = true
 	var texture := _drawer.correct_choice().texture
+	var found_item: String = _items[item_index]
 	_drawer.close()
+	_say(Voice.found_line())
 	var index := item_index
 	var flyer := Sprite2D.new()
 	flyer.texture = texture
 	flyer.position = _layup.to_local(DrawerView.TARGET_CENTER)
 	flyer.scale = Vector2.ONE * DrawerView.ITEM_SCALE / _stage.scale.x
 	_layup.add_child(flyer)
-	var slot := _vec("layup_step") * index
 	var t := create_tween().set_parallel()
-	t.tween_property(flyer, "position", slot, FLY_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	t.tween_property(flyer, "position", _vec("layup_step") * index, FLY_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	t.tween_property(flyer, "scale", Vector2.ONE * _layout.layup_item_scale, FLY_TIME)
 	t.chain().tween_callback(func():
-		_card.stamp(index)
+		_card.stamp(index, Game.level)
 		_chime.play()
-		_player.cheer()
+		if found_item == _level.get("hug", ""):
+			_player.hug()
+		else:
+			_player.cheer()
 		_helper.clap()
 		item_index += 1)
-	if index + 1 < ITEMS.size():
-		t.tween_callback(func(): _card.highlight(index + 1))
+	if found_item == _level.get("hug", ""):
+		t.tween_callback(func(): _say("hug-buddy"))
+		t.tween_interval(Character.HUG_TIME)
+	if index + 1 < _items.size():
+		t.tween_callback(func(): _card.highlight(index + 1, Game.level))
 		t.tween_interval(REOPEN_DELAY)
 		t.tween_callback(func():
 			_busy = false
@@ -192,7 +239,11 @@ func on_found(_item: String) -> void:
 		t.tween_interval(0.6)
 		t.tween_callback(func():
 			_busy = false
-			_go(Step.ROLL))
+			if _level.roll:
+				_go(Step.ROLL)
+			else:
+				_loosen_items()
+				_go(Step.PACK_ITEMS))
 
 
 func tap_layup() -> void:
@@ -205,23 +256,21 @@ func tap_layup() -> void:
 		t.tween_property(piece, "position", Vector2.ZERO, 0.35)
 		t.tween_property(piece, "modulate:a", 0.0, 0.35)
 	t.chain().tween_callback(func():
-		for piece in _layup.get_children():
-			_layup.remove_child(piece)
-			piece.queue_free()
+		_clear_layup()
 		_show_bundle(_bg("layup_center"))
 		_busy = false
 		_go(Step.PACK_BUNDLE))
 
 
 func replay() -> void:
-	Game.goto(Game.ROOM)
+	Game.play_level(Game.level)
 
 
 func home() -> void:
-	Game.goto(Game.TITLE)
+	Game.goto(Game.MAP)
 
 
-## Bundles packed so far.
+## Things packed so far (bundles and single items).
 func packed_count() -> int:
 	return _packed.get_child_count()
 
@@ -230,14 +279,23 @@ func layout_value(key: String) -> Variant:
 	return _layout[key]
 
 
+## The items lying on the rug, waiting to be dragged into the suitcase (no-roll levels).
+func loose_items() -> Array[Draggable]:
+	return _loose.duplicate()
+
+
 # --- Tap targets (global) ----------------------------------------------------
 
 func suitcase_point() -> Vector2:
 	return _suitcase.global_position
 
 
+func spot_point() -> Vector2:
+	return _spot_rect().get_center()
+
+
 func dresser_point() -> Vector2:
-	return _dresser_rect().get_center()
+	return spot_point()
 
 
 func layup_point() -> Vector2:
@@ -249,11 +307,13 @@ func hint_target() -> Vector2:
 		Step.START, Step.CLOSE:
 			return suitcase_point()
 		Step.OPENED:
-			return dresser_point()
+			return spot_point()
 		Step.ROLL:
 			return layup_point()
 		Step.PACK_BUNDLE:
 			return _bundle.global_position
+		Step.PACK_ITEMS:
+			return _loose[0].global_position if not _loose.is_empty() else suitcase_point()
 		Step.ZIP:
 			return _pull.global_position
 	return Vector2.INF
@@ -270,8 +330,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			if _suitcase_rect().has_point(point):
 				tap_suitcase()
 		Step.OPENED:
-			if _dresser_rect().has_point(point):
-				tap_dresser()
+			if _spot_rect().has_point(point):
+				tap_spot()
 		Step.ROLL:
 			if _layup_rect().has_point(point):
 				tap_layup()
@@ -293,6 +353,7 @@ func _process(delta: float) -> void:
 	if not _hinting and _idle >= Game.kid.hint_delay:
 		_hinting = true
 		_helper.point_at(hint_target())
+		_say(_line_for(step))
 
 
 func _reset_idle() -> void:
@@ -303,14 +364,39 @@ func _reset_idle() -> void:
 
 
 func _is_dragging() -> bool:
-	return _bundle.is_dragging or _zipper.is_dragging
+	if _bundle.is_dragging or _zipper.is_dragging:
+		return true
+	return _loose.any(func(d): return d.is_dragging)
 
 
 func _go(next: Step) -> void:
 	step = next
 	_reset_idle()
 	_set_cue(_cue_for(step))
+	_say(_line_for(step))
 	step_changed.emit(step)
+
+
+func _say(line: String) -> void:
+	if line != "":
+		Voice.say(line, Game.sibling())
+
+
+func _line_for(s: Step) -> String:
+	match s:
+		Step.START:
+			return "open-suitcase"
+		Step.OPENED:
+			return {"drawer": "open-drawer", "basket": "open-basket", "toybox": "open-toybox"}[_level.spot]
+		Step.ROLL:
+			return "roll-it"
+		Step.PACK_BUNDLE, Step.PACK_ITEMS:
+			return "pack-it"
+		Step.CLOSE:
+			return "close-suitcase"
+		Step.ZIP:
+			return "zip-it"
+	return ""
 
 
 func _cue_for(s: Step) -> String:
@@ -318,11 +404,13 @@ func _cue_for(s: Step) -> String:
 		Step.START, Step.CLOSE:
 			return "suitcase"
 		Step.OPENED:
-			return "dresser"
+			return "spot"
 		Step.ROLL:
 			return "layup"
 		Step.PACK_BUNDLE:
 			return "bundle"
+		Step.PACK_ITEMS:
+			return "items"
 		Step.ZIP:
 			return "zipper"
 	return ""
@@ -337,6 +425,10 @@ func _set_cue(next: String) -> void:
 	_layup.scale = Vector2.ONE
 	_bundle.get_node("Sprite").scale = Vector2.ONE
 	_pull.scale = Vector2.ONE * _layout.zipper_pull_scale
+	if _level.spot != "drawer":
+		_spot.scale = Vector2.ONE * _layout.spot_scale
+	for d in _loose:
+		d.get_node("Sprite").scale = Vector2.ONE
 	_dresser_glow.visible = false
 	cue = next
 	if next == "":
@@ -347,18 +439,26 @@ func _set_cue(next: String) -> void:
 		"suitcase":
 			target = _suitcase
 			grow = 1.05
-		"dresser":
-			_dresser_glow.visible = true
-			_dresser_glow.modulate.a = 1.0
-			_cue_tween = create_tween().set_loops()
-			_cue_tween.tween_property(_dresser_glow, "modulate:a", 0.25, CUE_TIME).set_trans(Tween.TRANS_SINE)
-			_cue_tween.tween_property(_dresser_glow, "modulate:a", 1.0, CUE_TIME).set_trans(Tween.TRANS_SINE)
-			return
+		"spot":
+			if _level.spot != "drawer":
+				target = _spot
+			else:
+				_dresser_glow.visible = true
+				_dresser_glow.modulate.a = 1.0
+				_cue_tween = create_tween().set_loops()
+				_cue_tween.tween_property(_dresser_glow, "modulate:a", 0.25, CUE_TIME).set_trans(Tween.TRANS_SINE)
+				_cue_tween.tween_property(_dresser_glow, "modulate:a", 1.0, CUE_TIME).set_trans(Tween.TRANS_SINE)
+				return
 		"layup":
 			target = _layup
 		"bundle":
 			target = _bundle.get_node("Sprite")
 			grow = 1.12
+		"items":
+			if _loose.is_empty():
+				return
+			target = _loose[0].get_node("Sprite")
+			grow = 1.15
 		"zipper":
 			target = _pull
 			grow = 1.3
@@ -369,7 +469,59 @@ func _set_cue(next: String) -> void:
 
 
 func _open_drawer() -> void:
-	_drawer.open(Game.kid, Game.sibling(), ITEMS[item_index])
+	var item: String = _items[item_index]
+	_drawer.open(Game.kid, Game.sibling(), item, -1, load(SPOT_OPEN[_level.spot]))
+	_say("find-" + item)
+
+
+func _clear_layup() -> void:
+	for piece in _layup.get_children():
+		_layup.remove_child(piece)
+		piece.queue_free()
+
+
+func _suitcase_zone() -> Rect2:
+	var zone := _sprite_rect(_back)
+	return zone.grow_individual(-zone.size.x * 0.15, -zone.size.y * 0.15, -zone.size.x * 0.15, -zone.size.y * 0.15)
+
+
+## No-roll levels: turns the found items on the rug into things to drag into the suitcase.
+func _loosen_items() -> void:
+	var zone := _suitcase_zone()
+	var pieces := _layup.get_children()
+	for i in pieces.size():
+		var piece: Sprite2D = pieces[i]
+		var item: Draggable = ITEM_SCENE.instantiate()
+		item.texture = piece.texture
+		item.home_scale = _layout.layup_item_scale
+		item.drop_zone = zone
+		item.snap_point = _suitcase.to_global(_packed_slot(i))
+		_stage.add_child(item)
+		item.global_position = piece.global_position
+		item.home_position = item.global_position
+		item.placed.connect(_on_item_packed)
+		_loose.append(item)
+	_clear_layup()
+
+
+func _on_item_packed(item: Draggable) -> void:
+	_loose.erase(item)
+	_set_cue("")
+	await get_tree().create_timer(Draggable.SNAP_TIME + 0.05).timeout
+	var packed := Sprite2D.new()
+	packed.texture = item.texture
+	packed.scale = Vector2.ONE * _layout.layup_item_scale / _layout.suitcase_scale
+	_packed.add_child(packed)
+	packed.global_position = item.global_position
+	item.queue_free()
+	_chime.play()
+	_player.cheer()
+	if step != Step.PACK_ITEMS:
+		return
+	if _loose.is_empty():
+		_round_done()
+	else:
+		_set_cue("items")
 
 
 func _show_bundle(at: Vector2) -> void:
@@ -379,8 +531,7 @@ func _show_bundle(at: Vector2) -> void:
 	_bundle.home_position = _bundle.global_position
 	_bundle.home_scale = _layout.bundle_scale
 	_bundle.visible = true
-	var zone := _sprite_rect(_back)
-	_bundle.drop_zone = zone.grow_individual(-zone.size.x * 0.15, -zone.size.y * 0.15, -zone.size.x * 0.15, -zone.size.y * 0.15)
+	_bundle.drop_zone = _suitcase_zone()
 	_bundle.snap_point = _suitcase.to_global(_packed_slot(outfit_index))
 	var pop := create_tween()
 	_bundle.scale = Vector2.ZERO
@@ -415,11 +566,16 @@ func _on_bundle_placed(_item: Draggable) -> void:
 	_player.cheer()
 	_chime.play()
 	_busy = false
-	if outfit_index + 1 < Game.kid.outfits:
+	_round_done()
+
+
+## One round packed: start the next one, or close up.
+func _round_done() -> void:
+	if outfit_index + 1 < _rounds:
 		outfit_index += 1
 		item_index = 0
 		_card.clear()
-		_card.highlight(0)
+		_card.highlight(0, Game.level)
 		_go(Step.OPENED)
 	else:
 		_go(Step.CLOSE)
@@ -429,6 +585,7 @@ func _on_zipped() -> void:
 	if step != Step.ZIP:
 		_zipper.reset()
 		return
+	Progress.mark_done(Game.kid.id, Game.level)
 	_go(Step.DONE)
 	_player.cheer()
 	_helper.cheer()
@@ -524,7 +681,10 @@ func _suitcase_rect() -> Rect2:
 	return _sprite_rect(_closed if _closed.visible else _back)
 
 
-func _dresser_rect() -> Rect2:
+## The level's search spot: the dresser for drawer levels, else the basket/toy box prop.
+func _spot_rect() -> Rect2:
+	if _level.spot != "drawer":
+		return _sprite_rect(_spot)
 	var v: Array = _layout.dresser_rect
 	var a := _stage.to_global(Vector2(v[0], v[1]) - BG_SIZE / 2)
 	var b := _stage.to_global(Vector2(v[0] + v[2], v[1] + v[3]) - BG_SIZE / 2)

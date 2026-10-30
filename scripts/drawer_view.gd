@@ -5,6 +5,8 @@ class_name DrawerView
 extends Node2D
 
 signal found(item: String)
+## A wrong pick was dropped on the picture.
+signal missed
 
 const TARGET_CENTER := Vector2(960, 210)
 const ROW_Y := 540.0
@@ -19,6 +21,7 @@ var wrong_count := 0
 var _item := ""
 var _correct: Draggable
 
+@onready var _container: Sprite2D = $Drawer
 @onready var _slot: Sprite2D = $Slot
 @onready var _target: Sprite2D = $Target
 @onready var _items: Node2D = $Items
@@ -29,8 +32,11 @@ func _ready() -> void:
 	visible = false
 
 
-func open(kid: KidProfile, helper: KidProfile, item: String, rng_seed: int = -1) -> void:
+## container: the open drawer, basket or toy box to search in (null keeps the drawer).
+func open(kid: KidProfile, helper: KidProfile, item: String, rng_seed: int = -1, container: Texture2D = null) -> void:
 	close()
+	if container:
+		_container.texture = container
 	_item = item
 	wrong_count = 0
 	_helper.kid = helper
@@ -99,5 +105,6 @@ func _on_placed(choice: Draggable) -> void:
 
 func _on_rejected(_choice: Draggable) -> void:
 	wrong_count += 1
+	missed.emit()
 	if wrong_count >= MISSES_BEFORE_HINT and _correct:
 		_helper.point_at(_correct.global_position)

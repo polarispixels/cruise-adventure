@@ -104,6 +104,29 @@ def _ui_round_button(d, size, glyph):
         d.rectangle(s(c - 24, c + 30, c + 24, c + 100), fill=CHECK)
 
 
+def search_spot(name, dst):
+    """Stand-ins for the closet basket and toy box until art round 3 arrives."""
+    open_view = name.endswith("-open")
+    w, h = (1024, 768) if open_view else (1024, 1024)
+    img, d = canvas(w, h)
+    basket = name.startswith("basket")
+    body, rim, trim = ("#D9A35F", "#A8723A", "#F4D29C") if basket else ("#E0453A", "#FFD23F", "#2F6FE4")
+    if open_view:
+        d.rounded_rectangle(s(110, 120, 914, 700), radius=60 * SS, fill=rim, outline=OUTLINE, width=10 * SS)
+        d.rounded_rectangle(s(170, 180, 854, 640), radius=40 * SS, fill=trim, outline=OUTLINE, width=6 * SS)
+    else:
+        d.rounded_rectangle(s(160, 380, 864, 960), radius=50 * SS, fill=body, outline=OUTLINE, width=10 * SS)
+        d.rounded_rectangle(s(130, 300, 894, 420), radius=40 * SS, fill=rim, outline=OUTLINE, width=10 * SS)
+        if basket:
+            for y in range(470, 940, 60):
+                d.line(s(180, y, 844, y), fill=trim, width=8 * SS)
+        else:
+            for cx in (330, 512, 694):
+                d.polygon(pts(star_points(cx, 660, 70, 30)), fill=trim, outline=OUTLINE)
+    Path(dst).parent.mkdir(parents=True, exist_ok=True)
+    img.resize((w, h), Image.LANCZOS).save(dst)
+
+
 def ui(name, dst):
     """UI placeholders for v0.2. Replaced by real art with no code changes."""
     sizes = {"replay": (384, 384), "home": (384, 384), "zipper-pull": (128, 128),

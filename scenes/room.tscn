@@ -27,6 +27,9 @@ position = Vector2(960, 540)
 visible = false
 texture = ExtResource("11_glow")
 
+[node name="Spot" type="Sprite2D" parent="Stage"]
+visible = false
+
 [node name="DrawerSlide" type="Sprite2D" parent="Stage"]
 texture = ExtResource("5_drawer")
 

@@ -8,6 +8,7 @@ const HOP := 40.0
 const HOP_TIME := 0.35
 const CHEER_TIME := 1.0
 const CLAP_TIME := 0.8
+const HUG_TIME := 1.4
 
 @export var kid: KidProfile:
 	set(value):
@@ -69,6 +70,16 @@ func clap() -> void:
 	_tween.tween_property(self, "scale", squash, 0.1)
 	_tween.tween_property(self, "scale", rest, 0.1)
 	_tween.tween_interval(CLAP_TIME - 0.2)
+	_tween.tween_callback(_show.bind("idle"))
+
+
+func hug() -> void:
+	_begin()
+	_show("hug")
+	var rest := scale
+	_tween.tween_property(self, "scale", rest * 1.04, HUG_TIME / 4).set_trans(Tween.TRANS_SINE)
+	_tween.tween_property(self, "scale", rest, HUG_TIME / 4).set_trans(Tween.TRANS_SINE)
+	_tween.tween_interval(HUG_TIME / 2)
 	_tween.tween_callback(_show.bind("idle"))
 
 
