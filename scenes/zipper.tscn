@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/zipper.gd" id="1_zip"]
+[ext_resource type="Texture2D" path="res://assets/ui/zipper-pull.png" id="2_pull"]
+
+[node name="Zipper" type="Node2D"]
+script = ExtResource("1_zip")
+
+[node name="Pull" type="Sprite2D" parent="."]
+texture = ExtResource("2_pull")

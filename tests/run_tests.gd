@@ -2,6 +2,8 @@
 # Usage: godot --headless --script res://tests/run_tests.gd
 extends SceneTree
 
+const WATCHDOG_SECONDS := 600
+
 var tree: SceneTree
 var _failures: Array[String] = []
 var _errors := ErrorCatcher.new()
@@ -19,6 +21,10 @@ class ErrorCatcher extends Logger:
 func _initialize() -> void:
 	tree = self
 	OS.add_logger(_errors)
+	# Watchdog: a test that never resumes must not hang CI.
+	create_timer(WATCHDOG_SECONDS).timeout.connect(func():
+		print("FAIL watchdog: tests still running after %d s" % WATCHDOG_SECONDS)
+		quit(2))
 	_run.call_deferred()
 
 
@@ -37,10 +43,22 @@ func _run() -> void:
 	var failed := 0
 	var files := Array(DirAccess.get_files_at("res://tests"))
 	files.sort()
+	# `-- --only=test_room` runs just the test files whose names contain that text.
+	var only := ""
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--only="):
+			only = arg.trim_prefix("--only=")
 	for file: String in files:
 		if not (file.begins_with("test_") and file.ends_with(".gd")):
 			continue
-		var suite: RefCounted = load("res://tests/" + file).new()
+		if only != "" and not only in file:
+			continue
+		var script: GDScript = load("res://tests/" + file)
+		if script == null or not script.can_instantiate():
+			failed += 1
+			print("FAIL ", file, ": could not load (parse error?)")
+			continue
+		var suite: RefCounted = script.new()
 		var names: Array[String] = []
 		for method in suite.get_method_list():
 			if method.name.begins_with("test_"):

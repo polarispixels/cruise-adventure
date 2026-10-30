@@ -1,0 +1,2311 @@
+[
+ {
+  "game": "assets/backgrounds/jack-room.png",
+  "generator": "copy",
+  "source": "Game Assets/Backgrounds/Jack Room - Empty Background v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/jack/idle.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - idle v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/jack/wave-1.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - wave-1 v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/jack/wave-2.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - wave-2 v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/jack/cheer.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - cheer v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/jack/clap.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - clap v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/jack/point.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - point v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/suitcase-open-back.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - suitcase-open-back v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/suitcase-open-front.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - suitcase-open-front v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/suitcase-closed.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - suitcase-closed v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/bundle.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - bundle v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/shirt-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - shirt v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/shirt-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shirt-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/shirt-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shirt-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/shirt-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shirt-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/shirt-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shirt-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/shirt-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shirt-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/shirt-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shirt-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/shirt-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shirt-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/shorts-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - shorts v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/shorts-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shorts-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/shorts-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shorts-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/shorts-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shorts-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/shorts-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shorts-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/shorts-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shorts-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/shorts-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shorts-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/shorts-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/shorts-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/underwear-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - underwear v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/underwear-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/underwear-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/underwear-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/underwear-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/underwear-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/underwear-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/underwear-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/underwear-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/underwear-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/underwear-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/underwear-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/underwear-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/underwear-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/underwear-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/socks-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - socks v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/socks-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/socks-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/socks-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/socks-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/socks-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/socks-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/socks-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/socks-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/socks-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/socks-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/socks-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/socks-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/socks-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/socks-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/cards/jack.png",
+  "generator": "copy",
+  "source": "Production Docs/Video Card - Jack v0.2.png",
+  "approved": true
+ },
+ {
+  "game": "assets/backgrounds/becca-room.png",
+  "generator": "copy",
+  "source": "Game Assets/Backgrounds/Becca Room - Empty Background v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/becca/idle.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - idle v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/becca/wave-1.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - wave-1 v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/becca/wave-2.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - wave-2 v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/becca/cheer.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - cheer v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/becca/clap.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - clap v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/becca/point.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - point v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/suitcase-open-back.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - suitcase-open-back v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/suitcase-open-front.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - suitcase-open-front v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/suitcase-closed.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - suitcase-closed v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/bundle.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - bundle v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/shirt-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - shirt v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/shirt-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shirt-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/shirt-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shirt-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/shirt-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shirt-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/shirt-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shirt-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/shirt-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shirt-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/shirt-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shirt-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/shirt-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shirt-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/shorts-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - shorts v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/shorts-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shorts-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/shorts-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shorts-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/shorts-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shorts-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/shorts-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shorts-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/shorts-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shorts-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/shorts-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shorts-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/shorts-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/shorts-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/underwear-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - underwear v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/underwear-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/underwear-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/underwear-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/underwear-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/underwear-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/underwear-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/underwear-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/underwear-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/underwear-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/underwear-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/underwear-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/underwear-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/underwear-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/underwear-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/socks-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - socks v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/socks-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/socks-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/socks-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/socks-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/socks-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/socks-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/socks-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/socks-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/socks-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/socks-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/socks-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/socks-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/socks-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/socks-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/cards/becca.png",
+  "generator": "copy",
+  "source": "Production Docs/Video Card - Rebecca v0.2.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/shared/open-drawer.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Shared/Shared - open-drawer v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/shared/check-mark.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Shared/Shared - check-mark v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/ui/replay.png",
+  "generator": "copy",
+  "source": "Game Assets/UI/button-replay.png",
+  "approved": true
+ },
+ {
+  "game": "assets/ui/home.png",
+  "generator": "copy",
+  "source": "Game Assets/UI/button-home.png",
+  "approved": true
+ },
+ {
+  "game": "assets/ui/continue.png",
+  "generator": "copy",
+  "source": "Game Assets/UI/button-continue.png",
+  "approved": true
+ },
+ {
+  "game": "assets/ui/zipper-pull.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/ui/card-glow.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/ui/row-glow.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/ui/target-slot.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/ui/dim.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/audio/who-do-you-want.ogg",
+  "generator": "voice",
+  "source": null,
+  "approved": true,
+  "text": "Who do you want to play as?"
+ },
+ {
+  "game": "assets/video/becca-intro.ogv",
+  "generator": "video",
+  "source": "Videos/becca-pack.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/jack-intro.ogv",
+  "generator": "video",
+  "source": "Videos/jack-pack.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/becca-done.ogv",
+  "generator": "video",
+  "source": "Videos/becca-done.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/jack-done.ogv",
+  "generator": "video",
+  "source": "Videos/jack-done.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/becca-level2.ogv",
+  "generator": "video",
+  "source": "Videos/becca-level2.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/becca-level3.ogv",
+  "generator": "video",
+  "source": "Videos/becca-level3.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/jack-level2.ogv",
+  "generator": "video",
+  "source": "Videos/jack-level2.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/jack-level3.ogv",
+  "generator": "video",
+  "source": "Videos/jack-level3.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/becca-level4.ogv",
+  "generator": "video",
+  "source": "Videos/becca-level4.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/jack-level4.ogv",
+  "generator": "video",
+  "source": "Videos/jack-level4.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/jack/hmm.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - hmm v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/jack/hug.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - hug v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/pajamas-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - pajamas v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/pajamas-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/pajamas-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/pajamas-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/pajamas-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/pajamas-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/pajamas-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/pajamas-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/pajamas-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/pajamas-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/pajamas-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/pajamas-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/pajamas-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/pajamas-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/pajamas-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/swimsuit-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - swimsuit v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/swimsuit-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/swimsuit-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/swimsuit-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/swimsuit-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/swimsuit-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/swimsuit-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/swimsuit-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/swimsuit-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/swimsuit-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/swimsuit-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/swimsuit-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/swimsuit-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/swimsuit-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/swimsuit-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/hoodie-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - hoodie v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/hoodie-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hoodie-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/hoodie-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hoodie-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/hoodie-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hoodie-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/hoodie-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hoodie-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/hoodie-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hoodie-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/hoodie-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hoodie-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/hoodie-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hoodie-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/nice-outfit-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - nice-outfit v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/nice-outfit-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/nice-outfit-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/nice-outfit-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/nice-outfit-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/nice-outfit-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/nice-outfit-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/nice-outfit-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/nice-outfit-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/nice-outfit-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/nice-outfit-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/nice-outfit-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/nice-outfit-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/nice-outfit-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/nice-outfit-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/sandals-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - sandals v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/sandals-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/sandals-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/sandals-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/sandals-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/sandals-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/sandals-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/sandals-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/sandals-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/sandals-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/sandals-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/sandals-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/sandals-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/sandals-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/sandals-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/hat-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - hat v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/hat-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hat-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/hat-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hat-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/hat-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hat-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/hat-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hat-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/hat-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hat-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/hat-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hat-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/hat-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hat-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/hairbrush-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - hairbrush v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/hairbrush-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hairbrush-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/hairbrush-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hairbrush-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/hairbrush-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hairbrush-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/hairbrush-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hairbrush-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/hairbrush-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hairbrush-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/hairbrush-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hairbrush-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/hairbrush-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/hairbrush-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/toothbrush-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - toothbrush v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/toothbrush-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/toothbrush-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/toothbrush-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/toothbrush-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/toothbrush-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/toothbrush-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/toothbrush-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/toothbrush-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/toothbrush-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/toothbrush-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/toothbrush-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/toothbrush-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/toothbrush-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/toothbrush-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/buddy-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - buddy v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/buddy-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/buddy-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/buddy-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/buddy-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/buddy-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/buddy-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/buddy-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/buddy-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/buddy-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/buddy-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/buddy-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/buddy-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/buddy-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/buddy-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/book-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - book v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/book-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/book-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/book-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/book-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/book-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/book-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/book-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/book-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/book-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/book-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/book-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/book-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/book-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/book-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/tablet-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - tablet v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/tablet-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/tablet-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/tablet-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/tablet-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/tablet-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/tablet-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/tablet-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/tablet-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/tablet-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/tablet-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/tablet-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/tablet-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/tablet-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/tablet-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/jack/special-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Jack-Jack/Jack-Jack - special v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/jack/special-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/special-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/jack/special-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/special-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/jack/special-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/special-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/jack/special-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/special-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/jack/special-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/special-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/jack/special-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/special-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/jack/special-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/jack/special-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/characters/becca/hmm.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - hmm v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/becca/hug.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - hug v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/pajamas-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - pajamas v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/pajamas-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/pajamas-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/pajamas-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/pajamas-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/pajamas-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/pajamas-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/pajamas-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/pajamas-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/pajamas-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/pajamas-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/pajamas-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/pajamas-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/pajamas-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/pajamas-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/swimsuit-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - swimsuit v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/swimsuit-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/swimsuit-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/swimsuit-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/swimsuit-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/swimsuit-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/swimsuit-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/swimsuit-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/swimsuit-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/swimsuit-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/swimsuit-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/swimsuit-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/swimsuit-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/swimsuit-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/swimsuit-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/hoodie-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - hoodie v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/hoodie-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hoodie-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/hoodie-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hoodie-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/hoodie-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hoodie-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/hoodie-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hoodie-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/hoodie-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hoodie-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/hoodie-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hoodie-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/hoodie-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hoodie-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/nice-outfit-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - nice-outfit v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/nice-outfit-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/nice-outfit-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/nice-outfit-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/nice-outfit-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/nice-outfit-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/nice-outfit-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/nice-outfit-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/nice-outfit-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/nice-outfit-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/nice-outfit-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/nice-outfit-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/nice-outfit-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/nice-outfit-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/nice-outfit-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/sandals-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - sandals v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/sandals-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/sandals-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/sandals-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/sandals-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/sandals-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/sandals-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/sandals-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/sandals-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/sandals-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/sandals-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/sandals-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/sandals-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/sandals-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/sandals-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/hat-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - hat v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/hat-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hat-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/hat-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hat-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/hat-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hat-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/hat-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hat-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/hat-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hat-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/hat-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hat-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/hat-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hat-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/hairbrush-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - hairbrush v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/hairbrush-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hairbrush-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/hairbrush-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hairbrush-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/hairbrush-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hairbrush-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/hairbrush-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hairbrush-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/hairbrush-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hairbrush-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/hairbrush-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hairbrush-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/hairbrush-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/hairbrush-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/toothbrush-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - toothbrush v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/toothbrush-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/toothbrush-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/toothbrush-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/toothbrush-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/toothbrush-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/toothbrush-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/toothbrush-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/toothbrush-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/toothbrush-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/toothbrush-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/toothbrush-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/toothbrush-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/toothbrush-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/toothbrush-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/buddy-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - buddy v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/buddy-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/buddy-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/buddy-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/buddy-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/buddy-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/buddy-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/buddy-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/buddy-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/buddy-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/buddy-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/buddy-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/buddy-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/buddy-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/buddy-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/book-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - book v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/book-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/book-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/book-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/book-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/book-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/book-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/book-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/book-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/book-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/book-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/book-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/book-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/book-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/book-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/tablet-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - tablet v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/tablet-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/tablet-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/tablet-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/tablet-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/tablet-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/tablet-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/tablet-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/tablet-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/tablet-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/tablet-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/tablet-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/tablet-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/tablet-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/tablet-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/props/becca/special-card.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Becca/Becca - special v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/becca/special-alt-1.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/special-card.png",
+  "hue_shift": 45
+ },
+ {
+  "game": "assets/props/becca/special-alt-2.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/special-card.png",
+  "hue_shift": 90
+ },
+ {
+  "game": "assets/props/becca/special-alt-3.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/special-card.png",
+  "hue_shift": 135
+ },
+ {
+  "game": "assets/props/becca/special-alt-4.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/special-card.png",
+  "hue_shift": 180
+ },
+ {
+  "game": "assets/props/becca/special-alt-5.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/special-card.png",
+  "hue_shift": 225
+ },
+ {
+  "game": "assets/props/becca/special-alt-6.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/special-card.png",
+  "hue_shift": 270
+ },
+ {
+  "game": "assets/props/becca/special-alt-7.png",
+  "generator": "recolor",
+  "source": null,
+  "approved": true,
+  "from": "assets/props/becca/special-card.png",
+  "hue_shift": 315
+ },
+ {
+  "game": "assets/music/theme.ogg",
+  "generator": "music",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/props/shared/basket-closed.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Shared/Shared - basket-closed v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/shared/basket-open.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Shared/Shared - basket-open v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/shared/toybox-closed.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Shared/Shared - toybox-closed v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/props/shared/toybox-open.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Shared/Shared - toybox-open v0.1 - PROVISIONAL.png",
+  "approved": true
+ }
+]

@@ -1,0 +1,258 @@
+{
+ "becca/all-packed": {
+  "kind": "placeholder",
+  "text": "We packed everything! Cruise ship, here we come!"
+ },
+ "becca/close-suitcase": {
+  "kind": "placeholder",
+  "text": "Close the suitcase!"
+ },
+ "becca/find-book": {
+  "kind": "placeholder",
+  "text": "Find your book!"
+ },
+ "becca/find-buddy": {
+  "kind": "placeholder",
+  "text": "Find your teddy!"
+ },
+ "becca/find-hairbrush": {
+  "kind": "placeholder",
+  "text": "Find your hairbrush!"
+ },
+ "becca/find-hat": {
+  "kind": "placeholder",
+  "text": "Find your hat!"
+ },
+ "becca/find-hoodie": {
+  "kind": "placeholder",
+  "text": "Find your hoodie!"
+ },
+ "becca/find-nice-outfit": {
+  "kind": "placeholder",
+  "text": "Find your fancy clothes!"
+ },
+ "becca/find-pajamas": {
+  "kind": "placeholder",
+  "text": "Find your pajamas!"
+ },
+ "becca/find-sandals": {
+  "kind": "placeholder",
+  "text": "Find your sandals!"
+ },
+ "becca/find-shirt": {
+  "kind": "placeholder",
+  "text": "Find your shirt!"
+ },
+ "becca/find-shorts": {
+  "kind": "placeholder",
+  "text": "Find your shorts!"
+ },
+ "becca/find-socks": {
+  "kind": "placeholder",
+  "text": "Find your socks!"
+ },
+ "becca/find-special": {
+  "kind": "placeholder",
+  "text": "Find your monster truck!"
+ },
+ "becca/find-swimsuit": {
+  "kind": "placeholder",
+  "text": "Find your swimsuit!"
+ },
+ "becca/find-tablet": {
+  "kind": "placeholder",
+  "text": "Find your tablet!"
+ },
+ "becca/find-toothbrush": {
+  "kind": "placeholder",
+  "text": "Find your toothbrush!"
+ },
+ "becca/find-underwear": {
+  "kind": "placeholder",
+  "text": "Find your underwear!"
+ },
+ "becca/found-1": {
+  "kind": "placeholder",
+  "text": "You found it!"
+ },
+ "becca/found-2": {
+  "kind": "placeholder",
+  "text": "Yay! Good job!"
+ },
+ "becca/found-3": {
+  "kind": "placeholder",
+  "text": "That's the one!"
+ },
+ "becca/hug-buddy": {
+  "kind": "placeholder",
+  "text": "Give it a big hug!"
+ },
+ "becca/open-basket": {
+  "kind": "placeholder",
+  "text": "Let's look in the basket!"
+ },
+ "becca/open-drawer": {
+  "kind": "placeholder",
+  "text": "Open the drawer!"
+ },
+ "becca/open-suitcase": {
+  "kind": "placeholder",
+  "text": "Tap the suitcase to open it!"
+ },
+ "becca/open-toybox": {
+  "kind": "placeholder",
+  "text": "Let's look in the toy box!"
+ },
+ "becca/pack-it": {
+  "kind": "placeholder",
+  "text": "Put it in the suitcase!"
+ },
+ "becca/pick-a-row": {
+  "kind": "placeholder",
+  "text": "Let's pack! Tap the row that's wiggling!"
+ },
+ "becca/roll-it": {
+  "kind": "placeholder",
+  "text": "Tap the clothes to roll them up!"
+ },
+ "becca/try-again": {
+  "kind": "placeholder",
+  "text": "Hmm... try another one!"
+ },
+ "becca/who-do-you-want": {
+  "kind": "placeholder",
+  "text": "Who do you want to play as?"
+ },
+ "becca/zip-it": {
+  "kind": "placeholder",
+  "text": "Zip it up!"
+ },
+ "jack/all-packed": {
+  "kind": "placeholder",
+  "text": "We packed everything! Cruise ship, here we come!"
+ },
+ "jack/close-suitcase": {
+  "kind": "placeholder",
+  "text": "Close the suitcase!"
+ },
+ "jack/find-book": {
+  "kind": "placeholder",
+  "text": "Find your book!"
+ },
+ "jack/find-buddy": {
+  "kind": "placeholder",
+  "text": "Find your unicorn!"
+ },
+ "jack/find-hairbrush": {
+  "kind": "placeholder",
+  "text": "Find your hairbrush!"
+ },
+ "jack/find-hat": {
+  "kind": "placeholder",
+  "text": "Find your hat!"
+ },
+ "jack/find-hoodie": {
+  "kind": "placeholder",
+  "text": "Find your hoodie!"
+ },
+ "jack/find-nice-outfit": {
+  "kind": "placeholder",
+  "text": "Find your fancy clothes!"
+ },
+ "jack/find-pajamas": {
+  "kind": "placeholder",
+  "text": "Find your pajamas!"
+ },
+ "jack/find-sandals": {
+  "kind": "placeholder",
+  "text": "Find your sandals!"
+ },
+ "jack/find-shirt": {
+  "kind": "placeholder",
+  "text": "Find your shirt!"
+ },
+ "jack/find-shorts": {
+  "kind": "placeholder",
+  "text": "Find your shorts!"
+ },
+ "jack/find-socks": {
+  "kind": "placeholder",
+  "text": "Find your socks!"
+ },
+ "jack/find-special": {
+  "kind": "placeholder",
+  "text": "Find your Minnie ears!"
+ },
+ "jack/find-swimsuit": {
+  "kind": "placeholder",
+  "text": "Find your swimsuit!"
+ },
+ "jack/find-tablet": {
+  "kind": "placeholder",
+  "text": "Find your tablet!"
+ },
+ "jack/find-toothbrush": {
+  "kind": "placeholder",
+  "text": "Find your toothbrush!"
+ },
+ "jack/find-underwear": {
+  "kind": "placeholder",
+  "text": "Find your underwear!"
+ },
+ "jack/found-1": {
+  "kind": "placeholder",
+  "text": "You found it!"
+ },
+ "jack/found-2": {
+  "kind": "placeholder",
+  "text": "Yay! Good job!"
+ },
+ "jack/found-3": {
+  "kind": "placeholder",
+  "text": "That's the one!"
+ },
+ "jack/hug-buddy": {
+  "kind": "placeholder",
+  "text": "Give it a big hug!"
+ },
+ "jack/open-basket": {
+  "kind": "placeholder",
+  "text": "Let's look in the basket!"
+ },
+ "jack/open-drawer": {
+  "kind": "placeholder",
+  "text": "Open the drawer!"
+ },
+ "jack/open-suitcase": {
+  "kind": "placeholder",
+  "text": "Tap the suitcase to open it!"
+ },
+ "jack/open-toybox": {
+  "kind": "placeholder",
+  "text": "Let's look in the toy box!"
+ },
+ "jack/pack-it": {
+  "kind": "placeholder",
+  "text": "Put it in the suitcase!"
+ },
+ "jack/pick-a-row": {
+  "kind": "placeholder",
+  "text": "Let's pack! Tap the row that's wiggling!"
+ },
+ "jack/roll-it": {
+  "kind": "placeholder",
+  "text": "Tap the clothes to roll them up!"
+ },
+ "jack/try-again": {
+  "kind": "placeholder",
+  "text": "Hmm... try another one!"
+ },
+ "jack/who-do-you-want": {
+  "kind": "placeholder",
+  "text": "Who do you want to play as?"
+ },
+ "jack/zip-it": {
+  "kind": "placeholder",
+  "text": "Zip it up!"
+ }
+}

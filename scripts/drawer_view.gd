@@ -1,0 +1,135 @@
+# The Find game: the drawer opens up close, the item to find is pictured
+# above it, and the child drags the matching one onto the picture. Becca
+# gets fewer, more different choices than Jack-Jack (KidProfile.choices).
+class_name DrawerView
+extends Node2D
+
+signal found(item: String)
+## A wrong pick was dropped on the picture.
+signal missed
+
+const TARGET_CENTER := Vector2(960, 210)
+const ROW_Y := 540.0
+const ROW_LEFT := 600.0
+const ROW_RIGHT := 1400.0
+const ITEM_SCALE := 0.45
+## Where the open basket or toy box sits (its art is 1024 x 768, the inside around the choice row).
+const SPOT_CENTER := Vector2(960, 580)
+const SPOT_SCALE := 1.0
+const MISSES_BEFORE_HINT := 2
+const ITEM_SCENE := preload("res://scenes/item.tscn")
+
+var wrong_count := 0
+
+var _item := ""
+var _correct: Draggable
+var _drawer_look: Array
+
+@onready var _container: Sprite2D = $Drawer
+@onready var _slot: Sprite2D = $Slot
+@onready var _target: Sprite2D = $Target
+@onready var _items: Node2D = $Items
+@onready var _helper: Character = $Helper
+
+
+func _ready() -> void:
+	visible = false
+	_drawer_look = [_container.texture, _container.position, _container.scale]
+
+
+## container: the open basket or toy box to search in (null means the drawer).
+## others: for items that don't come in colors, the other things to choose from.
+func open(kid: KidProfile, helper: KidProfile, item: String, rng_seed: int = -1, container: Texture2D = null,
+		others: Array[String] = []) -> void:
+	close()
+	if container:
+		_container.texture = container
+		_container.position = SPOT_CENTER
+		_container.scale = Vector2.ONE * SPOT_SCALE
+	else:
+		_container.texture = _drawer_look[0]
+		_container.position = _drawer_look[1]
+		_container.scale = _drawer_look[2]
+	_item = item
+	wrong_count = 0
+	_helper.kid = helper
+	_helper.set_pose("idle")
+	var rng := RandomNumberGenerator.new()
+	if rng_seed >= 0:
+		rng.seed = rng_seed
+	else:
+		rng.randomize()
+	var textures: Array[Texture2D]
+	if others.is_empty():
+		textures = kid.pick_colors(item, rng)
+	else:
+		textures = [kid.prop(item + "-card")]
+		var pool := others.duplicate()
+		for i in range(pool.size() - 1, 0, -1):
+			var j := rng.randi_range(0, i)
+			var swap: String = pool[i]
+			pool[i] = pool[j]
+			pool[j] = swap
+		for other in pool.slice(0, kid.choices - 1):
+			textures.append(kid.prop(other + "-card"))
+	var correct_texture := textures[0]
+	_target.texture = correct_texture
+	for i in range(textures.size() - 1, 0, -1):
+		var j := rng.randi_range(0, i)
+		var swap := textures[i]
+		textures[i] = textures[j]
+		textures[j] = swap
+	var zone := Rect2(_slot.global_position - _slot.texture.get_size() / 2, _slot.texture.get_size())
+	var n := textures.size()
+	for i in n:
+		var choice: Draggable = ITEM_SCENE.instantiate()
+		choice.texture = textures[i]
+		choice.home_scale = ITEM_SCALE
+		choice.position = Vector2(lerpf(ROW_LEFT, ROW_RIGHT, (i + 0.5) / n), ROW_Y)
+		choice.drop_zone = zone
+		choice.snap_point = TARGET_CENTER
+		choice.accept_drop = textures[i] == correct_texture
+		if choice.accept_drop:
+			_correct = choice
+			choice.placed.connect(_on_placed)
+		else:
+			choice.rejected.connect(_on_rejected)
+		_items.add_child(choice)
+	visible = true
+
+
+func close() -> void:
+	visible = false
+	_correct = null
+	for child in _items.get_children():
+		_items.remove_child(child)
+		child.queue_free()
+
+
+func choices() -> Array[Draggable]:
+	var out: Array[Draggable] = []
+	for child in _items.get_children():
+		out.append(child)
+	return out
+
+
+func correct_choice() -> Draggable:
+	return _correct
+
+
+func is_dragging() -> bool:
+	return choices().any(func(c): return c.is_dragging)
+
+
+func _on_placed(choice: Draggable) -> void:
+	_helper.set_pose("idle")
+	await get_tree().create_timer(Draggable.SNAP_TIME + 0.15).timeout
+	if choice == _correct and is_inside_tree():
+		found.emit(_item)
+
+
+func _on_rejected(_choice: Draggable) -> void:
+	wrong_count += 1
+	missed.emit()
+	if wrong_count >= MISSES_BEFORE_HINT and _correct:
+		_helper.point_at(_correct.global_position)

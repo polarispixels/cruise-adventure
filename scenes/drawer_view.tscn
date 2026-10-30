@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/drawer_view.gd" id="1_view"]
+[ext_resource type="Texture2D" path="res://assets/ui/dim.png" id="2_dim"]
+[ext_resource type="Texture2D" path="res://assets/props/shared/open-drawer.png" id="3_drawer"]
+[ext_resource type="Texture2D" path="res://assets/ui/target-slot.png" id="4_slot"]
+[ext_resource type="PackedScene" path="res://scenes/character.tscn" id="5_char"]
+
+[node name="DrawerView" type="Node2D"]
+script = ExtResource("1_view")
+
+[node name="Dim" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(500, 375)
+texture = ExtResource("2_dim")
+
+[node name="Drawer" type="Sprite2D" parent="."]
+position = Vector2(960, 660)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("3_drawer")
+
+[node name="Slot" type="Sprite2D" parent="."]
+position = Vector2(960, 210)
+texture = ExtResource("4_slot")
+
+[node name="Target" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.55)
+position = Vector2(960, 210)
+scale = Vector2(0.5, 0.5)
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Helper" parent="." instance=ExtResource("5_char")]
+position = Vector2(1790, 1070)
+height_scale = 0.32
+mirrored = true

@@ -114,3 +114,12 @@ Patterned or "spot the difference" puzzles, card rows 2-4 (pajamas, swimsuit, an
 
 ## Left to the builder
 Scene and file structure, the data format for per-child settings, tween and timing details, exact on-screen positions within the shared layout, transitions between scenes, the import script and manifest format, the placeholder generation method, and test design (following v0.1's headless runner and real-input tests).
+
+## Additions from playtest 1 (Ryan, 2026-10-29)
+
+Ryan played both kids on the Fire tablet. The intro videos play well. At one point Becca didn't know what to do next.
+
+1. **Pulsing cues.** The thing to do next pulses until the child does it: the suitcase (open, and later close), a glow over the dresser, the pile on the rug, the bundle, and the zipper pull.
+2. **Done video.** After zipping and the cheer, `Videos/becca-done.mp4` plays full screen (tap to skip), then the replay/home buttons. Jack-Jack uses the same clip until `jack-done.mp4` exists. A missing clip goes straight to the buttons.
+3. **Several outfits.** Jack-Jack rolls six outfits; Becca rolls four (Ryan: six is probably long for her, "3 or 4"). One outfit = tap the dresser, find shirt/shorts/underwear/socks, tap the pile to roll it, drag the bundle into the suitcase. The card's checks clear for the next outfit, and the packed bundles stay visible in the suitcase as progress. After the last one: close and zip. The outfit count is per-kid data (`KidProfile.outfits`).
+4. **More colors, randomized.** Every item comes in 8 colors (the card's color plus 7 hue shifts, 45° apart). Each outfit picks the colors at random: the item to find is a random color, shown in the picture above the drawer. Becca's distractor is always at least 135° away in hue; Jack-Jack's are any other colors (`KidProfile.min_color_gap`).

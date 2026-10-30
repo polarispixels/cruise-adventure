@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="KidProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/kid_profile.gd" id="1_kid"]
+
+[resource]
+script = ExtResource("1_kid")
+id = "becca"
+ribbon_color = Color(0.949, 0.361, 0.604, 1)
+choices = 2
+hint_delay = 6.0
+intro_video = "res://assets/video/becca-intro.ogv"
+outfits = 4
+done_video = "res://assets/video/becca-done.ogv"
+min_color_gap = 3

@@ -1,0 +1,138 @@
+[
+ {
+  "id": "who-do-you-want",
+  "text": "Who do you want to play as?"
+ },
+ {
+  "id": "pick-a-row",
+  "text": "Let's pack! Tap the row that's wiggling!"
+ },
+ {
+  "id": "open-suitcase",
+  "text": "Tap the suitcase to open it!"
+ },
+ {
+  "id": "open-drawer",
+  "text": "Open the drawer!"
+ },
+ {
+  "id": "open-basket",
+  "text": "Let's look in the basket!"
+ },
+ {
+  "id": "open-toybox",
+  "text": "Let's look in the toy box!"
+ },
+ {
+  "id": "find-shirt",
+  "text": "Find your shirt!"
+ },
+ {
+  "id": "find-shorts",
+  "text": "Find your shorts!"
+ },
+ {
+  "id": "find-underwear",
+  "text": "Find your underwear!"
+ },
+ {
+  "id": "find-socks",
+  "text": "Find your socks!"
+ },
+ {
+  "id": "find-pajamas",
+  "text": "Find your pajamas!"
+ },
+ {
+  "id": "find-swimsuit",
+  "text": "Find your swimsuit!"
+ },
+ {
+  "id": "find-hoodie",
+  "text": "Find your hoodie!"
+ },
+ {
+  "id": "find-nice-outfit",
+  "text": "Find your fancy clothes!"
+ },
+ {
+  "id": "find-sandals",
+  "text": "Find your sandals!"
+ },
+ {
+  "id": "find-hat",
+  "text": "Find your hat!"
+ },
+ {
+  "id": "find-hairbrush",
+  "text": "Find your hairbrush!"
+ },
+ {
+  "id": "find-toothbrush",
+  "text": "Find your toothbrush!"
+ },
+ {
+  "id": "find-buddy",
+  "text": "Find your teddy!",
+  "text_by_kid": {
+   "becca": "Find your teddy!",
+   "jack": "Find your unicorn!"
+  }
+ },
+ {
+  "id": "find-book",
+  "text": "Find your book!"
+ },
+ {
+  "id": "find-tablet",
+  "text": "Find your tablet!"
+ },
+ {
+  "id": "find-special",
+  "text": "Find your monster truck!",
+  "text_by_kid": {
+   "becca": "Find your monster truck!",
+   "jack": "Find your Minnie ears!"
+  }
+ },
+ {
+  "id": "found-1",
+  "text": "You found it!"
+ },
+ {
+  "id": "found-2",
+  "text": "Yay! Good job!"
+ },
+ {
+  "id": "found-3",
+  "text": "That's the one!"
+ },
+ {
+  "id": "try-again",
+  "text": "Hmm... try another one!"
+ },
+ {
+  "id": "roll-it",
+  "text": "Tap the clothes to roll them up!"
+ },
+ {
+  "id": "pack-it",
+  "text": "Put it in the suitcase!"
+ },
+ {
+  "id": "hug-buddy",
+  "text": "Give it a big hug!"
+ },
+ {
+  "id": "close-suitcase",
+  "text": "Close the suitcase!"
+ },
+ {
+  "id": "zip-it",
+  "text": "Zip it up!"
+ },
+ {
+  "id": "all-packed",
+  "text": "We packed everything! Cruise ship, here we come!"
+ }
+]
