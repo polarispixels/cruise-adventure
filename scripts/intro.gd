@@ -1,4 +1,4 @@
-# Plays the chosen child's intro clip full screen. A tap skips it; the room
+# Plays the chosen child's intro clip full screen. A tap skips it; the card map
 # always follows, whether the clip ends, is skipped or doesn't exist.
 extends Control
 
@@ -27,4 +27,6 @@ func _leave() -> void:
 		return
 	_left = true
 	_player.stop()
-	Game.goto(Game.ROOM)
+	if Game.kid:
+		Progress.mark_intro_seen(Game.kid.id)
+	Game.goto(Game.MAP)

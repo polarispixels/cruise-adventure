@@ -38,6 +38,12 @@ func _tap(t, world: Vector2) -> void:
 	await _touch(t, false, world)
 
 
+func _hold(t, world: Vector2, seconds: float) -> void:
+	await _touch(t, true, world)
+	await t.tree.create_timer(seconds).timeout
+	await _touch(t, false, world)
+
+
 func _pick(t, kid_name: String, kid_id: String) -> void:
 	var title := await _make(t)
 	var kid: Character = title.get_node("Stage/" + kid_name)
@@ -96,3 +102,56 @@ func test_version_stamp(t) -> void:
 	t.eq(label.text, "v" + ProjectSettings.get_setting("application/config/version"), "stamp")
 	t.check(label.visible, "shown")
 	title.free()
+
+
+func _label_point(title: Node2D) -> Vector2:
+	var label: Label = title.get_node("VersionLabel")
+	return label.global_position + label.size / 2
+
+
+func _temp(t) -> Node:
+	var progress: Node = t.tree.root.get_node("Progress")
+	progress.path = "user://test_progress_title.json"
+	progress.reset()
+	return progress
+
+
+func _restore(t) -> void:
+	var progress: Node = t.tree.root.get_node("Progress")
+	progress.reset()
+	progress.path = "user://progress.json"
+
+
+func test_long_press_on_version_resets_progress(t) -> void:
+	var progress := _temp(t)
+	progress.mark_done("jack", 0)
+	progress.mark_intro_seen("jack")
+	var title := await _make(t)
+	await _hold(t, _label_point(title), 2.3)
+	t.eq(progress.levels_done("jack").size(), 0, "progress cleared")
+	t.check(not progress.intro_seen("jack"), "intro cleared")
+	title.free()
+	_restore(t)
+
+
+func test_short_press_on_version_keeps_progress_and_replays_voice(t) -> void:
+	var progress := _temp(t)
+	progress.mark_done("jack", 0)
+	var title := await _make(t)
+	var voice: AudioStreamPlayer = title.get_node("Voice")
+	voice.stop()
+	await _hold(t, _label_point(title), 0.3)
+	t.eq(progress.levels_done("jack").size(), 1, "progress kept")
+	t.check(voice.playing, "voice replays")
+	title.free()
+	_restore(t)
+
+
+func test_long_press_elsewhere_does_not_reset(t) -> void:
+	var progress := _temp(t)
+	progress.mark_done("jack", 0)
+	var title := await _make(t)
+	await _hold(t, Vector2(960, 100), 2.3)
+	t.eq(progress.levels_done("jack").size(), 1, "progress kept")
+	title.free()
+	_restore(t)

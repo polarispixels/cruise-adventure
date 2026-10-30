@@ -11,9 +11,13 @@ const BECCA_FEET := Vector2(1110, 905)
 const KID_SCALE := 0.5
 ## Name labels float this far above each kid's head, in background pixels.
 const NAME_GAP := 40.0
+## Holding the version stamp this long wipes saved progress (a grown-up's escape hatch).
+const RESET_HOLD := 2.0
+const STAMP_PAD := 24.0
 
 var _picked := false
 var _next_waver := 0
+var _stamp_down_at := -1.0
 
 @onready var _stage: Node2D = $Stage
 @onready var _jack: Character = $Stage/Jack
@@ -46,11 +50,24 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
+	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT):
+		return
+	var point := get_global_mouse_position()
+	var stamp := Rect2($VersionLabel.global_position, $VersionLabel.size).grow(STAMP_PAD)
+	if not event.pressed:
+		if _stamp_down_at >= 0.0:
+			var held := Time.get_ticks_msec() / 1000.0 - _stamp_down_at
+			_stamp_down_at = -1.0
+			if held >= RESET_HOLD:
+				Progress.reset()
+			elif not _picked:
+				_voice.play()
+		return
+	if stamp.has_point(point):
+		_stamp_down_at = Time.get_ticks_msec() / 1000.0
 		return
 	if _picked:
 		return
-	var point := get_global_mouse_position()
 	for kid in [_jack, _becca]:
 		if kid.hit_rect().has_point(point):
 			_pick(kid)

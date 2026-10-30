@@ -5,10 +5,13 @@ signal scene_requested(path: String)
 
 const TITLE := "res://scenes/title.tscn"
 const INTRO := "res://scenes/intro.tscn"
+const MAP := "res://scenes/map.tscn"
 const ROOM := "res://scenes/room.tscn"
 const KIDS := {"jack": "res://data/jack.tres", "becca": "res://data/becca.tres"}
 
 var kid: KidProfile
+## Which card row (0-3) the room is playing.
+var level := 0
 ## Tests turn this off to observe navigation without changing scenes.
 var navigate := true
 var last_scene_request := ""
@@ -16,7 +19,12 @@ var last_scene_request := ""
 
 func pick(kid_id: String) -> void:
 	kid = load(KIDS[kid_id])
-	goto(INTRO)
+	goto(MAP if Progress.intro_seen(kid_id) else INTRO)
+
+
+func play_level(n: int) -> void:
+	level = n
+	goto(ROOM)
 
 
 func sibling() -> KidProfile:

@@ -14,3 +14,5 @@ visible = false
 texture = ExtResource("2_glow")
 
 [node name="Checks" type="Node2D" parent="."]
+
+[node name="RowChecks" type="Node2D" parent="."]
