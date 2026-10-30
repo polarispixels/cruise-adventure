@@ -122,10 +122,56 @@ func test_pick_goes_to_map_after_intro(t) -> void:
 
 func test_play_level_sets_level_and_goes_to_room(t) -> void:
 	var game := _setup(t)
+	var progress := _temp_progress(t)
+	game.kid = load("res://data/becca.tres")
+	progress.mark_done("becca", 2)
 	game.play_level(2)
 	t.eq(game.level, 2, "level")
-	t.eq(game.last_scene_request, game.ROOM, "room")
+	t.eq(game.last_scene_request, game.ROOM, "a finished row replays without its video")
 	game.level = 0
+	_restore_progress(t)
+
+
+func test_new_row_plays_its_intro_first(t) -> void:
+	var game := _setup(t)
+	_temp_progress(t)
+	for kid_id in ["becca", "jack"]:
+		game.kid = load("res://data/%s.tres" % kid_id)
+		for n in [1, 2]:
+			game.play_level(n)
+			t.eq(game.level, n, "level")
+			t.eq(game.last_scene_request, game.INTRO, "%s row %d starts with its video" % [kid_id, n + 1])
+	game.play_level(0)
+	t.eq(game.last_scene_request, game.ROOM, "row 1 has the kid intro instead")
+	game.kid = game.kid.duplicate()
+	game.kid.id = "nobody"
+	game.play_level(1)
+	t.eq(game.last_scene_request, game.ROOM, "no video yet, straight to the room")
+	game.level = 0
+	game.intro_level = -1
+	_restore_progress(t)
+
+
+func test_level_intro_goes_on_to_the_room(t) -> void:
+	var progress := _temp_progress(t)
+	var game := _setup(t)
+	game.kid = load("res://data/becca.tres")
+	game.play_level(1)
+	var intro: Node = load("res://scenes/intro.tscn").instantiate()
+	t.tree.root.add_child(intro)
+	await t.tree.process_frame
+	await t.tree.process_frame
+	var player: VideoStreamPlayer = intro.get_node("Player")
+	t.check(player.is_playing(), "video playing")
+	t.eq(player.stream.resource_path, "res://assets/video/becca-level2.ogv", "the row 2 video")
+	await _click(t, t.tree.root.get_visible_rect().get_center())
+	t.eq(_requests.back(), game.ROOM, "a tap goes on to the room")
+	t.eq(game.level, 1, "still row 2")
+	t.check(not progress.intro_seen("becca"), "the kid intro isn't marked seen")
+	t.eq(game.intro_level, -1, "the next intro is the kid's own again")
+	intro.queue_free()
+	game.level = 0
+	_restore_progress(t)
 
 
 func _intro(t, kid_id: String, without_video := false) -> Node:

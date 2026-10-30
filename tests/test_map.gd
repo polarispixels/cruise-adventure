@@ -94,8 +94,9 @@ func test_tap_next_row_plays_it(t) -> void:
 	var map := await _make(t, "becca", [0])
 	await _tap(t, map.row_point(1))
 	var game: Node = t.tree.root.get_node("Game")
-	t.eq(game.last_scene_request, game.ROOM, "to room")
+	t.eq(game.last_scene_request, game.INTRO, "a new row starts with its video, then the room")
 	t.eq(game.level, 1, "level 1")
+	game.intro_level = -1
 	_done(t, map)
 
 

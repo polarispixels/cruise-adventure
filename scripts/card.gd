@@ -14,9 +14,12 @@ const CHECKBOX_CENTERS := [Vector2(201, 530), Vector2(467, 530), Vector2(733, 53
 const CHECK_SCALE := 0.2
 const PULSE := 1.08
 ## A row spans from above the icons to below the checkboxes, and past the outer columns.
-const ROW_TOP_PAD := 95.0
-const ROW_BOTTOM_PAD := 65.0
-const ROW_SIDE_PAD := 140.0
+const ROW_TOP_PAD := 118.0
+const ROW_BOTTOM_PAD := 52.0
+const ROW_SIDE_PAD := 129.0
+const GLOW_MARGIN := 14.0
+const ITEM_GLOW := preload("res://assets/ui/card-glow.png")
+const ROW_GLOW := preload("res://assets/ui/row-glow.png")
 
 @export var kid: KidProfile:
 	set(value):
@@ -47,6 +50,7 @@ func row_rect(row: int) -> Rect2:
 
 ## Glow around one item's icon.
 func highlight(index: int, row := 0) -> void:
+	_glow.texture = ITEM_GLOW
 	_start_glow(index >= 0, Vector2(COLUMNS[index], ICON_YS[row]) if index >= 0 else Vector2.ZERO, Vector2.ONE)
 
 
@@ -55,8 +59,11 @@ func highlight_row(row: int) -> void:
 	if row < 0 or row >= ICON_YS.size():
 		_start_glow(false, Vector2.ZERO, Vector2.ONE)
 		return
+	_glow.texture = ROW_GLOW
 	var rect := row_rect(row)
-	_start_glow(true, rect.get_center(), rect.size / _glow.texture.get_size())
+	# The row glow's ring sits GLOW_MARGIN inside its art, so the art reaches past the row by that much.
+	var art_size := rect.size + Vector2.ONE * GLOW_MARGIN * 2
+	_start_glow(true, rect.get_center(), art_size / _glow.texture.get_size())
 
 
 func stamp(index: int, row := 0) -> void:

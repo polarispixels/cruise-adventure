@@ -72,8 +72,21 @@ func test_highlight_row_stretches_glow_over_row(t) -> void:
 	t.eq(glow.position, r.get_center(), "centered on row")
 	var covered := glow.texture.get_size() * glow.scale
 	t.check(covered.x >= r.size.x - 1.0 and covered.y >= r.size.y - 1.0, "covers row: %s vs %s" % [covered, r.size])
+	t.check(glow.scale.x > 0.85 and glow.scale.x < 1.15 and glow.scale.y > 0.85 and glow.scale.y < 1.15,
+			"a glow made for a row, not one item's glow stretched: scale %s" % glow.scale)
 	card.highlight_row(-1)
 	t.check(not glow.visible, "hidden")
+	card.highlight(1)
+	t.eq(glow.texture.resource_path, "res://assets/ui/card-glow.png", "items get the item glow back")
+	card.free()
+
+
+func test_row_box_matches_the_card_cells(t) -> void:
+	var card := _make(t)
+	# Row 1's cells on the card art: x 72-1128, y 268-582 (card pixels).
+	var r: Rect2 = card.row_rect(0)
+	t.check(absf(r.position.y - 268) <= 12 and absf(r.end.y - 582) <= 12, "top and bottom: " + str(r))
+	t.check(absf(r.position.x - 72) <= 16 and absf(r.end.x - 1128) <= 16, "sides: " + str(r))
 	card.free()
 
 

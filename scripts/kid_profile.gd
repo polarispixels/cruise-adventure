@@ -30,6 +30,11 @@ func prop(name: String) -> Texture2D:
 	return load("res://assets/props/%s/%s.png" % [id, name])
 
 
+## The video before card row `level` (0-3). Row 1 has none: the kid intro covers it.
+func level_intro(level: int) -> String:
+	return "res://assets/video/%s-level%d.ogv" % [id, level + 1]
+
+
 func room() -> Texture2D:
 	return load("res://assets/backgrounds/%s-room.png" % id)
 

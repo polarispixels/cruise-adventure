@@ -158,7 +158,7 @@ def search_spot(name, dst):
 def ui(name, dst):
     """UI placeholders for v0.2. Replaced by real art with no code changes."""
     sizes = {"replay": (384, 384), "home": (384, 384), "continue": (384, 384), "zipper-pull": (128, 128),
-             "card-glow": (260, 230), "target-slot": (320, 320), "dim": (8, 8)}
+             "card-glow": (260, 230), "row-glow": (1084, 342), "target-slot": (320, 320), "dim": (8, 8)}
     w, h = sizes[name]
     img, d = canvas(w, h)
     if name in BUTTON_COLORS:
@@ -166,7 +166,7 @@ def ui(name, dst):
     elif name == "zipper-pull":
         d.rounded_rectangle(s(34, 8, 94, 120), radius=20 * SS, fill="#2A2A2A", outline="#FFFFFF", width=6 * SS)
         d.ellipse(s(52, 22, 76, 46), fill=(0, 0, 0, 0))
-    elif name == "card-glow":
+    elif name in ("card-glow", "row-glow"):
         glow, gd = canvas(w, h)
         gd.rounded_rectangle(s(14, 14, w - 14, h - 14), radius=30 * SS, outline="#FFE45C", width=18 * SS)
         img = glow.filter(ImageFilter.GaussianBlur(6 * SS))

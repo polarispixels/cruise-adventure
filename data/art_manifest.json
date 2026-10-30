@@ -673,25 +673,31 @@
   "game": "assets/ui/zipper-pull.png",
   "generator": "placeholder",
   "source": null,
-  "approved": false
+  "approved": true
  },
  {
   "game": "assets/ui/card-glow.png",
   "generator": "placeholder",
   "source": null,
-  "approved": false
+  "approved": true
+ },
+ {
+  "game": "assets/ui/row-glow.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": true
  },
  {
   "game": "assets/ui/target-slot.png",
   "generator": "placeholder",
   "source": null,
-  "approved": false
+  "approved": true
  },
  {
   "game": "assets/ui/dim.png",
   "generator": "placeholder",
   "source": null,
-  "approved": false
+  "approved": true
  },
  {
   "game": "assets/audio/who-do-you-want.ogg",
@@ -722,6 +728,30 @@
   "game": "assets/video/jack-done.ogv",
   "generator": "video",
   "source": "Videos/jack-done.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/becca-level2.ogv",
+  "generator": "video",
+  "source": "Videos/becca-level2.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/becca-level3.ogv",
+  "generator": "video",
+  "source": "Videos/becca-level3.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/jack-level2.ogv",
+  "generator": "video",
+  "source": "Videos/jack-level2.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/jack-level3.ogv",
+  "generator": "video",
+  "source": "Videos/jack-level3.mp4",
   "approved": true
  },
  {
@@ -2240,7 +2270,7 @@
   "game": "assets/music/theme.ogg",
   "generator": "music",
   "source": null,
-  "approved": false
+  "approved": true
  },
  {
   "game": "assets/props/shared/basket-closed.png",
