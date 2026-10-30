@@ -703,7 +703,7 @@
   "game": "assets/audio/who-do-you-want.ogg",
   "generator": "voice",
   "source": null,
-  "approved": false,
+  "approved": true,
   "text": "Who do you want to play as?"
  },
  {

@@ -2,7 +2,21 @@
 
 All notable changes to this project are documented here.
 
-## [0.2.0] - Unreleased
+## [0.3.0] - 2026-10-30
+
+Pack the whole card: four levels, one per card row. Includes everything from 0.2.0, which was never released on its own.
+
+- The kid's card is the level map. The next row wiggles, finished rows get a big check, and any finished row can be played again. Progress is saved on the device.
+- Row 1 (shirt, shorts, underwear, socks) and row 2 (pajamas, swimsuit, hoodie, nice outfit): find each in the dresser drawer, roll and pack. Row 3 (sandals, hat, hairbrush, toothbrush) is found in the closet basket and row 4 (buddy, book, tablet, special toy) in the toy box; each find lands on the rug to drag into the suitcase, and the buddy gets a hug first.
+- Rows 2-4 start with a short video of the two kids the first time; a tap skips it.
+- The helper sibling says every instruction and cheer out loud (a computer voice until Jack-Jack and Becca record theirs).
+- Packing the whole card gets a bigger celebration.
+- Jack-Jack has his own "you did it" video.
+- End of a level: Home (title screen), Replay, and a big Continue (back to the card). A home button in the corner leaves a level any time.
+- A quiet background tune that dips while the helper talks and pauses for videos.
+- Holding the version stamp for 5 seconds clears saved progress (for grown-ups).
+
+## [0.2.0] - not released separately
 
 Jack-Jack and Becca's packing game, with their own art.
 
