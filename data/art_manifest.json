@@ -443,5 +443,11 @@
   "generator": "video",
   "source": "Videos/becca-pack.mp4",
   "approved": true
+ },
+ {
+  "game": "assets/video/jack-intro.ogv",
+  "generator": "video",
+  "source": "Videos/jack-pack.mp4",
+  "approved": false
  }
 ]

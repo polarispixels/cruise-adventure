@@ -2,6 +2,8 @@
 # Usage: godot --headless --script res://tests/run_tests.gd
 extends SceneTree
 
+const WATCHDOG_SECONDS := 600
+
 var tree: SceneTree
 var _failures: Array[String] = []
 var _errors := ErrorCatcher.new()
@@ -19,6 +21,10 @@ class ErrorCatcher extends Logger:
 func _initialize() -> void:
 	tree = self
 	OS.add_logger(_errors)
+	# Watchdog: a test that never resumes must not hang CI.
+	create_timer(WATCHDOG_SECONDS).timeout.connect(func():
+		print("FAIL watchdog: tests still running after %d s" % WATCHDOG_SECONDS)
+		quit(2))
 	_run.call_deferred()
 
 
@@ -40,7 +46,12 @@ func _run() -> void:
 	for file: String in files:
 		if not (file.begins_with("test_") and file.ends_with(".gd")):
 			continue
-		var suite: RefCounted = load("res://tests/" + file).new()
+		var script: GDScript = load("res://tests/" + file)
+		if script == null or not script.can_instantiate():
+			failed += 1
+			print("FAIL ", file, ": could not load (parse error?)")
+			continue
+		var suite: RefCounted = script.new()
 		var names: Array[String] = []
 		for method in suite.get_method_list():
 			if method.name.begins_with("test_"):
