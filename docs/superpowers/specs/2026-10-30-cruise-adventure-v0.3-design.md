@@ -56,4 +56,4 @@ The line list is in `docs/voice/voice-lines-v0.3.md`.
 
 ## Questions for Ryan
 
-- Who voices the lines? (see the voice doc)
+- ~~Who voices the lines?~~ **Answered by Ryan:** the real Jack-Jack and Becca, recorded on a phone. A computer voice stands in until the files arrive.
