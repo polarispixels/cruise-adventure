@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/title.gd" id="1_title"]
+[ext_resource type="PackedScene" path="res://scenes/character.tscn" id="2_char"]
+[ext_resource type="AudioStream" path="res://assets/audio/who-do-you-want.ogg" id="3_voice"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_name"]
+font_size = 56
+outline_size = 14
+outline_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_question"]
+font_size = 72
+font_color = Color(0.13, 0.2, 0.33, 1)
+outline_size = 18
+outline_color = Color(1, 1, 1, 1)
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_title")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Stage" type="Node2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Background" type="Sprite2D" parent="Stage"]
+
+[node name="Jack" parent="Stage" instance=ExtResource("2_char")]
+
+[node name="Becca" parent="Stage" instance=ExtResource("2_char")]
+
+[node name="JackName" type="Label" parent="Stage"]
+offset_right = 260.0
+offset_bottom = 80.0
+text = "Jack-Jack"
+label_settings = SubResource("LabelSettings_name")
+horizontal_alignment = 1
+
+[node name="BeccaName" type="Label" parent="Stage"]
+offset_right = 260.0
+offset_bottom = 80.0
+text = "Becca"
+label_settings = SubResource("LabelSettings_name")
+horizontal_alignment = 1
+
+[node name="Question" type="Label" parent="."]
+offset_left = 160.0
+offset_right = 1760.0
+offset_bottom = 100.0
+text = "Who do you want to play as?"
+label_settings = SubResource("LabelSettings_question")
+horizontal_alignment = 1
+
+[node name="Voice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_voice")
+
+[node name="WaveTimer" type="Timer" parent="."]

@@ -1,10 +1,9 @@
-"""Generate the v0.1 placeholder art in assets/art/.
+"""Generate placeholder art: the app icon and stars in assets/art/, and the
+v0.2 UI pieces (buttons, zipper pull, card glow, target slot, dim) that
+tools/import_art.py writes to assets/ui/. Real art replaces any of these PNGs
+with no code changes.
 
-Flat shapes in the palette of the Kids Packing Video keyframes (blue bedroom,
-wooden bed with a striped quilt, blue hard-shell suitcase, teal T-shirt).
-v0.2 replaces these PNGs with the kids' illustrations; no code changes needed.
-
-Usage: python3 tools/make_placeholders.py
+Usage: python3 tools/make_placeholders.py   (icon, stars and legacy replay button)
 """
 import math
 from pathlib import Path
@@ -15,24 +14,7 @@ OUT = Path(__file__).resolve().parent.parent / "assets" / "art"
 SS = 4  # supersampling factor for smooth edges
 
 WALL = "#6FA8EC"
-WALL_DARK = "#5A93DA"
-BASEBOARD = "#F4F1EA"
-FLOOR = "#E3B67A"
-FLOOR_LINE = "#C9985B"
-RUG_OUTER = "#2F5FD0"
-RUG_MID = "#8FB0EE"
-RUG_INNER = "#3D6FE0"
-CURTAIN = "#2F62D8"
-WINDOW_FRAME = "#FFFFFF"
-SKY = "#FFF3B0"
-LEAVES = "#C9E58A"
-WOOD = "#D9A35F"
-WOOD_DARK = "#A8723A"
-QUILT = ["#2F62D8", "#FFFFFF", "#F07A3A", "#FFFFFF"]
-PILLOW = "#FFFFFF"
 CASE = "#2F6FE4"
-CASE_DARK = "#1E4FB8"
-CASE_INSIDE = "#1A3A8F"
 OUTLINE = "#14254F"
 SHIRT = "#26B5C9"
 SHIRT_DARK = "#137C8C"
@@ -76,105 +58,6 @@ def star_points(cx, cy, r_out, r_in, n=5):
         a = -math.pi / 2 + i * math.pi / n
         out.append((cx + r * math.cos(a), cy + r * math.sin(a)))
     return out
-
-
-def bedroom():
-    w, h = 2880, 1800
-    img, d = canvas(w, h, WALL)
-    floor_y = 920
-    # wall stripes
-    for x in range(0, w, 160):
-        d.rectangle(s(x, 0, x + 70, floor_y), fill=WALL_DARK)
-    # window with curtains
-    wx, wy, ww, wh = 1230, 330, 420, 400
-    d.rectangle(s(wx, wy, wx + ww, wy + wh), fill=SKY)
-    for cx, cy, r in [(wx + 90, wy + 300, 110), (wx + 320, wy + 260, 140), (wx + 210, wy + 380, 90)]:
-        d.ellipse(s(cx - r, cy - r, cx + r, cy + r), fill=LEAVES)
-    d.rectangle(s(wx, wy, wx + ww, wy + wh), outline=WINDOW_FRAME, width=24 * SS)
-    d.line(s(wx + ww / 2, wy, wx + ww / 2, wy + wh), fill=WINDOW_FRAME, width=16 * SS)
-    d.line(s(wx, wy + wh / 2, wx + ww, wy + wh / 2), fill=WINDOW_FRAME, width=16 * SS)
-    for cx0 in (wx - 170, wx + ww + 20):
-        d.rectangle(s(cx0, wy - 60, cx0 + 150, wy + wh + 120), fill=CURTAIN)
-        for row in range(6):
-            for col in range(2):
-                sx = cx0 + 40 + col * 70 + (row % 2) * 30
-                sy = wy - 20 + row * 95
-                d.polygon(pts(star_points(sx, sy, 22, 9)), fill="#FFFFFF")
-    # baseboard and floor
-    d.rectangle(s(0, floor_y - 30, w, floor_y), fill=BASEBOARD)
-    d.rectangle(s(0, floor_y, w, h), fill=FLOOR)
-    for y in range(floor_y + 90, h, 110):
-        d.line(s(0, y, w, y), fill=FLOOR_LINE, width=4 * SS)
-    # round rug under the suitcase
-    rx, ry = 1880, 1290
-    for (aw, ah, col) in [(620, 190, RUG_OUTER), (520, 150, RUG_MID), (420, 115, RUG_INNER)]:
-        d.ellipse(s(rx - aw, ry - ah, rx + aw, ry + ah), fill=col)
-    save(img, "bedroom.png", w, h)
-
-
-def bed():
-    w, h = 700, 400
-    img, d = canvas(w, h)
-    # headboard on the left, footboard on the right
-    d.rounded_rectangle(s(10, 20, 80, 390), radius=20 * SS, fill=WOOD, outline=WOOD_DARK, width=6 * SS)
-    d.rounded_rectangle(s(620, 150, 690, 390), radius=20 * SS, fill=WOOD, outline=WOOD_DARK, width=6 * SS)
-    d.rectangle(s(70, 250, 630, 330), fill=WOOD, outline=WOOD_DARK, width=6 * SS)
-    # quilt with stripes
-    d.rounded_rectangle(s(70, 140, 640, 300), radius=30 * SS, fill=QUILT[0])
-    for i, x in enumerate(range(160, 640, 80)):
-        d.rectangle(s(x, 140, x + 40, 300), fill=QUILT[(i % 3) + 1])
-    d.rounded_rectangle(s(70, 140, 640, 300), radius=30 * SS, outline=OUTLINE, width=6 * SS)
-    # pillow
-    d.rounded_rectangle(s(85, 95, 250, 165), radius=30 * SS, fill=PILLOW, outline=OUTLINE, width=5 * SS)
-    save(img, "bed.png", w, h)
-
-
-def suitcase():
-    w, h = 760, 500
-    img, d = canvas(w, h)
-    # open lid behind
-    d.rounded_rectangle(s(40, 0, 720, 150), radius=30 * SS, fill=CASE_DARK, outline=OUTLINE, width=8 * SS)
-    d.rounded_rectangle(s(70, 25, 690, 130), radius=20 * SS, fill=CASE_INSIDE)
-    # base shell
-    d.rounded_rectangle(s(0, 90, 760, 470), radius=40 * SS, fill=CASE, outline=OUTLINE, width=8 * SS)
-    # interior
-    d.rounded_rectangle(s(30, 110, 730, 380), radius=24 * SS, fill=CASE_INSIDE, outline=OUTLINE, width=5 * SS)
-    # handle on the front face
-    d.rounded_rectangle(s(290, 405, 470, 440), radius=16 * SS, fill=OUTLINE)
-    # wheels
-    for x in (90, 670):
-        d.ellipse(s(x - 30, 440, x + 30, 500), fill="#222222")
-    save(img, "suitcase.png", w, h)
-
-
-def shirt():
-    w, h = 260, 220
-    img, d = canvas(w, h)
-    d.polygon(pts(SHIRT_POINTS), fill=SHIRT, outline=SHIRT_DARK, width=6 * SS)
-    d.line(pts([(110, 30), (130, 38), (150, 30)]), fill=SHIRT_DARK, width=6 * SS)
-    save(img, "shirt.png", w, h)
-
-
-def slot():
-    w, h = 280, 240
-    img, d = canvas(w, h)
-    outline = pts(SHIRT_POINTS + [SHIRT_POINTS[0]], dx=10, dy=10)
-    d.line(outline, fill=(255, 255, 255, 255), width=22 * SS, joint="curve")
-    glow = img.filter(ImageFilter.GaussianBlur(10 * SS))
-    img2, d2 = canvas(w, h)
-    img2.alpha_composite(glow)
-    img2.alpha_composite(glow)
-    d2.line(outline, fill=(255, 255, 255, 255), width=10 * SS, joint="curve")
-    save(img2, "slot.png", w, h)
-
-
-def check():
-    w = h = 360
-    img, d = canvas(w, h)
-    tick = [(60, 190), (145, 280), (305, 90)]
-    d.line(pts(tick), fill=CHECK_DARK, width=78 * SS, joint="curve")
-    d.line(pts(tick), fill=CHECK, width=54 * SS, joint="curve")
-    save(img, "check.png", w, h)
 
 
 def replay():
@@ -251,12 +134,6 @@ def ui(name, dst):
 
 
 if __name__ == "__main__":
-    bedroom()
-    bed()
-    suitcase()
-    shirt()
-    slot()
-    check()
     replay()
     star()
     icon()
