@@ -33,7 +33,9 @@ func _ready() -> void:
 
 
 ## container: the open drawer, basket or toy box to search in (null keeps the drawer).
-func open(kid: KidProfile, helper: KidProfile, item: String, rng_seed: int = -1, container: Texture2D = null) -> void:
+## others: for items that don't come in colors, the other things to choose from.
+func open(kid: KidProfile, helper: KidProfile, item: String, rng_seed: int = -1, container: Texture2D = null,
+		others: Array[String] = []) -> void:
 	close()
 	if container:
 		_container.texture = container
@@ -46,7 +48,19 @@ func open(kid: KidProfile, helper: KidProfile, item: String, rng_seed: int = -1,
 		rng.seed = rng_seed
 	else:
 		rng.randomize()
-	var textures := kid.pick_colors(item, rng)
+	var textures: Array[Texture2D]
+	if others.is_empty():
+		textures = kid.pick_colors(item, rng)
+	else:
+		textures = [kid.prop(item + "-card")]
+		var pool := others.duplicate()
+		for i in range(pool.size() - 1, 0, -1):
+			var j := rng.randi_range(0, i)
+			var swap: String = pool[i]
+			pool[i] = pool[j]
+			pool[j] = swap
+		for other in pool.slice(0, kid.choices - 1):
+			textures.append(kid.prop(other + "-card"))
 	var correct_texture := textures[0]
 	_target.texture = correct_texture
 	for i in range(textures.size() - 1, 0, -1):

@@ -470,7 +470,12 @@ func _set_cue(next: String) -> void:
 
 func _open_drawer() -> void:
 	var item: String = _items[item_index]
-	_drawer.open(Game.kid, Game.sibling(), item, -1, load(SPOT_OPEN[_level.spot]))
+	var others: Array[String] = []
+	if item in _level.get("locked", []):
+		for other in _items:
+			if other != item:
+				others.append(other)
+	_drawer.open(Game.kid, Game.sibling(), item, -1, load(SPOT_OPEN[_level.spot]), others)
 	_say("find-" + item)
 
 
