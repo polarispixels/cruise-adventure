@@ -37,6 +37,7 @@ func _ready() -> void:
 	_becca.mirrored = true
 	get_viewport().size_changed.connect(_fit)
 	_fit()
+	$VersionLabel.text = "v" + ProjectSettings.get_setting("application/config/version")
 	$WaveTimer.wait_time = WAVE_EVERY
 	$WaveTimer.timeout.connect(_wave_next)
 	$WaveTimer.start()
@@ -77,3 +78,5 @@ func _fit() -> void:
 	_stage.scale = Vector2.ONE * maxf(view.x / BG_SIZE.x, view.y / BG_SIZE.y)
 	var top := 540 - view.y / 2
 	$Question.position.y = top + 24
+	# Version stamp in the bottom-left corner, so you can tell which build is installed.
+	$VersionLabel.position = Vector2(960 - view.x / 2 + 16, 540 + view.y / 2 - 16 - $VersionLabel.size.y)

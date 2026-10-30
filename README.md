@@ -16,14 +16,15 @@ New versions install over the old one, because every build is signed with the sa
 
 ## Make a release
 
-1. In `project.godot`, bump `config/version` (for example `"0.1.0"` → `"0.2.0"`). This is the only place the human version lives.
-2. In `export_presets.cfg`, raise `version/code` by 1. Android refuses an update with the same or a lower code.
-3. Add a `## [X.Y.Z] - YYYY-MM-DD` entry to `CHANGELOG.md`. Its text becomes the release notes.
-4. Commit and push to `main`, then tag and push the tag:
+1. Make sure all art is approved: `python3 tools/check_art_approved.py` (see [Art and sound](#art-and-sound)).
+2. In `project.godot`, bump `config/version` (for example `"0.2.0"` → `"0.3.0"`). This is the only place the human version lives.
+3. In `export_presets.cfg`, raise `version/code` by 1. Android refuses an update with the same or a lower code.
+4. Add a `## [X.Y.Z] - YYYY-MM-DD` entry to `CHANGELOG.md`. Its text becomes the release notes.
+5. Commit and push to `main`, then tag and push the tag:
    ```bash
    git tag vX.Y.Z && git push origin vX.Y.Z
    ```
-5. The `build` workflow publishes a GitHub Release with `cruise-adventure-vX.Y.Z.apk` attached. If the tag doesn't match `config/version`, the build fails without releasing anything.
+6. The `build` workflow publishes a GitHub Release with `cruise-adventure-vX.Y.Z.apk` attached. If the tag doesn't match `config/version`, the build fails without releasing anything.
 
 Every push to `main` also rebuilds the web version on GitHub Pages and keeps a signed APK as a downloadable workflow artifact.
 
@@ -48,7 +49,21 @@ To open the scenes visually, install exactly **Godot 4.7.2** (standard, not .NET
 
 ## Art and sound
 
-Every picture and sound is a file in `assets/`. Nothing is drawn in code. The v0.1 placeholders come from `tools/make_placeholders.py` and `tools/make_chime.py`, using the palette of the Kids Packing Video. To use the kids' illustrations instead, replace the PNGs with files of the same names; the game code doesn't change.
+Every picture, sound and video is a file in `assets/`. Nothing is drawn in code. The art is made in the Kids Packing Video project and pulled in here; this repo never writes to that project.
+
+`data/art_manifest.json` lists every art file: where it comes from, how it's made, and whether Ryan has approved it.
+
+```bash
+python3 tools/import_art.py          # copy art in, recolor the clothing variants, make UI placeholders, voice and video
+tools/godot.sh --headless --import   # let Godot import the new files
+python3 tools/layout_preview.py      # build/layout-<kid>.png: room layout over the art, with the tablet's 16:10 crop
+```
+
+`ART_ROOT` points the import at the art project (default: `C:\Users\rgris\Documents\ChatGPT\Kids Packing Video` via `/mnt/c`). When new art arrives with the same file names, re-run the import; no code changes.
+
+**Approving art.** Test builds may use provisional art, but a release may not. When Ryan approves a file, set its `"approved": true` in the manifest. `python3 tools/check_art_approved.py` lists anything still waiting, and the release job runs it and refuses to publish until the list is empty.
+
+Room positions (kids, suitcase, the pile on the rug, the card) live in `data/room_layout.json` in background pixels. Check changes with the layout preview.
 
 ## Layout
 
@@ -56,7 +71,13 @@ Every picture and sound is a file in `assets/`. Nothing is drawn in code. The v0
 | --- | --- |
 | `project.godot` | engine settings and the version |
 | `export_presets.cfg` | Web and Android export settings (no secrets) |
-| `scenes/main.tscn`, `scripts/main.gd` | the bedroom level: celebration, replay, version stamp |
-| `scenes/shirt.tscn`, `scripts/draggable.gd` | a generic draggable item (any item, any target) |
+| `scripts/game.gd` | autoload: who is playing, moving between scenes |
+| `data/jack.tres`, `data/becca.tres` | each kid's settings: art, number of choices, hint delay, intro video |
+| `scenes/title.tscn` | pick a kid; version stamp |
+| `scenes/intro.tscn` | the kid's intro video (tap to skip) |
+| `scenes/room.tscn` | the packing flow: suitcase, card, drawer, roll, pack, close, zip |
+| `scenes/drawer_view.tscn` | the Find matching game |
+| `scenes/character.tscn`, `card.tscn`, `zipper.tscn`, `item.tscn` | reusable pieces (`item.tscn` is any draggable item) |
+| `data/art_manifest.json`, `data/room_layout.json` | where the art comes from; where things sit in the room |
 | `tests/` | headless tests (`run_tests.gd` runs every `test_*.gd`) |
 | `.github/workflows/build.yml` | tests, web → Pages, Android → artifact / Release |

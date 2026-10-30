@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/title.gd" id="1_title"]
 [ext_resource type="PackedScene" path="res://scenes/character.tscn" id="2_char"]
@@ -14,6 +14,12 @@ font_size = 72
 font_color = Color(0.13, 0.2, 0.33, 1)
 outline_size = 18
 outline_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_version"]
+font_size = 28
+font_color = Color(1, 1, 1, 0.85)
+outline_size = 6
+outline_color = Color(0, 0, 0, 0.5)
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_title")
@@ -51,6 +57,11 @@ offset_bottom = 100.0
 text = "Who do you want to play as?"
 label_settings = SubResource("LabelSettings_question")
 horizontal_alignment = 1
+
+[node name="VersionLabel" type="Label" parent="."]
+offset_right = 200.0
+offset_bottom = 40.0
+label_settings = SubResource("LabelSettings_version")
 
 [node name="Voice" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_voice")

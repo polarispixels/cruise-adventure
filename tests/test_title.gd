@@ -88,3 +88,11 @@ func test_kids_take_turns_waving(t) -> void:
 		await t.tree.process_frame
 	t.check(seen.has("Jack") and seen.has("Becca"), "both waved: " + str(seen.keys()))
 	title.free()
+
+
+func test_version_stamp(t) -> void:
+	var title := await _make(t)
+	var label: Label = title.get_node("VersionLabel")
+	t.eq(label.text, "v" + ProjectSettings.get_setting("application/config/version"), "stamp")
+	t.check(label.visible, "shown")
+	title.free()

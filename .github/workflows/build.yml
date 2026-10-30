@@ -1,6 +1,7 @@
 # Builds the game on every push to main and on version tags.
 # main  -> tests, web build deployed to GitHub Pages, signed APK as a workflow artifact
-# vX.Y.Z -> the same, plus a GitHub Release with cruise-adventure-vX.Y.Z.apk attached
+# vX.Y.Z -> the same, plus a GitHub Release with cruise-adventure-vX.Y.Z.apk attached,
+#           refused while any art in data/art_manifest.json is still unapproved
 name: build
 
 on:
@@ -120,6 +121,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v7
+      - name: Refuse provisional art
+        run: python3 tools/check_art_approved.py
       - uses: actions/download-artifact@v8
         with:
           name: android-apk
