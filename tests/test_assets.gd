@@ -24,14 +24,14 @@ func test_manifest_files_load(t) -> void:
 
 func test_character_canvas(t) -> void:
 	for kid in ["jack", "becca"]:
-		for pose in ["idle", "wave-1", "wave-2", "cheer", "clap", "point"]:
+		for pose in ["idle", "wave-1", "wave-2", "cheer", "clap", "point", "hmm", "hug"]:
 			var tex: Texture2D = load("res://assets/characters/%s/%s.png" % [kid, pose])
 			t.eq(tex.get_size() if tex else Vector2.ZERO, Vector2(1024, 1536), "%s %s canvas" % [kid, pose])
 
 
 func test_variants_match_card_size(t) -> void:
 	for kid in ["jack", "becca"]:
-		for item in ["shirt", "shorts", "underwear", "socks"]:
+		for item in ["shirt", "shorts", "underwear", "socks", "pajamas", "swimsuit", "hoodie", "nice-outfit", "sandals", "hat", "hairbrush", "toothbrush", "buddy", "book", "tablet", "special"]:
 			var card: Texture2D = load("res://assets/props/%s/%s-card.png" % [kid, item])
 			for alt in ["alt-1", "alt-2", "alt-3", "alt-4", "alt-5", "alt-6", "alt-7"]:
 				var tex: Texture2D = load("res://assets/props/%s/%s-%s.png" % [kid, item, alt])
