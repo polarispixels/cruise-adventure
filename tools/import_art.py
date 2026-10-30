@@ -6,6 +6,7 @@ Generators:
   placeholder - draw a UI placeholder (tools/make_placeholders.py)
   voice       - synthesize a spoken line (tools/make_voice.py)
   video       - convert a source clip to Ogg Theora for Godot
+  music       - synthesize the placeholder background tune (tools/make_music.py)
 
 Usage: python3 tools/import_art.py        (idempotent; ART_ROOT overrides the art project path)
 """
@@ -22,6 +23,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
+import make_music  # noqa: E402
 import make_placeholders  # noqa: E402
 import make_voice  # noqa: E402
 
@@ -78,7 +80,7 @@ def convert_video(src: Path, dst: Path) -> None:
 def main() -> None:
     entries = json.loads(MANIFEST.read_text())
     # Copies first, so recolors can read the card items they derive from.
-    order = {"copy": 0, "recolor": 1, "placeholder": 2, "voice": 3, "video": 4}
+    order = {"copy": 0, "recolor": 1, "placeholder": 2, "voice": 3, "video": 4, "music": 5}
     for e in sorted(entries, key=lambda e: order[e["generator"]]):
         dst = ROOT / e["game"]
         dst.parent.mkdir(parents=True, exist_ok=True)
@@ -93,6 +95,8 @@ def main() -> None:
             make_voice.speak(e["text"], dst)
         elif gen == "video":
             convert_video(ART_ROOT / e["source"], dst)
+        elif gen == "music":
+            make_music.main()
         print(f"{gen:11} {e['game']}")
 
 

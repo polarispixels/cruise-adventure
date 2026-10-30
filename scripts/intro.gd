@@ -14,7 +14,12 @@ func _ready() -> void:
 		return
 	_player.stream = load(path)
 	_player.finished.connect(_leave)
+	Music.hold(true)
 	_player.play()
+
+
+func _exit_tree() -> void:
+	Music.hold(false)
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -316,11 +316,41 @@ func test_replay_starts_clean(t) -> void:
 	room.free()
 
 
-func test_home_goes_to_map(t) -> void:
+func _button_center(room: Node2D, path: String) -> Vector2:
+	var b: TextureButton = room.get_node(path)
+	return b.global_position + b.size / 2
+
+
+func test_finish_buttons_continue_home_replay(t) -> void:
 	var room := await _make(t)
-	room.get_node("Finish/HomeButton").pressed.emit()
-	t.eq(_requests.back(), "res://scenes/map.tscn", "back to the card")
+	await _advance(t, room, Step.DONE)
+	await _until(t, func(): return room.get_node("Finish").visible)
+	await _tap(t, _button_center(room, "Finish/ContinueButton"))
+	t.eq(_requests.back(), "res://scenes/map.tscn", "continue goes on to the card")
+	await _tap(t, _button_center(room, "Finish/HomeButton"))
+	t.eq(_requests.back(), "res://scenes/title.tscn", "home always goes home")
+	await _tap(t, _button_center(room, "Finish/ReplayButton"))
+	t.eq(_requests.back(), "res://scenes/room.tscn", "replay plays the row again")
+	t.check(not room.get_node("PlayHome").visible, "no second home button at the end")
 	room.free()
+
+
+func test_home_button_while_playing(t) -> void:
+	var room := await _make(t)
+	t.check(room.get_node("PlayHome").visible, "shown from the start")
+	var at := _button_center(room, "PlayHome")
+	var view := get_viewport_rect_of(room)
+	t.check(at.x < view.position.x + 300 and at.y < view.position.y + 300, "top left: " + str(at))
+	await _advance(t, room, Step.FINDING)
+	await _until(t, func(): return room.get_node("DrawerView").visible)
+	await _tap(t, _button_center(room, "PlayHome"))
+	t.eq(_requests.back(), "res://scenes/title.tscn", "escape to the title, even from the drawer")
+	room.free()
+
+
+func get_viewport_rect_of(room: Node2D) -> Rect2:
+	var view := room.get_viewport().get_visible_rect().size
+	return Rect2(Vector2(960, 540) - view / 2, view)
 
 
 func test_background_covers_tall_screens(t) -> void:

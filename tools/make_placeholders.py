@@ -90,18 +90,46 @@ def icon():
     save(img, "icon.png", w, h)
 
 
+# Fill and rim colors per button, so each one reads at a glance.
+BUTTON_COLORS = {
+    "home": ("#3D7BF0", "#1B3F94"),
+    "replay": ("#FF9F1C", "#B8650A"),
+    "continue": (CHECK, CHECK_DARK),
+}
+
+
 def _ui_round_button(d, size, glyph):
-    d.ellipse(s(8, 8, size - 8, size - 8), fill=CHECK, outline=CHECK_DARK, width=12 * SS)
-    c = size / 2
+    fill, rim = BUTTON_COLORS[glyph]
+    d.ellipse(s(10, 18, size - 10, size - 2), fill=rim)  # drop edge
+    d.ellipse(s(10, 6, size - 10, size - 14), fill=fill, outline=rim, width=10 * SS)
+    d.ellipse(s(48, 30, size - 48, size / 2 - 10), fill=_lighter(fill))  # shine
+    d.ellipse(s(48, 46, size - 48, size / 2 + 20), fill=fill)
+    c, cy = size / 2, size / 2 - 4
+    white = "#FFFFFF"
     if glyph == "replay":
-        d.arc(s(c - 90, c - 90, c + 90, c + 90), start=-30, end=260, fill="#FFFFFF", width=32 * SS)
-        a = math.radians(-30)
-        x, y, r = c + 90 * math.cos(a), c + 90 * math.sin(a), 44
-        d.polygon(pts([(x - r, y - 12), (x + r, y - 12), (x, y + r)]), fill="#FFFFFF")
+        r = 104
+        d.arc(s(c - r, cy - r, c + r, cy + r), start=60, end=292, fill=white, width=40 * SS)
+        a = math.radians(292)
+        r -= 20  # the arc's stroke is centered 20 px inside its box
+        px, py = c + r * math.cos(a), cy + r * math.sin(a)
+        tx, ty = -math.sin(a), math.cos(a)  # clockwise tangent
+        nx, ny = math.cos(a), math.sin(a)
+        d.polygon(pts([(px + tx * 76, py + ty * 76),
+                       (px - tx * 4 + nx * 66, py - ty * 4 + ny * 66),
+                       (px - tx * 4 - nx * 66, py - ty * 4 - ny * 66)]), fill=white)
+    elif glyph == "continue":
+        d.rounded_rectangle(s(c - 120, cy - 34, c + 30, cy + 34), radius=14 * SS, fill=white)
+        d.polygon(pts([(c + 128, cy), (c + 10, cy - 104), (c + 10, cy + 104)]), fill=white)
     else:  # home
-        d.polygon(pts([(c, c - 110), (c - 120, c), (c + 120, c)]), fill="#FFFFFF")
-        d.rectangle(s(c - 80, c - 10, c + 80, c + 100), fill="#FFFFFF")
-        d.rectangle(s(c - 24, c + 30, c + 24, c + 100), fill=CHECK)
+        d.rectangle(s(c + 50, cy - 118, c + 84, cy - 50), fill=white)  # chimney
+        d.polygon(pts([(c, cy - 128), (c - 140, cy - 6), (c + 140, cy - 6)]), fill=white)
+        d.rectangle(s(c - 96, cy - 20, c + 96, cy + 116), fill=white)
+        d.rounded_rectangle(s(c - 30, cy + 30, c + 30, cy + 116), radius=12 * SS, fill=fill)
+
+
+def _lighter(hex_color, amount=0.35):
+    r, g, b = (int(hex_color[i:i + 2], 16) for i in (1, 3, 5))
+    return "#%02X%02X%02X" % tuple(int(v + (255 - v) * amount) for v in (r, g, b))
 
 
 def search_spot(name, dst):
@@ -129,11 +157,11 @@ def search_spot(name, dst):
 
 def ui(name, dst):
     """UI placeholders for v0.2. Replaced by real art with no code changes."""
-    sizes = {"replay": (384, 384), "home": (384, 384), "zipper-pull": (128, 128),
+    sizes = {"replay": (384, 384), "home": (384, 384), "continue": (384, 384), "zipper-pull": (128, 128),
              "card-glow": (260, 230), "target-slot": (320, 320), "dim": (8, 8)}
     w, h = sizes[name]
     img, d = canvas(w, h)
-    if name in ("replay", "home"):
+    if name in BUTTON_COLORS:
         _ui_round_button(d, w, name)
     elif name == "zipper-pull":
         d.rounded_rectangle(s(34, 8, 94, 120), radius=20 * SS, fill="#2A2A2A", outline="#FFFFFF", width=6 * SS)

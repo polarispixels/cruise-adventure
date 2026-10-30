@@ -16,6 +16,7 @@ config/icon="res://assets/art/icon.png"
 Progress="*res://scripts/progress.gd"
 Game="*res://scripts/game.gd"
 Voice="*res://scripts/voice.gd"
+Music="*res://scripts/music.gd"
 
 [display]
 

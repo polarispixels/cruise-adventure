@@ -74,6 +74,7 @@ var _settling := 0
 @onready var _done_video: CanvasLayer = $DoneVideo
 @onready var _done_player: VideoStreamPlayer = $DoneVideo/Player
 @onready var _finish: Node2D = $Finish
+@onready var _play_home: TextureButton = $PlayHome
 @onready var _stars: Node2D = $Stars
 @onready var _chime: AudioStreamPlayer = $Chime
 
@@ -123,6 +124,8 @@ func _ready() -> void:
 	_done_player.finished.connect(_show_finish)
 	$Finish/ReplayButton.pressed.connect(replay)
 	$Finish/HomeButton.pressed.connect(home)
+	$Finish/ContinueButton.pressed.connect(go_on)
+	_play_home.pressed.connect(home)
 	get_viewport().size_changed.connect(_fit)
 	_fit()
 	_set_open(false)
@@ -267,11 +270,21 @@ func tap_layup() -> void:
 		_go(Step.PACK_BUNDLE))
 
 
+func _exit_tree() -> void:
+	Music.hold(false)
+
+
 func replay() -> void:
 	Game.play_level(Game.level)
 
 
+## Home always means the title screen, mid-level or at the end.
 func home() -> void:
+	Game.goto(Game.TITLE)
+
+
+## Continue: back to the card, where the new check shows and the next row wiggles.
+func go_on() -> void:
 	Game.goto(Game.MAP)
 
 
@@ -602,6 +615,7 @@ func _on_zipped() -> void:
 	Progress.mark_done(Game.kid.id, Game.level)
 	whole_card = whole_card and Progress.next_level(Game.kid.id) >= Progress.LEVELS
 	_go(Step.DONE)
+	_play_home.visible = false
 	if whole_card:
 		# The last row of the card: a bigger party.
 		Voice.say("all-packed", Game.sibling(), true)
@@ -624,6 +638,7 @@ func _play_done_video() -> void:
 		return
 	_done_player.stream = load(path)
 	_done_video.visible = true
+	Music.hold(true)
 	_done_player.play()
 
 
@@ -632,6 +647,7 @@ func _show_finish() -> void:
 		return
 	_done_player.stop()
 	_done_video.visible = false
+	Music.hold(false)
 	_finish.visible = true
 
 
@@ -665,6 +681,7 @@ func _fit() -> void:
 	var margin: float = _layout.card_margin
 	var card_size := Vector2(1200, 1600) * _card_scale()
 	_card.position = Vector2(visible_rect.end.x - margin - card_size.x, visible_rect.position.y + margin)
+	_play_home.position = visible_rect.position + Vector2(margin, margin)
 	if not _card.visible:
 		_card.scale = Vector2.ONE * _card_scale()
 

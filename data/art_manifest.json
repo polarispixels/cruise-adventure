@@ -664,6 +664,12 @@
   "approved": false
  },
  {
+  "game": "assets/ui/continue.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
   "game": "assets/ui/zipper-pull.png",
   "generator": "placeholder",
   "source": null,
@@ -2223,5 +2229,11 @@
   "approved": false,
   "from": "assets/props/becca/special-card.png",
   "hue_shift": 315
+ },
+ {
+  "game": "assets/music/theme.ogg",
+  "generator": "music",
+  "source": null,
+  "approved": false
  }
 ]
