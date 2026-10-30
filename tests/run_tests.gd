@@ -43,8 +43,15 @@ func _run() -> void:
 	var failed := 0
 	var files := Array(DirAccess.get_files_at("res://tests"))
 	files.sort()
+	# `-- --only=test_room` runs just the test files whose names contain that text.
+	var only := ""
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--only="):
+			only = arg.trim_prefix("--only=")
 	for file: String in files:
 		if not (file.begins_with("test_") and file.ends_with(".gd")):
+			continue
+		if only != "" and not only in file:
 			continue
 		var script: GDScript = load("res://tests/" + file)
 		if script == null or not script.can_instantiate():

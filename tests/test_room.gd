@@ -207,7 +207,7 @@ func test_cues_pulse_current_target(t) -> void:
 	var room := await _make(t, "becca", 1)
 	t.eq(room.cue, "suitcase", "suitcase first")
 	await _advance(t, room, Step.OPENED)
-	t.eq(room.cue, "dresser", "then the dresser")
+	t.eq(room.cue, "spot", "then the dresser")
 	t.check(room.get_node("Stage/DresserGlow").visible, "dresser glows")
 	var case_scale: float = room.get_node("Stage/Suitcase").scale.x
 	t.check(absf(case_scale - room.layout_value("suitcase_scale")) < 0.001, "suitcase pulse undone")

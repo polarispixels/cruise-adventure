@@ -32,6 +32,7 @@ func _ready() -> void:
 		if done.has(row):
 			_card.stamp_row(row)
 	_card.highlight_row(Progress.next_level(kid.id))
+	Voice.say("pick-a-row", Game.sibling())
 	get_viewport().size_changed.connect(_fit)
 	_fit()
 

@@ -154,3 +154,12 @@ func test_helper_is_the_sibling_bottom_right(t) -> void:
 	t.check(helper.mirrored, "mirrored")
 	t.check(helper.global_position.x > 1400 and helper.global_position.y > 800, "bottom right")
 	_done(t, map)
+
+
+func test_helper_says_pick_a_row(t) -> void:
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = false
+	voice.last_line = ""
+	var map := await _make(t)
+	t.eq(voice.last_line, "pick-a-row", "helper explains the card")
+	map.free()

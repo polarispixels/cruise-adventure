@@ -50,6 +50,8 @@ var _idle := 0.0
 var _hinting := false
 var _cue_tween: Tween
 var _loose: Array[Draggable] = []
+## Loose items dropped in the suitcase but still snapping into place.
+var _settling := 0
 
 @onready var _stage: Node2D = $Stage
 @onready var _background: Sprite2D = $Stage/Background
@@ -214,7 +216,9 @@ func on_found(_item: String) -> void:
 	var t := create_tween().set_parallel()
 	t.tween_property(flyer, "position", _vec("layup_step") * index, FLY_TIME).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	t.tween_property(flyer, "scale", Vector2.ONE * _layout.layup_item_scale, FLY_TIME)
-	t.chain().tween_callback(func():
+	# Everything after the flight happens one step after another.
+	t.set_parallel(false)
+	t.tween_callback(func():
 		_card.stamp(index, Game.level)
 		_chime.play()
 		if found_item == _level.get("hug", ""):
@@ -511,8 +515,10 @@ func _loosen_items() -> void:
 
 func _on_item_packed(item: Draggable) -> void:
 	_loose.erase(item)
+	_settling += 1
 	_set_cue("")
 	await get_tree().create_timer(Draggable.SNAP_TIME + 0.05).timeout
+	_settling -= 1
 	var packed := Sprite2D.new()
 	packed.texture = item.texture
 	packed.scale = Vector2.ONE * _layout.layup_item_scale / _layout.suitcase_scale
@@ -523,9 +529,9 @@ func _on_item_packed(item: Draggable) -> void:
 	_player.cheer()
 	if step != Step.PACK_ITEMS:
 		return
-	if _loose.is_empty():
+	if _loose.is_empty() and _settling == 0:
 		_round_done()
-	else:
+	elif not _loose.is_empty():
 		_set_cue("items")
 
 
