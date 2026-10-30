@@ -117,3 +117,28 @@ func test_home_scale_respected(t) -> void:
 	await _wait(t, 0.6)
 	t.eq(item.scale, Vector2.ONE * 0.5, "back to rest scale")
 	item.free()
+
+
+func test_tap_places_item(t) -> void:
+	var item: Node2D = await _make(t)
+	var placed := [0]
+	item.placed.connect(func(_i): placed[0] += 1)
+	item.begin_drag(HOME)
+	t.eq(item.end_drag(HOME + Vector2(5, 5)), true, "a tap places it")
+	t.eq(placed[0], 1, "placed once")
+	await _wait(t, 0.5)
+	t.check(item.global_position.distance_to(SNAP) < 1.0, "glided to the slot, at %s" % item.global_position)
+	item.free()
+
+
+func test_tap_on_wrong_item_wiggles(t) -> void:
+	var item: Node2D = await _make(t)
+	item.accept_drop = false
+	var rejected := [0]
+	item.rejected.connect(func(_i): rejected[0] += 1)
+	item.begin_drag(HOME)
+	t.eq(item.end_drag(HOME), false, "not placed")
+	t.eq(rejected[0], 1, "says no")
+	await _wait(t, 0.8)
+	t.check(item.global_position.distance_to(HOME) < 1.0, "stays home")
+	item.free()

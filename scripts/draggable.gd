@@ -1,7 +1,8 @@
 # A generic item the player picks up and drops into a target slot.
 # Drop it over the drop zone and it snaps to the slot; drop it anywhere else
 # and it glides back home. An item that doesn't belong (accept_drop off)
-# wiggles "no" in the zone and glides back home too. Mouse events only: touch arrives as emulated mouse.
+# wiggles "no" in the zone and glides back home too. A tap (press and release
+# without moving) counts as dropping it in the zone, for children who tap. Mouse events only: touch arrives as emulated mouse.
 class_name Draggable
 extends Node2D
 
@@ -16,6 +17,8 @@ const RETURN_TIME := 0.4
 const LIFTED_Z := 10
 const WIGGLE_ANGLE := deg_to_rad(8.0)
 const WIGGLE_TIME := 0.3
+## A release within this distance of the press is a tap, not a drag.
+const TAP_DISTANCE := 20.0
 
 ## Global-space rect that counts as "in the target". Set by the level.
 @export var drop_zone: Rect2
@@ -40,6 +43,7 @@ var is_placed := false
 var is_dragging := false
 
 var _grab_offset := Vector2.ZERO
+var _press_point := Vector2.ZERO
 var _tween: Tween
 
 @onready var _sprite: Sprite2D = $Sprite
@@ -62,6 +66,7 @@ func begin_drag(global_point: Vector2) -> bool:
 	_kill_tween()
 	rotation = 0.0
 	is_dragging = true
+	_press_point = global_point
 	_grab_offset = global_position - global_point
 	scale = Vector2.ONE * home_scale * LIFT_SCALE
 	_shadow.visible = true
@@ -74,13 +79,15 @@ func drag_to(global_point: Vector2) -> void:
 		global_position = global_point + _grab_offset
 
 
-func end_drag(global_point: Vector2) -> bool:
+## A lost release (allow_tap false) never counts as a tap.
+func end_drag(global_point: Vector2, allow_tap := true) -> bool:
 	if not is_dragging:
 		return false
+	var tapped := allow_tap and global_point.distance_to(_press_point) < TAP_DISTANCE
 	drag_to(global_point)
 	is_dragging = false
 	_shadow.visible = false
-	var hit := in_drop_zone(global_position, drop_zone, DROP_MARGIN)
+	var hit := tapped or in_drop_zone(global_position, drop_zone, DROP_MARGIN)
 	var rest := Vector2.ONE * home_scale
 	if hit and not accept_drop:
 		_reject()
@@ -154,7 +161,7 @@ func _apply_texture() -> void:
 
 func _drop_where_it_is() -> void:
 	if is_dragging:
-		end_drag(global_position - _grab_offset)
+		end_drag(global_position - _grab_offset, false)
 
 
 func _grab_rect() -> Rect2:

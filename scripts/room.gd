@@ -114,12 +114,13 @@ func tap_suitcase() -> void:
 		_busy = true
 		_set_open(false)
 		_zipper.reset()
-		_zipper.visible = true
 		var rest := _closed.scale
 		var t := create_tween()
 		t.tween_property(_closed, "scale", rest * Vector2(1.06, 0.94), 0.1)
 		t.tween_property(_closed, "scale", rest, 0.15)
 		t.tween_callback(func():
+			# Show the zipper only once it can count, or an early swipe zips it for nothing.
+			_zipper.visible = true
 			_busy = false
 			_go(Step.ZIP))
 
@@ -317,6 +318,7 @@ func _on_bundle_placed(_item: Draggable) -> void:
 
 func _on_zipped() -> void:
 	if step != Step.ZIP:
+		_zipper.reset()
 		return
 	_go(Step.DONE)
 	_player.cheer()

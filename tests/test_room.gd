@@ -165,6 +165,23 @@ func test_double_taps_do_not_skip_steps(t) -> void:
 	room.free()
 
 
+func test_zip_during_lid_bounce_is_not_stuck(t) -> void:
+	var room := await _make(t)
+	await _advance(t, room, Step.CLOSE)
+	var zipper: Zipper = room.get_node("Stage/Suitcase/Zipper")
+	room.tap_suitcase()
+	# Swipe the zipper while the lid is still bouncing shut.
+	zipper.begin(zipper.to_global(zipper.start))
+	zipper.drag(zipper.to_global(zipper.end))
+	zipper.release()
+	await _wait(t, 0.5)
+	t.eq(room.step, Step.ZIP, "ready to zip")
+	await _drag(t, zipper.to_global(zipper.start), zipper.to_global(zipper.end))
+	await _wait(t, 0.2)
+	t.eq(room.step, Step.DONE, "zipping still finishes")
+	room.free()
+
+
 func test_hint_waits_for_idle(t) -> void:
 	var room := await _make(t)
 	var helper: Character = room.get_node("Stage/Helper")
