@@ -11,7 +11,11 @@ Jack-Jack and Becca's packing game, with their own art.
 - Each kid's own room: tap the suitcase to open it and reveal the picture card, then tap the dresser.
 - Find game in the open drawer, four times over (shirt, shorts, underwear, socks): drag the matching one onto the picture. Becca chooses from 2, Jack-Jack from 4. A wrong pick wiggles back; after two misses the other kid points to the right one.
 - Each find flies to the rug, gets a check on the card, and both kids celebrate.
-- Then tap the pile to roll it into a bundle, drag it into the suitcase, tap to close the lid and drag the zipper shut. Replay or go home at the end.
+- Tap the pile to roll it into a bundle and drag it into the suitcase. That's one outfit: Becca packs 4 outfits, Jack-Jack 6, and the bundles pile up in the suitcase.
+- Every piece of clothing comes in 8 colors, picked at random each time. Becca's wrong choice is always a very different color.
+- Whatever comes next pulses (suitcase, dresser, pile, bundle, zipper), so it's always clear what to do.
+- Tapping an item works like dragging it.
+- Then tap to close the lid and drag the zipper shut, and a "you did it" video plays. Replay or go home at the end.
 - If the child is idle, the other kid points at what to do next (after 6 seconds for Becca, 8 for Jack-Jack).
 - Art comes in from the Kids Packing Video project through tools/import_art.py; releases refuse art that isn't approved yet.
 - The v0.1 shirt demo is gone.
