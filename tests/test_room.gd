@@ -386,3 +386,31 @@ func test_voice_follows_steps(t) -> void:
 	await _advance(t, room, Step.OPENED)
 	t.eq(voice.last_line, "open-toybox", "toy box level")
 	room.free()
+
+
+func test_last_row_celebrates_the_whole_card(t) -> void:
+	var room := await _make(t, "becca", 1, "", 3)
+	var progress: Node = t.tree.root.get_node("Progress")
+	for level in [0, 1, 2]:
+		progress.mark_done("becca", level)
+	await _advance(t, room, Step.DONE)
+	t.eq(t.tree.root.get_node("Voice").last_line, "all-packed", "we packed everything")
+	room.free()
+
+
+func test_found_cheer_is_not_cut_off(t) -> void:
+	var room := await _make(t, "becca", 1, "", 0)
+	var voice: Node = t.tree.root.get_node("Voice")
+	await _advance(t, room, Step.FINDING)
+	voice.enabled = true
+	var view: DrawerView = room.get_node("DrawerView")
+	await _until(t, func(): return view.visible)
+	var item := view.correct_choice()
+	item.begin_drag(item.global_position)
+	item.end_drag(view.TARGET_CENTER)
+	await _until(t, func(): return not view.visible)
+	await _until(t, func(): return view.visible)
+	t.check(voice.current_line.begins_with("found-"), "the cheer still playing, got " + voice.current_line)
+	voice.stop()
+	voice.enabled = false
+	room.free()

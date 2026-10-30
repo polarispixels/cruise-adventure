@@ -11,6 +11,7 @@ const HELPER_MARGIN := Vector2(150, 24)
 const HOME_SIZE := 150.0
 
 var _started := false
+var _idle := 0.0
 
 @onready var _background: Sprite2D = $Background
 @onready var _dim: Sprite2D = $Dim
@@ -32,7 +33,7 @@ func _ready() -> void:
 		if done.has(row):
 			_card.stamp_row(row)
 	_card.highlight_row(Progress.next_level(kid.id))
-	Voice.say("pick-a-row", Game.sibling())
+	Voice.say(_line(), Game.sibling())
 	get_viewport().size_changed.connect(_fit)
 	_fit()
 
@@ -47,12 +48,36 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if _started:
 		return
+	_idle = 0.0
 	var local := _card.to_local(get_global_mouse_position())
 	for row in Progress.LEVELS:
 		if _card.row_rect(row).has_point(local) and _playable(row):
 			_started = true
 			Game.play_level(row)
 			return
+	# A tap that starts nothing: say again what to do, and show where.
+	_prompt()
+
+
+func _process(delta: float) -> void:
+	if _started:
+		return
+	_idle += delta
+	if _idle >= Game.kid.hint_delay:
+		_idle = 0.0
+		_prompt()
+
+
+func _prompt() -> void:
+	var next := Progress.next_level(Game.kid.id)
+	if next < Progress.LEVELS:
+		_helper.point_at(row_point(next))
+	Voice.say(_line(), Game.sibling())
+
+
+## "Tap the row that's wiggling", or a cheer once the whole card is packed.
+func _line() -> String:
+	return "all-packed" if Progress.next_level(Game.kid.id) >= Progress.LEVELS else "pick-a-row"
 
 
 func _playable(row: int) -> bool:

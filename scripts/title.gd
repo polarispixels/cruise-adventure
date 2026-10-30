@@ -12,7 +12,7 @@ const KID_SCALE := 0.5
 ## Name labels float this far above each kid's head, in background pixels.
 const NAME_GAP := 40.0
 ## Holding the version stamp this long wipes saved progress (a grown-up's escape hatch).
-const RESET_HOLD := 2.0
+const RESET_HOLD := 5.0
 const STAMP_PAD := 24.0
 
 var _picked := false
@@ -58,8 +58,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if _stamp_down_at >= 0.0:
 			var held := Time.get_ticks_msec() / 1000.0 - _stamp_down_at
 			_stamp_down_at = -1.0
-			if held >= RESET_HOLD:
+			# Only a long, deliberate hold that ends on the stamp counts.
+			if held >= RESET_HOLD and stamp.has_point(point):
 				Progress.reset()
+				$VersionLabel.text += "  progress reset"
 			elif not _picked:
 				_voice.play()
 		return

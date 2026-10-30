@@ -104,3 +104,17 @@ func test_found_line_cycles(t) -> void:
 	t.check("found-1" in first and "found-2" in first and "found-3" in first, "first three are all distinct found lines")
 	t.eq(got.slice(3, 6), first, "cycle repeats")
 	t.eq(got[0], got[3], "period 3")
+
+
+func test_wait_lets_the_current_line_finish(t) -> void:
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = true
+	var becca: KidProfile = load("res://data/becca.tres")
+	voice.say("found-2", becca)
+	voice.say("find-shirt", becca, true)
+	t.eq(voice.current_line, "found-2", "the cheer keeps playing")
+	voice.get_child(0).finished.emit()
+	t.eq(voice.current_line, "find-shirt", "then the instruction")
+	voice.say("open-drawer", becca)
+	t.eq(voice.current_line, "open-drawer", "a plain say still interrupts")
+	voice.stop()

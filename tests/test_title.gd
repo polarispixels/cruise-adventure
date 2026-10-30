@@ -127,9 +127,10 @@ func test_long_press_on_version_resets_progress(t) -> void:
 	progress.mark_done("jack", 0)
 	progress.mark_intro_seen("jack")
 	var title := await _make(t)
-	await _hold(t, _label_point(title), 2.3)
+	await _hold(t, _label_point(title), 5.3)
 	t.eq(progress.levels_done("jack").size(), 0, "progress cleared")
 	t.check(not progress.intro_seen("jack"), "intro cleared")
+	t.check("reset" in title.get_node("VersionLabel").text, "the stamp says so, for the grown-up")
 	title.free()
 	_restore(t)
 
@@ -153,5 +154,27 @@ func test_long_press_elsewhere_does_not_reset(t) -> void:
 	var title := await _make(t)
 	await _hold(t, Vector2(960, 100), 2.3)
 	t.eq(progress.levels_done("jack").size(), 1, "progress kept")
+	title.free()
+	_restore(t)
+
+
+func test_two_second_rest_keeps_progress(t) -> void:
+	var progress := _temp(t)
+	progress.mark_done("jack", 0)
+	var title := await _make(t)
+	await _hold(t, _label_point(title), 2.3)
+	t.eq(progress.levels_done("jack").size(), 1, "a resting thumb doesn't wipe progress")
+	title.free()
+	_restore(t)
+
+
+func test_hold_then_slide_off_keeps_progress(t) -> void:
+	var progress := _temp(t)
+	progress.mark_done("jack", 0)
+	var title := await _make(t)
+	await _touch(t, true, _label_point(title))
+	await t.tree.create_timer(5.3).timeout
+	await _touch(t, false, Vector2(960, 540))
+	t.eq(progress.levels_done("jack").size(), 1, "releasing away from the stamp cancels")
 	title.free()
 	_restore(t)

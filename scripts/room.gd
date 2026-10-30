@@ -119,7 +119,7 @@ func _ready() -> void:
 		_spot.scale = Vector2.ONE * _layout.spot_scale
 	_bundle.placed.connect(_on_bundle_placed)
 	_drawer.found.connect(on_found)
-	_drawer.missed.connect(func(): _say("try-again"))
+	_drawer.missed.connect(func(): Voice.say("try-again", Game.sibling()))
 	_done_player.finished.connect(_show_finish)
 	$Finish/ReplayButton.pressed.connect(replay)
 	$Finish/HomeButton.pressed.connect(home)
@@ -206,7 +206,8 @@ func on_found(_item: String) -> void:
 	var texture := _drawer.correct_choice().texture
 	var found_item: String = _items[item_index]
 	_drawer.close()
-	_say(Voice.found_line())
+	# The cheer plays in full; the instructions after it wait their turn.
+	Voice.say(Voice.found_line(), Game.sibling())
 	var index := item_index
 	var flyer := Sprite2D.new()
 	flyer.texture = texture
@@ -381,9 +382,10 @@ func _go(next: Step) -> void:
 	step_changed.emit(step)
 
 
+## Instructions wait for whatever the helper is still saying.
 func _say(line: String) -> void:
 	if line != "":
-		Voice.say(line, Game.sibling())
+		Voice.say(line, Game.sibling(), true)
 
 
 func _line_for(s: Step) -> String:
@@ -596,8 +598,15 @@ func _on_zipped() -> void:
 	if step != Step.ZIP:
 		_zipper.reset()
 		return
+	var whole_card := Progress.next_level(Game.kid.id) < Progress.LEVELS
 	Progress.mark_done(Game.kid.id, Game.level)
+	whole_card = whole_card and Progress.next_level(Game.kid.id) >= Progress.LEVELS
 	_go(Step.DONE)
+	if whole_card:
+		# The last row of the card: a bigger party.
+		Voice.say("all-packed", Game.sibling(), true)
+		for i in STAR_COUNT:
+			_spawn_star(TAU * (i + 0.5) / STAR_COUNT, STAR_DISTANCE * 1.8)
 	_player.cheer()
 	_helper.cheer()
 	_chime.play()
@@ -626,14 +635,14 @@ func _show_finish() -> void:
 	_finish.visible = true
 
 
-func _spawn_star(angle: float) -> void:
+func _spawn_star(angle: float, distance := STAR_DISTANCE) -> void:
 	var star := Sprite2D.new()
 	star.texture = STAR_TEXTURE
 	var from := suitcase_point()
 	star.global_position = from
 	_stars.add_child(star)
 	var t := create_tween().set_parallel()
-	t.tween_property(star, "global_position", from + Vector2.from_angle(angle) * STAR_DISTANCE, STAR_TIME) \
+	t.tween_property(star, "global_position", from + Vector2.from_angle(angle) * distance, STAR_TIME) \
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	t.tween_property(star, "modulate:a", 0.0, STAR_TIME)
 	t.chain().tween_callback(star.queue_free)

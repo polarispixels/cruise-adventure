@@ -163,3 +163,37 @@ func test_helper_says_pick_a_row(t) -> void:
 	var map := await _make(t)
 	t.eq(voice.last_line, "pick-a-row", "helper explains the card")
 	map.free()
+
+
+func test_tap_locked_row_repeats_the_hint(t) -> void:
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = false
+	var map := await _make(t, "becca", [0])
+	voice.last_line = ""
+	await _tap(t, map.row_point(3))
+	t.eq(voice.last_line, "pick-a-row", "says it again")
+	t.eq(map.get_node("Helper").pose, "point", "and points")
+	voice.enabled = true
+	_done(t, map)
+
+
+func test_idle_map_repeats_the_hint(t) -> void:
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = false
+	var map := await _make(t, "becca")
+	voice.last_line = ""
+	await t.tree.create_timer(load("res://data/becca.tres").hint_delay + 0.5).timeout
+	t.eq(voice.last_line, "pick-a-row", "says it again")
+	t.eq(map.get_node("Helper").pose, "point", "and points")
+	voice.enabled = true
+	_done(t, map)
+
+
+func test_all_done_map_cheers(t) -> void:
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = false
+	voice.last_line = ""
+	var map := await _make(t, "becca", [0, 1, 2, 3])
+	t.eq(voice.last_line, "all-packed", "everything packed")
+	voice.enabled = true
+	_done(t, map)
