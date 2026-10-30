@@ -137,7 +137,7 @@ func test_new_row_plays_its_intro_first(t) -> void:
 	_temp_progress(t)
 	for kid_id in ["becca", "jack"]:
 		game.kid = load("res://data/%s.tres" % kid_id)
-		for n in [1, 2]:
+		for n in [1, 2, 3]:
 			game.play_level(n)
 			t.eq(game.level, n, "level")
 			t.eq(game.last_scene_request, game.INTRO, "%s row %d starts with its video" % [kid_id, n + 1])

@@ -755,6 +755,18 @@
   "approved": true
  },
  {
+  "game": "assets/video/becca-level4.ogv",
+  "generator": "video",
+  "source": "Videos/becca-level4.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/jack-level4.ogv",
+  "generator": "video",
+  "source": "Videos/jack-level4.mp4",
+  "approved": true
+ },
+ {
   "game": "assets/characters/jack/hmm.png",
   "generator": "copy",
   "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - hmm v0.1 - PROVISIONAL.png",
