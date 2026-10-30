@@ -8,6 +8,9 @@ var _left := false
 
 
 func _ready() -> void:
+	# SPIKE ONLY (spike/video-check): alternate Becca and Jack-Jack clips forever.
+	if Game.kid == null:
+		Game.kid = load(Game.KIDS["becca"])
 	var path := Game.kid.intro_video if Game.kid else ""
 	if path == "" or not ResourceLoader.exists(path):
 		_leave.call_deferred()
@@ -27,4 +30,5 @@ func _leave() -> void:
 		return
 	_left = true
 	_player.stop()
-	Game.goto(Game.ROOM)
+	Game.kid = Game.sibling()
+	get_tree().reload_current_scene.call_deferred()
