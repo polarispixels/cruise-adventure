@@ -13,6 +13,9 @@ const ROW_Y := 540.0
 const ROW_LEFT := 600.0
 const ROW_RIGHT := 1400.0
 const ITEM_SCALE := 0.45
+## Where the open basket or toy box sits (its art is 1024 x 768, the inside around the choice row).
+const SPOT_CENTER := Vector2(960, 580)
+const SPOT_SCALE := 1.0
 const MISSES_BEFORE_HINT := 2
 const ITEM_SCENE := preload("res://scenes/item.tscn")
 
@@ -20,6 +23,7 @@ var wrong_count := 0
 
 var _item := ""
 var _correct: Draggable
+var _drawer_look: Array
 
 @onready var _container: Sprite2D = $Drawer
 @onready var _slot: Sprite2D = $Slot
@@ -30,15 +34,22 @@ var _correct: Draggable
 
 func _ready() -> void:
 	visible = false
+	_drawer_look = [_container.texture, _container.position, _container.scale]
 
 
-## container: the open drawer, basket or toy box to search in (null keeps the drawer).
+## container: the open basket or toy box to search in (null means the drawer).
 ## others: for items that don't come in colors, the other things to choose from.
 func open(kid: KidProfile, helper: KidProfile, item: String, rng_seed: int = -1, container: Texture2D = null,
 		others: Array[String] = []) -> void:
 	close()
 	if container:
 		_container.texture = container
+		_container.position = SPOT_CENTER
+		_container.scale = Vector2.ONE * SPOT_SCALE
+	else:
+		_container.texture = _drawer_look[0]
+		_container.position = _drawer_look[1]
+		_container.scale = _drawer_look[2]
 	_item = item
 	wrong_count = 0
 	_helper.kid = helper

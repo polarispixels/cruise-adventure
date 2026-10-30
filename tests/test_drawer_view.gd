@@ -142,3 +142,23 @@ func test_locked_item_uses_other_things_as_choices(t) -> void:
 		if c != view.correct_choice():
 			t.check(expected.has(c.texture), "distractor is another toy")
 	view.free()
+
+
+func _sprite_rect(s: Sprite2D) -> Rect2:
+	var r := s.get_rect()
+	return Rect2(s.to_global(r.position), r.size * s.global_scale)
+
+
+func test_basket_fits_the_screen_and_holds_the_choices(t) -> void:
+	var view := await _make(t, "jack", "sandals")
+	var drawer: Sprite2D = view.get_node("Drawer")
+	var drawer_rect := _sprite_rect(drawer)
+	view.open(load("res://data/jack.tres"), load("res://data/becca.tres"), "sandals", 1,
+			load("res://assets/props/shared/basket-open.png"))
+	var rect := _sprite_rect(drawer)
+	t.check(rect.end.y <= 1080 and rect.position.y >= 0, "on screen: " + str(rect))
+	for c in view.choices():
+		t.check(rect.has_point(c.global_position), "choice inside the basket: " + str(c.global_position))
+	view.open(load("res://data/jack.tres"), load("res://data/becca.tres"), "shirt", 1)
+	t.eq(_sprite_rect(drawer), drawer_rect, "the drawer comes back as it was")
+	view.free()

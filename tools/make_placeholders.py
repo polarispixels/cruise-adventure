@@ -133,7 +133,7 @@ def _lighter(hex_color, amount=0.35):
 
 
 def search_spot(name, dst):
-    """Stand-ins for the closet basket and toy box until art round 3 arrives."""
+    """Stand-ins for the closet basket and toy box (replaced by art round 3; kept for a fresh checkout without the art)."""
     open_view = name.endswith("-open")
     w, h = (1024, 768) if open_view else (1024, 1024)
     img, d = canvas(w, h)

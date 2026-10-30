@@ -77,8 +77,8 @@
  ],
  "dresser_glow_padding": 20,
  "spot_center": [
-  215,
-  800
+  250,
+  790
  ],
- "spot_scale": 0.24
+ "spot_scale": 0.34
 }
