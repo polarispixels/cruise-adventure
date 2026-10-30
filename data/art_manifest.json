@@ -653,21 +653,21 @@
  },
  {
   "game": "assets/ui/replay.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/UI/button-replay.png",
+  "approved": true
  },
  {
   "game": "assets/ui/home.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/UI/button-home.png",
+  "approved": true
  },
  {
   "game": "assets/ui/continue.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/UI/button-continue.png",
+  "approved": true
  },
  {
   "game": "assets/ui/zipper-pull.png",
