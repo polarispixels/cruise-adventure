@@ -1,0 +1,56 @@
+{
+ "player_feet": [
+  420,
+  900
+ ],
+ "helper_feet": [
+  1330,
+  885
+ ],
+ "character_scale": 0.45,
+ "suitcase_center": [
+  930,
+  690
+ ],
+ "suitcase_scale": 0.38,
+ "packed_offset": [
+  0,
+  40
+ ],
+ "layup_center": [
+  590,
+  885
+ ],
+ "layup_item_scale": 0.24,
+ "layup_step": [
+  40,
+  -26
+ ],
+ "bundle_scale": 0.3,
+ "dresser_rect": [
+  0,
+  230,
+  385,
+  490
+ ],
+ "drawer_from": [
+  190,
+  420
+ ],
+ "drawer_slide": [
+  140,
+  60
+ ],
+ "drawer_scale": 0.3,
+ "zipper_start": [
+  190,
+  532
+ ],
+ "zipper_end": [
+  1280,
+  648
+ ],
+ "zipper_pull_scale": 2.2,
+ "card_margin": 24,
+ "card_scale": 0.26
+}
