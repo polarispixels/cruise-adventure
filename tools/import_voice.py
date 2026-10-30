@@ -1,8 +1,12 @@
 """Build assets/voice/<kid>/<line id>.ogg for every line in data/voice_lines.json.
 
-For each speaker (the kid whose voice says the line; the helper sibling):
-  - recording ART_ROOT/Voice/<Jack-Jack|Becca>/<id>.(m4a|wav|mp3|ogg) exists -> ffmpeg to mono Ogg Vorbis, loudnorm
-  - otherwise -> Windows SAPI placeholder (Becca = female voice, Jack-Jack = male voice)
+For each speaker (the kid whose voice says the line; the helper sibling), the first recording found:
+  - ART_ROOT/Voice/<Jack-Jack|Becca>/<id>.(m4a|wav|mp3|ogg)   (the kid's own voice)
+  - recordings/<jack|becca>/<id>.*                             (in this repo)
+  - recordings/shared/<id>.*                                   (one grown-up voice for both kids)
+is trimmed of leading/trailing silence and converted to mono Ogg Vorbis, loudness-normalized.
+Otherwise -> Windows SAPI placeholder (Becca = female voice, Jack-Jack = male voice).
+The title question (who-do-you-want) also goes to assets/audio/who-do-you-want.ogg.
 ART_ROOT is read-only. Records recorded|placeholder per file in data/voice_manifest.json.
 
 Line text: "text_by_kid" is keyed by the SPEAKER. find-buddy and find-special name the PLAYER's item
@@ -28,14 +32,32 @@ MANIFEST = ROOT / "data" / "voice_manifest.json"
 OUT = ROOT / "assets" / "voice"
 KIDS = {"jack": ("Jack-Jack", "Male"), "becca": ("Becca", "Female")}
 EXTS = ("m4a", "wav", "mp3", "ogg")
+RECORDINGS = ROOT / "recordings"
+TITLE_LINE = "who-do-you-want"
+TITLE_OUT = ROOT / "assets" / "audio" / "who-do-you-want.ogg"
+# Cut silence quieter than this from both ends, keeping a little breath of it.
+TRIM = "silenceremove=start_periods=1:start_threshold=-40dB:start_silence=0.12"
 
 
-def find_recording(folder: str, line_id: str) -> Path | None:
-    for ext in EXTS:
-        p = import_art.ART_ROOT / "Voice" / folder / f"{line_id}.{ext}"
-        if p.is_file():
-            return p
+def find_recording(line_id: str, kid: str | None = None) -> Path | None:
+    dirs = [import_art.ART_ROOT / "Voice" / KIDS[kid][0], RECORDINGS / kid] if kid else []
+    dirs.append(RECORDINGS / "shared")
+    for d in dirs:
+        for ext in EXTS:
+            p = d / f"{line_id}.{ext}"
+            if p.is_file():
+                return p
     return None
+
+
+def title_line(dst: Path, text: str) -> str:
+    """The title question: a recording if there is one, else the placeholder voice."""
+    rec = find_recording(TITLE_LINE) or find_recording(TITLE_LINE, "becca") or find_recording(TITLE_LINE, "jack")
+    if rec:
+        convert_recording(rec, dst)
+        return "recorded"
+    make_voice.speak(text, dst)
+    return "placeholder"
 
 
 def convert_recording(src: Path, dst: Path) -> None:
@@ -45,7 +67,7 @@ def convert_recording(src: Path, dst: Path) -> None:
         shutil.copyfile(src, work / f"_src{src.suffix}")
         subprocess.run(cli + [
             "run", "--rm", "-v", f"{mount(work)}:/a", import_art.FFMPEG_IMAGE, "-y", "-loglevel", "error",
-            "-i", f"/a/_src{src.suffix}", "-ac", "1", "-af", "loudnorm", "-c:a", "libvorbis", "-q:a", "4", "/a/out.ogg",
+            "-i", f"/a/_src{src.suffix}", "-ac", "1", "-af", f"{TRIM},areverse,{TRIM},areverse,loudnorm", "-c:a", "libvorbis", "-q:a", "4", "/a/out.ogg",
         ], check=True)
         shutil.copyfile(work / "out.ogg", dst)
 
@@ -61,7 +83,7 @@ def main() -> None:
             key = f"{kid}/{line['id']}"
             dst = OUT / kid / f"{line['id']}.ogg"
             text = line.get("text_by_kid", {}).get(kid, line["text"])
-            rec = find_recording(folder, line["id"])
+            rec = find_recording(line["id"], kid)
             if rec:
                 kind = "recorded"
                 # A recording is re-converted every run; cheap and keeps it in sync with the source.
@@ -75,6 +97,8 @@ def main() -> None:
                 make_voice.speak(text, dst, gender=gender, rate=0, quality=3)
             manifest[key] = {"kind": kind, "text": text}
             print(f"{kind:11} {key}")
+    manifest["title/" + TITLE_LINE] = {"kind": title_line(TITLE_OUT, "Who do you want to play as?"),
+                                       "text": "Who do you want to play as?"}
     MANIFEST.write_text(json.dumps(manifest, indent=1, sort_keys=True) + "\n")
 
 

@@ -61,6 +61,8 @@ python3 tools/layout_preview.py      # build/layout-<kid>.png: room layout over 
 
 `ART_ROOT` points the import at the art project (default: `C:\Users\rgris\Documents\ChatGPT\Kids Packing Video` via `/mnt/c`). When new art arrives with the same file names, re-run the import; no code changes.
 
+**Voices.** `python3 tools/import_voice.py` builds every spoken line in `data/voice_lines.json` for both helpers. It uses the first recording it finds: the kid's own in the art project's `Voice/<Jack-Jack|Becca>/`, then `recordings/<jack|becca>/`, then `recordings/shared/` (one grown-up voice for both). Files are named by line ID, any of m4a/wav/mp3/ogg. Silence at both ends is trimmed and volume evened out. Lines with no recording get a computer voice.
+
 **Approving art.** Test builds may use provisional art, but a release may not. When Ryan approves a file, set its `"approved": true` in the manifest. `python3 tools/check_art_approved.py` lists anything still waiting, and the release job runs it and refuses to publish until the list is empty.
 
 Room positions (kids, suitcase, the pile on the rug, the card) live in `data/room_layout.json` in background pixels. Check changes with the layout preview.

@@ -88,19 +88,19 @@
   "text": "Give it a big hug!"
  },
  "becca/open-basket": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Let's look in the basket!"
  },
  "becca/open-drawer": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Open the drawer!"
  },
  "becca/open-suitcase": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Tap the suitcase to open it!"
  },
  "becca/open-toybox": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Let's look in the toy box!"
  },
  "becca/pack-it": {
@@ -108,7 +108,7 @@
   "text": "Put it in the suitcase!"
  },
  "becca/pick-a-row": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Let's pack! Tap the row that's wiggling!"
  },
  "becca/roll-it": {
@@ -120,7 +120,7 @@
   "text": "Hmm... try another one!"
  },
  "becca/who-do-you-want": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Who do you want to play as?"
  },
  "becca/zip-it": {
@@ -216,19 +216,19 @@
   "text": "Give it a big hug!"
  },
  "jack/open-basket": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Let's look in the basket!"
  },
  "jack/open-drawer": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Open the drawer!"
  },
  "jack/open-suitcase": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Tap the suitcase to open it!"
  },
  "jack/open-toybox": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Let's look in the toy box!"
  },
  "jack/pack-it": {
@@ -236,7 +236,7 @@
   "text": "Put it in the suitcase!"
  },
  "jack/pick-a-row": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Let's pack! Tap the row that's wiggling!"
  },
  "jack/roll-it": {
@@ -248,11 +248,15 @@
   "text": "Hmm... try another one!"
  },
  "jack/who-do-you-want": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Who do you want to play as?"
  },
  "jack/zip-it": {
   "kind": "placeholder",
   "text": "Zip it up!"
+ },
+ "title/who-do-you-want": {
+  "kind": "recorded",
+  "text": "Who do you want to play as?"
  }
 }
