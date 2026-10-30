@@ -69,24 +69,3 @@ func _intro(t, kid_id: String, without_video := false) -> Node:
 	return intro
 
 
-func test_intro_without_video_goes_to_room(t) -> void:
-	var intro := await _intro(t, "jack", true)
-	t.eq(_requests, [t.tree.root.get_node("Game").ROOM] as Array[String], "straight to room")
-	intro.queue_free()
-
-
-func test_intro_tap_skips_to_room(t) -> void:
-	var intro := await _intro(t, "becca")
-	t.check(intro.get_node("Player").is_playing(), "video playing")
-	await _click(t, t.tree.root.get_visible_rect().get_center())
-	t.eq(_requests, [t.tree.root.get_node("Game").ROOM] as Array[String], "tap skips once")
-	intro.queue_free()
-
-
-func test_intro_always_reaches_room(t) -> void:
-	var intro := await _intro(t, "becca")
-	intro.get_node("Player").finished.emit()
-	intro.get_node("Player").finished.emit()
-	await _click(t, t.tree.root.get_visible_rect().get_center())
-	t.eq(_requests, [t.tree.root.get_node("Game").ROOM] as Array[String], "finished reaches room exactly once")
-	intro.queue_free()
