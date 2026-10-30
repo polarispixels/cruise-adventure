@@ -13,6 +13,10 @@ const ALTS: Array[String] = ["alt-1", "alt-2", "alt-3"]
 @export var hint_delay: float
 ## res:// path of the intro clip, or "" to go straight to the room.
 @export var intro_video: String
+## How many outfits get rolled and packed before the suitcase is closed.
+@export var outfits: int = 6
+## res:// path of the finish clip, or "" to go straight to the replay/home buttons.
+@export var done_video: String
 
 
 func character(pose: String) -> Texture2D:

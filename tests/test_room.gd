@@ -8,14 +8,17 @@ var _to_screen := Transform2D.IDENTITY
 var _requests: Array[String] = []
 
 
-func _make(t, kid_id := "becca") -> Node2D:
+func _make(t, kid_id := "becca", outfits := 1, done_video := "") -> Node2D:
 	var game: Node = t.tree.root.get_node("Game")
 	game.navigate = false
 	game.last_scene_request = ""
 	_requests.clear()
 	if not game.scene_requested.is_connected(_on_request):
 		game.scene_requested.connect(_on_request)
-	game.kid = load("res://data/%s.tres" % kid_id)
+	var kid: KidProfile = load("res://data/%s.tres" % kid_id).duplicate()
+	kid.outfits = outfits
+	kid.done_video = done_video
+	game.kid = kid
 	var room: Node2D = load("res://scenes/room.tscn").instantiate()
 	t.tree.root.add_child(room)
 	await t.tree.process_frame
@@ -64,35 +67,55 @@ func _wait(t, seconds: float) -> void:
 	await t.tree.create_timer(seconds).timeout
 
 
-## Taps through to the given step, the way a child would.
+## Waits (frame by frame) until cond() is true; fails the test after timeout seconds.
+func _until(t, cond: Callable, timeout := 5.0) -> bool:
+	var end := Time.get_ticks_msec() + timeout * 1000
+	while not cond.call():
+		if Time.get_ticks_msec() > end:
+			t.check(false, "timed out waiting")
+			return false
+		await t.tree.process_frame
+	return true
+
+
+## Plays the way a child would until the room reaches the target step.
 func _advance(t, room: Node2D, target: int) -> void:
-	if room.step == Step.START and target > Step.START:
-		await _tap(t, room.suitcase_point())
-		await _wait(t, 0.8)
-	if room.step == Step.OPENED and target > Step.OPENED:
-		await _tap(t, room.dresser_point())
-		await _wait(t, 0.6)
-	while room.step == Step.FINDING and target > Step.FINDING:
-		var view: DrawerView = room.get_node("DrawerView")
-		var item := view.correct_choice()
-		item.begin_drag(item.global_position)
-		item.drag_to(view.TARGET_CENTER)
-		item.end_drag(view.TARGET_CENTER)
-		await _wait(t, 2.0)
-	if room.step == Step.ROLL and target > Step.ROLL:
-		await _tap(t, room.layup_point())
-		await _wait(t, 0.8)
-	if room.step == Step.PACK_BUNDLE and target > Step.PACK_BUNDLE:
-		var bundle: Draggable = room.get_node("Stage/Bundle")
-		await _drag(t, bundle.global_position, bundle.snap_point)
-		await _wait(t, 0.8)
-	if room.step == Step.CLOSE and target > Step.CLOSE:
-		await _tap(t, room.suitcase_point())
-		await _wait(t, 0.6)
-	if room.step == Step.ZIP and target > Step.ZIP:
-		var zipper: Zipper = room.get_node("Stage/Suitcase/Zipper")
-		await _drag(t, zipper.to_global(zipper.start), zipper.to_global(zipper.end))
-		await _wait(t, 0.2)
+	var view: DrawerView = room.get_node("DrawerView")
+	var guard := 0
+	while room.step != target and room.step != Step.DONE and guard < 200:
+		guard += 1
+		var at: int = room.step
+		match at:
+			Step.START:
+				await _tap(t, room.suitcase_point())
+				await _until(t, func(): return room.step != at)
+			Step.OPENED:
+				await _tap(t, room.dresser_point())
+				await _until(t, func(): return room.step != at)
+			Step.FINDING:
+				if not await _until(t, func(): return view.visible and view.correct_choice() != null):
+					return
+				var item := view.correct_choice()
+				item.begin_drag(item.global_position)
+				item.drag_to(view.TARGET_CENTER)
+				item.end_drag(view.TARGET_CENTER)
+				var done_id := item.get_instance_id()
+				await _until(t, func(): return room.step != at or (view.visible and view.correct_choice() != null \
+						and view.correct_choice().get_instance_id() != done_id))
+			Step.ROLL:
+				await _tap(t, room.layup_point())
+				await _until(t, func(): return room.step != at)
+			Step.PACK_BUNDLE:
+				var bundle: Draggable = room.get_node("Stage/Bundle")
+				await _drag(t, bundle.global_position + Vector2(0, 5), bundle.snap_point)
+				await _until(t, func(): return room.step != at)
+			Step.CLOSE:
+				await _tap(t, room.suitcase_point())
+				await _until(t, func(): return room.step != at)
+			Step.ZIP:
+				var zipper: Zipper = room.get_node("Stage/Suitcase/Zipper")
+				await _drag(t, zipper.to_global(zipper.start), zipper.to_global(zipper.end))
+				await _until(t, func(): return room.step != at)
 
 
 func test_open_suitcase_reveals_card(t) -> void:
@@ -106,41 +129,102 @@ func test_open_suitcase_reveals_card(t) -> void:
 	room.free()
 
 
-func _full_flow(t, kid_id: String, choices: int) -> void:
-	var room := await _make(t, kid_id)
+func _full_flow(t, kid_id: String, choices: int, outfits: int) -> void:
+	var room := await _make(t, kid_id, outfits)
 	await _advance(t, room, Step.FINDING)
-	t.eq(room.step, Step.FINDING, "finding")
 	t.eq(room.get_node("DrawerView").choices().size(), choices, "choices for %s" % kid_id)
 	await _advance(t, room, Step.ROLL)
 	t.eq(room.get_node("Card").stamped_count(), 4, "four checks")
-	t.eq(room.step, Step.ROLL, "ready to roll")
 	await _advance(t, room, Step.DONE)
 	t.eq(room.step, Step.DONE, "done")
-	await _wait(t, 1.0)
-	t.check(room.get_node("Finish").visible, "finish shown")
+	t.eq(room.packed_count(), outfits, "every outfit packed")
+	await _until(t, func(): return room.get_node("Finish").visible)
 	room.free()
 
 
 func test_full_flow_becca(t) -> void:
-	await _full_flow(t, "becca", 2)
+	await _full_flow(t, "becca", 2, 2)
 
 
 func test_full_flow_jack(t) -> void:
-	await _full_flow(t, "jack", 4)
+	await _full_flow(t, "jack", 4, 1)
+
+
+func test_outfits_per_kid(t) -> void:
+	t.eq(load("res://data/becca.tres").outfits, 4, "becca rolls four")
+	t.eq(load("res://data/jack.tres").outfits, 6, "jack rolls six")
+
+
+func test_next_outfit_starts_fresh(t) -> void:
+	var room := await _make(t, "becca", 2)
+	await _advance(t, room, Step.PACK_BUNDLE)
+	await _advance(t, room, Step.OPENED)
+	t.eq(room.step, Step.OPENED, "back to the dresser")
+	t.eq(room.outfit_index, 1, "second outfit")
+	t.eq(room.packed_count(), 1, "first bundle stays in the suitcase")
+	t.eq(room.get_node("Card").stamped_count(), 0, "card checks cleared")
+	t.check(room.get_node("Card/Glow").visible, "first item glows again")
+	t.eq(room.get_node("Stage/Layup").get_child_count(), 0, "rug empty")
+	t.check(not room.get_node("Stage/Bundle").visible, "bundle put away")
+	room.free()
+
+
+func test_done_video_then_finish(t) -> void:
+	var room := await _make(t, "becca", 1, "res://assets/video/becca-done.ogv")
+	await _advance(t, room, Step.DONE)
+	var player: VideoStreamPlayer = room.get_node("DoneVideo/Player")
+	await _until(t, func(): return player.is_playing())
+	t.check(not room.get_node("Finish").visible, "buttons wait for the video")
+	await _tap(t, Vector2(960, 540))
+	await _until(t, func(): return room.get_node("Finish").visible)
+	t.check(not room.get_node("DoneVideo").visible, "video gone")
+	room.free()
+
+
+func test_done_without_video_shows_finish(t) -> void:
+	var room := await _make(t, "becca", 1, "")
+	await _advance(t, room, Step.DONE)
+	await _until(t, func(): return room.get_node("Finish").visible)
+	t.check(not room.get_node("DoneVideo").visible, "no video")
+	room.free()
+
+
+func test_cues_pulse_current_target(t) -> void:
+	var room := await _make(t, "becca", 1)
+	t.eq(room.cue, "suitcase", "suitcase first")
+	await _advance(t, room, Step.OPENED)
+	t.eq(room.cue, "dresser", "then the dresser")
+	t.check(room.get_node("Stage/DresserGlow").visible, "dresser glows")
+	var case_scale: float = room.get_node("Stage/Suitcase").scale.x
+	t.check(absf(case_scale - room.layout_value("suitcase_scale")) < 0.001, "suitcase pulse undone")
+	await _advance(t, room, Step.FINDING)
+	t.eq(room.cue, "", "no room cue in the drawer")
+	t.check(not room.get_node("Stage/DresserGlow").visible, "glow off")
+	await _advance(t, room, Step.ROLL)
+	t.eq(room.cue, "layup", "the pile")
+	await _advance(t, room, Step.PACK_BUNDLE)
+	t.eq(room.cue, "bundle", "the bundle")
+	await _advance(t, room, Step.CLOSE)
+	t.eq(room.cue, "suitcase", "close the lid")
+	await _advance(t, room, Step.ZIP)
+	t.eq(room.cue, "zipper", "the zipper")
+	await _advance(t, room, Step.DONE)
+	t.eq(room.cue, "", "nothing left")
+	room.free()
 
 
 func test_drawer_reopens_by_itself(t) -> void:
 	var room := await _make(t)
 	await _advance(t, room, Step.FINDING)
 	var view: DrawerView = room.get_node("DrawerView")
+	await _until(t, func(): return view.visible)
 	var found := [false]
 	view.found.connect(func(_i): found[0] = true)
 	var item := view.correct_choice()
 	item.begin_drag(item.global_position)
 	item.drag_to(view.TARGET_CENTER)
 	item.end_drag(view.TARGET_CENTER)
-	while not found[0]:
-		await t.tree.process_frame
+	await _until(t, func(): return found[0])
 	t.check(not view.visible, "drawer closes for the flight")
 	await _wait(t, 1.3)
 	t.check(view.visible, "drawer back for the next item")
@@ -205,7 +289,7 @@ func test_hint_waits_for_idle(t) -> void:
 func test_replay_starts_clean(t) -> void:
 	var room := await _make(t)
 	await _advance(t, room, Step.DONE)
-	await _wait(t, 1.0)
+	await _until(t, func(): return room.get_node("Finish").visible)
 	room.get_node("Finish/ReplayButton").pressed.emit()
 	t.eq(_requests.back(), "res://scenes/room.tscn", "replay reloads the room")
 	room.free()
@@ -214,6 +298,7 @@ func test_replay_starts_clean(t) -> void:
 	t.eq(room.step, Step.START, "back to start")
 	t.eq(room.get_node("Stage/Layup").get_child_count(), 0, "layup empty")
 	t.check(not room.get_node("Stage/Bundle").visible, "bundle hidden")
+	t.eq(room.packed_count(), 0, "suitcase empty")
 	room.free()
 
 

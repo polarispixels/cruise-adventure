@@ -1,6 +1,6 @@
 """Render a room's layout (data/room_layout.json) over its art, for checking placement.
 
-Draws the background, both kids, the open suitcase with the bundle inside, the
+Draws the background, both kids, the open suitcase with every packed bundle, the
 first three layup items, the dresser/layup tap areas, and the 16:10 crop guide
 (the Fire tablet's screen). Card placement is screen-relative, so it's drawn
 against the 16:10 crop.
@@ -40,8 +40,9 @@ def render(kid):
     cs, sc = L["character_scale"], L["suitcase_scale"]
     case = L["suitcase_center"]
     paste(c, f"assets/props/{kid}/suitcase-open-back.png", case, sc)
-    packed = (case[0] + L["packed_offset"][0], case[1] + L["packed_offset"][1])
-    paste(c, f"assets/props/{kid}/bundle.png", packed, L["bundle_scale"])
+    for slot in L["packed_slots"]:
+        packed = (case[0] + (slot[0] - 768) * sc, case[1] + (slot[1] - 512) * sc)
+        paste(c, f"assets/props/{kid}/bundle.png", packed, L["bundle_scale"])
     paste(c, f"assets/props/{kid}/suitcase-open-front.png", case, sc)
     for i, item in enumerate(["shirt", "shorts", "underwear"]):
         at = (L["layup_center"][0] + L["layup_step"][0] * i, L["layup_center"][1] + L["layup_step"][1] * i)

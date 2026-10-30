@@ -13,10 +13,6 @@
   690
  ],
  "suitcase_scale": 0.38,
- "packed_offset": [
-  0,
-  40
- ],
  "layup_center": [
   590,
   885
@@ -52,5 +48,32 @@
  ],
  "zipper_pull_scale": 2.2,
  "card_margin": 24,
- "card_scale": 0.26
+ "card_scale": 0.26,
+ "packed_slots": [
+  [
+   470,
+   500
+  ],
+  [
+   768,
+   500
+  ],
+  [
+   1066,
+   500
+  ],
+  [
+   470,
+   600
+  ],
+  [
+   768,
+   600
+  ],
+  [
+   1066,
+   600
+  ]
+ ],
+ "dresser_glow_padding": 20
 }

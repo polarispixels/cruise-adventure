@@ -9,3 +9,5 @@ ribbon_color = Color(0.949, 0.361, 0.604, 1)
 choices = 2
 hint_delay = 6.0
 intro_video = "res://assets/video/becca-intro.ogv"
+outfits = 4
+done_video = "res://assets/video/becca-done.ogv"
