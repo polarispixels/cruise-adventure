@@ -9,6 +9,7 @@ To the car, part 1: the trunk puzzle, in playtest.
 - Once all four card rows are packed, the card map shows the family's SUV. Tapping it opens the trunk puzzle: the family's eight bags wait on the driveway, and the child drags each one into the trunk. A bag snaps in where it fits and slides back where it doesn't; tapping a bag on the driveway turns it on its side, and some bags must be turned to make everything fit.
 - Each bag's spot in the trunk shows a faded picture of that bag, turned the way it has to go in (added after Ryan's first try: "it needs to be easier"). Becca also starts with Mommy's and Daddy's big bags already loaded, and a bag that only fits turned turns itself; Jack-Jack loads all eight and turns them himself.
 - The helper points out a bag (and where it goes) when the child is stuck, or a bag that's blocking a full trunk. When everything's in, tapping the trunk shuts the hatch and the family heads for the airport.
+- Row 1 is shorter: Jack-Jack rolls and packs three outfits (was six) and Becca two (was four). Six was too many with three more rows to go.
 - The family's real black SUV, driveway and eight bags (art round 5).
 - A car clip of both kids on the driveway plays the first time; the drive-off clip plays after the hatch shuts.
 - Ryan's and Jack-Jack's recorded voices for the packing lines. The trunk's six new lines are a computer voice until the kids record them.
