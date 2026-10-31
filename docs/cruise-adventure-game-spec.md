@@ -47,7 +47,9 @@ Part 1 is the storyboard's six chapters turned into play. Part 2 is the trip its
 | 5. Inspection [17] | Dad stamps the cards APPROVED | Hand the card to Dad. Every check lights up, then the stamp | Done means checked |
 | 6. Payoff [18] | The kids at the pool in swimsuits and in pajamas in the cabin | Tap the packed items to "use" them on the ship | Packing pays off |
 
-### Part 2: The trip (after the real vacation)
+**October 30, 2026 decision:** packing (chapters 1-3) is complete. Chapters 4 (Uh oh) and 5 (Inspection) are dropped. Chapter 6's pool-and-cabin payoff moves to arrival at the ship (chapters 10-11), so the journey stays in order.
+
+### Part 2: The trip
 
 | Chapter | Video segments | What the child plays | It teaches |
 | --- | --- | --- | --- |
@@ -89,8 +91,9 @@ The trip leaves November 10. The goal is a playable Chapter 2 before then, so th
 | 0.1 | Drag the shirt into the suitcase (pipeline proof) | Shipped Oct 29 | Nothing |
 | 0.2 | Chapters 1-2: pick a child, intro video, row 1, roll, pack, zip | Before Nov 10 | Developer build; `jack-pack.mp4`; video plays smoothly on the Fire tablet |
 | 0.3 | Chapter 3: rows 2-4, counting six bundles, the segment player as a reusable system | After the trip | Art round 2 (rows 2-4, hmm and hug poses); level-2 clips |
-| 0.4 | Chapters 4-6: the mistake, inspection, the ship payoff | After the trip | Mistake clips (storyboard panels 14-16), payoff clips |
-| 0.5+ | Part 2, one chapter per release | Ongoing | Trip photos and memories, new art and clips per chapter |
+| ~~0.4~~ | ~~Chapters 4-6: the mistake, inspection, the ship payoff~~ | Dropped Oct 30 | Packing is complete; the payoff moves to the ship |
+| 0.4 | Chapter 7, To the car: the trunk puzzle first, then a checkpoint to decide what follows | Next | Trunk puzzle design; car and trunk art |
+| 0.5+ | The rest of the journey, one stop per release. The expanded stops (baggage claim and rental car, hotel and beach) are proposed in `Specs/Cruise Adventure - Game Story Arc v0.2.md` | Ongoing | Trip photos and memories, new art and clips per chapter |
 
 The first developer task in 0.2 stays the video check on the Fire tablet. If 720p Theora stutters there, every later chapter needs lower-resolution clips, so it's worth knowing on day one.
 
@@ -98,6 +101,6 @@ The first developer task in 0.2 stays the video check on the Fire tablet. If 720
 
 - [ ] Is the 3-minute packing video retired, or still wanted later as a separate cut assembled from the game's clips?
 - [ ] Does Dad's narration (the training-film voice) stay in the game, and is it your recorded voice or a placeholder?
-- [ ] Chapter 4: should each child get only their own mistake (Jack-Jack's toys, Becca's swimsuits), or should both mistakes appear for both kids?
+- [x] ~~Chapter 4: one mistake per child, or both?~~ Moot: chapter 4 dropped Oct 30.
 - [ ] Is a playable Chapter 2 before November 10 the real target, or a nice-to-have?
 - [ ] Should the packing-video project's paused storyboard tasks (3 and 4) be closed out in favor of this spec, so ChatGPT stops waiting on them?
