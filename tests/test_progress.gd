@@ -109,3 +109,15 @@ func test_car_done_saved_and_reset(t) -> void:
 	p.reset()
 	t.check(not p.car_done("jack"), "reset clears it")
 	_restore(t)
+
+
+func test_airport_done_saved_and_reset(t) -> void:
+	var p := _progress(t)
+	t.check(not p.airport_done("becca"), "not yet")
+	p.mark_airport_done("becca")
+	p.load_file()
+	t.check(p.airport_done("becca"), "saved")
+	t.check(not p.airport_done("jack"), "only becca")
+	p.reset()
+	t.check(not p.airport_done("becca"), "reset clears it")
+	_restore(t)

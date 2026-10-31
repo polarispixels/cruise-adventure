@@ -348,7 +348,7 @@ func test_hatch_double_tap_finishes_once(t) -> void:
 
 func test_finish_buttons_go_home_replay_continue(t) -> void:
 	var game: Node = t.tree.root.get_node("Game")
-	for pair in [["HomeButton", game.TITLE], ["ReplayButton", game.TRUNK], ["ContinueButton", game.MAP]]:
+	for pair in [["HomeButton", game.TITLE], ["ReplayButton", game.TRUNK], ["ContinueButton", game.CHECKIN]]:
 		var trunk := await _make(t, "jack")
 		trunk.payoff_video = ""
 		await _fill(t, trunk)

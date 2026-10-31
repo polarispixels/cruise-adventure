@@ -227,3 +227,30 @@ func test_tap_car_button_goes_to_trunk(t) -> void:
 	await _tap(t, map.car_button_point())
 	t.eq(t.tree.root.get_node("Game").last_scene_request, "res://scenes/intro.tscn", "the car clip, then the trunk")
 	_done(t, map)
+
+
+func test_airport_button_only_after_the_car(t) -> void:
+	var map := await _make(t, "jack", [0, 1, 2, 3])
+	t.check(not map.get_node("AirportButton").visible, "hidden until the car is loaded")
+	_done(t, map)
+	var progress: Node = t.tree.root.get_node("Progress")
+	progress.path = TMP
+	progress.reset()
+	for row in 4:
+		progress.mark_done("jack", row)
+	progress.mark_car_done("jack")
+	var game: Node = t.tree.root.get_node("Game")
+	game.navigate = false
+	game.kid = load("res://data/jack.tres")
+	map = load("res://scenes/map.tscn").instantiate()
+	t.tree.root.add_child(map)
+	await t.tree.process_frame
+	await t.tree.process_frame
+	_to_screen = t.tree.root.get_final_transform() * map.get_canvas_transform()
+	var button: TextureButton = map.get_node("AirportButton")
+	t.check(button.visible, "shown once the car is done")
+	var car: TextureButton = map.get_node("CarButton")
+	t.check(not Rect2(button.global_position, button.size).intersects(Rect2(car.global_position, car.size)), "clear of the car button")
+	await _tap(t, button.global_position + button.size / 2)
+	t.eq(game.last_scene_request, "res://scenes/checkin.tscn", "to the airport")
+	_done(t, map)
