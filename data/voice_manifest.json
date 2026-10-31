@@ -12,7 +12,7 @@
   "text": "Find your book!"
  },
  "becca/find-buddy": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your teddy!"
  },
  "becca/find-hairbrush": {
@@ -52,7 +52,7 @@
   "text": "Find your socks!"
  },
  "becca/find-special": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your monster truck!"
  },
  "becca/find-swimsuit": {
@@ -73,11 +73,11 @@
  },
  "becca/found-1": {
   "kind": "placeholder",
-  "text": "Good job!"
+  "text": "You found it!"
  },
  "becca/found-2": {
   "kind": "placeholder",
-  "text": "Good job!"
+  "text": "Yay! Good job!"
  },
  "becca/found-3": {
   "kind": "placeholder",
@@ -136,19 +136,19 @@
   "text": "Close the suitcase!"
  },
  "jack/find-book": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your book!"
  },
  "jack/find-buddy": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your unicorn!"
  },
  "jack/find-hairbrush": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your hairbrush!"
  },
  "jack/find-hat": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your hat!"
  },
  "jack/find-hoodie": {
@@ -164,7 +164,7 @@
   "text": "Find your pajamas!"
  },
  "jack/find-sandals": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your sandals!"
  },
  "jack/find-shirt": {
@@ -180,7 +180,7 @@
   "text": "Find your socks!"
  },
  "jack/find-special": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your Minnie ears!"
  },
  "jack/find-swimsuit": {
@@ -188,11 +188,11 @@
   "text": "Find your swimsuit!"
  },
  "jack/find-tablet": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your tablet!"
  },
  "jack/find-toothbrush": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your toothbrush!"
  },
  "jack/find-underwear": {
@@ -201,11 +201,11 @@
  },
  "jack/found-1": {
   "kind": "recorded",
-  "text": "Good job!"
+  "text": "You found it!"
  },
  "jack/found-2": {
   "kind": "recorded",
-  "text": "Good job!"
+  "text": "Yay! Good job!"
  },
  "jack/found-3": {
   "kind": "recorded",
@@ -244,7 +244,7 @@
   "text": "Tap the clothes to roll them up!"
  },
  "jack/try-again": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Hmm... try another one!"
  },
  "jack/who-do-you-want": {
