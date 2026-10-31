@@ -88,6 +88,12 @@ def _status(done: int, total: int) -> tuple[str, str]:
 
 
 def _chapter(ch: dict, root: Path) -> str:
+    if ch.get("dropped"):
+        return f"""
+<article class="chapter dropped" id="ch{ch['number']}">
+  <header><span class="num">\u2715</span><h3>{ch['number']}. {e(ch['title'])}</h3><span class="pill dropped">Dropped</span></header>
+  <p>{e(ch['dropped'])}</p>
+</article>"""
     ticks = [(c, is_done(c, root)) for c in ch.get("checks", [])]
     done = sum(1 for _, d in ticks if d)
     cls, label = _status(done, len(ticks))
@@ -114,8 +120,9 @@ def _panel(p: dict) -> str:
         art = _img(p["img"]) + (_img(p["img2"]) if p.get("img2") else "")
     else:
         art = '<div class="sketch">No keyframe yet</div>'
-    return f"""<div class="panel"><div class="art">{art}</div>
-  <p class="pn">Panel {e(p['n'])} · Ch {p['chapter']}</p><p>{e(p['picture'])}</p><p class="dad">Dad: “{e(p['dad'])}”</p></div>"""
+    cls, note = ("panel dropped", " \u2715 dropped") if p.get("dropped") else ("panel", "")
+    return f"""<div class="{cls}"><div class="art">{art}</div>
+  <p class="pn">Panel {e(p['n'])} · Ch {p['chapter']}{note}</p><p>{e(p['picture'])}</p><p class="dad">Dad: “{e(p['dad'])}”</p></div>"""
 
 
 VOICE_NAMES = {"kid": "recorded", "dad": "Dad (shared)", "robot": "robot"}
@@ -153,6 +160,10 @@ def render(story: dict, root: Path) -> str:
         parts_html = "".join(_chapter(c, root) for c in chapters)
     overview = ""
     for c in chapters:
+        if c.get("dropped"):
+            overview += (f'<a class="ov dropped" href="#ch{c["number"]}"><b>\u2715 {c["number"]}</b> {e(c["title"])}'
+                         f'<small>dropped</small></a>')
+            continue
         ticks = [is_done(k, root) for k in c.get("checks", [])]
         cls, _ = _status(sum(ticks), len(ticks))
         overview += (f'<a class="ov {cls}" href="#ch{c["number"]}"><b>{c["number"]}</b> {e(c["title"])}'
@@ -177,7 +188,7 @@ TEMPLATE = """<!DOCTYPE html>
 <meta name="description" content="Story arc, storyboard and progress checklists for Jack-Jack and Becca's Cruise Adventure.">
 <style>
   :root {{ --bg:#f4f9fc; --panel:#fff; --ink:#1f3347; --soft:#5d7286; --line:#dbe7ef; --sea:#1677b8; --deep:#0d4f7d;
-    --sun:#ffc23d; --ok:#2f9e57; --go:#e58a17; --later:#9aa9b6; --pink:#e5679a; }}
+    --sun:#ffc23d; --ok:#2f9e57; --no:#d64545; --go:#e58a17; --later:#9aa9b6; --pink:#e5679a; }}
   @media (prefers-color-scheme: dark) {{ :root {{ --bg:#0f1b26; --panel:#162636; --ink:#e6eef5; --soft:#9fb3c4; --line:#27405a;
     --sea:#5bb3f0; --deep:#0b2c46; }} }}
   * {{ box-sizing:border-box; }}
@@ -199,11 +210,15 @@ TEMPLATE = """<!DOCTYPE html>
     padding:8px 10px; color:var(--ink); text-decoration:none; font-size:.95rem; }}
   .ov small {{ float:right; color:var(--soft); }}
   .ov.shipped {{ border-left-color:var(--ok); }} .ov.going {{ border-left-color:var(--go); }}
+  .ov.dropped {{ border-left-color:var(--no); color:var(--soft); text-decoration:line-through; }}
+  .ov.dropped b {{ color:var(--no); }}
   .bar {{ height:8px; background:var(--line); border-radius:99px; overflow:hidden; margin-top:6px; }}
   .bar span {{ display:block; height:100%; background:var(--ok); }}
   .count {{ font-size:.8rem; color:var(--soft); }}
   .chapter {{ background:var(--panel); border:1px solid var(--line); border-left:8px solid var(--later); border-radius:14px; padding:14px 20px 16px; margin:18px 0; }}
   .chapter.shipped {{ border-left-color:var(--ok); }} .chapter.going {{ border-left-color:var(--go); }}
+  .chapter.dropped {{ border-left-color:var(--no); opacity:.75; }} .chapter.dropped h3 {{ text-decoration:line-through; }}
+  .chapter.dropped .num {{ background:var(--no); }} .pill.dropped {{ background:var(--no); }}
   .chapter header {{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; }}
   .chapter h3 {{ margin:0; font-size:1.3rem; }}
   .num {{ display:inline-grid; place-items:center; width:34px; height:34px; border-radius:50%; background:var(--sea); color:#fff; font-weight:700; }}
@@ -227,6 +242,7 @@ TEMPLATE = """<!DOCTYPE html>
   .panel {{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:10px; font-size:.9rem; }}
   .panel p {{ margin:6px 0 0; }} .panel .pn {{ font-weight:700; color:var(--sea); }} .panel .dad {{ color:var(--soft); font-style:italic; }}
   .panel .art {{ display:grid; gap:6px; }}
+  .panel.dropped {{ opacity:.55; }} .panel.dropped .pn {{ color:var(--no); }}
   .sketch {{ aspect-ratio:16/9; display:grid; place-items:center; border:2px dashed var(--line); border-radius:8px; color:var(--soft); font-size:.85rem; }}
   .tablewrap {{ overflow-x:auto; }}
   table {{ border-collapse:collapse; width:100%; font-size:.92rem; }}

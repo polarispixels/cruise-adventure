@@ -74,6 +74,15 @@ class CheckTest(unittest.TestCase):
         self.assertIn("1 of 2", html)
         self.assertIn("A &lt;b&gt;", html)
 
+    def test_dropped_chapter_gets_a_red_x_and_stays_out_of_progress(self):
+        story = {"chapters": [{"number": 4, "title": "Uh oh", "dropped": "Not doing this one.",
+                               "checks": [{"label": "one"}]}], "panels": [], "parts": []}
+        html = site.render(story, self.root)
+        self.assertIn('class="chapter dropped"', html)
+        self.assertIn("Dropped", html)
+        self.assertIn("Not doing this one.", html)
+        self.assertNotIn("0 of 1", html)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,173 +1,622 @@
 {
  "title": "Jack-Jack and Becca's Cruise Adventure",
  "tagline": "I have a card. I follow it. I can do it myself.",
- "routine": ["Look", "Find", "Pack", "Check"],
+ "routine": [
+  "Look",
+  "Find",
+  "Pack",
+  "Check"
+ ],
  "parts": [
-  {"name": "Part 1: Packing", "blurb": "The packing-video storyboard, turned into play. The kids do every step with their own finger."},
-  {"name": "Part 2: The trip", "blurb": "After the real vacation (leaves November 10). Trip photos and memories shape each chapter."}
+  {
+   "name": "Part 1: Packing",
+   "blurb": "The packing-video storyboard, turned into play. The kids do every step with their own finger."
+  },
+  {
+   "name": "Part 2: The trip",
+   "blurb": "The journey from home to the ship, one stop at a time, each with a small job for the kids. Story arc v0.2 (Specs folder) has the full proposal."
+  }
  ],
  "chapters": [
   {
-   "number": 1, "part": 0, "title": "The mission", "release": "v0.2", "panels": "1-3",
+   "number": 1,
+   "part": 0,
+   "title": "The mission",
+   "release": "v0.2",
+   "panels": "1-3",
    "video": "Optional VHS title bumper; the kids see the cruise ship poster; each holds up their card",
    "play": "Title screen: pick Jack-Jack or Becca. The suitcase opens and the card pops out.",
    "teaches": "This is my card",
-   "images": [["panel-02", "Panel 2: the cruise ship poster"], ["game-jack-room", "In the game: Jack-Jack's room"], ["clip-vhs-intro", "VHS bumper test clip"]],
+   "images": [
+    [
+     "panel-02",
+     "Panel 2: the cruise ship poster"
+    ],
+    [
+     "game-jack-room",
+     "In the game: Jack-Jack's room"
+    ],
+    [
+     "clip-vhs-intro",
+     "VHS bumper test clip"
+    ]
+   ],
    "checks": [
-    {"label": "Title screen: both kids wave, tap one to play", "done": true},
-    {"label": "\"Who do you want to play as?\" recorded", "voice": ["jack/who-do-you-want"]},
-    {"label": "Each kid's picture card in the game", "files": ["assets/cards/jack.png", "assets/cards/becca.png"]},
-    {"label": "VHS title bumper in the game (optional)"}
+    {
+     "label": "Title screen: both kids wave, tap one to play",
+     "done": true
+    },
+    {
+     "label": "\"Who do you want to play as?\" recorded",
+     "voice": [
+      "jack/who-do-you-want"
+     ]
+    },
+    {
+     "label": "Each kid's picture card in the game",
+     "files": [
+      "assets/cards/jack.png",
+      "assets/cards/becca.png"
+     ]
+    },
+    {
+     "label": "VHS title bumper in the game (optional)"
+    }
    ]
   },
   {
-   "number": 2, "part": 0, "title": "The routine", "release": "v0.2", "panels": "4-6",
+   "number": 2,
+   "part": 0,
+   "title": "The routine",
+   "release": "v0.2",
+   "panels": "4-6",
    "video": "The chosen kid's intro clip",
    "play": "Row 1: shirt, shorts, underwear, socks through Look, Find, Pack, Check. Roll the burrito, pack it, zip it.",
    "teaches": "The routine and the bundle",
-   "images": [["panel-04", "Panel 4: Look, Find, Pack, Check"], ["panel-06a", "Panel 6: roll it like a burrito"], ["clip-jack-pack", "Clip: jack-pack"], ["clip-becca-pack", "Clip: becca-pack"]],
+   "images": [
+    [
+     "panel-04",
+     "Panel 4: Look, Find, Pack, Check"
+    ],
+    [
+     "panel-06a",
+     "Panel 6: roll it like a burrito"
+    ],
+    [
+     "clip-jack-pack",
+     "Clip: jack-pack"
+    ],
+    [
+     "clip-becca-pack",
+     "Clip: becca-pack"
+    ]
+   ],
    "checks": [
-    {"label": "Intro clips (Jack-Jack and Becca)", "files": ["assets/video/jack-intro.ogv", "assets/video/becca-intro.ogv"]},
-    {"label": "Row 1 playable", "rows": 1},
-    {"label": "Roll, pack, zip, with pulsing cues", "done": true},
-    {"label": "Six outfits for Jack-Jack, four for Becca, random colors", "done": true},
-    {"label": "Row 1 lines in Jack-Jack's voice (Becca's game)", "voice": ["jack/find-shirt", "jack/find-shorts", "jack/find-underwear", "jack/find-socks", "jack/roll-it", "jack/pack-it", "jack/close-suitcase", "jack/zip-it"]},
-    {"label": "Row 1 lines in Becca's voice (Jack-Jack's game)", "voice": ["becca/find-shirt", "becca/find-shorts", "becca/find-underwear", "becca/find-socks", "becca/roll-it", "becca/pack-it", "becca/close-suitcase", "becca/zip-it"]}
+    {
+     "label": "Intro clips (Jack-Jack and Becca)",
+     "files": [
+      "assets/video/jack-intro.ogv",
+      "assets/video/becca-intro.ogv"
+     ]
+    },
+    {
+     "label": "Row 1 playable",
+     "rows": 1
+    },
+    {
+     "label": "Roll, pack, zip, with pulsing cues",
+     "done": true
+    },
+    {
+     "label": "Six outfits for Jack-Jack, four for Becca, random colors",
+     "done": true
+    },
+    {
+     "label": "Row 1 lines in Jack-Jack's voice (Becca's game)",
+     "voice": [
+      "jack/find-shirt",
+      "jack/find-shorts",
+      "jack/find-underwear",
+      "jack/find-socks",
+      "jack/roll-it",
+      "jack/pack-it",
+      "jack/close-suitcase",
+      "jack/zip-it"
+     ]
+    },
+    {
+     "label": "Row 1 lines in Becca's voice (Jack-Jack's game)",
+     "voice": [
+      "becca/find-shirt",
+      "becca/find-shorts",
+      "becca/find-underwear",
+      "becca/find-socks",
+      "becca/roll-it",
+      "becca/pack-it",
+      "becca/close-suitcase",
+      "becca/zip-it"
+     ]
+    }
    ]
   },
   {
-   "number": 3, "part": 0, "title": "Your turn", "release": "v0.3", "panels": "7-13",
+   "number": 3,
+   "part": 0,
+   "title": "Your turn",
+   "release": "v0.3",
+   "panels": "7-13",
    "video": "Short \"what's next?\" clips before each new row; a done clip at the end",
    "play": "Rows 2-4 of the card, a row at a time, from the drawer, the basket and the toy box.",
    "teaches": "Following the card alone",
-   "images": [["clip-jack-level2", "Clip: jack-level2"], ["clip-becca-level3", "Clip: becca-level3"], ["clip-jack-done", "Clip: jack-done"], ["game-jack-card", "In the game: Jack-Jack's card"]],
+   "images": [
+    [
+     "clip-jack-level2",
+     "Clip: jack-level2"
+    ],
+    [
+     "clip-becca-level3",
+     "Clip: becca-level3"
+    ],
+    [
+     "clip-jack-done",
+     "Clip: jack-done"
+    ],
+    [
+     "game-jack-card",
+     "In the game: Jack-Jack's card"
+    ]
+   ],
    "checks": [
-    {"label": "Rows 2-4 playable", "rows": 4},
-    {"label": "Row clips, levels 2-4 (both kids)", "files": ["assets/video/jack-level2.ogv", "assets/video/jack-level3.ogv", "assets/video/jack-level4.ogv", "assets/video/becca-level2.ogv", "assets/video/becca-level3.ogv", "assets/video/becca-level4.ogv"]},
-    {"label": "Done clips (both kids)", "files": ["assets/video/jack-done.ogv", "assets/video/becca-done.ogv"]},
-    {"label": "Card map, home, replay and continue buttons, music", "done": true},
-    {"label": "Rows 2-4 lines in Jack-Jack's voice", "voice": ["jack/find-pajamas", "jack/find-swimsuit", "jack/find-hoodie", "jack/find-nice-outfit", "jack/find-sandals", "jack/find-hat", "jack/find-hairbrush", "jack/find-toothbrush", "jack/find-buddy", "jack/find-book", "jack/find-tablet", "jack/find-special", "jack/hug-buddy", "jack/all-packed"]},
-    {"label": "Rows 2-4 lines in Becca's voice", "voice": ["becca/find-pajamas", "becca/find-swimsuit", "becca/find-hoodie", "becca/find-nice-outfit", "becca/find-sandals", "becca/find-hat", "becca/find-hairbrush", "becca/find-toothbrush", "becca/find-buddy", "becca/find-book", "becca/find-tablet", "becca/find-special", "becca/hug-buddy", "becca/all-packed"]},
-    {"label": "Counting six bundles with Becca"},
-    {"label": "\"All packed\" clip"}
+    {
+     "label": "Rows 2-4 playable",
+     "rows": 4
+    },
+    {
+     "label": "Row clips, levels 2-4 (both kids)",
+     "files": [
+      "assets/video/jack-level2.ogv",
+      "assets/video/jack-level3.ogv",
+      "assets/video/jack-level4.ogv",
+      "assets/video/becca-level2.ogv",
+      "assets/video/becca-level3.ogv",
+      "assets/video/becca-level4.ogv"
+     ]
+    },
+    {
+     "label": "Done clips (both kids)",
+     "files": [
+      "assets/video/jack-done.ogv",
+      "assets/video/becca-done.ogv"
+     ]
+    },
+    {
+     "label": "Card map, home, replay and continue buttons, music",
+     "done": true
+    },
+    {
+     "label": "Rows 2-4 lines in Jack-Jack's voice",
+     "voice": [
+      "jack/find-pajamas",
+      "jack/find-swimsuit",
+      "jack/find-hoodie",
+      "jack/find-nice-outfit",
+      "jack/find-sandals",
+      "jack/find-hat",
+      "jack/find-hairbrush",
+      "jack/find-toothbrush",
+      "jack/find-buddy",
+      "jack/find-book",
+      "jack/find-tablet",
+      "jack/find-special",
+      "jack/hug-buddy",
+      "jack/all-packed"
+     ]
+    },
+    {
+     "label": "Rows 2-4 lines in Becca's voice",
+     "voice": [
+      "becca/find-pajamas",
+      "becca/find-swimsuit",
+      "becca/find-hoodie",
+      "becca/find-nice-outfit",
+      "becca/find-sandals",
+      "becca/find-hat",
+      "becca/find-hairbrush",
+      "becca/find-toothbrush",
+      "becca/find-buddy",
+      "becca/find-book",
+      "becca/find-tablet",
+      "becca/find-special",
+      "becca/hug-buddy",
+      "becca/all-packed"
+     ]
+    },
+    {
+     "label": "Counting six bundles with Becca"
+    },
+    {
+     "label": "\"All packed\" clip"
+    }
    ]
   },
   {
-   "number": 4, "part": 0, "title": "Uh oh", "release": "v0.4", "panels": "14-16",
+   "number": 4,
+   "part": 0,
+   "title": "Uh oh",
+   "release": "v0.4",
+   "panels": "14-16",
    "video": "Jack-Jack sitting on his overflowing suitcase; Becca holding four swimsuits",
    "play": "Spot and fix the mistake. Jack-Jack drags the extra toys back to the shelf until the lid closes. Becca compares her suitcase to the card, puts back three swimsuits and finds the missing underwear.",
    "teaches": "Checking the card fixes mistakes",
-   "images": [["panel-14", "Panel 14: the suitcase won't close"], ["panel-15", "Panel 15: four swimsuits"], ["clip-panel-14", "Runway test clip of panel 14"]],
+   "images": [
+    [
+     "panel-14",
+     "Panel 14: the suitcase won't close"
+    ],
+    [
+     "panel-15",
+     "Panel 15: four swimsuits"
+    ],
+    [
+     "clip-panel-14",
+     "Runway test clip of panel 14"
+    ]
+   ],
    "checks": [
-    {"label": "Keyframes for panels 14 and 15", "done": true},
-    {"label": "Keyframe for panel 16 (both fixed, sitting on closed suitcases)"},
-    {"label": "Design the spot-and-fix play (one mistake per kid, or both?)"},
-    {"label": "Art: overflowing suitcase and extra toys"},
-    {"label": "Art: Becca's four swimsuits, card with underwear unchecked"},
-    {"label": "Uh-oh clips (Jack-Jack and Becca)"},
-    {"label": "Fixed-it clip"},
-    {"label": "Voice lines: \"Uh oh!\", \"Check your card!\", \"You fixed it!\""},
-    {"label": "Build it"}
-   ]
+    {
+     "label": "Keyframes for panels 14 and 15",
+     "done": true
+    },
+    {
+     "label": "Keyframe for panel 16 (both fixed, sitting on closed suitcases)"
+    },
+    {
+     "label": "Design the spot-and-fix play (one mistake per kid, or both?)"
+    },
+    {
+     "label": "Art: overflowing suitcase and extra toys"
+    },
+    {
+     "label": "Art: Becca's four swimsuits, card with underwear unchecked"
+    },
+    {
+     "label": "Uh-oh clips (Jack-Jack and Becca)"
+    },
+    {
+     "label": "Fixed-it clip"
+    },
+    {
+     "label": "Voice lines: \"Uh oh!\", \"Check your card!\", \"You fixed it!\""
+    },
+    {
+     "label": "Build it"
+    }
+   ],
+   "dropped": "Dropped October 30, 2026. Packing is complete without a mistake-and-fix chapter."
   },
   {
-   "number": 5, "part": 0, "title": "Inspection", "release": "v0.4", "panels": "17",
+   "number": 5,
+   "part": 0,
+   "title": "Inspection",
+   "release": "v0.4",
+   "panels": "17",
    "video": "Dad stamps the cards APPROVED",
    "play": "Hand the card to Dad. Every check lights up, then the stamp comes down.",
    "teaches": "Done means checked",
    "images": [],
    "checks": [
-    {"label": "Keyframe for panel 17"},
-    {"label": "Art: Dad, the APPROVED stamp"},
-    {"label": "Dad's stamp clip"},
-    {"label": "Dad's line recorded: \"Inspection complete. Excellent work.\""},
-    {"label": "Build it"}
-   ]
+    {
+     "label": "Keyframe for panel 17"
+    },
+    {
+     "label": "Art: Dad, the APPROVED stamp"
+    },
+    {
+     "label": "Dad's stamp clip"
+    },
+    {
+     "label": "Dad's line recorded: \"Inspection complete. Excellent work.\""
+    },
+    {
+     "label": "Build it"
+    }
+   ],
+   "dropped": "Dropped October 30, 2026. Packing is complete without Dad's inspection."
   },
   {
-   "number": 6, "part": 0, "title": "Payoff", "release": "v0.4", "panels": "18-19",
+   "number": 6,
+   "part": 0,
+   "title": "Payoff",
+   "release": "v0.4",
+   "panels": "18-19",
    "video": "The kids at the pool in swimsuits, then in pajamas in the cabin",
    "play": "Tap the packed items to use them on the ship.",
    "teaches": "Packing pays off",
    "images": [],
    "checks": [
-    {"label": "Keyframes for panels 18 and 19"},
-    {"label": "Art: ship pool deck and cabin"},
-    {"label": "Pool and cabin clips"},
-    {"label": "End card: \"Training complete\""},
-    {"label": "Build it"}
-   ]
+    {
+     "label": "Keyframes for panels 18 and 19"
+    },
+    {
+     "label": "Art: ship pool deck and cabin"
+    },
+    {
+     "label": "Pool and cabin clips"
+    },
+    {
+     "label": "End card: \"Training complete\""
+    },
+    {
+     "label": "Build it"
+    }
+   ],
+   "dropped": "Moved: the pool-and-cabin payoff now happens on arrival at the ship (chapters 10-11), so the journey stays in order."
   },
   {
-   "number": 7, "part": 1, "title": "To the car", "release": "v0.5+", "panels": "",
+   "number": 7,
+   "part": 1,
+   "title": "To the car",
+   "release": "next",
+   "panels": "",
    "video": "Pushing suitcases into the car",
-   "play": "Load suitcases and booster seats in the right spots.",
+   "play": "Fit the suitcases into the trunk (drag and snap, no rotation at first), buckle up, drive off toward the airport.",
    "teaches": "Getting ready to leave",
-   "images": [["clip-to-the-car", "Runway test clip"]],
+   "images": [
+    [
+     "clip-to-the-car",
+     "Runway test clip"
+    ]
+   ],
    "checks": [
-    {"label": "Test clip (Runway)", "done": true},
-    {"label": "Design the play"},
-    {"label": "Art and clips"},
-    {"label": "Build it"}
+    {
+     "label": "Test clip (Runway)",
+     "done": true
+    },
+    {
+     "label": "Design the trunk puzzle"
+    },
+    {
+     "label": "Art: car, open trunk, trunk-sized suitcases"
+    },
+    {
+     "label": "Build the trunk puzzle"
+    },
+    {
+     "label": "Checkpoint: play it, decide what's next"
+    },
+    {
+     "label": "Intro and payoff clips"
+    },
+    {
+     "label": "Buckle up and drive off"
+    }
    ]
   },
   {
-   "number": 8, "part": 1, "title": "The airport", "release": "v0.5+", "panels": "",
+   "number": 8,
+   "part": 1,
+   "title": "The airport",
+   "release": "v0.5+",
+   "panels": "",
    "video": "Walking through the airport",
    "play": "Follow picture signs to the gate; put the bag on the security belt.",
    "teaches": "What the airport is like",
-   "images": [["clip-airport", "Gemini test clip"]],
+   "images": [
+    [
+     "clip-airport",
+     "Gemini test clip"
+    ]
+   ],
    "checks": [
-    {"label": "Test clip (Gemini)", "done": true},
-    {"label": "Design the play"},
-    {"label": "Art and clips"},
-    {"label": "Build it"}
+    {
+     "label": "Test clip (Gemini)",
+     "done": true
+    },
+    {
+     "label": "Design the play"
+    },
+    {
+     "label": "Art and clips"
+    },
+    {
+     "label": "Build it"
+    }
    ]
   },
   {
-   "number": 9, "part": 1, "title": "The flight", "release": "v0.5+", "panels": "",
+   "number": 9,
+   "part": 1,
+   "title": "The flight",
+   "release": "v0.5+",
+   "panels": "",
    "video": "Takeoff out the window",
    "play": "Calm activities in the seat: buckle up, pick a snack, look out the window.",
    "teaches": "What flying is like",
    "images": [],
-   "checks": [{"label": "Design the play"}, {"label": "Art and clips"}, {"label": "Build it"}]
+   "checks": [
+    {
+     "label": "Design the play"
+    },
+    {
+     "label": "Art and clips"
+    },
+    {
+     "label": "Build it"
+    }
+   ]
   },
   {
-   "number": 10, "part": 1, "title": "The ship", "release": "v0.5+", "panels": "",
+   "number": 10,
+   "part": 1,
+   "title": "The ship",
+   "release": "v0.5+",
+   "panels": "",
    "video": "Boarding the ship",
    "play": "Find the stateroom by matching the key card number to the doors.",
    "teaches": "Numbers and finding your way",
    "images": [],
-   "checks": [{"label": "Design the play"}, {"label": "Art and clips"}, {"label": "Build it"}]
+   "checks": [
+    {
+     "label": "Design the play"
+    },
+    {
+     "label": "Art and clips"
+    },
+    {
+     "label": "Build it"
+    }
+   ]
   },
   {
-   "number": 11, "part": 1, "title": "Ship and beach", "release": "v0.5+", "panels": "",
+   "number": 11,
+   "part": 1,
+   "title": "Ship and beach",
+   "release": "v0.5+",
+   "panels": "",
    "video": "Water slides, the beach",
    "play": "A playground of mini games that grows over time.",
    "teaches": "Fun, and the reason for all the work",
    "images": [],
-   "checks": [{"label": "Pick the first mini games"}, {"label": "Art and clips"}, {"label": "Build it"}]
+   "checks": [
+    {
+     "label": "Pick the first mini games"
+    },
+    {
+     "label": "Art and clips"
+    },
+    {
+     "label": "Build it"
+    }
+   ]
   }
  ],
  "panels": [
-  {"n": "1", "chapter": 1, "picture": "VHS color bars, then the retro title card: \"Packing Your Suitcase: Training for New Associates\"", "dad": "Welcome, new associates.", "img": "panel-01"},
-  {"n": "2", "chapter": 1, "picture": "Jack and Becca, wide-eyed, looking at a poster of a giant cruise ship", "dad": "Very soon, we board a giant ship. Your job is to pack your own suitcase.", "img": "panel-02"},
-  {"n": "3", "chapter": 1, "picture": "Each kid holding their own picture checklist card", "dad": "This is your card. It shows everything you need.", "img": "panel-03"},
-  {"n": "4", "chapter": 2, "picture": "Poster with four icons: eye, hand, suitcase, checkmark", "dad": "Look. Find. Pack. Check. Say it with me.", "img": "panel-04"},
-  {"n": "5", "chapter": 2, "picture": "Jack looks at his card, then pulls clothes from his dresser", "dad": "Look at your card. Find it.", "img": "panel-05"},
-  {"n": "6", "chapter": 2, "picture": "Jack rolls a shirt, shorts, underwear, and socks into a burrito, packs it, checks the box", "dad": "Roll it like a burrito. Pack it. Check it.", "img": "panel-06a", "img2": "panel-06b"},
-  {"n": "7", "chapter": 3, "picture": "Becca drops in six bundles, holding up fingers to count", "dad": "Six bundles. Count with me. One, two, three..."},
-  {"n": "8", "chapter": 3, "picture": "Becca packs pajamas and hugs them first", "dad": "What's next on your card? ... Pajamas!"},
-  {"n": "9", "chapter": 3, "picture": "Jack holds his swimsuit and pretends to swim", "dad": "What's next? ... Swimsuit!"},
-  {"n": "10", "chapter": 3, "picture": "Jack packs his hoodie; Becca twirls with her dress", "dad": "A jacket for chilly nights. One nice outfit."},
-  {"n": "11", "chapter": 3, "picture": "Both kids tuck in sandals and try on sun hats", "dad": "Sandals. Hat."},
-  {"n": "12", "chapter": 3, "picture": "Becca with her hairbrush, Jack with his toothbrush", "dad": "Hairbrush. Toothbrush."},
-  {"n": "13", "chapter": 3, "picture": "Becca packs her bunny and her special ears; Jack packs a toy car and a book", "dad": "One buddy. One thing for the plane. One special thing."},
-  {"n": "14", "chapter": 4, "picture": "Jack's suitcase overflowing with toys, Jack sitting on it and it won't close", "dad": "Uh oh. Something went wrong. What do we do? ... Check your card!", "img": "panel-14"},
-  {"n": "15", "chapter": 4, "picture": "Becca holding up four swimsuits, her card showing underwear not checked", "dad": "Becca, how many swimsuits does your card show?", "img": "panel-15"},
-  {"n": "16", "chapter": 4, "picture": "Both fixed: toys put back, underwear in, kids sitting proudly on closed suitcases", "dad": "Look. Find. Pack. Check. You fixed it."},
-  {"n": "17", "chapter": 5, "picture": "Dad holds the cards up to the suitcases and stamps them \"APPROVED\"", "dad": "Inspection complete. Excellent work."},
-  {"n": "18", "chapter": 6, "picture": "On the ship: kids in swimsuits by the pool, then in pajamas in the cabin", "dad": "Who packed that swimsuit? You did."},
-  {"n": "19", "chapter": 6, "picture": "End card: \"Training complete. Please return to your parents.\"", "dad": "(jingle)"}
+  {
+   "n": "1",
+   "chapter": 1,
+   "picture": "VHS color bars, then the retro title card: \"Packing Your Suitcase: Training for New Associates\"",
+   "dad": "Welcome, new associates.",
+   "img": "panel-01"
+  },
+  {
+   "n": "2",
+   "chapter": 1,
+   "picture": "Jack and Becca, wide-eyed, looking at a poster of a giant cruise ship",
+   "dad": "Very soon, we board a giant ship. Your job is to pack your own suitcase.",
+   "img": "panel-02"
+  },
+  {
+   "n": "3",
+   "chapter": 1,
+   "picture": "Each kid holding their own picture checklist card",
+   "dad": "This is your card. It shows everything you need.",
+   "img": "panel-03"
+  },
+  {
+   "n": "4",
+   "chapter": 2,
+   "picture": "Poster with four icons: eye, hand, suitcase, checkmark",
+   "dad": "Look. Find. Pack. Check. Say it with me.",
+   "img": "panel-04"
+  },
+  {
+   "n": "5",
+   "chapter": 2,
+   "picture": "Jack looks at his card, then pulls clothes from his dresser",
+   "dad": "Look at your card. Find it.",
+   "img": "panel-05"
+  },
+  {
+   "n": "6",
+   "chapter": 2,
+   "picture": "Jack rolls a shirt, shorts, underwear, and socks into a burrito, packs it, checks the box",
+   "dad": "Roll it like a burrito. Pack it. Check it.",
+   "img": "panel-06a",
+   "img2": "panel-06b"
+  },
+  {
+   "n": "7",
+   "chapter": 3,
+   "picture": "Becca drops in six bundles, holding up fingers to count",
+   "dad": "Six bundles. Count with me. One, two, three..."
+  },
+  {
+   "n": "8",
+   "chapter": 3,
+   "picture": "Becca packs pajamas and hugs them first",
+   "dad": "What's next on your card? ... Pajamas!"
+  },
+  {
+   "n": "9",
+   "chapter": 3,
+   "picture": "Jack holds his swimsuit and pretends to swim",
+   "dad": "What's next? ... Swimsuit!"
+  },
+  {
+   "n": "10",
+   "chapter": 3,
+   "picture": "Jack packs his hoodie; Becca twirls with her dress",
+   "dad": "A jacket for chilly nights. One nice outfit."
+  },
+  {
+   "n": "11",
+   "chapter": 3,
+   "picture": "Both kids tuck in sandals and try on sun hats",
+   "dad": "Sandals. Hat."
+  },
+  {
+   "n": "12",
+   "chapter": 3,
+   "picture": "Becca with her hairbrush, Jack with his toothbrush",
+   "dad": "Hairbrush. Toothbrush."
+  },
+  {
+   "n": "13",
+   "chapter": 3,
+   "picture": "Becca packs her bunny and her special ears; Jack packs a toy car and a book",
+   "dad": "One buddy. One thing for the plane. One special thing."
+  },
+  {
+   "n": "14",
+   "chapter": 4,
+   "picture": "Jack's suitcase overflowing with toys, Jack sitting on it and it won't close",
+   "dad": "Uh oh. Something went wrong. What do we do? ... Check your card!",
+   "img": "panel-14",
+   "dropped": true
+  },
+  {
+   "n": "15",
+   "chapter": 4,
+   "picture": "Becca holding up four swimsuits, her card showing underwear not checked",
+   "dad": "Becca, how many swimsuits does your card show?",
+   "img": "panel-15",
+   "dropped": true
+  },
+  {
+   "n": "16",
+   "chapter": 4,
+   "picture": "Both fixed: toys put back, underwear in, kids sitting proudly on closed suitcases",
+   "dad": "Look. Find. Pack. Check. You fixed it.",
+   "dropped": true
+  },
+  {
+   "n": "17",
+   "chapter": 5,
+   "picture": "Dad holds the cards up to the suitcases and stamps them \"APPROVED\"",
+   "dad": "Inspection complete. Excellent work.",
+   "dropped": true
+  },
+  {
+   "n": "18",
+   "chapter": 6,
+   "picture": "On the ship: kids in swimsuits by the pool, then in pajamas in the cabin",
+   "dad": "Who packed that swimsuit? You did."
+  },
+  {
+   "n": "19",
+   "chapter": 6,
+   "picture": "End card: \"Training complete. Please return to your parents.\"",
+   "dad": "(jingle)"
+  }
  ]
 }
