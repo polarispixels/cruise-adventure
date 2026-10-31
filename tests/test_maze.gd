@@ -215,7 +215,7 @@ func test_finish_buttons(t) -> void:
 		var maze := await _make(t, "becca")
 		maze.payoff_video = ""
 		await _drag_through(t, _route_to_gate(maze, maze.maze.correct))
-		await t.tree.create_timer(0.3).timeout
+		await t.tree.create_timer(0.8).timeout  # the buttons wake up after a moment
 		var button: TextureButton = maze.get_node("Finish/" + pair[0])
 		await _tap(t, button.global_position + button.size / 2)
 		t.eq(game.last_scene_request, pair[1], pair[0])
@@ -240,4 +240,48 @@ func test_home_button_while_playing(t) -> void:
 	var button: TextureButton = maze.get_node("PlayHome")
 	await _tap(t, button.global_position + button.size / 2)
 	t.eq(t.tree.root.get_node("Game").last_scene_request, "res://scenes/title.tscn", "home")
+	_done(t, maze)
+
+
+func test_hint_points_the_way_and_repeats(t) -> void:
+	var maze := await _make(t, "jack", 3, Vector2i(1920, 1080), 0.3)
+	var said: Array[String] = []
+	var voice: Node = t.tree.root.get_node("Voice")
+	var record := func(line: String): said.append(line)
+	voice.said.connect(record)
+	var sibling: Sprite2D = maze.get_node("Sibling")
+	var m: MazeModel = maze.maze
+	var route := m.path(m.start, m.gates[m.correct])
+	await t.tree.create_timer(0.5).timeout
+	var toward: Vector2 = maze.cell_center(route[1]) - maze.cell_center(route[0])
+	t.check((sibling.position - maze.token_position()).dot(toward) > 0, "the sibling moves toward the way to go")
+	await _tap(t, maze.token_position() + Vector2(0, 600))
+	await t.tree.create_timer(0.8).timeout
+	voice.said.disconnect(record)
+	t.check(said.count("this-way") >= 2, "the hint comes back while still stuck: %s" % [said])
+	_done(t, maze)
+
+
+func test_sibling_settles_after_two_bounces(t) -> void:
+	var maze := await _make(t, "jack")
+	var sibling: Sprite2D = maze.get_node("Sibling")
+	maze._bounce(sibling)
+	await t.tree.create_timer(0.1).timeout
+	maze._bounce(sibling)
+	await t.tree.create_timer(1.2).timeout
+	t.eq(sibling.offset, Vector2.ZERO, "back down after both bounces")
+	_done(t, maze)
+
+
+func test_double_tap_after_the_clip_does_not_press_a_button(t) -> void:
+	var maze := await _make(t, "becca")
+	maze.payoff_video = "res://assets/video/becca-done.ogv"
+	await _drag_through(t, _route_to_gate(maze, maze.maze.correct))
+	await t.tree.create_timer(1.0).timeout
+	var replay: TextureButton = maze.get_node("Finish/ReplayButton")
+	var spot := replay.global_position + replay.size / 2
+	await _tap(t, spot)
+	await _tap(t, spot)
+	t.check(maze.get_node("Finish").visible, "the finish buttons came up")
+	t.eq(t.tree.root.get_node("Game").last_scene_request, "", "the second tap didn't press Replay")
 	_done(t, maze)

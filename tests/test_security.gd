@@ -122,7 +122,8 @@ func test_becca_tablet_shares_a_tray(t) -> void:
 
 func test_tray_goes_through_the_scanner(t) -> void:
 	var scene := await _make(t, "becca")
-	await _drag(t, scene.item_point("tablet"), scene.tray_point(1))
+	for pair in [["becca-backpack", 0], ["tablet", 1], ["buddy", 2]]:
+		await _drag(t, scene.item_point(pair[0]), scene.tray_point(pair[1]))
 	await _tap(t, scene.tray_point(1))
 	await t.tree.create_timer(scene.SCAN_TIME / 2).timeout
 	t.check(scene.get_node("Stage/Screen").get_child_count() > 0, "the screen shows what's inside")
@@ -142,7 +143,8 @@ func test_empty_tray_tap_does_nothing(t) -> void:
 
 func test_buddy_comes_back_line(t) -> void:
 	var scene := await _make(t, "becca")
-	await _drag(t, scene.item_point("buddy"), scene.tray_point(0))
+	for pair in [["buddy", 0], ["tablet", 1], ["becca-backpack", 2]]:
+		await _drag(t, scene.item_point(pair[0]), scene.tray_point(pair[1]))
 	await _tap(t, scene.tray_point(0))
 	await t.tree.create_timer(scene.SCAN_TIME + 0.3).timeout
 	t.check(_said.has("comes-back"), "don't worry, it comes right back")
@@ -195,3 +197,45 @@ func test_everything_on_screen_on_the_tablet(t) -> void:
 		t.check(view.encloses(scene.get_node(kid).hit_rect()), "%s on screen" % kid)
 	_done(t, scene)
 	t.tree.root.size = Vector2i(1920, 1080)
+
+
+func test_trays_wait_until_everything_is_in_one(t) -> void:
+	var scene := await _make(t, "jack")
+	await _drag(t, scene.item_point("jack-backpack"), scene.tray_point(0))
+	await _tap(t, scene.tray_point(0))
+	await t.tree.create_timer(0.3).timeout
+	t.check(not scene.tray_sent(0), "a tray waits until all your things are in trays")
+	t.check(not _said.has("push-it"), "no push-it yet")
+	await _drag(t, scene.item_point("buddy"), scene.tray_point(1))
+	await _drag(t, scene.item_point("mommy-purse"), scene.tray_point(2))
+	await _drag(t, scene.item_point("tablet"), scene.tray_point(2))
+	var alone: Array[String] = ["tablet"]
+	var trays_with_tablet := 0
+	for i in 3:
+		if scene.tray_items(i).has("tablet"):
+			trays_with_tablet += 1
+			t.eq(scene.tray_items(i), alone, "the tablet still gets a tray of its own")
+	t.eq(trays_with_tablet, 1, "one tray has the tablet")
+	t.check(_said.has("push-it"), "push it through, once everything's in")
+	_done(t, scene)
+
+
+func test_one_tray_at_a_time_in_the_scanner(t) -> void:
+	var scene := await _make(t, "becca")
+	for pair in [["becca-backpack", 0], ["tablet", 1], ["buddy", 2]]:
+		await _drag(t, scene.item_point(pair[0]), scene.tray_point(pair[1]))
+	await _tap(t, scene.tray_point(0))
+	await _tap(t, scene.tray_point(1))
+	await t.tree.create_timer(scene.SCAN_TIME / 2).timeout
+	t.check(not scene.tray_sent(1), "the second tray waits for the scanner")
+	_done(t, scene)
+
+
+func test_buddy_on_the_backpack_still_gets_a_hug(t) -> void:
+	var scene := await _make(t, "becca")
+	await _scan_all(t, scene, {"becca-backpack": 0, "tablet": 1, "buddy": 2})
+	await _tap(t, scene.arch_point())
+	await t.tree.create_timer(scene.WALK_TIME + 0.3).timeout
+	await _drag(t, scene.item_point("buddy"), scene.backpack_point())
+	t.check(_said.has("hug-buddy"), "the buddy gets a hug either way")
+	_done(t, scene)

@@ -35,6 +35,8 @@ const MAX_DECOR := 4
 const FOOTPRINTS := 3
 const PAYOFF_VIDEO := "res://assets/video/airport-jet-bridge.ogv"
 const SKIP_GRACE := 0.75
+## The finish buttons wake up this long after they appear.
+const FINISH_GUARD := 0.4
 const BOUNCE := 0.25
 
 var maze: MazeModel
@@ -181,16 +183,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouse and event is InputEventMouseButton and event.pressed:
-		_idle = 0.0
-
-
 func _process(delta: float) -> void:
 	if finished:
 		return
 	_idle += delta
-	if not _hinting and _idle >= Game.kid.maze_hint_delay:
+	# While stuck, the hint comes back every delay; only moving the token starts the wait over.
+	if _idle >= Game.kid.maze_hint_delay:
+		_idle = 0.0
 		_show_hint()
 
 
@@ -263,8 +262,10 @@ func _neighbors(node: Vector2i) -> Array[Vector2i]:
 
 
 func _moved() -> void:
-	_token.position = token_position()
 	var p := token_position()
+	if p.distance_to(_token.position) > 0.5:
+		_idle = 0.0
+	_token.position = p
 	if _trail.is_empty() or _trail.back().distance_to(p) > _cell * 0.1:
 		_trail.append(p)
 	_place_sibling()
@@ -316,6 +317,12 @@ func _show_finish() -> void:
 	Music.hold(false)
 	_play_home.visible = false
 	_finish.visible = true
+	# The rest of a double tap that skipped the clip mustn't press a button.
+	for button: TextureButton in _finish.get_children():
+		button.disabled = true
+	get_tree().create_timer(FINISH_GUARD).timeout.connect(func():
+		for button: TextureButton in _finish.get_children():
+			button.disabled = false)
 
 
 ## Cells left on the shortest way from the token to the right gate.
@@ -330,15 +337,18 @@ func _distance_left() -> int:
 
 func _show_hint() -> void:
 	_hinting = true
-	_bounce(_sibling)
-	_say("this-way")
-	if not Game.kid.maze_footprints:
-		return
 	var here := _a if _t < 0.5 else _b
 	if _gate_at(here) >= 0:
 		here = maze.gates[_gate_at(here)]
 	var route := maze.path(here, maze.gates[maze.correct])
 	route.append(_gate_node(maze.correct))
+	# The sibling steps half a cell toward the way to go, and bounces.
+	if route.size() > 1:
+		_sibling.position = token_position() + (_node_point(route[1]) - _node_point(route[0])).normalized() * _cell * 0.5
+	_bounce(_sibling)
+	_say("this-way")
+	if not Game.kid.maze_footprints:
+		return
 	var steps := _footprints.get_children()
 	for k in steps.size():
 		var print_node: Sprite2D = steps[k]
@@ -374,12 +384,19 @@ func _place_sibling() -> void:
 	_sibling.position = p
 
 
+## Hops the sprite's picture (its offset, so it never fights where the sprite is placed).
 func _bounce(sprite: Sprite2D) -> void:
+	if sprite.has_meta("bounce"):
+		var old: Tween = sprite.get_meta("bounce")
+		if old and old.is_valid():
+			old.kill()
+	sprite.offset = Vector2.ZERO
+	var height := _cell * BOUNCE / sprite.scale.y
 	var t := create_tween()
-	var rest := sprite.position
-	t.tween_property(sprite, "position", rest + Vector2(0, -_cell * BOUNCE), 0.15).set_ease(Tween.EASE_OUT)
-	t.tween_property(sprite, "position", rest, 0.2).set_ease(Tween.EASE_IN)
+	t.tween_property(sprite, "offset", Vector2(0, -height), 0.15).set_ease(Tween.EASE_OUT)
+	t.tween_property(sprite, "offset", Vector2.ZERO, 0.2).set_ease(Tween.EASE_IN)
 	t.set_loops(2)
+	sprite.set_meta("bounce", t)
 
 
 func _say(line: String, wait := false) -> void:

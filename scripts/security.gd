@@ -208,8 +208,14 @@ func _pick(local: Vector2) -> Sprite2D:
 func _tap(local: Vector2) -> void:
 	if phase == "trays":
 		var i := _nearest_tray(local, 40.0)
-		if i >= 0 and not _tray_items[i].is_empty():
+		if i < 0 or _tray_items[i].is_empty():
+			return
+		# One tray at a time, and only once all your things are in trays,
+		# so nothing can be left without a tray.
+		if _scanning == 0 and _all_in_trays():
 			_scan(i)
+		else:
+			_wiggle(_trays[i])
 	elif phase == "arch" and ARCH.grow(40).has_point(local):
 		_walk_through()
 
@@ -237,9 +243,16 @@ func _put_in_tray(id: String, i: int) -> void:
 	_tray_items[i].append(id)
 	Sfx.play("tray-slide")
 	_arrange(i)
-	if not _told_push:
+	if not _told_push and _all_in_trays():
 		_told_push = true
 		_say("push-it", true)
+
+
+func _all_in_trays() -> bool:
+	for id in item_ids():
+		if _tray_of(id) < 0:
+			return false
+	return true
 
 
 ## The closest tray still on the left table whose (grown) area holds the point; -1 if none.
@@ -253,7 +266,9 @@ func _nearest_tray(local: Vector2, slack: float) -> int:
 	return best
 
 
-## Another tray for an item the tablet rule moved: an empty one, else one without the tablet.
+## Another tray for an item the tablet rule moved: an empty one, else one
+## without the tablet. With no empty tray left for the tablet, two trays'
+## things are put together to make one.
 func _free_tray(id: String) -> int:
 	for i in TRAYS:
 		if not _tray_sent[i] and _tray_items[i].is_empty():
@@ -262,7 +277,19 @@ func _free_tray(id: String) -> int:
 		for i in TRAYS:
 			if not _tray_sent[i] and not _tray_items[i].has("tablet"):
 				return i
-	return -1
+		return -1
+	var open: Array[int] = []
+	for i in TRAYS:
+		if not _tray_sent[i]:
+			open.append(i)
+	if open.size() < 2:
+		return -1
+	var into: int = open[0]
+	var from: int = open[1]
+	_tray_items[into].append_array(_tray_items[from])
+	_tray_items[from] = [] as Array[String]
+	_arrange(into)
+	return from
 
 
 ## Lines the tray's things up inside it.
@@ -353,15 +380,17 @@ func _start_collecting() -> void:
 
 
 func _collect(item: Sprite2D, id: String) -> void:
+	var on_backpack := Rect2(BACKPACK_SPOT - Vector2(90, 90), Vector2(180, 180)).grow(DROP_SLACK).has_point(item.position)
 	if id == "buddy":
-		if _player.hit_rect().grow(40).has_point(get_global_mouse_position()) or _player.hit_rect().grow(40).has_point(_stage.to_global(item.position)):
+		# Into your arms, or onto the backpack next to you: either way it's a hug.
+		if on_backpack or _player.hit_rect().grow(40).has_point(get_global_mouse_position()) or _player.hit_rect().grow(40).has_point(_stage.to_global(item.position)):
 			item.visible = false
 			_collected.append(id)
 			_player.hug()
 			_say("hug-buddy")
 			_check_collected()
 			return
-	elif Rect2(BACKPACK_SPOT - Vector2(90, 90), Vector2(180, 180)).grow(DROP_SLACK).has_point(item.position):
+	elif on_backpack:
 		item.visible = false
 		_collected.append(id)
 		Sfx.play("tag-snap")
@@ -412,15 +441,26 @@ func _hint() -> void:
 			_say("walk-through")
 		"collect":
 			for id in item_ids():
-				if id != _backpack_id() and not _collected.has(id):
+				if id != _backpack_id() and id != "buddy" and not _collected.has(id):
 					_helper.point_at(item_point(id))
 					_say("get-your-things")
 					return
+			if not _collected.has("buddy"):
+				_helper.point_at(kid_point())
+				_say("hug-buddy")
 
 
 func _rect(sprite: Sprite2D) -> Rect2:
 	var size := sprite.texture.get_size() * sprite.scale
 	return Rect2(sprite.position - size / 2, size)
+
+
+func _wiggle(sprite: Sprite2D) -> void:
+	var t := create_tween()
+	for k in 3:
+		t.tween_property(sprite, "rotation", 0.12, 0.05)
+		t.tween_property(sprite, "rotation", -0.12, 0.05)
+	t.tween_property(sprite, "rotation", 0.0, 0.03)
 
 
 func _glide(item: Sprite2D, to: Vector2) -> void:
