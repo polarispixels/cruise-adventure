@@ -22,8 +22,8 @@ New versions install over the old one, because every build is signed with the sa
 ## Make a release
 
 1. Make sure all art is approved: `python3 tools/check_art_approved.py` (see [Art and sound](#art-and-sound)).
-2. In `project.godot`, bump `config/version` (for example `"0.2.0"` → `"0.3.0"`). This is the only place the human version lives.
-3. In `export_presets.cfg`, raise `version/code` by 1. Android refuses an update with the same or a lower code.
+2. Check that `config/version` in `project.godot` is the version you're releasing. It's bumped at the start of each version branch (see [docs/deployment.md](docs/deployment.md#version-numbers)), together with `version/code` in `export_presets.cfg`. Android refuses an update with a lower code.
+3. Leave `config/build` empty. CI stamps it on non-release builds, and a tag build shows the bare version.
 4. Add a `## [X.Y.Z] - YYYY-MM-DD` entry to `CHANGELOG.md`. Its text becomes the release notes.
 5. Commit and push to `main`, then tag and push the tag:
    ```bash

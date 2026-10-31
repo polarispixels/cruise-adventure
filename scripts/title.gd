@@ -41,12 +41,19 @@ func _ready() -> void:
 	_becca.mirrored = true
 	get_viewport().size_changed.connect(_fit)
 	_fit()
-	$VersionLabel.text = "v" + ProjectSettings.get_setting("application/config/version")
+	$VersionLabel.text = version_text()
 	$WaveTimer.wait_time = WAVE_EVERY
 	$WaveTimer.timeout.connect(_wave_next)
 	$WaveTimer.start()
 	_wave_next()
 	_voice.play()
+
+
+## "v0.4.0", plus the build label CI stamps on playtests and dev builds.
+static func version_text() -> String:
+	var text := "v" + str(ProjectSettings.get_setting("application/config/version"))
+	var build := str(ProjectSettings.get_setting("application/config/build", ""))
+	return text + (" " + build if build != "" else "")
 
 
 func _unhandled_input(event: InputEvent) -> void:
