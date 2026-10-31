@@ -1,6 +1,6 @@
 {
  "becca/all-packed": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "We packed everything! Cruise ship, here we come!"
  },
  "becca/bye-suitcases": {
@@ -8,11 +8,11 @@
   "text": "Bye-bye, suitcases! See you soon!"
  },
  "becca/close-suitcase": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Close the suitcase!"
  },
  "becca/close-trunk": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Everything's in! Close the trunk!"
  },
  "becca/comes-back": {
@@ -20,7 +20,7 @@
   "text": "Don't worry, it comes right back!"
  },
  "becca/find-book": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your book!"
  },
  "becca/find-buddy": {
@@ -32,39 +32,39 @@
   "text": "Let's find our gate!"
  },
  "becca/find-hairbrush": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your hairbrush!"
  },
  "becca/find-hat": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your hat!"
  },
  "becca/find-hoodie": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your hoodie!"
  },
  "becca/find-nice-outfit": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your fancy clothes!"
  },
  "becca/find-pajamas": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your pajamas!"
  },
  "becca/find-sandals": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your sandals!"
  },
  "becca/find-shirt": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your shirt!"
  },
  "becca/find-shorts": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your shorts!"
  },
  "becca/find-socks": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your socks!"
  },
  "becca/find-special": {
@@ -72,31 +72,31 @@
   "text": "Find your monster truck!"
  },
  "becca/find-swimsuit": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your swimsuit!"
  },
  "becca/find-tablet": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your tablet!"
  },
  "becca/find-toothbrush": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your toothbrush!"
  },
  "becca/find-underwear": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your underwear!"
  },
  "becca/found-1": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "You found it!"
  },
  "becca/found-2": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Yay! Good job!"
  },
  "becca/found-3": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "That's the one!"
  },
  "becca/found-gate": {
@@ -108,7 +108,7 @@
   "text": "Get your things back!"
  },
  "becca/hug-buddy": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Give it a big hug!"
  },
  "becca/in-a-tray": {
@@ -116,15 +116,15 @@
   "text": "Put your things in a tray!"
  },
  "becca/it-fits": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "It fits!"
  },
  "becca/lets-go": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Airport, here we come!"
  },
  "becca/load-car": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Let's put all the bags in the car!"
  },
  "becca/match-airplane": {
@@ -160,7 +160,7 @@
   "text": "Let's look in the toy box!"
  },
  "becca/pack-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Put it in the suitcase!"
  },
  "becca/pick-a-row": {
@@ -172,7 +172,7 @@
   "text": "Push it through!"
  },
  "becca/roll-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Tap the clothes to roll them up!"
  },
  "becca/tablet-tray": {
@@ -188,15 +188,15 @@
   "text": "This way!"
  },
  "becca/try-again": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Hmm... try another one!"
  },
  "becca/try-another-spot": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Hmm... try another spot!"
  },
  "becca/turn-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Tap it to turn it!"
  },
  "becca/walk-through": {
@@ -208,7 +208,7 @@
   "text": "Who do you want to play as?"
  },
  "becca/zip-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Zip it up!"
  },
  "jack/all-packed": {
@@ -224,7 +224,7 @@
   "text": "Close the suitcase!"
  },
  "jack/close-trunk": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Everything's in! Close the trunk!"
  },
  "jack/comes-back": {
@@ -328,15 +328,15 @@
   "text": "Put your things in a tray!"
  },
  "jack/it-fits": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "It fits!"
  },
  "jack/lets-go": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Airport, here we come!"
  },
  "jack/load-car": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Let's put all the bags in the car!"
  },
  "jack/match-airplane": {
@@ -404,11 +404,11 @@
   "text": "Hmm... try another one!"
  },
  "jack/try-another-spot": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Hmm... try another spot!"
  },
  "jack/turn-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Tap it to turn it!"
  },
  "jack/walk-through": {
