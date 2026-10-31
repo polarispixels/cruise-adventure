@@ -128,11 +128,11 @@
   "text": "Zip it up!"
  },
  "jack/all-packed": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "We packed everything! Cruise ship, here we come!"
  },
  "jack/close-suitcase": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Close the suitcase!"
  },
  "jack/find-book": {
@@ -168,15 +168,15 @@
   "text": "Find your sandals!"
  },
  "jack/find-shirt": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your shirt!"
  },
  "jack/find-shorts": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your shorts!"
  },
  "jack/find-socks": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your socks!"
  },
  "jack/find-special": {
@@ -196,7 +196,7 @@
   "text": "Find your toothbrush!"
  },
  "jack/find-underwear": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your underwear!"
  },
  "jack/found-1": {
@@ -212,7 +212,7 @@
   "text": "That's the one!"
  },
  "jack/hug-buddy": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Give it a big hug!"
  },
  "jack/open-basket": {
@@ -232,7 +232,7 @@
   "text": "Let's look in the toy box!"
  },
  "jack/pack-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Put it in the suitcase!"
  },
  "jack/pick-a-row": {
@@ -252,7 +252,7 @@
   "text": "Who do you want to play as?"
  },
  "jack/zip-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Zip it up!"
  },
  "title/who-do-you-want": {
