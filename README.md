@@ -46,7 +46,7 @@ All Godot commands run inside the pinned CI image (`barichello/godot-ci:4.7.2`) 
 ```bash
 tools/godot.sh --headless --import                               # import assets (first run, or after art changes)
 tools/godot.sh --headless --script res://tests/run_tests.gd     # run the tests
-mkdir -p build/web && tools/godot.sh --headless --export-release "Web" build/web/index.html
+tools/export_web.sh                                              # web build, labeled "local MMDD-HHMM"
 python3 -m http.server 8060 -d build/web                         # play at http://localhost:8060
 ```
 
