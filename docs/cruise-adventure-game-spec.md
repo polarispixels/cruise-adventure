@@ -53,8 +53,8 @@ Part 1 is the storyboard's six chapters turned into play. Part 2 is the trip its
 
 | Chapter | Video segments | What the child plays | It teaches |
 | --- | --- | --- | --- |
-| 7. To the car | Pushing suitcases into the car (the Runway clip exists) | Load suitcases and booster seats in the right spots | Getting ready to leave |
-| 8. The airport | Walking through the airport (the Gemini clip exists) | Follow picture signs to the gate; put the bag on the security belt | What the airport is like |
+| 7. To the car | Both kids by the car (`ready-to-pack-the-car.mp4`); the SUV drives off (`car-drive-off`) | The trunk puzzle: fit all eight family bags into the black SUV, turning some on their side | Getting ready to leave |
+| 8. The airport | The kid leads the way in; the jet bridge payoff (see the chapter 8 spec) | Goodbye suitcases, Through security, Find our gate | What the airport is like |
 | 9. The flight | Takeoff out the window | Calm activities in the seat: buckle up, pick a snack, look out the window | What flying is like |
 | 10. The ship | Boarding the ship | Find the stateroom by matching the key card number to the doors | Numbers and finding your way |
 | 11. Ship and beach | Water slides, the beach | A playground of mini games that grows over time | Fun, and the reason for all the work |
@@ -103,11 +103,12 @@ The trip leaves November 10. The goal is a playable Chapter 2 before then, so th
 | Version | Contents | Target | Waiting on |
 | --- | --- | --- | --- |
 | 0.1 | Drag the shirt into the suitcase (pipeline proof) | Shipped Oct 29 | Nothing |
-| 0.2 | Chapters 1-2: pick a child, intro video, row 1, roll, pack, zip | Before Nov 10 | Developer build; `jack-pack.mp4`; video plays smoothly on the Fire tablet |
-| 0.3 | Chapter 3: rows 2-4, counting six bundles, the segment player as a reusable system | After the trip | Art round 2 (rows 2-4, hmm and hug poses); level-2 clips |
+| 0.2 | Chapters 1-2: pick a child, intro video, row 1, roll, pack, zip | Shipped inside 0.3.0 | Nothing |
+| 0.3 | Chapter 3: rows 2-4, the segment player as a reusable system | Shipped Oct 30 (v0.3.0) | Counting six bundles and the "all packed" clip were left out |
 | ~~0.4~~ | ~~Chapters 4-6: the mistake, inspection, the ship payoff~~ | Dropped Oct 30 | Packing is complete; the payoff moves to the ship |
-| 0.4 | Chapter 7, To the car: the trunk puzzle first, then a checkpoint to decide what follows | Next | Trunk puzzle design; car and trunk art |
-| 0.5+ | The rest of the journey, one stop per release. The expanded stops (baggage claim and rental car, hotel and beach) are proposed in `Specs/Cruise Adventure - Game Story Arc v0.2.md` | Ongoing | Trip photos and memories, new art and clips per chapter |
+| 0.4 | Chapter 7, To the car: the trunk puzzle first, then a checkpoint to decide what follows | In playtest (real art, both car clips) | The kids' checkpoint playtest; the trunk voice lines (Voice Lines v0.4); Ryan's OK to tag |
+| 0.5 | Chapter 8, The airport, per its approved chapter spec: Goodbye suitcases, Through security, Find our gate | Next | Art round 6, the airport clips, Voice Lines v0.5 |
+| 0.6+ | The rest of the journey, one stop per release. The expanded stops (baggage claim and rental car, hotel and beach) are proposed in `Specs/Cruise Adventure - Game Story Arc v0.2.md` | Ongoing | Trip photos and memories, new art and clips per chapter |
 
 The first developer task in 0.2 stays the video check on the Fire tablet. If 720p Theora stutters there, every later chapter needs lower-resolution clips, so it's worth knowing on day one.
 
@@ -116,5 +117,5 @@ The first developer task in 0.2 stays the video check on the Fire tablet. If 720
 - [ ] Is the 3-minute packing video retired, or still wanted later as a separate cut assembled from the game's clips?
 - [ ] Does Dad's narration (the training-film voice) stay in the game, and is it your recorded voice or a placeholder?
 - [x] ~~Chapter 4: one mistake per child, or both?~~ Moot: chapter 4 dropped Oct 30.
-- [ ] Is a playable Chapter 2 before November 10 the real target, or a nice-to-have?
+- [x] ~~Is a playable Chapter 2 before November 10 the real target?~~ Done: the whole card shipped as v0.3.0 on Oct 30.
 - [ ] Should the packing-video project's paused storyboard tasks (3 and 4) be closed out in favor of this spec, so ChatGPT stops waiting on them?

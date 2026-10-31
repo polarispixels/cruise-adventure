@@ -1,6 +1,6 @@
 # Jack-Jack and Becca's Cruise Adventure
 
-A one-screen Godot game for Jack (6) and Becca (4): drag the shirt into the suitcase. Version 0.1 exists to prove the pipeline from GitHub to the cloud build to the web and the Fire tablet. The spec and design are in `docs/`.
+A Godot game for Jack-Jack (6) and Becca (4) about their family cruise, played on a Fire tablet and in the browser. Part 1, packing, is done: the kid packs their whole picture card, row by row. Part 2 is the journey to the ship, one stop at a time: loading the car (the trunk puzzle) is in playtest, and the airport is next. The overall spec is `docs/cruise-adventure-game-spec.md`; chapter specs live in the Kids Packing Video `Specs\` folder; how work ships is in `docs/deployment.md`.
 
 - **Play in a browser:** https://polarispixels.github.io/cruise-adventure/
 - **Download the Android APK:** https://github.com/polarispixels/cruise-adventure/releases
