@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here.
 
+## [Unreleased]
+
+To the car, part 1: the trunk puzzle (checkpoint build, stand-in art).
+
+- Once all four card rows are packed, the card map shows the family's SUV. Tapping it opens the trunk puzzle: the family's eight bags wait on the driveway, and the child drags each one into the trunk. A bag snaps in where it fits and slides back where it doesn't; tapping a bag on the driveway turns it on its side, and some bags must be turned to make everything fit.
+- Becca starts with Mommy's and Daddy's big bags already loaded, sees outlines where the rest go, and a bag that only fits turned turns itself. Jack-Jack loads all eight with no outlines.
+- The helper points out a bag (and where it goes) when the child is stuck, or a bag that's blocking a full trunk. When everything's in, tapping the trunk shuts the hatch and the family heads for the airport.
+- Ryan's and Jack-Jack's recorded voices for the packing lines.
+- Project page at /docs/: story arc, storyboard, per-chapter checklists and the voice tracker.
+
 ## [0.3.0] - 2026-10-30
 
 Pack the whole card: four levels, one per card row. Includes everything from 0.2.0, which was never released on its own.
