@@ -4,6 +4,17 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### 0.5.0 - The airport (in playtest)
+
+- The car's Continue goes on to the airport, and the card map shows a boarding pass once the car is loaded.
+- Goodbye suitcases: drag the matching colored tag onto each big bag, then put it on the scale; it rides down the belt and through the flaps. Becca tags two bags; Mommy's duffel goes by itself.
+- Through security: put your things in gray trays, tap a tray to send it through the scanner (the screen shows friendly blue shapes, and the helper promises the buddy comes right back), walk through the arch, then put everything back in your backpack and hug your buddy. Jack-Jack's tablet needs its own tray.
+- Find our gate: drag your face token through a fresh terminal maze every play. Walls stop it, the sibling's face trails behind, and the helper points the way when you're stuck. Jack-Jack matches the airplane on his boarding pass to one of three gates (10x5 maze); Becca's maze is 6x4 with footprints showing the way.
+- Airport sounds (belt, tag snap, a friendly scanner chime, the arch chime, footsteps, a whoosh at the gate) and a lighter airport music bed, synthesized stand-ins for now.
+- Becca's recorded voice for the packing and trunk lines, and Jack-Jack's trunk lines. The airport's 15 new lines are a computer voice until the kids record Voice Lines v0.5.
+
+### 0.4.0 - To the car
+
 To the car, part 1: the trunk puzzle, in playtest.
 
 - Once all four card rows are packed, the card map shows the family's SUV. Tapping it opens the trunk puzzle: the family's eight bags wait on the driveway, and the child drags each one into the trunk. A bag snaps in where it fits and slides back where it doesn't; tapping a bag on the driveway turns it on its side, and some bags must be turned to make everything fit.
