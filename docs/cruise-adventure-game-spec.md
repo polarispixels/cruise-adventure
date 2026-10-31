@@ -29,7 +29,7 @@ Rules that keep the handoffs clean:
 2. **Requests are documents.** The developer writes art and video requests into the repo (`docs/art/`, `docs/video/`). Ryan carries them to ChatGPT or Gemini.
 3. **The developer only reads the art and video folders.** It copies approved files into `assets/` through the import script and never edits the originals.
 4. **Provisional is fine until release.** Anything unapproved can appear in test builds. A version tag waits for Ryan's approval of the art and video in it.
-5. **The character sheets win.** Every agent works from Character Sheets v0.4 (Becca's eyes are brown; Jack-Jack's hair is sandy light brown).
+5. **The character sheets win.** Every agent works from Character Sheets v0.4 (Becca's eyes are brown; Jack-Jack's hair is golden sandy dirty-blonde, no copper or orange, as Ryan decided on October 31, 2026).
 6. **Gemini's budget is the scarcest resource.** On the current plan it produces about 4 clips every 5 hours. Video requests are ranked by priority, and clips the developer needs to unblock a release come first.
 
 ## Story arc
@@ -60,6 +60,20 @@ Part 1 is the storyboard's six chapters turned into play. Part 2 is the trip its
 | 11. Ship and beach | Water slides, the beach | A playground of mini games that grows over time | Fun, and the reason for all the work |
 
 Part 2 can use real photos and memories from the trip to shape each chapter.
+
+**Chapter specs.** Chapter specs now live in the Kids Packing Video `Specs\` folder, one per chapter, each built from `Cruise Adventure - Chapter Spec Template.md`. A chapter spec holds the detail: the play segments, what's different for Jack-Jack and Becca, art, video, voice lines and an acceptance checklist. This spec keeps the structure and the rules, and wins if the two disagree. The project page's checklist for a chapter follows its spec's acceptance checklist.
+
+- Chapter 8, The airport: [Cruise Adventure - Chapter 08 - The Airport v0.1.md](file:///C:/Users/rgris/Documents/ChatGPT/Kids%20Packing%20Video/Specs/Cruise%20Adventure%20-%20Chapter%2008%20-%20The%20Airport%20v0.1.md) (`Kids Packing Video\Specs\`). Ryan approved it on October 31, 2026. It has three play segments: Goodbye suitcases, Through security and Find our gate.
+
+**October 31, 2026 decisions:**
+
+- **The family SUV is black,** as in Art Round 5. This supersedes the teal SUV in the game storyboard's keyframes 02-04, which will be corrected when those frames are revised. The car intro clip (`ready-to-pack-the-car.mp4`) also shows the teal car.
+- **The trip-wide bag plan is approved.** It's in section 3 of the chapter 8 spec, and later chapters follow it.
+  - Jack-Jack's blue suitcase, Becca's pink suitcase and Mommy's yellow duffel are checked at the airport and next appear at baggage claim.
+  - Daddy's gray suitcase is his carry-on, and goes in the overhead bin in chapter 9.
+  - The kids' backpacks are their activity bags, holding the tablet and buddy for the flight.
+  - Daddy's backpack and Mommy's purse are carry-ons.
+- **Jack-Jack's hair is golden sandy dirty-blonde, no copper or orange.** Character Sheets v0.4 still win.
 
 ## Segment pattern and design rules
 

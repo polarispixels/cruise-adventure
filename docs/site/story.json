@@ -445,8 +445,8 @@
    "title": "The airport",
    "release": "v0.5+",
    "panels": "",
-   "video": "Walking through the airport",
-   "play": "Follow picture signs to the gate; put the bag on the security belt.",
+   "video": "Intro: the kid leads the way into the terminal (jack-airport, becca-airport). Payoff: down the jet bridge to the airplane",
+   "play": "Goodbye suitcases: tag the big bags and put them on the belt. Through security: trays, scanner, arch. Find our gate: drag your face token through a fresh terminal maze every play.",
    "teaches": "What the airport is like",
    "images": [
     [
@@ -456,17 +456,85 @@
    ],
    "checks": [
     {
-     "label": "Test clip (Gemini)",
+     "label": "Chapter design approved by Ryan (the chapter 8 spec)",
      "done": true
     },
     {
-     "label": "Design the play"
+     "label": "Art: three backgrounds",
+     "files": [
+      "assets/airport/airport-checkin.png",
+      "assets/airport/airport-security.png",
+      "assets/airport/airport-terminal-floor.png"
+     ]
     },
     {
-     "label": "Art and clips"
+     "label": "Art: tags, tray, belt strip, boarding passes, gates, maze decor, token frame, footprints"
     },
     {
-     "label": "Build it"
+     "label": "Art: optional wave and arms-up poses"
+    },
+    {
+     "label": "Video: jack-airport, becca-airport",
+     "files": [
+      "assets/video/jack-airport.ogv",
+      "assets/video/becca-airport.ogv"
+     ]
+    },
+    {
+     "label": "Video: airport-jet-bridge",
+     "files": [
+      "assets/video/airport-jet-bridge.ogv"
+     ]
+    },
+    {
+     "label": "Voice Lines v0.5 recorded by both kids",
+     "voice": [
+      "jack/tag-bags",
+      "jack/needs-tag",
+      "jack/on-the-belt",
+      "jack/bye-suitcases",
+      "jack/in-a-tray",
+      "jack/push-it",
+      "jack/comes-back",
+      "jack/walk-through",
+      "jack/get-your-things",
+      "jack/find-gate",
+      "jack/this-way",
+      "jack/found-gate",
+      "becca/tag-bags",
+      "becca/needs-tag",
+      "becca/on-the-belt",
+      "becca/bye-suitcases",
+      "becca/in-a-tray",
+      "becca/tablet-tray",
+      "becca/push-it",
+      "becca/comes-back",
+      "becca/walk-through",
+      "becca/get-your-things",
+      "becca/find-gate",
+      "becca/match-airplane",
+      "becca/this-way",
+      "becca/not-this-one",
+      "becca/found-gate"
+     ]
+    },
+    {
+     "label": "Build: Goodbye suitcases"
+    },
+    {
+     "label": "Build: Through security"
+    },
+    {
+     "label": "Build: Find our gate (maze generator plus per-child settings)"
+    },
+    {
+     "label": "Sound effects and airport music bed"
+    },
+    {
+     "label": "Playtest on the Fire tablet with both kids, especially maze hallway width"
+    },
+    {
+     "label": "Ryan's OK to tag the release"
     }
    ]
   },

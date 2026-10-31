@@ -2,7 +2,7 @@
 
 Round 1's `jack-pack.mp4` and `becca-done.mp4` are in the game and look great. This round makes a short intro for each new level, plus Jack-Jack's finish video.
 
-**The same rules as round 1:** attach the character sheet and the room background as references. Jack-Jack (6) has sandy light-brown hair, an olive green hoodie and blue jeans. Becca (4) has curly blonde hair, brown eyes, a pink hoodie and navy leggings. 16:9, 720p or 1080p, 8–10 seconds, a locked-off camera at child eye level, no text, captions, logos or music, start and end on a held half-second still, and bright, slow kid voices. Save to `Videos/` with the name shown. Ryan's bar is "recognizable".
+**The same rules as round 1:** attach the character sheet and the room background as references. Jack-Jack (6) has golden sandy dirty-blonde hair (no copper or orange), an olive green hoodie and blue jeans. Becca (4) has curly blonde hair, brown eyes, a pink hoodie and navy leggings. 16:9, 720p or 1080p, 8–10 seconds, a locked-off camera at child eye level, no text, captions, logos or music, start and end on a held half-second still, and bright, slow kid voices. Save to `Videos/` with the name shown. Ryan's bar is "recognizable".
 
 The **lead kid** is the one in their own room (Becca in the pink room, Jack-Jack in the blue room). The sibling stands beside them and reacts.
 
