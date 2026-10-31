@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/trunk.gd" id="1_trunk"]
 [ext_resource type="PackedScene" path="res://scenes/character.tscn" id="2_char"]
 [ext_resource type="Texture2D" path="res://assets/ui/home.png" id="3_home"]
 [ext_resource type="Texture2D" path="res://assets/car/driveway.png" id="4_drive"]
+[ext_resource type="Texture2D" path="res://assets/ui/replay.png" id="5_replay"]
+[ext_resource type="Texture2D" path="res://assets/ui/continue.png" id="6_continue"]
 
 [node name="Trunk" type="Node2D"]
 script = ExtResource("1_trunk")
@@ -18,6 +20,12 @@ texture = ExtResource("4_drive")
 
 [node name="Outlines" type="Node2D" parent="."]
 
+[node name="HintOutline" type="Line2D" parent="."]
+visible = false
+closed = true
+width = 10.0
+default_color = Color(1, 0.89, 0.36, 0.9)
+
 [node name="Helper" parent="." instance=ExtResource("2_char")]
 
 [node name="Bags" type="Node2D" parent="."]
@@ -26,5 +34,48 @@ texture = ExtResource("4_drive")
 offset_right = 130.0
 offset_bottom = 130.0
 texture_normal = ExtResource("3_home")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="PayoffVideo" type="CanvasLayer" parent="."]
+layer = 5
+visible = false
+
+[node name="Player" type="VideoStreamPlayer" parent="PayoffVideo"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand = true
+
+[node name="Finish" type="Node2D" parent="."]
+visible = false
+
+[node name="HomeButton" type="TextureButton" parent="Finish"]
+offset_left = 380.0
+offset_top = 390.0
+offset_right = 680.0
+offset_bottom = 690.0
+texture_normal = ExtResource("3_home")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ReplayButton" type="TextureButton" parent="Finish"]
+offset_left = 770.0
+offset_top = 390.0
+offset_right = 1070.0
+offset_bottom = 690.0
+texture_normal = ExtResource("5_replay")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ContinueButton" type="TextureButton" parent="Finish"]
+offset_left = 1160.0
+offset_top = 350.0
+offset_right = 1540.0
+offset_bottom = 730.0
+texture_normal = ExtResource("6_continue")
 ignore_texture_size = true
 stretch_mode = 5

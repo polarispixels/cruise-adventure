@@ -5,7 +5,7 @@ var _to_screen := Transform2D.IDENTITY
 var _requests: Array[String] = []
 
 
-func _make(t, kid_id := "jack", size := Vector2i(1920, 1080)) -> Node2D:
+func _make(t, kid_id := "jack", size := Vector2i(1920, 1080), hint_delay := 30.0) -> Node2D:
 	var progress: Node = t.tree.root.get_node("Progress")
 	progress.path = "user://test_trunk_progress.json"
 	progress.reset()
@@ -18,7 +18,9 @@ func _make(t, kid_id := "jack", size := Vector2i(1920, 1080)) -> Node2D:
 	_requests.clear()
 	if not game.scene_requested.is_connected(_on_request):
 		game.scene_requested.connect(_on_request)
-	game.kid = load("res://data/%s.tres" % kid_id)
+	var kid: KidProfile = load("res://data/%s.tres" % kid_id).duplicate()
+	kid.hint_delay = hint_delay
+	game.kid = kid
 	var trunk: Node2D = load("res://scenes/trunk.tscn").instantiate()
 	t.tree.root.add_child(trunk)
 	await t.tree.process_frame
@@ -246,3 +248,110 @@ func test_layout_fits_16_10_and_16_9(t) -> void:
 		t.check(view.encloses(cargo), "trunk on screen")
 		_done(t, trunk)
 	t.tree.root.size = Vector2i(1920, 1080)
+
+
+## Loads every bag but `last` at its reference spot, then drags `last` in.
+func _fill(t, trunk: Node2D, last := "mommy-purse") -> void:
+	var ref: Dictionary = trunk.model.reference_solution()
+	for id in ref:
+		if id != last and trunk.model.cell_of(id) == TrunkModel.NOWHERE:
+			trunk.model.set_turned(id, ref[id]["turned"])
+			trunk.model.place(id, ref[id]["cell"])
+	trunk.sync_bags()
+	trunk.model.set_turned(last, ref[last]["turned"])
+	trunk.bag(last).set_turned(ref[last]["turned"])
+	await _drop_at(t, trunk, last, ref[last]["cell"])
+
+
+func test_says_load_car_at_start(t) -> void:
+	var trunk := await _make(t, "jack")
+	t.eq(_voice(t), "load-car", "the helper says what to do")
+	_done(t, trunk)
+
+
+func test_idle_hint_points_at_a_bag(t) -> void:
+	var trunk := await _make(t, "jack", Vector2i(1920, 1080), 0.3)
+	await t.tree.create_timer(0.6).timeout
+	var pulsing: Array = trunk.model.bag_ids.filter(func(id): return trunk.bag(id).is_pulsing())
+	t.eq(pulsing.size(), 1, "one bag pulses")
+	t.check(trunk.get_node("HintOutline").visible, "its spot glows")
+	t.eq(trunk.get_node("Helper").pose, "point", "the helper points")
+	await _tap(t, Vector2(960, 1000))
+	t.check(not trunk.get_node("HintOutline").visible, "a touch clears the hint")
+	_done(t, trunk)
+
+
+func test_idle_hint_flags_dead_end(t) -> void:
+	var trunk := await _make(t, "jack", Vector2i(1920, 1080), 0.3)
+	await _drop_at(t, trunk, "mommy-purse", Vector2i(0, 0))
+	await _tap(t, Vector2(960, 1000))  # an empty patch of driveway: starts the idle wait over
+	t.tree.root.get_node("Voice").last_line = ""
+	await t.tree.create_timer(0.6).timeout
+	t.eq(_voice(t), "try-another-spot", "the helper says to move it")
+	t.check(not trunk.get_node("HintOutline").visible, "no spot to show")
+	_done(t, trunk)
+
+
+func test_filling_says_close_trunk(t) -> void:
+	var trunk := await _make(t, "jack")
+	await _fill(t, trunk)
+	t.check(trunk.model.is_full(), "full")
+	t.eq(_voice(t), "close-trunk", "close the trunk")
+	_done(t, trunk)
+
+
+func test_tap_hatch_closes_and_marks_done(t) -> void:
+	var trunk := await _make(t, "becca")
+	await _fill(t, trunk)
+	await _tap(t, trunk.hatch_point())
+	await t.tree.create_timer(0.3).timeout
+	t.eq(trunk.get_node("Suv").texture.resource_path, "res://assets/car/suv-closed.png", "hatch shut")
+	t.check(t.tree.root.get_node("Progress").car_done("becca"), "remembered")
+	t.eq(_voice(t), "lets-go", "airport, here we come")
+	t.check(trunk.get_node("Finish").visible, "finish buttons (no payoff clip yet)")
+	_done(t, trunk)
+
+
+func test_tap_hatch_before_full_does_nothing(t) -> void:
+	var trunk := await _make(t, "jack")
+	await _tap(t, trunk.hatch_point())
+	t.eq(trunk.get_node("Suv").texture.resource_path, "res://assets/car/suv-open.png", "still open")
+	t.check(not trunk.get_node("Finish").visible, "no finish")
+	_done(t, trunk)
+
+
+func test_hatch_double_tap_finishes_once(t) -> void:
+	var trunk := await _make(t, "jack")
+	await _fill(t, trunk)
+	var said: Array[String] = []
+	var voice: Node = t.tree.root.get_node("Voice")
+	var record := func(line: String): said.append(line)
+	voice.said.connect(record)
+	await _tap(t, trunk.hatch_point())
+	await _tap(t, trunk.hatch_point())
+	await t.tree.create_timer(0.3).timeout
+	voice.said.disconnect(record)
+	t.eq(said.count("lets-go"), 1, "once")
+	t.check(trunk.finished, "finished")
+	_done(t, trunk)
+
+
+func test_finish_buttons_go_home_replay_continue(t) -> void:
+	var game: Node = t.tree.root.get_node("Game")
+	for pair in [["HomeButton", game.TITLE], ["ReplayButton", game.TRUNK], ["ContinueButton", game.MAP]]:
+		var trunk := await _make(t, "jack")
+		await _fill(t, trunk)
+		await _tap(t, trunk.hatch_point())
+		await t.tree.create_timer(0.3).timeout
+		var button: TextureButton = trunk.get_node("Finish/" + pair[0])
+		await _tap(t, button.global_position + button.size / 2)
+		t.eq(game.last_scene_request, pair[1], pair[0])
+		_done(t, trunk)
+
+
+func test_home_button_while_playing(t) -> void:
+	var trunk := await _make(t, "jack")
+	var button: TextureButton = trunk.get_node("PlayHome")
+	await _tap(t, button.global_position + button.size / 2)
+	t.eq(t.tree.root.get_node("Game").last_scene_request, "res://scenes/title.tscn", "home")
+	_done(t, trunk)

@@ -4,7 +4,8 @@
 # driveway turns it on its side, which some bags need. The rules live in
 # TrunkModel; this scene draws them and turns touches into moves. Becca's
 # easier version (big bags already in, outlines, bags that turn themselves)
-# comes from her KidProfile.
+# comes from her KidProfile. When the trunk is full the hatch pulses; tapping
+# it shuts the hatch, the payoff clip plays, and the finish buttons appear.
 extends Node2D
 
 signal filled
@@ -24,6 +25,10 @@ const TAP_DISTANCE := 20.0
 ## Grab slack around small bags, in pixels.
 const GRAB_PADDING := 16.0
 const BAG_SCENE := preload("res://scenes/bag.tscn")
+const PAYOFF_VIDEO := "res://assets/video/car-drive-off.ogv"
+const SUV_CLOSED := "res://assets/car/suv-closed.png"
+const HATCH_PULSE := Color(1.25, 1.25, 1.1)
+const HATCH_PULSE_TIME := 0.45
 ## Where each bag waits on the driveway: [anchor, offset of its center].
 ## Anchors: "suv" = the SUV's top-center; "bottom-left"/"bottom-right" = view corners.
 const GROUND := {
@@ -38,6 +43,8 @@ const GROUND := {
 }
 
 var model: TrunkModel
+## True once the hatch is shut (the chapter's done; input is over).
+var finished := false
 
 var _data: Dictionary
 var _bags := {}
@@ -46,6 +53,10 @@ var _moved := false
 var _press := Vector2.ZERO
 var _grab_offset := Vector2.ZERO
 var _cheer := 0
+var _idle := 0.0
+var _hinting := false
+var _hint_bag: Bag
+var _hatch_pulse: Tween
 
 @onready var _background: Sprite2D = $Background
 @onready var _suv: Sprite2D = $Suv
@@ -53,6 +64,10 @@ var _cheer := 0
 @onready var _helper: Character = $Helper
 @onready var _bag_layer: Node2D = $Bags
 @onready var _play_home: TextureButton = $PlayHome
+@onready var _hint_outline: Line2D = $HintOutline
+@onready var _payoff: CanvasLayer = $PayoffVideo
+@onready var _player: VideoStreamPlayer = $PayoffVideo/Player
+@onready var _finish: Node2D = $Finish
 
 
 func _ready() -> void:
@@ -78,8 +93,17 @@ func _ready() -> void:
 		for id in model.bag_ids:
 			if not kid.trunk_preplaced.has(id):
 				_add_outline(id, ref[id]["cell"], ref[id]["turned"])
+	$Finish/HomeButton.pressed.connect(func(): Game.goto(Game.TITLE))
+	$Finish/ReplayButton.pressed.connect(func(): Game.goto(Game.TRUNK))
+	$Finish/ContinueButton.pressed.connect(func(): Game.goto(Game.MAP))
+	filled.connect(_on_filled)
 	get_viewport().size_changed.connect(_fit)
 	_fit()
+	_say("load-car")
+
+
+func _exit_tree() -> void:
+	Music.hold(false)
 
 
 func bag(id: String) -> Bag:
@@ -113,6 +137,11 @@ func ground_point(id: String) -> Vector2:
 	return point.clamp(view.position + half, view.end - half)
 
 
+## Global point to tap to shut the hatch (the middle of the trunk).
+func hatch_point() -> Vector2:
+	return cargo_rect().get_center()
+
+
 func is_dragging() -> bool:
 	return _held != null and _moved
 
@@ -126,9 +155,31 @@ func sync_bags() -> void:
 	_update_outlines()
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouse:
+		_clear_hint()
+
+
+func _process(delta: float) -> void:
+	if finished or model.is_full() or is_dragging():
+		_idle = 0.0
+		return
+	_idle += delta
+	if not _hinting and _idle >= Game.kid.hint_delay:
+		_show_hint()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		var point := get_global_mouse_position()
+		if finished:
+			if event.pressed and _payoff.visible:
+				_show_finish()
+			return
+		if model.is_full():
+			if event.pressed and cargo_rect().grow(CELL).has_point(point):
+				_close_hatch()
+			return
 		if event.pressed:
 			if _held:
 				_release(_held.global_position - _grab_offset)
@@ -254,8 +305,83 @@ func _bag_at(point: Vector2) -> Bag:
 	return best
 
 
-func _say(line: String) -> void:
-	Voice.say(line, Game.sibling())
+func _say(line: String, wait := false) -> void:
+	Voice.say(line, Game.sibling(), wait)
+
+
+## The helper's nudge: a bag that blocks a full trunk wiggles; otherwise one
+## bag pulses and its spot glows.
+func _show_hint() -> void:
+	_hinting = true
+	var hint := model.hint()
+	if hint.is_empty():
+		return
+	_hint_bag = _bags[hint["id"]]
+	_helper.point_at(_hint_bag.global_position)
+	if hint["kind"] == "wrong":
+		_hint_bag.wiggle()
+		_say("try-another-spot")
+		return
+	_hint_bag.pulse()
+	var size := Vector2(model.size_of(hint["id"], hint["turned"])) * CELL
+	var origin := cargo_rect().position + Vector2(hint["cell"]) * CELL
+	_hint_outline.points = PackedVector2Array([origin, origin + Vector2(size.x, 0), origin + size, origin + Vector2(0, size.y)])
+	_hint_outline.visible = true
+	_say("load-car")
+
+
+func _clear_hint() -> void:
+	_idle = 0.0
+	if not _hinting:
+		return
+	_hinting = false
+	_hint_outline.visible = false
+	if _hint_bag:
+		_hint_bag.stop_pulse()
+		_hint_bag = null
+	_helper.set_pose("idle")
+
+
+func _on_filled() -> void:
+	_clear_hint()
+	_helper.cheer()
+	_say("close-trunk", true)
+	_hatch_pulse = create_tween().set_loops()
+	_hatch_pulse.tween_property(_suv, "modulate", HATCH_PULSE, HATCH_PULSE_TIME)
+	_hatch_pulse.tween_property(_suv, "modulate", Color.WHITE, HATCH_PULSE_TIME)
+
+
+func _close_hatch() -> void:
+	if finished:
+		return
+	finished = true
+	if _hatch_pulse and _hatch_pulse.is_valid():
+		_hatch_pulse.kill()
+	_suv.modulate = Color.WHITE
+	_suv.texture = load(SUV_CLOSED)
+	_bag_layer.visible = false
+	_outlines.visible = false
+	Progress.mark_car_done(Game.kid.id)
+	_helper.cheer()
+	_say("lets-go")
+	if ResourceLoader.exists(PAYOFF_VIDEO):
+		_player.stream = load(PAYOFF_VIDEO)
+		_player.finished.connect(_show_finish)
+		_payoff.visible = true
+		Music.hold(true)
+		_player.play()
+	else:
+		_show_finish()
+
+
+func _show_finish() -> void:
+	if _finish.visible:
+		return
+	_player.stop()
+	_payoff.visible = false
+	Music.hold(false)
+	_play_home.visible = false
+	_finish.visible = true
 
 
 func _add_outline(id: String, cell: Vector2i, turned: bool) -> void:
