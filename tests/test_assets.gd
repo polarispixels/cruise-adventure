@@ -36,3 +36,23 @@ func test_variants_match_card_size(t) -> void:
 			for alt in ["alt-1", "alt-2", "alt-3", "alt-4", "alt-5", "alt-6", "alt-7"]:
 				var tex: Texture2D = load("res://assets/props/%s/%s-%s.png" % [kid, item, alt])
 				t.check(card != null and tex != null and tex.get_size() == card.get_size(), "%s %s %s size" % [kid, item, alt])
+
+
+func test_car_art_matches_trunk_data(t) -> void:
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/trunk.json"))
+	t.check(data != null, "trunk.json parses")
+	if data == null:
+		return
+	var cell: int = data["cell_px"]
+	for bag in data["bags"]:
+		var path := "res://assets/car/bag-%s.png" % bag["id"]
+		var tex: Texture2D = load(path) if ResourceLoader.exists(path) else null
+		var want := Vector2(bag["size"][0] * cell, bag["size"][1] * cell)
+		t.eq(tex.get_size() if tex else Vector2.ZERO, want, path)
+	var open: Texture2D = load("res://assets/car/suv-open.png") if ResourceLoader.exists("res://assets/car/suv-open.png") else null
+	var closed: Texture2D = load("res://assets/car/suv-closed.png") if ResourceLoader.exists("res://assets/car/suv-closed.png") else null
+	t.check(open != null and closed != null, "suv art exists")
+	if open and closed:
+		t.eq(open.get_size(), closed.get_size(), "open and closed suv line up")
+	var cargo: Array = data["cargo_rect"]
+	t.eq(Vector2(cargo[2], cargo[3]), Vector2(data["cols"] * cell, data["rows"] * cell), "cargo rect is the grid")

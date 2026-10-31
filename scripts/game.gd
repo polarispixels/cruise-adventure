@@ -7,12 +7,15 @@ const TITLE := "res://scenes/title.tscn"
 const INTRO := "res://scenes/intro.tscn"
 const MAP := "res://scenes/map.tscn"
 const ROOM := "res://scenes/room.tscn"
+const TRUNK := "res://scenes/trunk.tscn"
+## intro_level for the car clip before the trunk puzzle.
+const CAR := 4
 const KIDS := {"jack": "res://data/jack.tres", "becca": "res://data/becca.tres"}
 
 var kid: KidProfile
 ## Which card row (0-3) the room is playing.
 var level := 0
-## The row whose video the intro scene plays next; -1 means the kid's own intro.
+## The row whose video the intro scene plays next (CAR: the car clip); -1 means the kid's own intro.
 var intro_level := -1
 ## Tests turn this off to observe navigation without changing scenes.
 var navigate := true
@@ -33,6 +36,15 @@ func play_level(n: int) -> void:
 		goto(INTRO)
 	else:
 		goto(ROOM)
+
+
+## The trunk puzzle, after the kid's car clip the first time.
+func play_car() -> void:
+	if not Progress.car_done(kid.id) and ResourceLoader.exists(kid.car_intro()):
+		intro_level = CAR
+		goto(INTRO)
+	else:
+		goto(TRUNK)
 
 
 func sibling() -> KidProfile:

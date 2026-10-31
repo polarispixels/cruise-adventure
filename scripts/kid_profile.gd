@@ -20,6 +20,12 @@ const COLOR_STEPS := 8
 @export var done_video: String
 ## Smallest circular hue-step distance between the target color and any distractor.
 @export var min_color_gap: int
+## Trunk puzzle: bags that start loaded (at their reference spots) and can't be moved.
+@export var trunk_preplaced: PackedStringArray
+## Trunk puzzle: a faded picture of each bag shows where it goes (and which way it's turned).
+@export var trunk_outlines: bool
+## Trunk puzzle: a bag that only fits turned turns itself when dropped there.
+@export var trunk_auto_turn: bool
 
 
 func character(pose: String) -> Texture2D:
@@ -33,6 +39,11 @@ func prop(name: String) -> Texture2D:
 ## The video before card row `level` (0-3). Row 1 has none: the kid intro covers it.
 func level_intro(level: int) -> String:
 	return "res://assets/video/%s-level%d.ogv" % [id, level + 1]
+
+
+## The clip before the trunk puzzle.
+func car_intro() -> String:
+	return "res://assets/video/%s-car.ogv" % id
 
 
 func room() -> Texture2D:

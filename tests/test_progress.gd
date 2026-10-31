@@ -95,3 +95,17 @@ func test_reset_clears_file(t) -> void:
 	t.eq(p.levels_done("jack").size(), 0, "cleared")
 	t.check(not p.intro_seen("jack"), "intro cleared")
 	_restore(t)
+
+
+func test_car_done_saved_and_reset(t) -> void:
+	var p := _progress(t)
+	t.check(not p.car_done("jack"), "not yet")
+	p.mark_car_done("jack")
+	t.check(p.car_done("jack"), "done")
+	t.check(not p.car_done("becca"), "only jack")
+	p.load_file()
+	t.check(p.car_done("jack"), "saved")
+	t.eq(p.next_level("jack"), 0, "rows untouched")
+	p.reset()
+	t.check(not p.car_done("jack"), "reset clears it")
+	_restore(t)
