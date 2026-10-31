@@ -14,6 +14,8 @@ func _ready() -> void:
 	if Game.kid:
 		if Game.intro_level == Game.CAR:
 			path = Game.kid.car_intro()
+		elif Game.intro_level == Game.AIRPORT:
+			path = Game.kid.airport_intro()
 		elif Game.intro_level >= 0:
 			path = Game.kid.level_intro(Game.intro_level)
 		else:
@@ -42,7 +44,7 @@ func _leave() -> void:
 	_left = true
 	_player.stop()
 	if Game.intro_level >= 0:
-		var next := Game.TRUNK if Game.intro_level == Game.CAR else Game.ROOM
+		var next: String = {Game.CAR: Game.TRUNK, Game.AIRPORT: Game.CHECKIN}.get(Game.intro_level, Game.ROOM)
 		Game.intro_level = -1
 		Game.goto(next)
 		return

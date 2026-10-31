@@ -1,58 +1,70 @@
 {
  "becca/all-packed": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "We packed everything! Cruise ship, here we come!"
  },
- "becca/close-suitcase": {
+ "becca/bye-suitcases": {
   "kind": "placeholder",
+  "text": "Bye-bye, suitcases! See you soon!"
+ },
+ "becca/close-suitcase": {
+  "kind": "recorded",
   "text": "Close the suitcase!"
  },
  "becca/close-trunk": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Everything's in! Close the trunk!"
  },
- "becca/find-book": {
+ "becca/comes-back": {
   "kind": "placeholder",
+  "text": "Don't worry, it comes right back!"
+ },
+ "becca/find-book": {
+  "kind": "recorded",
   "text": "Find your book!"
  },
  "becca/find-buddy": {
   "kind": "recorded",
   "text": "Find your teddy!"
  },
- "becca/find-hairbrush": {
+ "becca/find-gate": {
   "kind": "placeholder",
+  "text": "Let's find our gate!"
+ },
+ "becca/find-hairbrush": {
+  "kind": "recorded",
   "text": "Find your hairbrush!"
  },
  "becca/find-hat": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your hat!"
  },
  "becca/find-hoodie": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your hoodie!"
  },
  "becca/find-nice-outfit": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your fancy clothes!"
  },
  "becca/find-pajamas": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your pajamas!"
  },
  "becca/find-sandals": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your sandals!"
  },
  "becca/find-shirt": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your shirt!"
  },
  "becca/find-shorts": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your shorts!"
  },
  "becca/find-socks": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your socks!"
  },
  "becca/find-special": {
@@ -60,48 +72,76 @@
   "text": "Find your monster truck!"
  },
  "becca/find-swimsuit": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your swimsuit!"
  },
  "becca/find-tablet": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your tablet!"
  },
  "becca/find-toothbrush": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your toothbrush!"
  },
  "becca/find-underwear": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your underwear!"
  },
  "becca/found-1": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "You found it!"
  },
  "becca/found-2": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Yay! Good job!"
  },
  "becca/found-3": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "That's the one!"
  },
- "becca/hug-buddy": {
+ "becca/found-gate": {
   "kind": "placeholder",
+  "text": "We found our gate!"
+ },
+ "becca/get-your-things": {
+  "kind": "placeholder",
+  "text": "Get your things back!"
+ },
+ "becca/hug-buddy": {
+  "kind": "recorded",
   "text": "Give it a big hug!"
  },
- "becca/it-fits": {
+ "becca/in-a-tray": {
   "kind": "placeholder",
+  "text": "Put your things in a tray!"
+ },
+ "becca/it-fits": {
+  "kind": "recorded",
   "text": "It fits!"
  },
  "becca/lets-go": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Airport, here we come!"
  },
  "becca/load-car": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Let's put all the bags in the car!"
+ },
+ "becca/match-airplane": {
+  "kind": "placeholder",
+  "text": "Find the airplane on your ticket!"
+ },
+ "becca/needs-tag": {
+  "kind": "placeholder",
+  "text": "It needs a tag!"
+ },
+ "becca/not-this-one": {
+  "kind": "placeholder",
+  "text": "Not this one! Let's keep looking!"
+ },
+ "becca/on-the-belt": {
+  "kind": "placeholder",
+  "text": "Put it on the belt!"
  },
  "becca/open-basket": {
   "kind": "recorded",
@@ -120,48 +160,76 @@
   "text": "Let's look in the toy box!"
  },
  "becca/pack-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Put it in the suitcase!"
  },
  "becca/pick-a-row": {
   "kind": "recorded",
   "text": "Let's pack! Tap the row that's wiggling!"
  },
- "becca/roll-it": {
+ "becca/push-it": {
   "kind": "placeholder",
+  "text": "Push it through!"
+ },
+ "becca/roll-it": {
+  "kind": "recorded",
   "text": "Tap the clothes to roll them up!"
  },
- "becca/try-again": {
+ "becca/tablet-tray": {
   "kind": "placeholder",
+  "text": "The tablet gets its own tray!"
+ },
+ "becca/tag-bags": {
+  "kind": "placeholder",
+  "text": "Put the right tag on each bag!"
+ },
+ "becca/this-way": {
+  "kind": "placeholder",
+  "text": "This way!"
+ },
+ "becca/try-again": {
+  "kind": "recorded",
   "text": "Hmm... try another one!"
  },
  "becca/try-another-spot": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Hmm... try another spot!"
  },
  "becca/turn-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Tap it to turn it!"
+ },
+ "becca/walk-through": {
+  "kind": "placeholder",
+  "text": "Now walk through!"
  },
  "becca/who-do-you-want": {
   "kind": "recorded",
   "text": "Who do you want to play as?"
  },
  "becca/zip-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Zip it up!"
  },
  "jack/all-packed": {
   "kind": "recorded",
   "text": "We packed everything! Cruise ship, here we come!"
  },
+ "jack/bye-suitcases": {
+  "kind": "placeholder",
+  "text": "Bye-bye, suitcases! See you soon!"
+ },
  "jack/close-suitcase": {
   "kind": "recorded",
   "text": "Close the suitcase!"
  },
  "jack/close-trunk": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Everything's in! Close the trunk!"
+ },
+ "jack/comes-back": {
+  "kind": "placeholder",
+  "text": "Don't worry, it comes right back!"
  },
  "jack/find-book": {
   "kind": "recorded",
@@ -170,6 +238,10 @@
  "jack/find-buddy": {
   "kind": "recorded",
   "text": "Find your unicorn!"
+ },
+ "jack/find-gate": {
+  "kind": "placeholder",
+  "text": "Let's find our gate!"
  },
  "jack/find-hairbrush": {
   "kind": "recorded",
@@ -239,21 +311,49 @@
   "kind": "recorded",
   "text": "That's the one!"
  },
+ "jack/found-gate": {
+  "kind": "placeholder",
+  "text": "We found our gate!"
+ },
+ "jack/get-your-things": {
+  "kind": "placeholder",
+  "text": "Get your things back!"
+ },
  "jack/hug-buddy": {
   "kind": "recorded",
   "text": "Give it a big hug!"
  },
- "jack/it-fits": {
+ "jack/in-a-tray": {
   "kind": "placeholder",
+  "text": "Put your things in a tray!"
+ },
+ "jack/it-fits": {
+  "kind": "recorded",
   "text": "It fits!"
  },
  "jack/lets-go": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Airport, here we come!"
  },
  "jack/load-car": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Let's put all the bags in the car!"
+ },
+ "jack/match-airplane": {
+  "kind": "placeholder",
+  "text": "Find the airplane on your ticket!"
+ },
+ "jack/needs-tag": {
+  "kind": "placeholder",
+  "text": "It needs a tag!"
+ },
+ "jack/not-this-one": {
+  "kind": "placeholder",
+  "text": "Not this one! Let's keep looking!"
+ },
+ "jack/on-the-belt": {
+  "kind": "placeholder",
+  "text": "Put it on the belt!"
  },
  "jack/open-basket": {
   "kind": "recorded",
@@ -279,21 +379,41 @@
   "kind": "recorded",
   "text": "Let's pack! Tap the row that's wiggling!"
  },
+ "jack/push-it": {
+  "kind": "placeholder",
+  "text": "Push it through!"
+ },
  "jack/roll-it": {
   "kind": "recorded",
   "text": "Tap the clothes to roll them up!"
+ },
+ "jack/tablet-tray": {
+  "kind": "placeholder",
+  "text": "The tablet gets its own tray!"
+ },
+ "jack/tag-bags": {
+  "kind": "placeholder",
+  "text": "Put the right tag on each bag!"
+ },
+ "jack/this-way": {
+  "kind": "placeholder",
+  "text": "This way!"
  },
  "jack/try-again": {
   "kind": "recorded",
   "text": "Hmm... try another one!"
  },
  "jack/try-another-spot": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Hmm... try another spot!"
  },
  "jack/turn-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Tap it to turn it!"
+ },
+ "jack/walk-through": {
+  "kind": "placeholder",
+  "text": "Now walk through!"
  },
  "jack/who-do-you-want": {
   "kind": "recorded",

@@ -8,8 +8,13 @@ const INTRO := "res://scenes/intro.tscn"
 const MAP := "res://scenes/map.tscn"
 const ROOM := "res://scenes/room.tscn"
 const TRUNK := "res://scenes/trunk.tscn"
+const CHECKIN := "res://scenes/checkin.tscn"
+const SECURITY := "res://scenes/security.tscn"
+const MAZE := "res://scenes/maze.tscn"
 ## intro_level for the car clip before the trunk puzzle.
 const CAR := 4
+## intro_level for the airport clip before check-in.
+const AIRPORT := 5
 const KIDS := {"jack": "res://data/jack.tres", "becca": "res://data/becca.tres"}
 
 var kid: KidProfile
@@ -45,6 +50,15 @@ func play_car() -> void:
 		goto(INTRO)
 	else:
 		goto(TRUNK)
+
+
+## The airport chapter: the kid's airport clip the first time, then check-in.
+func play_airport() -> void:
+	if not Progress.airport_done(kid.id) and ResourceLoader.exists(kid.airport_intro()):
+		intro_level = AIRPORT
+		goto(INTRO)
+	else:
+		goto(CHECKIN)
 
 
 func sibling() -> KidProfile:

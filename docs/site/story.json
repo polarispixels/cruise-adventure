@@ -443,7 +443,7 @@
    "number": 8,
    "part": 1,
    "title": "The airport",
-   "release": "v0.5+",
+   "release": "v0.5",
    "panels": "",
    "video": "Intro: the kid leads the way into the terminal (jack-airport, becca-airport). Payoff: down the jet bridge to the airplane",
    "play": "Goodbye suitcases: tag the big bags and put them on the belt. Through security: trays, scanner, arch. Find our gate: drag your face token through a fresh terminal maze every play.",
@@ -468,10 +468,26 @@
      ]
     },
     {
-     "label": "Art: tags, tray, belt strip, boarding passes, gates, maze decor, token frame, footprints"
+     "label": "Art: tags, tray, belt strip, boarding passes, gates, maze decor, token frame, footprints",
+     "files": [
+      "assets/airport/tag-blue.png",
+      "assets/airport/tray-empty.png",
+      "assets/airport/conveyor-belt-strip.png",
+      "assets/airport/boarding-pass-red.png",
+      "assets/airport/gate-red.png",
+      "assets/airport/maze-decor-cart.png",
+      "assets/airport/token-frame.png",
+      "assets/airport/footprints-hint.png"
+     ]
     },
     {
-     "label": "Art: optional wave and arms-up poses"
+     "label": "Art: optional wave and arms-up poses",
+     "files": [
+      "assets/characters/jack/wave.png",
+      "assets/characters/jack/arms-up.png",
+      "assets/characters/becca/wave.png",
+      "assets/characters/becca/arms-up.png"
+     ]
     },
     {
      "label": "Video: jack-airport, becca-airport",
@@ -519,16 +535,32 @@
      ]
     },
     {
-     "label": "Build: Goodbye suitcases"
+     "label": "Build: Goodbye suitcases",
+     "files": [
+      "scenes/checkin.tscn",
+      "scripts/checkin.gd"
+     ]
     },
     {
-     "label": "Build: Through security"
+     "label": "Build: Through security",
+     "files": [
+      "scenes/security.tscn",
+      "scripts/security.gd"
+     ]
     },
     {
-     "label": "Build: Find our gate (maze generator plus per-child settings)"
+     "label": "Build: Find our gate (maze generator plus per-child settings)",
+     "files": [
+      "scenes/maze.tscn",
+      "scripts/maze_model.gd"
+     ]
     },
     {
-     "label": "Sound effects and airport music bed"
+     "label": "Sound effects and airport music bed (synthesized stand-ins)",
+     "files": [
+      "assets/sfx/belt.ogg",
+      "assets/music/airport.ogg"
+     ]
     },
     {
      "label": "Playtest on the Fire tablet with both kids, especially maze hallway width"

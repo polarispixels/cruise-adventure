@@ -107,7 +107,7 @@ The trip leaves November 10. The goal is a playable Chapter 2 before then, so th
 | 0.3 | Chapter 3: rows 2-4, the segment player as a reusable system | Shipped Oct 30 (v0.3.0) | Counting six bundles and the "all packed" clip were left out |
 | ~~0.4~~ | ~~Chapters 4-6: the mistake, inspection, the ship payoff~~ | Dropped Oct 30 | Packing is complete; the payoff moves to the ship |
 | 0.4 | Chapter 7, To the car: the trunk puzzle first, then a checkpoint to decide what follows | In playtest (real art, both car clips) | The kids' checkpoint playtest; the trunk voice lines (Voice Lines v0.4); Ryan's OK to tag |
-| 0.5 | Chapter 8, The airport, per its approved chapter spec: Goodbye suitcases, Through security, Find our gate | Next | Art round 6, the airport clips, Voice Lines v0.5 |
+| 0.5 | Chapter 8, The airport, per its approved chapter spec: Goodbye suitcases, Through security, Find our gate | In playtest (art round 6 in; synthesized sounds) | The airport clips; Voice Lines v0.5; the kids' playtest, especially maze hallway width |
 | 0.6+ | The rest of the journey, one stop per release. The expanded stops (baggage claim and rental car, hotel and beach) are proposed in `Specs/Cruise Adventure - Game Story Arc v0.2.md` | Ongoing | Trip photos and memories, new art and clips per chapter |
 
 The first developer task in 0.2 stays the video check on the Fire tablet. If 720p Theora stutters there, every later chapter needs lower-resolution clips, so it's worth knowing on day one.

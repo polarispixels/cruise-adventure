@@ -32,6 +32,8 @@ const HATCH_PULSE := Color(1.25, 1.25, 1.1)
 const HATCH_PULSE_TIME := 0.45
 ## Taps this soon after the payoff clip starts don't skip it (the rest of a double tap).
 const SKIP_GRACE := 0.75
+## The finish buttons wake up this long after they appear.
+const FINISH_GUARD := 0.4
 ## Where each bag waits on the driveway: [anchor, offset of its center].
 ## Anchors: "suv" = the SUV's top-center; "bottom-left"/"bottom-right" = view corners.
 const GROUND := {
@@ -101,7 +103,7 @@ func _ready() -> void:
 				_add_outline(id, ref[id]["cell"], ref[id]["turned"])
 	$Finish/HomeButton.pressed.connect(func(): Game.goto(Game.TITLE))
 	$Finish/ReplayButton.pressed.connect(func(): Game.goto(Game.TRUNK))
-	$Finish/ContinueButton.pressed.connect(func(): Game.goto(Game.MAP))
+	$Finish/ContinueButton.pressed.connect(func(): Game.play_airport())
 	filled.connect(_on_filled)
 	get_viewport().size_changed.connect(_fit)
 	_fit()
@@ -394,6 +396,12 @@ func _show_finish() -> void:
 	Music.hold(false)
 	_play_home.visible = false
 	_finish.visible = true
+	# The rest of a double tap that skipped the clip mustn't press a button.
+	for button: TextureButton in _finish.get_children():
+		button.disabled = true
+	get_tree().create_timer(FINISH_GUARD).timeout.connect(func():
+		for button: TextureButton in _finish.get_children():
+			button.disabled = false)
 
 
 ## A faded picture of the bag where it goes, turned the way it has to go in.

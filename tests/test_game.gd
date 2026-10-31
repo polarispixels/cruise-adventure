@@ -251,3 +251,52 @@ func test_intro_for_car_goes_on_to_the_trunk(t) -> void:
 	t.check(not progress.intro_seen("becca"), "the kid intro isn't marked seen")
 	intro.queue_free()
 	_restore_progress(t)
+
+
+func test_airport_settings_per_kid(t) -> void:
+	var jack: KidProfile = load("res://data/jack.tres")
+	var becca: KidProfile = load("res://data/becca.tres")
+	t.eq(jack.airport_bags, PackedStringArray(["jack-suitcase", "becca-suitcase", "mommy-yellow"]), "jack tags three")
+	t.eq(becca.airport_bags, PackedStringArray(["becca-suitcase", "jack-suitcase"]), "becca tags two")
+	t.eq(becca.airport_auto_bags, PackedStringArray(["mommy-yellow"]), "the duffel goes by itself for becca")
+	t.eq(jack.security_items, PackedStringArray(["jack-backpack", "tablet", "buddy", "mommy-purse"]), "jack's four things")
+	t.eq(becca.security_items, PackedStringArray(["becca-backpack", "tablet", "buddy"]), "becca's three things")
+	t.check(jack.tablet_own_tray and not becca.tablet_own_tray, "only jack's tablet needs its own tray")
+	t.eq([jack.maze_size, jack.maze_gates, jack.maze_hint_delay, jack.maze_footprints], [Vector2i(10, 5), 3, 10.0, false], "jack's maze")
+	t.eq([becca.maze_size, becca.maze_gates, becca.maze_hint_delay, becca.maze_footprints, becca.maze_max_turns], [Vector2i(6, 4), 1, 6.0, true, 4], "becca's maze")
+	t.eq(jack.airport_intro(), "res://assets/video/jack-airport.ogv", "jack's airport clip")
+
+
+func test_play_airport_without_a_clip_goes_to_checkin(t) -> void:
+	var game := _setup(t)
+	_temp_progress(t)
+	game.kid = load("res://data/jack.tres")
+	game.play_airport()
+	t.eq(game.last_scene_request, game.CHECKIN, "no airport clip yet, straight to check-in")
+	t.eq(game.intro_level, -1, "no intro queued")
+	_restore_progress(t)
+
+
+func test_airport_intro_goes_on_to_checkin(t) -> void:
+	var game := _setup(t)
+	_temp_progress(t)
+	game.intro_level = game.AIRPORT
+	var intro := await _intro(t, "becca")
+	t.eq(_requests.back() if _requests.size() else "", game.CHECKIN, "on to check-in")
+	t.eq(game.intro_level, -1, "reset")
+	intro.queue_free()
+	_restore_progress(t)
+
+
+func test_airport_segments_follow_each_other(t) -> void:
+	var game := _setup(t)
+	_temp_progress(t)
+	game.kid = load("res://data/becca.tres")
+	for pair in [[game.CHECKIN, game.SECURITY], [game.SECURITY, game.MAZE]]:
+		var scene: Node = load(pair[0]).instantiate()
+		t.tree.root.add_child(scene)
+		await t.tree.process_frame
+		scene.done()
+		t.eq(game.last_scene_request, pair[1], "%s goes on" % pair[0])
+		scene.free()
+	_restore_progress(t)

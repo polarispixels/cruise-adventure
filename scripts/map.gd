@@ -11,6 +11,7 @@ const HELPER_MARGIN := Vector2(150, 24)
 const HOME_SIZE := 150.0
 ## The car button (shown once the card is packed) is this tall, beside the card.
 const CAR_HEIGHT := 260.0
+const AIRPORT_GAP := 30.0
 
 var _started := false
 var _idle := 0.0
@@ -21,6 +22,7 @@ var _idle := 0.0
 @onready var _helper: Character = $Helper
 @onready var _home: TextureButton = $HomeButton
 @onready var _car: TextureButton = $CarButton
+@onready var _airport: TextureButton = $AirportButton
 
 
 func _ready() -> void:
@@ -33,6 +35,8 @@ func _ready() -> void:
 	_home.pressed.connect(func(): Game.goto(Game.TITLE))
 	_car.visible = Progress.next_level(kid.id) >= Progress.LEVELS
 	_car.pressed.connect(_on_car)
+	_airport.visible = Progress.car_done(kid.id)
+	_airport.pressed.connect(_on_airport)
 	var done := Progress.levels_done(kid.id)
 	for row in Progress.LEVELS:
 		if done.has(row):
@@ -58,6 +62,13 @@ func _on_car() -> void:
 		return
 	_started = true
 	Game.play_car()
+
+
+func _on_airport() -> void:
+	if _started:
+		return
+	_started = true
+	Game.play_airport()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -122,3 +133,7 @@ func _fit() -> void:
 	_car.size = Vector2(CAR_HEIGHT * tex.x / tex.y, CAR_HEIGHT)
 	var gap_center := (left + _card.position.x) / 2
 	_car.position = Vector2(gap_center - _car.size.x / 2, 540 - _car.size.y / 2)
+	# The airport (a boarding pass) waits under the car once the car is loaded.
+	var pass_size := _airport.texture_normal.get_size()
+	_airport.size = Vector2(_car.size.x, _car.size.x * pass_size.y / pass_size.x)
+	_airport.position = Vector2(_car.position.x, _car.position.y + _car.size.y + AIRPORT_GAP)

@@ -348,12 +348,12 @@ func test_hatch_double_tap_finishes_once(t) -> void:
 
 func test_finish_buttons_go_home_replay_continue(t) -> void:
 	var game: Node = t.tree.root.get_node("Game")
-	for pair in [["HomeButton", game.TITLE], ["ReplayButton", game.TRUNK], ["ContinueButton", game.MAP]]:
+	for pair in [["HomeButton", game.TITLE], ["ReplayButton", game.TRUNK], ["ContinueButton", game.CHECKIN]]:
 		var trunk := await _make(t, "jack")
 		trunk.payoff_video = ""
 		await _fill(t, trunk)
 		await _tap(t, trunk.hatch_point())
-		await t.tree.create_timer(0.3).timeout
+		await t.tree.create_timer(0.8).timeout  # the buttons wake up after a moment
 		var button: TextureButton = trunk.get_node("Finish/" + pair[0])
 		await _tap(t, button.global_position + button.size / 2)
 		t.eq(game.last_scene_request, pair[1], pair[0])

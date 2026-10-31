@@ -99,9 +99,9 @@ func test_kids_take_turns_waving(t) -> void:
 func test_version_stamp(t) -> void:
 	var title := await _make(t)
 	var label: Label = title.get_node("VersionLabel")
-	t.eq(ProjectSettings.get_setting("application/config/version"), "0.4.0", "the version being built")
+	t.eq(ProjectSettings.get_setting("application/config/version"), "0.5.0", "the version being built")
 	t.eq(ProjectSettings.get_setting("application/config/build", "x"), "", "no build label in the repo (CI stamps it)")
-	t.eq(label.text, "v0.4.0", "a release shows just the version")
+	t.eq(label.text, "v0.5.0", "a release shows just the version")
 	t.check(label.visible, "shown")
 	title.free()
 
@@ -109,7 +109,7 @@ func test_version_stamp(t) -> void:
 func test_version_stamp_shows_the_build(t) -> void:
 	ProjectSettings.set_setting("application/config/build", "playtest 10")
 	var title := await _make(t)
-	t.eq(title.get_node("VersionLabel").text, "v0.4.0 playtest 10", "which build is installed")
+	t.eq(title.get_node("VersionLabel").text, "v0.5.0 playtest 10", "which build is installed")
 	title.free()
 	ProjectSettings.set_setting("application/config/build", "")
 

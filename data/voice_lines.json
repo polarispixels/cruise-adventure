@@ -158,5 +158,65 @@
  {
   "id": "lets-go",
   "text": "Airport, here we come!"
+ },
+ {
+  "id": "tag-bags",
+  "text": "Put the right tag on each bag!"
+ },
+ {
+  "id": "needs-tag",
+  "text": "It needs a tag!"
+ },
+ {
+  "id": "on-the-belt",
+  "text": "Put it on the belt!"
+ },
+ {
+  "id": "bye-suitcases",
+  "text": "Bye-bye, suitcases! See you soon!"
+ },
+ {
+  "id": "in-a-tray",
+  "text": "Put your things in a tray!"
+ },
+ {
+  "id": "tablet-tray",
+  "text": "The tablet gets its own tray!"
+ },
+ {
+  "id": "push-it",
+  "text": "Push it through!"
+ },
+ {
+  "id": "comes-back",
+  "text": "Don't worry, it comes right back!"
+ },
+ {
+  "id": "walk-through",
+  "text": "Now walk through!"
+ },
+ {
+  "id": "get-your-things",
+  "text": "Get your things back!"
+ },
+ {
+  "id": "find-gate",
+  "text": "Let's find our gate!"
+ },
+ {
+  "id": "match-airplane",
+  "text": "Find the airplane on your ticket!"
+ },
+ {
+  "id": "this-way",
+  "text": "This way!"
+ },
+ {
+  "id": "not-this-one",
+  "text": "Not this one! Let's keep looking!"
+ },
+ {
+  "id": "found-gate",
+  "text": "We found our gate!"
  }
 ]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/checkin.gd" id="1_s"]
+[ext_resource type="Texture2D" path="res://assets/airport/airport-checkin.png" id="2_bg"]
+[ext_resource type="Texture2D" path="res://assets/airport/conveyor-belt-strip.png" id="3_belt"]
+[ext_resource type="PackedScene" path="res://scenes/character.tscn" id="4_char"]
+[ext_resource type="Texture2D" path="res://assets/ui/home.png" id="5_home"]
+
+[node name="Checkin" type="Node2D"]
+script = ExtResource("1_s")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Stage" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Stage"]
+texture = ExtResource("2_bg")
+centered = false
+
+[node name="Belt" type="Sprite2D" parent="Stage"]
+texture_repeat = 2
+position = Vector2(805, 397)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_belt")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1157, 60)
+
+[node name="Bags" type="Node2D" parent="Stage"]
+
+[node name="Tags" type="Node2D" parent="Stage"]
+
+[node name="Player" parent="Stage" instance=ExtResource("4_char")]
+
+[node name="Helper" parent="Stage" instance=ExtResource("4_char")]
+
+[node name="PlayHome" type="TextureButton" parent="."]
+offset_right = 130.0
+offset_bottom = 130.0
+texture_normal = ExtResource("5_home")
+ignore_texture_size = true
+stretch_mode = 5

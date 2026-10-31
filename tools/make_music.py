@@ -1,4 +1,4 @@
-"""Synthesize the placeholder background tune: assets/music/theme.ogg.
+"""Synthesize the placeholder background tunes: assets/music/theme.ogg and airport.ogg.
 
 A bouncy 16-bar loop in C major (marimba melody, plucked bass, offbeat
 ukulele-style chords). It loops seamlessly: note tails past the end wrap
@@ -21,6 +21,10 @@ BPM = 112
 BEAT = 60 / BPM
 BAR = 4 * BEAT
 OUT = Path(__file__).resolve().parent.parent / "assets" / "music" / "theme.ogg"
+## The airport bed: the same tune a fourth higher, a little quicker and lighter (no bass).
+AIRPORT_OUT = OUT.parent / "airport.ogg"
+AIRPORT_SHIFT = 5
+AIRPORT_BPM = 126
 
 C, D, E, F, G, A, B = 60, 62, 64, 65, 67, 69, 71
 CHORDS = {"C": [C, E, G], "Am": [A - 12, C, E], "F": [F - 12, A - 12, C], "G": [G - 12, B - 12, D],
@@ -68,24 +72,32 @@ def add(track, start, sound):
     track[:len(rest)] += rest
 
 
-def render():
-    track = np.zeros(int(len(PROGRESSION) * BAR * RATE))
+def render(shift=0, bpm=BPM, bass=True):
+    beat = 60 / bpm
+    bar_len = 4 * beat
+    track = np.zeros(int(len(PROGRESSION) * bar_len * RATE))
     for bar, (chord, notes) in enumerate(zip(PROGRESSION, MELODY)):
-        t0 = bar * BAR
-        root = CHORDS[chord][0] - 12
-        for beat in (0, 2):
-            add(track, t0 + beat * BEAT, 0.5 * tone(root, 1.6, [(1, 1), (2, 0.3)], 3.5))
-        for beat in (0.5, 1.5, 2.5, 3.5):
+        t0 = bar * bar_len
+        root = CHORDS[chord][0] - 12 + shift
+        if bass:
+            for b in (0, 2):
+                add(track, t0 + b * beat, 0.5 * tone(root, 1.6, [(1, 1), (2, 0.3)], 3.5))
+        for b in (0.5, 1.5, 2.5, 3.5):
             for k, n in enumerate(CHORDS[chord]):
-                add(track, t0 + beat * BEAT + k * 0.012, 0.12 * tone(n, 0.5, [(1, 1), (2, 0.5), (3, 0.25)], 9))
-        for beat, n, length in notes:
-            add(track, t0 + beat * BEAT, 0.35 * tone(n, max(0.8, length * BEAT * 1.4), [(1, 1), (4, 0.25), (10, 0.05)], 5))
+                add(track, t0 + b * beat + k * 0.012, 0.12 * tone(n + shift, 0.5, [(1, 1), (2, 0.5), (3, 0.25)], 9))
+        for b, n, length in notes:
+            add(track, t0 + b * beat, 0.35 * tone(n + shift, max(0.8, length * beat * 1.4), [(1, 1), (4, 0.25), (10, 0.05)], 5))
     return track / np.max(np.abs(track)) * 0.8
 
 
 def main():
-    pcm = (render() * 32767).astype(np.int16)
-    OUT.parent.mkdir(parents=True, exist_ok=True)
+    write(render(), OUT)
+    write(render(AIRPORT_SHIFT, AIRPORT_BPM, bass=False), AIRPORT_OUT)
+
+
+def write(track, out):
+    pcm = (track * 32767).astype(np.int16)
+    out.parent.mkdir(parents=True, exist_ok=True)
     cli, mount = import_art.docker()
     with tempfile.TemporaryDirectory() as tmp:
         work = Path(tmp)
@@ -98,8 +110,8 @@ def main():
             "run", "--rm", "-v", f"{mount(work)}:/a", import_art.FFMPEG_IMAGE, "-y", "-loglevel", "error",
             "-i", "/a/theme.wav", "-c:a", "libvorbis", "-q:a", "4", "/a/out.ogg",
         ], check=True)
-        shutil.copyfile(work / "out.ogg", OUT)
-    print("wrote", OUT)
+        shutil.copyfile(work / "out.ogg", out)
+    print("wrote", out)
 
 
 if __name__ == "__main__":

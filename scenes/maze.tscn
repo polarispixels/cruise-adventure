@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/maze.gd" id="1_maze"]
+[ext_resource type="Texture2D" path="res://assets/airport/airport-terminal-floor.png" id="2_floor"]
+[ext_resource type="Texture2D" path="res://assets/ui/home.png" id="3_home"]
+[ext_resource type="Texture2D" path="res://assets/airport/footprints-hint.png" id="4_prints"]
+[ext_resource type="Texture2D" path="res://assets/ui/replay.png" id="5_replay"]
+[ext_resource type="Texture2D" path="res://assets/ui/continue.png" id="6_continue"]
+[ext_resource type="Texture2D" path="res://assets/airport/boarding-pass-blue.png" id="7_pass"]
+
+[node name="Maze" type="Node2D"]
+script = ExtResource("1_maze")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_floor")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Decor" type="Node2D" parent="."]
+
+[node name="Gates" type="Node2D" parent="."]
+
+[node name="Footprints" type="Node2D" parent="."]
+
+[node name="Step1" type="Sprite2D" parent="Footprints"]
+visible = false
+modulate = Color(1, 1, 1, 0.85)
+texture = ExtResource("4_prints")
+
+[node name="Step2" type="Sprite2D" parent="Footprints"]
+visible = false
+modulate = Color(1, 1, 1, 0.85)
+texture = ExtResource("4_prints")
+
+[node name="Step3" type="Sprite2D" parent="Footprints"]
+visible = false
+modulate = Color(1, 1, 1, 0.85)
+texture = ExtResource("4_prints")
+
+[node name="Sibling" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="Token" type="Sprite2D" parent="."]
+
+[node name="BoardingPass" type="Sprite2D" parent="."]
+texture = ExtResource("7_pass")
+
+[node name="PlayHome" type="TextureButton" parent="."]
+offset_right = 130.0
+offset_bottom = 130.0
+texture_normal = ExtResource("3_home")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="PayoffVideo" type="CanvasLayer" parent="."]
+layer = 5
+visible = false
+
+[node name="Player" type="VideoStreamPlayer" parent="PayoffVideo"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand = true
+
+[node name="Finish" type="Node2D" parent="."]
+visible = false
+
+[node name="HomeButton" type="TextureButton" parent="Finish"]
+offset_left = 380.0
+offset_top = 390.0
+offset_right = 680.0
+offset_bottom = 690.0
+texture_normal = ExtResource("3_home")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ReplayButton" type="TextureButton" parent="Finish"]
+offset_left = 770.0
+offset_top = 390.0
+offset_right = 1070.0
+offset_bottom = 690.0
+texture_normal = ExtResource("5_replay")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ContinueButton" type="TextureButton" parent="Finish"]
+offset_left = 1160.0
+offset_top = 350.0
+offset_right = 1540.0
+offset_bottom = 730.0
+texture_normal = ExtResource("6_continue")
+ignore_texture_size = true
+stretch_mode = 5
