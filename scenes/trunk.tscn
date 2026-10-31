@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/trunk.gd" id="1_trunk"]
+[ext_resource type="PackedScene" path="res://scenes/character.tscn" id="2_char"]
+[ext_resource type="Texture2D" path="res://assets/ui/home.png" id="3_home"]
+[ext_resource type="Texture2D" path="res://assets/car/driveway.png" id="4_drive"]
 
 [node name="Trunk" type="Node2D"]
 script = ExtResource("1_trunk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("4_drive")
+
+[node name="Suv" type="Sprite2D" parent="."]
+
+[node name="Outlines" type="Node2D" parent="."]
+
+[node name="Helper" parent="." instance=ExtResource("2_char")]
+
+[node name="Bags" type="Node2D" parent="."]
+
+[node name="PlayHome" type="TextureButton" parent="."]
+offset_right = 130.0
+offset_bottom = 130.0
+texture_normal = ExtResource("3_home")
+ignore_texture_size = true
+stretch_mode = 5
