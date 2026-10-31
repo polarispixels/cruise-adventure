@@ -15,6 +15,16 @@ Links:
 - Project page: https://polarispixels.github.io/cruise-adventure/docs/
 - Releases (playtests and versions): https://github.com/polarispixels/cruise-adventure/releases
 
+## Version numbers
+
+The title screen shows which build is installed: the version, then a build label in the same small text.
+
+- **The version** (`config/version` in `project.godot`) is the release the branch is building toward. Bump it at the **start** of each version branch, not at release time. In the same commit, raise `version/code` in `export_presets.cfg` by 1, and update the two pins in `tests/test_smoke.gd` and the stamp test in `tests/test_title.gd`.
+- **The build label** (`config/build`) stays empty in the repo, and CI stamps it into each build:
+  - playtests: the label you pass, e.g. `v0.4.0 playtest 10`;
+  - main and other branch builds: `v0.4.0 dev 1a2b3c4` (the commit);
+  - a version tag: just `v0.4.0`.
+
 ## What's a checkpoint
 
 Work happens on a version branch (for example `v0.4`), one feature at a time: design, plan, build. A **checkpoint** is the point where a feature is ready for the kids to try. It's reached when all three are true:
@@ -40,14 +50,14 @@ For a scene deep in the game (for example the trunk, which needs a finished card
 
 ```bash
 git push                                              # the version branch
-gh workflow run build.yml --ref v0.4                  # tests, web build, signed APK
+gh workflow run build.yml --ref v0.4 -f label="playtest N"   # tests, web build, signed APK, labeled
 gh run watch <run id> --exit-status
 gh run download <run id> -n android-apk -D <tmp dir>
 gh release create playtest-v0.4-N <tmp dir>/*.apk --prerelease --target v0.4 \
   --title "Playtest v0.4-N" --notes "<one line: what to try>"
 ```
 
-Number playtests per version: `playtest-v0.4-1`, `-2`, and so on. On the tablet, open the pre-release page in Silk and tap the APK. It installs over the old one, because every build is signed with the same key. A pre-release never becomes "latest", so the official release link is unaffected.
+Number playtests per version: `playtest-v0.4-1`, `-2`, and so on. Pass the same number as the label (`playtest N`), so the title screen matches the release name. On the tablet, open the pre-release page in Silk and tap the APK. It installs over the old one, because every build is signed with the same key. A pre-release never becomes "latest", so the official release link is unaffected.
 
 ## 3. Merge to main (live game and project page)
 

@@ -1,12 +1,15 @@
 ; Engine configuration file.
-; The version below is the single source of truth for the game's version.
+; The version below is the single source of truth for the game's version: the
+; release this branch is building toward. config/build stays empty here; CI
+; stamps it ("playtest 10", "dev 1a2b3c4") so every build shows which one it is.
 
 config_version=5
 
 [application]
 
 config/name="Cruise Adventure"
-config/version="0.3.0"
+config/version="0.4.0"
+config/build=""
 run/main_scene="res://scenes/title.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://assets/art/icon.png"
