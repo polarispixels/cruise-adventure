@@ -7,13 +7,15 @@
 extends Node2D
 
 const BG_SIZE := Vector2(1672, 941)
+## The 16:10 tablet crops the 16:9 background's sides; keep everything between these x values.
+const SAFE_X := Vector2(100, 1572)
 const BAG_SCALE := 0.45
 const TAG_SCALE := 0.45
 const FLOOR_Y := 880.0
 ## Where each bag waits on the floor (center x), in background pixels.
 const FLOOR_X := [220.0, 520.0, 880.0]
 const TAG_Y := 760.0
-const TAG_X := [1130.0, 1240.0, 1350.0]
+const TAG_X := [1090.0, 1190.0, 1290.0]
 const TAG_COLOR := {"jack-suitcase": "blue", "becca-suitcase": "pink", "mommy-yellow": "yellow"}
 const SCALE_DROP := Rect2(620, 435, 196, 83)
 const SCALE_TOP_Y := 485.0
@@ -27,8 +29,8 @@ const BELT_SPEED := 120.0
 const GLIDE_TIME := 0.3
 const AUTO_DELAY := 0.8
 const WAVE_TIME := 2.5
-const PLAYER_FEET := Vector2(1470, 900)
-const HELPER_FEET := Vector2(1590, 900)
+const PLAYER_FEET := Vector2(1400, 900)
+const HELPER_FEET := Vector2(1500, 900)
 const KID_SCALE := 0.16
 
 var _bags := {}

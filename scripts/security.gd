@@ -7,15 +7,17 @@
 extends Node2D
 
 const BG_SIZE := Vector2(1672, 941)
+## The 16:10 tablet crops the 16:9 background's sides; keep everything between these x values.
+const SAFE_X := Vector2(100, 1572)
 ## How tall each thing is on the floor and in a tray, in background pixels.
 const FLOOR_HEIGHT := 150.0
 const TRAY_ITEM_HEIGHT := 64.0
 const FLOOR_Y := 860.0
-const FLOOR_X := [140.0, 330.0, 520.0, 710.0]
+const FLOOR_X := [200.0, 380.0, 560.0, 740.0]
 const TRAYS := 3
-const TRAY_SCALE := 0.23
+const TRAY_SCALE := 0.21
 const TRAY_BASELINE := 434.0
-const LEFT_TRAY_X := [120.0, 270.0, 420.0]
+const LEFT_TRAY_X := [168.0, 300.0, 432.0]
 const RIGHT_TRAY_X := [990.0, 1110.0, 1230.0]
 const SCANNER_X := 696.0
 const SCREEN := Rect2(564, 132, 284, 132)
@@ -28,7 +30,7 @@ const GLIDE_TIME := 0.3
 const DONE_DELAY := 1.6
 const PLAYER_START := Vector2(1290, 600)
 const PLAYER_THROUGH := Vector2(1446, 560)
-const HELPER_FEET := Vector2(1590, 920)
+const HELPER_FEET := Vector2(1510, 920)
 const KID_SCALE := 0.16
 const BACKPACK_SPOT := Vector2(1250, 820)
 const SILHOUETTE := Color(0.35, 0.65, 1.0, 0.75)
@@ -200,10 +202,9 @@ func _pick(local: Vector2) -> Sprite2D:
 
 func _tap(local: Vector2) -> void:
 	if phase == "trays":
-		for i in TRAYS:
-			if not _tray_sent[i] and not _tray_items[i].is_empty() and _rect(_trays[i]).grow(40).has_point(local):
-				_scan(i)
-				return
+		var i := _nearest_tray(local, 40.0)
+		if i >= 0 and not _tray_items[i].is_empty():
+			_scan(i)
 	elif phase == "arch" and ARCH.grow(40).has_point(local):
 		_walk_through()
 
@@ -213,10 +214,10 @@ func _drop(item: Sprite2D) -> void:
 	if phase == "collect":
 		_collect(item, id)
 		return
-	for i in TRAYS:
-		if not _tray_sent[i] and _rect(_trays[i]).grow(DROP_SLACK).has_point(item.position):
-			_put_in_tray(id, i)
-			return
+	var i := _nearest_tray(item.position, DROP_SLACK)
+	if i >= 0:
+		_put_in_tray(id, i)
+		return
 	_glide(item, _home[item])
 
 
@@ -234,6 +235,17 @@ func _put_in_tray(id: String, i: int) -> void:
 	if not _told_push:
 		_told_push = true
 		_say("push-it", true)
+
+
+## The closest tray still on the left table whose (grown) area holds the point; -1 if none.
+func _nearest_tray(local: Vector2, slack: float) -> int:
+	var best := -1
+	for i in TRAYS:
+		if _tray_sent[i] or not _rect(_trays[i]).grow(slack).has_point(local):
+			continue
+		if best < 0 or local.distance_to(_trays[i].position) < local.distance_to(_trays[best].position):
+			best = i
+	return best
 
 
 ## Another tray for an item the tablet rule moved: an empty one, else one without the tablet.

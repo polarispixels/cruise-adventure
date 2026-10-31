@@ -178,3 +178,20 @@ func test_collecting_everything_goes_to_the_maze(t) -> void:
 		await t.tree.process_frame
 	t.eq(game.last_scene_request, "res://scenes/maze.tscn", "on to the gate maze")
 	_done(t, scene)
+
+
+func test_everything_on_screen_on_the_tablet(t) -> void:
+	var scene := await _make(t, "jack")
+	t.tree.root.size = Vector2i(1920, 1200)
+	await t.tree.process_frame
+	var view := Rect2(Vector2(960, 540) - scene.get_viewport().get_visible_rect().size / 2, scene.get_viewport().get_visible_rect().size)
+	for id in scene.item_ids():
+		t.check(view.has_point(scene.item_point(id)), "%s on screen" % id)
+	for i in 3:
+		var tray: Sprite2D = scene.get_node("Stage/Trays").get_child(i)
+		var r := Rect2(tray.global_position - tray.texture.get_size() * tray.global_scale / 2, tray.texture.get_size() * tray.global_scale)
+		t.check(view.encloses(r), "tray %d all on screen" % i)
+	for kid in ["Stage/Player", "Stage/Helper"]:
+		t.check(view.encloses(scene.get_node(kid).hit_rect()), "%s on screen" % kid)
+	_done(t, scene)
+	t.tree.root.size = Vector2i(1920, 1080)
