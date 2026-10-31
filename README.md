@@ -8,6 +8,8 @@ A one-screen Godot game for Jack (6) and Becca (4): drag the shirt into the suit
 
 The project page is built on every deploy by `tools/make_docs_site.py` from `docs/site/story.json`; its checklists tick themselves from the repo (files, recorded voice lines, playable rows). Edit `story.json` to change the story or add checks. After new keyframes or clips arrive, run `python3 tools/make_docs_images.py` to refresh the pictures in `docs/site/img/`, and commit them. Preview: `python3 tools/make_docs_site.py build/web/docs`.
 
+**How work ships** (local preview, tablet playtests, the live site, official releases): see [docs/deployment.md](docs/deployment.md).
+
 ## Install on the Fire tablet
 
 1. On the tablet, open **Silk** (or Chrome on a regular Android tablet) and go to the Releases page above.

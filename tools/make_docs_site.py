@@ -292,6 +292,8 @@ TEMPLATE = """<!DOCTYPE html>
 <p>Every chapter follows the same loop: <b>video intro, play, video payoff</b>. Clips are 8-15 seconds and always skippable. Play needs no reading,
 has no failure states, Becca's version is always easier, and the sibling is always the helper.
 The full spec is <a href="{repo}/blob/main/docs/cruise-adventure-game-spec.md">cruise-adventure-game-spec.md</a>.</p>
+<p><b>How work ships:</b> features are built on a version branch; at each checkpoint (tests green, code review fixed) the tablet gets a playtest build and the work merges to main, which updates the browser game and this page. Official versions are tagged only with Ryan's OK.
+Details: <a href="{repo}/blob/main/docs/deployment.md">deployment.md</a> · <a href="{repo}/releases">all builds</a>.</p>
 
 <footer>{built} · source: <a href="{repo}/blob/main/docs/site/story.json">docs/site/story.json</a></footer>
 </main>
