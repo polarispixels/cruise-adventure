@@ -2310,69 +2310,69 @@
  },
  {
   "game": "assets/car/bag-mommy-yellow.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/bag-mommy-yellow.png",
+  "approved": true
  },
  {
   "game": "assets/car/bag-daddy-gray.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/bag-daddy-gray.png",
+  "approved": true
  },
  {
   "game": "assets/car/bag-jack-suitcase.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/bag-jack-suitcase.png",
+  "approved": true
  },
  {
   "game": "assets/car/bag-becca-suitcase.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/bag-becca-suitcase.png",
+  "approved": true
  },
  {
   "game": "assets/car/bag-daddy-backpack.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/bag-daddy-backpack.png",
+  "approved": true
  },
  {
   "game": "assets/car/bag-jack-backpack.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/bag-jack-backpack.png",
+  "approved": true
  },
  {
   "game": "assets/car/bag-becca-backpack.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/bag-becca-backpack.png",
+  "approved": true
  },
  {
   "game": "assets/car/bag-mommy-purse.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/bag-mommy-purse.png",
+  "approved": true
  },
  {
   "game": "assets/car/suv-open.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/suv-open.png",
+  "approved": true
  },
  {
   "game": "assets/car/suv-closed.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/suv-closed.png",
+  "approved": true
  },
  {
   "game": "assets/car/driveway.png",
-  "generator": "placeholder",
-  "source": null,
-  "approved": false
+  "generator": "copy",
+  "source": "Game Assets/Props/Car/driveway.png",
+  "approved": true
  },
  {
   "game": "assets/video/car-intro.ogv",
@@ -2393,5 +2393,17 @@
    54
   ],
   "note": "bags-packed.mp4 arrived with ready-to-pack-the-car.mp4 stuck on the front: start skips it; cover blurs a burned-in caption"
+ },
+ {
+  "game": "assets/characters/jack/lift.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - lift v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/becca/lift.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - lift v0.1 - PROVISIONAL.png",
+  "approved": true
  }
 ]

@@ -383,7 +383,7 @@
      ]
     },
     {
-     "label": "Build the trunk puzzle (stand-in art)",
+     "label": "Build the trunk puzzle",
      "files": [
       "scenes/trunk.tscn",
       "scripts/trunk_model.gd"
@@ -406,7 +406,8 @@
      ]
     },
     {
-     "label": "Real art: SUV, driveway, the eight bags (art round 5)"
+     "label": "Real art: SUV, driveway, the eight bags (art round 5)",
+     "done": true
     },
     {
      "label": "Trunk lines in Jack-Jack's voice",
