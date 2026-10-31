@@ -4,6 +4,9 @@ A one-screen Godot game for Jack (6) and Becca (4): drag the shirt into the suit
 
 - **Play in a browser:** https://polarispixels.github.io/cruise-adventure/
 - **Download the Android APK:** https://github.com/polarispixels/cruise-adventure/releases
+- **Project page (story arc, storyboard, checklists, voices):** https://polarispixels.github.io/cruise-adventure/docs/
+
+The project page is built on every deploy by `tools/make_docs_site.py` from `docs/site/story.json`; its checklists tick themselves from the repo (files, recorded voice lines, playable rows). Edit `story.json` to change the story or add checks. After new keyframes or clips arrive, run `python3 tools/make_docs_images.py` to refresh the pictures in `docs/site/img/`, and commit them. Preview: `python3 tools/make_docs_site.py build/web/docs`.
 
 ## Install on the Fire tablet
 
