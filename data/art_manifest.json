@@ -2405,5 +2405,173 @@
   "generator": "copy",
   "source": "Game Assets/Characters/Becca/Becca - lift v0.1 - PROVISIONAL.png",
   "approved": true
+ },
+ {
+  "game": "assets/airport/airport-checkin.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/airport-checkin.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/airport-security.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/airport-security.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/airport-terminal-floor.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/airport-terminal-floor.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/tag-blue.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/tag-blue.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/tag-pink.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/tag-pink.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/tag-yellow.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/tag-yellow.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/tray-empty.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/tray-empty.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/conveyor-belt-strip.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/conveyor-belt-strip.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/boarding-pass-red.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/boarding-pass-red.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/boarding-pass-green.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/boarding-pass-green.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/boarding-pass-blue.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/boarding-pass-blue.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/gate-red.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/gate-red.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/gate-green.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/gate-green.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/gate-blue.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/gate-blue.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/maze-decor-cart.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/maze-decor-cart.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/maze-decor-info.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/maze-decor-info.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/maze-decor-kiosk.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/maze-decor-kiosk.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/maze-decor-planter.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/maze-decor-planter.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/maze-decor-seats.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/maze-decor-seats.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/maze-decor-walkway.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/maze-decor-walkway.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/token-frame.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/token-frame.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/footprints-hint.png",
+  "generator": "copy",
+  "source": "Game Assets/Props/Airport/footprints-hint.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/jack/wave.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - wave v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/jack/arms-up.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - arms up v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/becca/wave.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - wave v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/characters/becca/arms-up.png",
+  "generator": "copy",
+  "source": "Game Assets/Characters/Becca/Becca - arms up v0.1 - PROVISIONAL.png",
+  "approved": true
+ },
+ {
+  "game": "assets/airport/token-jack.png",
+  "generator": "token",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/airport/token-becca.png",
+  "generator": "token",
+  "source": null,
+  "approved": true
  }
 ]

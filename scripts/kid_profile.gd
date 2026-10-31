@@ -26,6 +26,22 @@ const COLOR_STEPS := 8
 @export var trunk_outlines: bool
 ## Trunk puzzle: a bag that only fits turned turns itself when dropped there.
 @export var trunk_auto_turn: bool
+## Airport check-in: the bags the kid tags and sends (car bag ids), and ones that go by themselves.
+@export var airport_bags: PackedStringArray
+@export var airport_auto_bags: PackedStringArray
+## Airport security: what goes through the scanner ("tablet" and "buddy" are the kid's props; the rest are car bags).
+@export var security_items: PackedStringArray
+## The tablet needs a tray of its own.
+@export var tablet_own_tray: bool
+## The gate maze: size in cells, share of dead ends opened up, extra loops, most turns on the
+## main path (0 = any), how many gates, footprint hints, and the hint delay in seconds.
+@export var maze_size: Vector2i
+@export var maze_braid: float
+@export var maze_loops: int
+@export var maze_max_turns: int
+@export var maze_gates: int
+@export var maze_footprints: bool
+@export var maze_hint_delay: float
 
 
 func character(pose: String) -> Texture2D:
@@ -46,6 +62,11 @@ func level_intro(level: int) -> String:
 func car_intro() -> String:
 	var own := "res://assets/video/%s-car.ogv" % id
 	return own if ResourceLoader.exists(own) else "res://assets/video/car-intro.ogv"
+
+
+## The clip before the airport.
+func airport_intro() -> String:
+	return "res://assets/video/%s-airport.ogv" % id
 
 
 func room() -> Texture2D:

@@ -56,3 +56,27 @@ func test_car_art_matches_trunk_data(t) -> void:
 		t.eq(open.get_size(), closed.get_size(), "open and closed suv line up")
 	var cargo: Array = data["cargo_rect"]
 	t.eq(Vector2(cargo[2], cargo[3]), Vector2(data["cols"] * cell, data["rows"] * cell), "cargo rect is the grid")
+
+
+const AIRPORT_SIZES := {
+	"airport-checkin": Vector2(1672, 941), "airport-security": Vector2(1672, 941), "airport-terminal-floor": Vector2(1672, 941),
+	"tag-blue": Vector2(200, 300), "tag-pink": Vector2(200, 300), "tag-yellow": Vector2(200, 300),
+	"tray-empty": Vector2(600, 200), "conveyor-belt-strip": Vector2(400, 60),
+	"boarding-pass-red": Vector2(400, 200), "boarding-pass-green": Vector2(400, 200), "boarding-pass-blue": Vector2(400, 200),
+	"gate-red": Vector2(300, 300), "gate-green": Vector2(300, 300), "gate-blue": Vector2(300, 300),
+	"maze-decor-cart": Vector2(150, 150), "maze-decor-info": Vector2(150, 150), "maze-decor-kiosk": Vector2(150, 150),
+	"maze-decor-planter": Vector2(150, 150), "maze-decor-seats": Vector2(150, 150), "maze-decor-walkway": Vector2(150, 150),
+	"token-frame": Vector2(120, 120), "footprints-hint": Vector2(150, 150),
+	"token-jack": Vector2(120, 120), "token-becca": Vector2(120, 120),
+}
+
+
+func test_airport_art_sizes(t) -> void:
+	for name in AIRPORT_SIZES:
+		var path := "res://assets/airport/%s.png" % name
+		var tex: Texture2D = load(path) if ResourceLoader.exists(path) else null
+		t.eq(tex.get_size() if tex else Vector2.ZERO, AIRPORT_SIZES[name], path)
+	for kid in ["jack", "becca"]:
+		for pose in ["wave", "arms-up"]:
+			var tex: Texture2D = load("res://assets/characters/%s/%s.png" % [kid, pose]) if ResourceLoader.exists("res://assets/characters/%s/%s.png" % [kid, pose]) else null
+			t.eq(tex.get_size() if tex else Vector2.ZERO, Vector2(1024, 1536), "%s %s" % [kid, pose])

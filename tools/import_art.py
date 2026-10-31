@@ -4,6 +4,7 @@ Generators:
   copy        - copy the source file from ART_ROOT byte for byte
   recolor     - hue-rotate the dominant fill of another game asset (clothing color variants)
   placeholder - draw a UI or car stand-in (tools/make_placeholders.py)
+  token       - a kid's face in the maze token frame (tools/make_tokens.py)
   voice       - synthesize a spoken line (tools/make_voice.py)
   video       - convert a source clip to Ogg Theora for Godot (optional "start" seconds to skip, "cover" [x, y, w, h] to blur)
   music       - synthesize the placeholder background tune (tools/make_music.py)
@@ -26,6 +27,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import import_voice  # noqa: E402
 import make_music  # noqa: E402
 import make_placeholders  # noqa: E402
+import make_tokens  # noqa: E402
 import make_voice  # noqa: E402
 
 ART_ROOT = Path(os.environ.get("ART_ROOT", "/mnt/c/Users/rgris/Documents/ChatGPT/Kids Packing Video"))
@@ -87,7 +89,7 @@ def convert_video(src: Path, dst: Path, start: float = 0.0, cover: list | None =
 def main() -> None:
     entries = json.loads(MANIFEST.read_text())
     # Copies first, so recolors can read the card items they derive from.
-    order = {"copy": 0, "recolor": 1, "placeholder": 2, "voice": 3, "video": 4, "music": 5}
+    order = {"copy": 0, "recolor": 1, "placeholder": 2, "token": 3, "voice": 4, "video": 5, "music": 6}
     for e in sorted(entries, key=lambda e: order[e["generator"]]):
         dst = ROOT / e["game"]
         dst.parent.mkdir(parents=True, exist_ok=True)
@@ -101,6 +103,8 @@ def main() -> None:
                 make_placeholders.car(dst.stem, dst)
             else:
                 make_placeholders.ui(dst.stem, dst)
+        elif gen == "token":
+            make_tokens.make(dst.stem.removeprefix("token-"), dst)
         elif gen == "voice":
             import_voice.title_line(dst, e["text"])
         elif gen == "video":

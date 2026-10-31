@@ -8,6 +8,9 @@ const EXPECTED_IDS := [
 	"found-1", "found-2", "found-3", "try-again", "roll-it", "pack-it", "hug-buddy",
 	"close-suitcase", "zip-it", "all-packed",
 	"load-car", "turn-it", "try-another-spot", "it-fits", "close-trunk", "lets-go",
+	"tag-bags", "needs-tag", "on-the-belt", "bye-suitcases", "in-a-tray", "tablet-tray", "push-it",
+	"comes-back", "walk-through", "get-your-things", "find-gate", "match-airplane", "this-way",
+	"not-this-one", "found-gate",
 ]
 
 
@@ -27,7 +30,7 @@ func _kid(id: String) -> KidProfile:
 	return load("res://data/%s.tres" % id)
 
 
-func test_json_has_the_38_ids(t) -> void:
+func test_json_has_the_53_ids(t) -> void:
 	var ids: Array = []
 	for line in _lines():
 		ids.append(line["id"])
