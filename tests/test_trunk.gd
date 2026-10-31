@@ -355,3 +355,71 @@ func test_home_button_while_playing(t) -> void:
 	await _tap(t, button.global_position + button.size / 2)
 	t.eq(t.tree.root.get_node("Game").last_scene_request, "res://scenes/title.tscn", "home")
 	_done(t, trunk)
+
+
+func test_double_tap_on_hatch_keeps_the_payoff_clip(t) -> void:
+	var trunk := await _make(t, "jack")
+	trunk.payoff_video = "res://assets/video/becca-done.ogv"
+	await _fill(t, trunk)
+	await _tap(t, trunk.hatch_point())
+	await _tap(t, trunk.hatch_point())
+	await t.tree.create_timer(0.2).timeout
+	t.check(trunk.get_node("PayoffVideo").visible, "the clip is still playing")
+	t.check(not trunk.get_node("Finish").visible, "not skipped by the second tap")
+	await t.tree.create_timer(0.8).timeout
+	await _tap(t, Vector2(960, 540))
+	t.check(trunk.get_node("Finish").visible, "a later tap skips it")
+	_done(t, trunk)
+
+
+func test_tap_during_the_snap_still_lands_on_the_grid(t) -> void:
+	var trunk := await _make(t, "jack")
+	var bag: Bag = trunk.bag("mommy-purse")
+	var target: Vector2 = trunk.cell_center(Vector2i(5, 4), Vector2i(1, 1))
+	await _drag(t, bag.global_position, target)
+	await _tap(t, target)
+	await _settle(t)
+	t.eq(trunk.model.cell_of("mommy-purse"), Vector2i(5, 4), "placed")
+	t.check(bag.global_position.distance_to(target) < 1.0, "on its spot, not frozen halfway: %s" % bag.global_position)
+	t.check(bag.scale.is_equal_approx(Vector2.ONE), "not left enlarged")
+	_done(t, trunk)
+
+
+func test_resize_mid_drag_keeps_loaded_bags_in_the_trunk(t) -> void:
+	var trunk := await _make(t, "jack")
+	trunk.model.place("jack-suitcase", Vector2i(5, 0))
+	trunk.sync_bags()
+	var bag: Bag = trunk.bag("mommy-purse")
+	var home := bag.global_position
+	await _touch(t, true, home)
+	await _move(t, home + Vector2(0, -100))
+	t.tree.root.size = Vector2i(1920, 1200)
+	await t.tree.process_frame
+	await t.tree.process_frame
+	_to_screen = t.tree.root.get_final_transform() * trunk.get_canvas_transform()
+	await _touch(t, false, trunk.ground_point("mommy-purse"))
+	await _settle(t)
+	var suitcase: Bag = trunk.bag("jack-suitcase")
+	t.check(suitcase.global_position.distance_to(trunk.cell_center(Vector2i(5, 0), Vector2i(2, 2))) < 1.0, "the loaded suitcase moved with the trunk")
+	_done(t, trunk)
+	t.tree.root.size = Vector2i(1920, 1080)
+
+
+func test_turned_bags_do_not_overlap_on_the_driveway(t) -> void:
+	for size in [Vector2i(1920, 1080), Vector2i(1920, 1200)]:
+		var trunk := await _make(t, "jack", size)
+		for id in trunk.model.bag_ids:
+			trunk.model.set_turned(id, true)
+		trunk.sync_bags()
+		var view_size: Vector2 = trunk.get_viewport().get_visible_rect().size
+		var view := Rect2(Vector2(960, 540) - view_size / 2, view_size)
+		var rects: Array[Rect2] = []
+		for id in trunk.model.bag_ids:
+			var r: Rect2 = trunk.bag(id).rect()
+			t.check(view.encloses(r), "%s on screen turned at %s" % [id, size])
+			t.check(not r.intersects(trunk.cargo_rect()), "%s clear of the trunk" % id)
+			for other in rects:
+				t.check(not r.intersects(other), "%s overlaps another turned bag at %s" % [id, size])
+			rects.append(r)
+		_done(t, trunk)
+	t.tree.root.size = Vector2i(1920, 1080)

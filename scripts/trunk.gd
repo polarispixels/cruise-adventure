@@ -29,20 +29,24 @@ const PAYOFF_VIDEO := "res://assets/video/car-drive-off.ogv"
 const SUV_CLOSED := "res://assets/car/suv-closed.png"
 const HATCH_PULSE := Color(1.25, 1.25, 1.1)
 const HATCH_PULSE_TIME := 0.45
+## Taps this soon after the payoff clip starts don't skip it (the rest of a double tap).
+const SKIP_GRACE := 0.75
 ## Where each bag waits on the driveway: [anchor, offset of its center].
 ## Anchors: "suv" = the SUV's top-center; "bottom-left"/"bottom-right" = view corners.
 const GROUND := {
-	"daddy-gray": ["suv", Vector2(-790, 430)],
-	"jack-suitcase": ["suv", Vector2(-570, 480)],
-	"daddy-backpack": ["suv", Vector2(570, 480)],
-	"becca-suitcase": ["suv", Vector2(790, 480)],
-	"mommy-yellow": ["bottom-left", Vector2(330, -130)],
-	"jack-backpack": ["bottom-right", Vector2(-470, -130)],
-	"becca-backpack": ["bottom-right", Vector2(-340, -130)],
-	"mommy-purse": ["bottom-right", Vector2(-210, -80)],
+## Spaced so no two overlap whether they're standing or turned.
+	"daddy-gray": ["suv", Vector2(-790, 380)],
+	"jack-suitcase": ["suv", Vector2(-530, 460)],
+	"daddy-backpack": ["suv", Vector2(560, 460)],
+	"becca-suitcase": ["suv", Vector2(800, 460)],
+	"mommy-yellow": ["bottom-left", Vector2(300, -130)],
+	"jack-backpack": ["bottom-right", Vector2(-560, -130)],
+	"becca-backpack": ["bottom-right", Vector2(-330, -130)],
+	"mommy-purse": ["bottom-right", Vector2(-130, -80)],
 }
 
 var model: TrunkModel
+var payoff_video := PAYOFF_VIDEO
 ## True once the hatch is shut (the chapter's done; input is over).
 var finished := false
 
@@ -57,6 +61,7 @@ var _idle := 0.0
 var _hinting := false
 var _hint_bag: Bag
 var _hatch_pulse: Tween
+var _video_started := 0.0
 
 @onready var _background: Sprite2D = $Background
 @onready var _suv: Sprite2D = $Suv
@@ -146,10 +151,13 @@ func is_dragging() -> bool:
 	return _held != null and _moved
 
 
-## Puts every bag where the model says: in the trunk or on the driveway.
+## Puts every bag where the model says: in the trunk or on the driveway
+## (except one being dragged, which stays under the finger).
 func sync_bags() -> void:
 	for id in model.bag_ids:
 		var b: Bag = _bags[id]
+		if b == _held and _moved:
+			continue
 		b.set_turned(model.is_turned(id))
 		b.jump_to(_home_of(id))
 	_update_outlines()
@@ -173,7 +181,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		var point := get_global_mouse_position()
 		if finished:
-			if event.pressed and _payoff.visible:
+			var playing_for := Time.get_ticks_msec() / 1000.0 - _video_started
+			if event.pressed and _payoff.visible and playing_for >= SKIP_GRACE:
 				_show_finish()
 			return
 		if model.is_full():
@@ -292,14 +301,15 @@ func _home_of(id: String) -> Vector2:
 	return cell_center(cell, model.size_of(id, model.is_turned(id)))
 
 
-## Smallest bag under the point (small bags sit in front of big ones).
+## Smallest bag under the point (small bags sit in front of big ones); on a
+## tie, the one drawn on top.
 func _bag_at(point: Vector2) -> Bag:
 	var best: Bag
 	var best_area := INF
 	for id in model.bag_ids:
 		var b: Bag = _bags[id]
 		var r := b.rect()
-		if r.grow(GRAB_PADDING).has_point(point) and r.get_area() < best_area:
+		if r.grow(GRAB_PADDING).has_point(point) and r.get_area() <= best_area:
 			best = b
 			best_area = r.get_area()
 	return best
@@ -313,7 +323,7 @@ func _say(line: String, wait := false) -> void:
 ## bag pulses and its spot glows.
 func _show_hint() -> void:
 	_hinting = true
-	var hint := model.hint()
+	var hint := model.hint(Game.kid.trunk_preplaced)
 	if hint.is_empty():
 		return
 	_hint_bag = _bags[hint["id"]]
@@ -364,8 +374,9 @@ func _close_hatch() -> void:
 	Progress.mark_car_done(Game.kid.id)
 	_helper.cheer()
 	_say("lets-go")
-	if ResourceLoader.exists(PAYOFF_VIDEO):
-		_player.stream = load(PAYOFF_VIDEO)
+	if ResourceLoader.exists(payoff_video):
+		_player.stream = load(payoff_video)
+		_video_started = Time.get_ticks_msec() / 1000.0
 		_player.finished.connect(_show_finish)
 		_payoff.visible = true
 		Music.hold(true)
@@ -419,5 +430,4 @@ func _fit() -> void:
 	_helper.position = Vector2(960 - 260, view.end.y - 10)
 	_play_home.position = view.position + Vector2(MARGIN, MARGIN)
 	_play_home.size = Vector2.ONE * HOME_SIZE
-	if not is_dragging():
-		sync_bags()
+	sync_bags()

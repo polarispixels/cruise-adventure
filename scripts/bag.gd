@@ -21,6 +21,7 @@ var cell_px := 100.0
 var turned := false
 
 var _tween: Tween
+var _wiggle: Tween
 var _pulse: Tween
 
 @onready var _sprite: Sprite2D = $Sprite
@@ -74,14 +75,16 @@ func jump_to(point: Vector2) -> void:
 	z_index = 0
 
 
+## A "no" shake on its own tween, so a bag still gliding into place keeps going.
 func wiggle() -> void:
-	_kill()
-	_tween = create_tween()
+	if _wiggle and _wiggle.is_valid():
+		_wiggle.kill()
+	_wiggle = create_tween()
 	var step := WIGGLE_TIME / 6
 	for i in 3:
-		_tween.tween_property(self, "rotation", WIGGLE_ANGLE, step)
-		_tween.tween_property(self, "rotation", -WIGGLE_ANGLE, step)
-	_tween.tween_property(self, "rotation", 0.0, step / 2)
+		_wiggle.tween_property(self, "rotation", WIGGLE_ANGLE, step)
+		_wiggle.tween_property(self, "rotation", -WIGGLE_ANGLE, step)
+	_wiggle.tween_property(self, "rotation", 0.0, step / 2)
 
 
 func pulse() -> void:
@@ -102,6 +105,7 @@ func is_pulsing() -> bool:
 
 
 func _kill() -> void:
-	if _tween and _tween.is_valid():
-		_tween.kill()
+	for tween in [_tween, _wiggle]:
+		if tween and tween.is_valid():
+			tween.kill()
 	rotation = 0.0

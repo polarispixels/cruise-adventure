@@ -83,3 +83,17 @@ func test_hint_empty_when_full(t) -> void:
 	var m := _model()
 	_fill_reference(m)
 	t.eq(m.hint(), {}, "nothing to hint")
+
+
+func test_hint_never_picks_a_locked_bag(t) -> void:
+	var m := _model()
+	m.place("mommy-yellow", Vector2i(0, 0))
+	m.set_turned("daddy-gray", true)
+	m.place("daddy-gray", Vector2i(0, 2))
+	m.place("jack-suitcase", Vector2i(5, 0))
+	m.place("becca-suitcase", Vector2i(4, 2))
+	m.place("jack-backpack", Vector2i(3, 2))
+	m.place("becca-backpack", Vector2i(6, 2))
+	var hint := m.hint(PackedStringArray(["mommy-yellow", "daddy-gray"]))
+	t.eq(hint.get("kind", ""), "wrong", "a dead end")
+	t.check(not ["mommy-yellow", "daddy-gray"].has(hint.get("id", "")), "never a bag she can't move: " + str(hint))

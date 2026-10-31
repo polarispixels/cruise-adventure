@@ -102,22 +102,27 @@ func reference_solution() -> Dictionary:
 
 
 ## What the helper should point at: {} when full; {"kind": "wrong", "id"}
-## when the bags in the trunk can't lead to a full trunk; otherwise
+## when the bags in the trunk can't lead to a full trunk (never one of the
+## `locked` bags, which the child can't move); otherwise
 ## {"kind": "next", "id", "cell", "turned"} for a bag that needs turning, or
 ## else the biggest bag left.
-func hint() -> Dictionary:
+func hint(locked := PackedStringArray()) -> Dictionary:
 	if is_full():
 		return {}
 	var sol := solve()
 	if sol.is_empty():
+		var movable: Array[String] = []
 		for id in placed_ids():
+			if not locked.has(id):
+				movable.append(id)
+		for id in movable:
 			var cell: Vector2i = _cells[id]
 			_cells.erase(id)
 			var ok := not solve().is_empty()
 			_cells[id] = cell
 			if ok:
 				return {"kind": "wrong", "id": id}
-		return {"kind": "wrong", "id": placed_ids()[0]}
+		return {"kind": "wrong", "id": movable.back()} if movable.size() else {}
 	var pick := ""
 	for id in bag_ids:
 		if not _cells.has(id) and sol[id]["turned"] != _turned[id]:
