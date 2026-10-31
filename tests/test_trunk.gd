@@ -205,13 +205,21 @@ func test_locked_bag_stays_put(t) -> void:
 	_done(t, trunk)
 
 
-func test_outlines_only_for_becca(t) -> void:
-	var trunk := await _make(t, "becca")
-	t.eq(trunk.get_node("Outlines").get_child_count(), 6, "an outline for each bag left to load")
-	_done(t, trunk)
-	trunk = await _make(t, "jack")
-	t.eq(trunk.get_node("Outlines").get_child_count(), 0, "none for jack-jack")
-	_done(t, trunk)
+func test_both_kids_see_a_ghost_of_each_bag_in_its_spot(t) -> void:
+	for pair in [["becca", 6], ["jack", 8]]:
+		var trunk := await _make(t, pair[0])
+		var ghosts: Node2D = trunk.get_node("Outlines")
+		t.eq(ghosts.get_child_count(), pair[1], "%s: a ghost for each bag left to load" % pair[0])
+		var ghost: Sprite2D = ghosts.get_node("daddy-backpack")
+		t.eq(ghost.texture, trunk.bag("daddy-backpack").get_node("Sprite").texture, "the bag's own picture")
+		t.check(ghost.modulate.a < 0.5, "faded")
+		t.check(ghost.global_position.distance_to(trunk.cell_center(Vector2i(5, 2), Vector2i(2, 2))) < 1.0, "at its spot")
+		if pair[0] == "jack":
+			var gray: Sprite2D = ghosts.get_node("daddy-gray")
+			t.check(is_equal_approx(gray.rotation, PI / 2), "turned, as it must go in")
+		await _drop_at(t, trunk, "daddy-backpack", Vector2i(5, 2))
+		t.check(not ghost.visible, "gone once the bag's in")
+		_done(t, trunk)
 
 
 func test_lost_release_returns_the_bag(t) -> void:

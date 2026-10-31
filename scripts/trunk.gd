@@ -3,7 +3,8 @@
 # the grid where it fits and slides back where it doesn't; tapping a bag on the
 # driveway turns it on its side, which some bags need. The rules live in
 # TrunkModel; this scene draws them and turns touches into moves. Becca's
-# easier version (big bags already in, outlines, bags that turn themselves)
+# easier version (big bags already in, bags that turn themselves) and the
+# faded "shadow" of each bag in its spot
 # comes from her KidProfile. When the trunk is full the hatch pulses; tapping
 # it shuts the hatch, the payoff clip plays, and the finish buttons appear.
 extends Node2D
@@ -18,8 +19,8 @@ const SUV_TOP_MARGIN := 20.0
 const MARGIN := 24.0
 const HOME_SIZE := 130.0
 const HELPER_SCALE := 0.25
-const OUTLINE_COLOR := Color(1, 1, 1, 0.55)
-const OUTLINE_WIDTH := 6.0
+## The faded "shadow" of each bag in the spot where it goes.
+const GHOST_COLOR := Color(1, 1, 1, 0.35)
 ## A press that moves less than this is a tap.
 const TAP_DISTANCE := 20.0
 ## Grab slack around small bags, in pixels.
@@ -395,25 +396,26 @@ func _show_finish() -> void:
 	_finish.visible = true
 
 
+## A faded picture of the bag where it goes, turned the way it has to go in.
 func _add_outline(id: String, cell: Vector2i, turned: bool) -> void:
-	var line := Line2D.new()
-	line.name = id
-	line.width = OUTLINE_WIDTH
-	line.default_color = OUTLINE_COLOR
-	line.closed = true
-	line.set_meta("cell", cell)
-	line.set_meta("turned", turned)
-	_outlines.add_child(line)
+	var ghost := Sprite2D.new()
+	ghost.name = id
+	ghost.texture = _bags[id].get_node("Sprite").texture
+	ghost.modulate = GHOST_COLOR
+	ghost.rotation = PI / 2 if turned else 0.0
+	ghost.set_meta("cell", cell)
+	ghost.set_meta("turned", turned)
+	_outlines.add_child(ghost)
 
 
 func _update_outlines() -> void:
-	for line: Line2D in _outlines.get_children():
-		var id := String(line.name)
-		var cell: Vector2i = line.get_meta("cell")
-		var size := Vector2(model.size_of(id, line.get_meta("turned"))) * CELL
-		var origin := cargo_rect().position + Vector2(cell) * CELL
-		line.points = PackedVector2Array([origin, origin + Vector2(size.x, 0), origin + size, origin + Vector2(0, size.y)])
-		line.visible = model.cell_of(id) == TrunkModel.NOWHERE
+	for ghost: Sprite2D in _outlines.get_children():
+		var id := String(ghost.name)
+		var cell: Vector2i = ghost.get_meta("cell")
+		var size := model.size_of(id, false)
+		ghost.global_position = cell_center(cell, model.size_of(id, ghost.get_meta("turned")))
+		ghost.scale = Vector2(size) * CELL / ghost.texture.get_size()
+		ghost.visible = model.cell_of(id) == TrunkModel.NOWHERE
 
 
 func _view() -> Rect2:

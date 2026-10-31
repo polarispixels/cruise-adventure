@@ -22,7 +22,7 @@ const COLOR_STEPS := 8
 @export var min_color_gap: int
 ## Trunk puzzle: bags that start loaded (at their reference spots) and can't be moved.
 @export var trunk_preplaced: PackedStringArray
-## Trunk puzzle: faint outlines show where each bag goes.
+## Trunk puzzle: a faded picture of each bag shows where it goes (and which way it's turned).
 @export var trunk_outlines: bool
 ## Trunk puzzle: a bag that only fits turned turns itself when dropped there.
 @export var trunk_auto_turn: bool

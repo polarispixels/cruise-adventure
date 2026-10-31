@@ -97,3 +97,23 @@ func test_hint_never_picks_a_locked_bag(t) -> void:
 	var hint := m.hint(PackedStringArray(["mommy-yellow", "daddy-gray"]))
 	t.eq(hint.get("kind", ""), "wrong", "a dead end")
 	t.check(not ["mommy-yellow", "daddy-gray"].has(hint.get("id", "")), "never a bag she can't move: " + str(hint))
+
+
+func test_hint_follows_the_reference_while_it_still_can(t) -> void:
+	# Every mix of bags already at their shadows: the hint shows another shadow.
+	var ref := _model().reference_solution()
+	var ids := _model().bag_ids
+	var misses: Array[String] = []
+	for mask in range(1 << ids.size()):
+		var m := _model()
+		for i in ids.size():
+			if mask & (1 << i):
+				m.set_turned(ids[i], ref[ids[i]]["turned"])
+				m.place(ids[i], ref[ids[i]]["cell"])
+		var hint := m.hint()
+		if hint.is_empty():
+			continue
+		var id: String = hint["id"]
+		if hint["cell"] != ref[id]["cell"] or hint["turned"] != ref[id]["turned"]:
+			misses.append("%d:%s" % [mask, id])
+	t.eq(misses.size(), 0, "hints off their shadow: %s" % [misses.slice(0, 5)])
