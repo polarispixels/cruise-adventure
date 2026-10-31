@@ -218,13 +218,22 @@ func test_intro_always_reaches_map(t) -> void:
 	_restore_progress(t)
 
 
-func test_play_car_without_a_clip_goes_to_trunk(t) -> void:
+func test_car_intro_is_shared_unless_a_kid_has_their_own(t) -> void:
+	var jack: KidProfile = load("res://data/jack.tres")
+	t.eq(jack.car_intro(), "res://assets/video/car-intro.ogv", "both kids share the car clip")
+
+
+func test_play_car_plays_the_car_clip_first_time(t) -> void:
 	var game := _setup(t)
-	_temp_progress(t)
-	game.kid = load("res://data/jack.tres").duplicate()
-	game.kid.id = "nobody"
+	var progress := _temp_progress(t)
+	game.kid = load("res://data/jack.tres")
 	game.play_car()
-	t.eq(game.last_scene_request, game.TRUNK, "no car clip yet, straight to the trunk")
+	t.eq(game.last_scene_request, game.INTRO, "the car clip first")
+	t.eq(game.intro_level, game.CAR, "queued as the car clip")
+	game.intro_level = -1
+	progress.mark_car_done("jack")
+	game.play_car()
+	t.eq(game.last_scene_request, game.TRUNK, "once the car's loaded, straight to the trunk")
 	t.eq(game.intro_level, -1, "no intro queued")
 	_restore_progress(t)
 
@@ -234,7 +243,10 @@ func test_intro_for_car_goes_on_to_the_trunk(t) -> void:
 	var progress := _temp_progress(t)
 	game.intro_level = game.CAR
 	var intro := await _intro(t, "becca")
-	t.eq(_requests.back() if _requests.size() else "", game.TRUNK, "on to the trunk")
+	var player: VideoStreamPlayer = intro.get_node("Player")
+	t.eq(player.stream.resource_path if player.stream else "", "res://assets/video/car-intro.ogv", "the car clip")
+	await _click(t, t.tree.root.get_visible_rect().get_center())
+	t.eq(_requests.back() if _requests.size() else "", game.TRUNK, "a tap goes on to the trunk")
 	t.eq(game.intro_level, -1, "reset")
 	t.check(not progress.intro_seen("becca"), "the kid intro isn't marked seen")
 	intro.queue_free()
