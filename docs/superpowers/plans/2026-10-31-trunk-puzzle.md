@@ -112,7 +112,7 @@
   - `func place(id: String, cell: Vector2i) -> bool` (`can_place`, then record), `func remove(id: String) -> void`, `func cell_of(id: String) -> Vector2i` (`Vector2i(-1, -1)` when not placed), `func placed_ids() -> Array[String]`
   - `func is_full() -> bool` (all bags placed)
   - `func solve(allow_turns := true) -> Dictionary`: `{id: {"cell": Vector2i, "turned": bool}}` for every bag, keeping the placed bags where they are, or `{}` if impossible.
-  - `func reference() -> Dictionary`: the solution from data, in the same shape.
+  - `func reference_solution() -> Dictionary`: the solution from data, in the same shape (RefCounted already has reference()).
   - `func hint() -> Dictionary`:
     - `{}` when full;
     - `{"kind": "wrong", "id": <the first placed bag in bag_ids order whose removal makes solve() succeed>}` when solve() is empty;
