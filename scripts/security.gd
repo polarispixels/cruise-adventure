@@ -61,6 +61,7 @@ var _idle := 0.0
 
 
 func _ready() -> void:
+	Music.want(Music.AIRPORT)
 	var kid := Game.kid
 	_ids.append_array(kid.security_items)
 	for i in TRAYS:
@@ -125,6 +126,10 @@ func backpack_point() -> Vector2:
 
 func kid_point() -> Vector2:
 	return _player.hit_rect().get_center()
+
+
+func _exit_tree() -> void:
+	Music.want(Music.THEME)
 
 
 ## This part of the airport is finished: on to the gate maze.

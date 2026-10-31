@@ -72,6 +72,7 @@ var _video_started := 0.0
 
 
 func _ready() -> void:
+	Music.want(Music.AIRPORT)
 	var kid := Game.kid
 	var rng := RandomNumberGenerator.new()
 	if next_seed >= 0:
@@ -108,6 +109,7 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	Music.hold(false)
+	Music.want(Music.THEME)
 
 
 ## The visible part of the world (the camera is centered on 960, 540).
@@ -239,6 +241,8 @@ func _turn_toward(node: Vector2i, finger: Vector2) -> bool:
 
 
 func _land(node: Vector2i) -> void:
+	if node != _a or _a != _b:
+		Sfx.play("step")
 	_a = node
 	_b = node
 	_t = 0.0
@@ -280,6 +284,7 @@ func _reach_gate(i: int) -> void:
 		_found()
 		return
 	_bounce(_sibling)
+	Sfx.play("thump")
 	_say("not-this-one")
 
 
@@ -290,6 +295,7 @@ func _found() -> void:
 	_bounce(_token)
 	_bounce(_sibling)
 	Progress.mark_airport_done(Game.kid.id)
+	Sfx.play("whoosh")
 	_say("found-gate")
 	if ResourceLoader.exists(payoff_video):
 		_player.stream = load(payoff_video)

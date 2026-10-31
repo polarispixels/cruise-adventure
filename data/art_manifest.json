@@ -2573,5 +2573,65 @@
   "generator": "token",
   "source": null,
   "approved": true
+ },
+ {
+  "game": "assets/music/airport.ogg",
+  "generator": "music",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/belt.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/tag-snap.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/thump.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/flaps.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/tray-slide.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/scanner-chime.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/arch-chime.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/step.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/whoosh.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
  }
 ]

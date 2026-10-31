@@ -52,3 +52,27 @@ func test_videos_hold_the_music(t) -> void:
 	intro.free()
 	await t.tree.process_frame
 	t.check(not m.player.stream_paused, "back on when the intro goes")
+
+
+func test_sfx_files_load(t) -> void:
+	for name in ["belt", "tag-snap", "thump", "flaps", "tray-slide", "scanner-chime", "arch-chime", "step", "whoosh"]:
+		var path := "res://assets/sfx/%s.ogg" % name
+		t.check(ResourceLoader.exists(path) and load(path) is AudioStream, "sound " + name)
+
+
+func test_airport_scenes_play_the_airport_bed(t) -> void:
+	var music: Node = t.tree.root.get_node("Music")
+	var game: Node = t.tree.root.get_node("Game")
+	game.navigate = false
+	game.kid = load("res://data/becca.tres")
+	t.tree.root.get_node("Voice").enabled = false
+	var scene: Node = load("res://scenes/maze.tscn").instantiate()
+	t.tree.root.add_child(scene)
+	for i in 3:
+		await t.tree.process_frame
+	t.eq(music.current(), "res://assets/music/airport.ogg", "the airport bed in the maze")
+	t.check(music.player.playing, "playing")
+	scene.free()
+	for i in 3:
+		await t.tree.process_frame
+	t.eq(music.current(), "res://assets/music/theme.ogg", "back to the theme after the airport")

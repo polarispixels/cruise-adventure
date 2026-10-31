@@ -54,6 +54,7 @@ var _finishing := false
 
 
 func _ready() -> void:
+	Music.want(Music.AIRPORT)
 	var kid := Game.kid
 	var ids := bag_ids()
 	for i in ids.size():
@@ -117,6 +118,10 @@ func tag_point(color: String) -> Vector2:
 
 func scale_point() -> Vector2:
 	return _stage.to_global(SCALE_DROP.get_center())
+
+
+func _exit_tree() -> void:
+	Music.want(Music.THEME)
 
 
 ## This part of the airport is finished: on to security.
