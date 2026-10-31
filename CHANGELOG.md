@@ -15,7 +15,7 @@ To the car, part 1: the trunk puzzle, in playtest.
 - Ryan's and Jack-Jack's recorded voices for the packing lines. The trunk's six new lines are a computer voice until the kids record them.
 - Project page at /docs/: story arc, storyboard, per-chapter checklists and the voice tracker. Chapters 4-5 are dropped (red X); chapter 8's checklist follows its new chapter spec.
 - `docs/deployment.md`: the four ways work ships; the branch merges to main at every checkpoint.
-- The title screen shows which build is installed: `v0.4.0 playtest 10` on a tablet playtest, `v0.4.0 dev <commit>` on the live site, just `v0.4.0` on a release.
+- The title screen shows which build is installed: `v0.4.0 playtest 10` on a tablet playtest, `v0.4.0 build <N>` on the live site, `v0.4.0 local <date-time>` on a local preview, just `v0.4.0` on a release.
 
 ## [0.3.0] - 2026-10-30
 

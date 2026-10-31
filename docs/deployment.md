@@ -20,10 +20,13 @@ Links:
 The title screen shows which build is installed: the version, then a build label in the same small text.
 
 - **The version** (`config/version` in `project.godot`) is the release the branch is building toward. Bump it at the **start** of each version branch, not at release time. In the same commit, raise `version/code` in `export_presets.cfg` by 1, and update the two pins in `tests/test_smoke.gd` and the stamp test in `tests/test_title.gd`.
-- **The build label** (`config/build`) stays empty in the repo, and CI stamps it into each build:
-  - playtests: the label you pass, e.g. `v0.4.0 playtest 10`;
-  - main and other branch builds: `v0.4.0 dev 1a2b3c4` (the commit);
-  - a version tag: just `v0.4.0`.
+- **The build label** (`config/build`) stays empty in the repo. Every deployment stamps a fresh one, so the title screen always shows which build you're playing. Ryan relies on this for testing, so never hand over a build without it.
+  - Local browser preview (`tools/export_web.sh`): `v0.4.0 local 1031-0923` (the date and time of the export).
+  - Tablet playtest: `v0.4.0 playtest 10`, the label passed when dispatching the build.
+  - The live site (main) and other CI builds: `v0.4.0 build 57`, the workflow run number, which goes up with every run.
+  - A version tag: just `v0.4.0`.
+
+  When handing over a build, say the exact label to look for.
 
 ## What's a checkpoint
 
@@ -38,7 +41,7 @@ At a checkpoint, do routes 2 and 3, in that order.
 ## 1. Local preview
 
 ```bash
-mkdir -p build/web && tools/godot.sh --headless --export-release "Web" build/web/index.html
+tools/export_web.sh                          # stamps "local MMDD-HHMM" on the title screen
 python3 -m http.server 8060 -d build/web     # if it isn't already running
 ```
 

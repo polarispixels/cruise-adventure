@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       label:
-        description: 'Build label shown after the version on the title screen, e.g. "playtest 10" (default: "dev <commit>")'
+        description: 'Build label shown after the version on the title screen, e.g. "playtest 10" (default: "build <run number>")'
         required: false
         default: ""
 
@@ -49,11 +49,12 @@ jobs:
       - name: Stamp the build label
         env:
           LABEL: ${{ inputs.label }}
+          RUN: ${{ github.run_number }}
         run: &stamp |
           # Releases show just the version; everything else says which build it is.
           case "$GITHUB_REF" in
             refs/tags/v*) label="" ;;
-            *) label="${LABEL:-dev $(echo "$GITHUB_SHA" | cut -c1-7)}" ;;
+            *) label="${LABEL:-build $RUN}" ;;
           esac
           sed -i "s/^config\/build=.*/config\/build=\"$label\"/" project.godot
           grep '^config/build=' project.godot
@@ -131,6 +132,7 @@ jobs:
       - name: Stamp the build label
         env:
           LABEL: ${{ inputs.label }}
+          RUN: ${{ github.run_number }}
         run: *stamp
       - name: Export APK
         env:
