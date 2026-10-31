@@ -225,5 +225,5 @@ func test_car_button_only_when_card_done(t) -> void:
 func test_tap_car_button_goes_to_trunk(t) -> void:
 	var map := await _make(t, "becca", [0, 1, 2, 3])
 	await _tap(t, map.car_button_point())
-	t.eq(t.tree.root.get_node("Game").last_scene_request, "res://scenes/trunk.tscn", "to the trunk (no car clip yet)")
+	t.eq(t.tree.root.get_node("Game").last_scene_request, "res://scenes/intro.tscn", "the car clip, then the trunk")
 	_done(t, map)

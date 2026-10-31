@@ -2373,5 +2373,11 @@
   "generator": "placeholder",
   "source": null,
   "approved": false
+ },
+ {
+  "game": "assets/video/car-intro.ogv",
+  "generator": "video",
+  "source": "Videos/ready-to-pack-the-car.mp4",
+  "approved": true
  }
 ]

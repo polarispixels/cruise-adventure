@@ -41,9 +41,11 @@ func level_intro(level: int) -> String:
 	return "res://assets/video/%s-level%d.ogv" % [id, level + 1]
 
 
-## The clip before the trunk puzzle.
+## The clip before the trunk puzzle: the kid's own if there is one, else the
+## shared one (both kids on the driveway).
 func car_intro() -> String:
-	return "res://assets/video/%s-car.ogv" % id
+	var own := "res://assets/video/%s-car.ogv" % id
+	return own if ResourceLoader.exists(own) else "res://assets/video/car-intro.ogv"
 
 
 func room() -> Texture2D:

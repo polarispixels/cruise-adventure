@@ -363,6 +363,10 @@
    "teaches": "Getting ready to leave",
    "images": [
     [
+     "clip-ready-to-pack-the-car",
+     "Clip: ready to pack the car"
+    ],
+    [
      "clip-to-the-car",
      "Runway test clip"
     ]
@@ -373,19 +377,61 @@
      "done": true
     },
     {
-     "label": "Design the trunk puzzle"
+     "label": "Design the trunk puzzle",
+     "files": [
+      "docs/superpowers/specs/2026-10-31-trunk-puzzle-design.md"
+     ]
     },
     {
-     "label": "Art: car, open trunk, trunk-sized suitcases"
+     "label": "Build the trunk puzzle (stand-in art)",
+     "files": [
+      "scenes/trunk.tscn",
+      "scripts/trunk_model.gd"
+     ]
     },
     {
-     "label": "Build the trunk puzzle"
+     "label": "Make it easier: each bag's shadow shows where it goes",
+     "done": true
     },
     {
-     "label": "Checkpoint: play it, decide what's next"
+     "label": "Car intro clip (both kids)",
+     "files": [
+      "assets/video/car-intro.ogv"
+     ]
     },
     {
-     "label": "Intro and payoff clips"
+     "label": "Drive-off payoff clip",
+     "files": [
+      "assets/video/car-drive-off.ogv"
+     ]
+    },
+    {
+     "label": "Real art: SUV, driveway, the eight bags (art round 5)"
+    },
+    {
+     "label": "Trunk lines in Jack-Jack's voice",
+     "voice": [
+      "jack/load-car",
+      "jack/turn-it",
+      "jack/try-another-spot",
+      "jack/it-fits",
+      "jack/close-trunk",
+      "jack/lets-go"
+     ]
+    },
+    {
+     "label": "Trunk lines in Becca's voice",
+     "voice": [
+      "becca/load-car",
+      "becca/turn-it",
+      "becca/try-another-spot",
+      "becca/it-fits",
+      "becca/close-trunk",
+      "becca/lets-go"
+     ]
+    },
+    {
+     "label": "Checkpoint: play it with the kids, decide what's next"
     },
     {
      "label": "Buckle up and drive off"
