@@ -23,6 +23,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
+import import_voice  # noqa: E402
 import make_music  # noqa: E402
 import make_placeholders  # noqa: E402
 import make_voice  # noqa: E402
@@ -92,7 +93,7 @@ def main() -> None:
         elif gen == "placeholder":
             make_placeholders.ui(dst.stem, dst)
         elif gen == "voice":
-            make_voice.speak(e["text"], dst)
+            import_voice.title_line(dst, e["text"])
         elif gen == "video":
             convert_video(ART_ROOT / e["source"], dst)
         elif gen == "music":

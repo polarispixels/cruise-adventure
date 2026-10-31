@@ -1,5 +1,5 @@
 # Builds the game on every push to main and on version tags.
-# main  -> tests, web build deployed to GitHub Pages, signed APK as a workflow artifact
+# main  -> tests, web build (plus the /docs/ project page) deployed to GitHub Pages, signed APK as a workflow artifact
 # vX.Y.Z -> the same, plus a GitHub Release with cruise-adventure-vX.Y.Z.apk attached,
 #           refused while any art in data/art_manifest.json is still unapproved
 name: build
@@ -45,12 +45,33 @@ jobs:
         run: |
           mkdir -p build/web
           godot --headless --export-release "Web" build/web/index.html
+      - uses: actions/upload-artifact@v7
+        with:
+          name: web
+          path: build/web
+          if-no-files-found: error
+
+  # The game plus the project page at /docs/ (story, storyboard, checklists). Runs on a bare runner
+  # because the Godot image has no Python.
+  pages:
+    needs: web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          name: web
+          path: build/web
+      - name: Test the docs page builder
+        run: python3 -m unittest discover -s tests -p "test_*.py"
+      - name: Build the docs page
+        run: python3 tools/make_docs_site.py build/web/docs
       - uses: actions/upload-pages-artifact@v5
         with:
           path: build/web
 
   deploy-pages:
-    needs: web
+    needs: pages
     # The github-pages environment only accepts the default branch; tag commits are already on main.
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
