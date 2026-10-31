@@ -73,11 +73,11 @@
  },
  "becca/found-1": {
   "kind": "placeholder",
-  "text": "You found it!"
+  "text": "Good job!"
  },
  "becca/found-2": {
   "kind": "placeholder",
-  "text": "Yay! Good job!"
+  "text": "Good job!"
  },
  "becca/found-3": {
   "kind": "placeholder",
@@ -152,15 +152,15 @@
   "text": "Find your hat!"
  },
  "jack/find-hoodie": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your hoodie!"
  },
  "jack/find-nice-outfit": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your fancy clothes!"
  },
  "jack/find-pajamas": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your pajamas!"
  },
  "jack/find-sandals": {
@@ -184,7 +184,7 @@
   "text": "Find your Minnie ears!"
  },
  "jack/find-swimsuit": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Find your swimsuit!"
  },
  "jack/find-tablet": {
@@ -200,15 +200,15 @@
   "text": "Find your underwear!"
  },
  "jack/found-1": {
-  "kind": "placeholder",
-  "text": "You found it!"
+  "kind": "recorded",
+  "text": "Good job!"
  },
  "jack/found-2": {
-  "kind": "placeholder",
-  "text": "Yay! Good job!"
+  "kind": "recorded",
+  "text": "Good job!"
  },
  "jack/found-3": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "That's the one!"
  },
  "jack/hug-buddy": {
@@ -240,7 +240,7 @@
   "text": "Let's pack! Tap the row that's wiggling!"
  },
  "jack/roll-it": {
-  "kind": "placeholder",
+  "kind": "recorded",
   "text": "Tap the clothes to roll them up!"
  },
  "jack/try-again": {
