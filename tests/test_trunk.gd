@@ -310,13 +310,15 @@ func test_filling_says_close_trunk(t) -> void:
 
 func test_tap_hatch_closes_and_marks_done(t) -> void:
 	var trunk := await _make(t, "becca")
+	t.eq(trunk.payoff_video, "res://assets/video/car-drive-off.ogv", "the drive-off clip is the payoff")
+	trunk.payoff_video = ""
 	await _fill(t, trunk)
 	await _tap(t, trunk.hatch_point())
 	await t.tree.create_timer(0.3).timeout
 	t.eq(trunk.get_node("Suv").texture.resource_path, "res://assets/car/suv-closed.png", "hatch shut")
 	t.check(t.tree.root.get_node("Progress").car_done("becca"), "remembered")
 	t.eq(_voice(t), "lets-go", "airport, here we come")
-	t.check(trunk.get_node("Finish").visible, "finish buttons (no payoff clip yet)")
+	t.check(trunk.get_node("Finish").visible, "finish buttons (straight away without a clip)")
 	_done(t, trunk)
 
 
@@ -348,6 +350,7 @@ func test_finish_buttons_go_home_replay_continue(t) -> void:
 	var game: Node = t.tree.root.get_node("Game")
 	for pair in [["HomeButton", game.TITLE], ["ReplayButton", game.TRUNK], ["ContinueButton", game.MAP]]:
 		var trunk := await _make(t, "jack")
+		trunk.payoff_video = ""
 		await _fill(t, trunk)
 		await _tap(t, trunk.hatch_point())
 		await t.tree.create_timer(0.3).timeout

@@ -2379,5 +2379,19 @@
   "generator": "video",
   "source": "Videos/ready-to-pack-the-car.mp4",
   "approved": true
+ },
+ {
+  "game": "assets/video/car-drive-off.ogv",
+  "generator": "video",
+  "source": "Videos/bags-packed.mp4",
+  "approved": true,
+  "start": 10.5,
+  "cover": [
+   414,
+   638,
+   444,
+   54
+  ],
+  "note": "bags-packed.mp4 arrived with ready-to-pack-the-car.mp4 stuck on the front: start skips it; cover blurs a burned-in caption"
  }
 ]

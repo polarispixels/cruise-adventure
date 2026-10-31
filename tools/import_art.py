@@ -5,7 +5,7 @@ Generators:
   recolor     - hue-rotate the dominant fill of another game asset (clothing color variants)
   placeholder - draw a UI or car stand-in (tools/make_placeholders.py)
   voice       - synthesize a spoken line (tools/make_voice.py)
-  video       - convert a source clip to Ogg Theora for Godot
+  video       - convert a source clip to Ogg Theora for Godot (optional "start" seconds to skip, "cover" [x, y, w, h] to blur)
   music       - synthesize the placeholder background tune (tools/make_music.py)
 
 Usage: python3 tools/import_art.py        (idempotent; ART_ROOT overrides the art project path)
@@ -64,14 +64,20 @@ def docker():
         return [DOCKER_WIN], to_win
 
 
-def convert_video(src: Path, dst: Path) -> None:
+def convert_video(src: Path, dst: Path, start: float = 0.0, cover: list | None = None) -> None:
+    """MP4 -> 720p Theora. start: skip this many seconds (a clip delivered with
+    another stuck on the front). cover: [x, y, w, h] in the source's pixels to
+    blur away (burned-in caption text)."""
     cli, mount = docker()
     work = dst.parent
     shutil.copyfile(src, work / "_src.mp4")
+    vf = "scale=1280:720"
+    if cover:
+        vf = "delogo=x=%d:y=%d:w=%d:h=%d," % tuple(cover) + vf
     try:
         subprocess.run(cli + [
             "run", "--rm", "-v", f"{mount(work)}:/a", FFMPEG_IMAGE, "-y", "-loglevel", "error",
-            "-i", "/a/_src.mp4", "-vf", "scale=1280:720", "-c:v", "libtheora", "-q:v", "7",
+            "-ss", str(start), "-i", "/a/_src.mp4", "-vf", vf, "-c:v", "libtheora", "-q:v", "7",
             "-c:a", "libvorbis", "-q:a", "4", f"/a/{dst.name}",
         ], check=True)
     finally:
@@ -98,7 +104,7 @@ def main() -> None:
         elif gen == "voice":
             import_voice.title_line(dst, e["text"])
         elif gen == "video":
-            convert_video(ART_ROOT / e["source"], dst)
+            convert_video(ART_ROOT / e["source"], dst, e.get("start", 0.0), e.get("cover"))
         elif gen == "music":
             make_music.main()
         print(f"{gen:11} {e['game']}")
