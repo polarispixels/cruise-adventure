@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_map"]
 [ext_resource type="PackedScene" path="res://scenes/card.tscn" id="2_card"]
 [ext_resource type="PackedScene" path="res://scenes/character.tscn" id="3_char"]
 [ext_resource type="Texture2D" path="res://assets/ui/dim.png" id="4_dim"]
 [ext_resource type="Texture2D" path="res://assets/ui/home.png" id="5_home"]
+[ext_resource type="Texture2D" path="res://assets/car/suv-closed.png" id="6_car"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_map")
@@ -25,5 +26,13 @@ texture = ExtResource("4_dim")
 offset_right = 150.0
 offset_bottom = 150.0
 texture_normal = ExtResource("5_home")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CarButton" type="TextureButton" parent="."]
+visible = false
+offset_right = 325.0
+offset_bottom = 260.0
+texture_normal = ExtResource("6_car")
 ignore_texture_size = true
 stretch_mode = 5

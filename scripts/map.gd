@@ -9,6 +9,8 @@ const MARGIN := 24.0
 const HELPER_SCALE := 0.35
 const HELPER_MARGIN := Vector2(150, 24)
 const HOME_SIZE := 150.0
+## The car button (shown once the card is packed) is this tall, beside the card.
+const CAR_HEIGHT := 260.0
 
 var _started := false
 var _idle := 0.0
@@ -18,6 +20,7 @@ var _idle := 0.0
 @onready var _card: Card = $Card
 @onready var _helper: Character = $Helper
 @onready var _home: TextureButton = $HomeButton
+@onready var _car: TextureButton = $CarButton
 
 
 func _ready() -> void:
@@ -28,6 +31,8 @@ func _ready() -> void:
 	_helper.height_scale = HELPER_SCALE
 	_helper.mirrored = true
 	_home.pressed.connect(func(): Game.goto(Game.TITLE))
+	_car.visible = Progress.next_level(kid.id) >= Progress.LEVELS
+	_car.pressed.connect(_on_car)
 	var done := Progress.levels_done(kid.id)
 	for row in Progress.LEVELS:
 		if done.has(row):
@@ -41,6 +46,18 @@ func _ready() -> void:
 ## Global center of a row, for taps in tests.
 func row_point(row: int) -> Vector2:
 	return _card.to_global(_card.row_rect(row).get_center())
+
+
+## Global center of the car button, for taps in tests.
+func car_button_point() -> Vector2:
+	return _car.global_position + _car.size / 2
+
+
+func _on_car() -> void:
+	if _started:
+		return
+	_started = true
+	Game.play_car()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -100,3 +117,8 @@ func _fit() -> void:
 	_helper.position = Vector2(960 + view.x / 2 - HELPER_MARGIN.x, 540 + view.y / 2 - HELPER_MARGIN.y)
 	_home.position = Vector2(left + MARGIN, top + MARGIN)
 	_home.size = Vector2.ONE * HOME_SIZE
+	# Left of the card, centered between the screen edge and the card.
+	var tex := _car.texture_normal.get_size()
+	_car.size = Vector2(CAR_HEIGHT * tex.x / tex.y, CAR_HEIGHT)
+	var gap_center := (left + _card.position.x) / 2
+	_car.position = Vector2(gap_center - _car.size.x / 2, 540 - _car.size.y / 2)

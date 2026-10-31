@@ -216,3 +216,26 @@ func test_intro_always_reaches_map(t) -> void:
 	t.eq(_requests, [t.tree.root.get_node("Game").MAP] as Array[String], "finished reaches map exactly once")
 	intro.queue_free()
 	_restore_progress(t)
+
+
+func test_play_car_without_a_clip_goes_to_trunk(t) -> void:
+	var game := _setup(t)
+	_temp_progress(t)
+	game.kid = load("res://data/jack.tres").duplicate()
+	game.kid.id = "nobody"
+	game.play_car()
+	t.eq(game.last_scene_request, game.TRUNK, "no car clip yet, straight to the trunk")
+	t.eq(game.intro_level, -1, "no intro queued")
+	_restore_progress(t)
+
+
+func test_intro_for_car_goes_on_to_the_trunk(t) -> void:
+	var game := _setup(t)
+	var progress := _temp_progress(t)
+	game.intro_level = game.CAR
+	var intro := await _intro(t, "becca")
+	t.eq(_requests.back() if _requests.size() else "", game.TRUNK, "on to the trunk")
+	t.eq(game.intro_level, -1, "reset")
+	t.check(not progress.intro_seen("becca"), "the kid intro isn't marked seen")
+	intro.queue_free()
+	_restore_progress(t)

@@ -1,5 +1,6 @@
 # Plays the chosen child's intro clip full screen, or a card row's video before
-# that row (Game.intro_level). A tap skips it; the card map (or the row's room)
+# that row, or the car clip before the trunk (Game.intro_level). A tap skips it;
+# the card map (or the row's room, or the trunk)
 # always follows, whether the clip ends, is skipped or doesn't exist.
 extends Control
 
@@ -11,7 +12,12 @@ var _left := false
 func _ready() -> void:
 	var path := ""
 	if Game.kid:
-		path = Game.kid.level_intro(Game.intro_level) if Game.intro_level >= 0 else Game.kid.intro_video
+		if Game.intro_level == Game.CAR:
+			path = Game.kid.car_intro()
+		elif Game.intro_level >= 0:
+			path = Game.kid.level_intro(Game.intro_level)
+		else:
+			path = Game.kid.intro_video
 	if path == "" or not ResourceLoader.exists(path):
 		_leave.call_deferred()
 		return
@@ -36,8 +42,9 @@ func _leave() -> void:
 	_left = true
 	_player.stop()
 	if Game.intro_level >= 0:
+		var next := Game.TRUNK if Game.intro_level == Game.CAR else Game.ROOM
 		Game.intro_level = -1
-		Game.goto(Game.ROOM)
+		Game.goto(next)
 		return
 	if Game.kid:
 		Progress.mark_intro_seen(Game.kid.id)

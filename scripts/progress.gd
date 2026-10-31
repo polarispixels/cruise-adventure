@@ -8,7 +8,7 @@ const LEVELS := 4
 ## Tests point this at a temp file.
 var path := "user://progress.json"
 
-## {kid_id: {"levels_done": [int], "intro_seen": bool}}
+## {kid_id: {"levels_done": [int], "intro_seen": bool, "car_done": bool}}
 var _data: Dictionary = {}
 
 
@@ -51,6 +51,16 @@ func intro_seen(kid_id: String) -> bool:
 
 func mark_intro_seen(kid_id: String) -> void:
 	_entry(kid_id)["intro_seen"] = true
+	save_file()
+
+
+## Whether the kid has loaded the car (the trunk puzzle).
+func car_done(kid_id: String) -> bool:
+	return bool(_kid(kid_id).get("car_done", false))
+
+
+func mark_car_done(kid_id: String) -> void:
+	_entry(kid_id)["car_done"] = true
 	save_file()
 
 

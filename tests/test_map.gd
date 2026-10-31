@@ -198,3 +198,32 @@ func test_all_done_map_cheers(t) -> void:
 	t.eq(voice.last_line, "all-packed", "everything packed")
 	voice.enabled = true
 	_done(t, map)
+
+
+func test_car_button_only_when_card_done(t) -> void:
+	var map := await _make(t, "jack", [0, 1, 2])
+	t.check(not map.get_node("CarButton").visible, "hidden while rows are left")
+	_done(t, map)
+	var window: Window = t.tree.root
+	var old_size := window.size
+	for size in [Vector2i(1920, 1080), Vector2i(1920, 1200)]:
+		window.size = size
+		map = await _make(t, "jack", [0, 1, 2, 3])
+		var car: TextureButton = map.get_node("CarButton")
+		t.check(car.visible, "shown when the card is packed")
+		t.check(car.size.y >= 220.0, "big enough to tap")
+		var view_size := map.get_viewport().get_visible_rect().size
+		var view := Rect2(Vector2(960, 540) - view_size / 2, view_size)
+		var rect := Rect2(car.global_position, car.size)
+		t.check(view.encloses(rect), "on screen at %s: %s in %s" % [size, rect, view])
+		var card: Node2D = map.get_node("Card")
+		t.check(rect.end.x <= card.global_position.x, "left of the card")
+		_done(t, map)
+	window.size = old_size
+
+
+func test_tap_car_button_goes_to_trunk(t) -> void:
+	var map := await _make(t, "becca", [0, 1, 2, 3])
+	await _tap(t, map.car_button_point())
+	t.eq(t.tree.root.get_node("Game").last_scene_request, "res://scenes/trunk.tscn", "to the trunk (no car clip yet)")
+	_done(t, map)
