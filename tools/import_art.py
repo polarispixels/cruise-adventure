@@ -3,7 +3,7 @@
 Generators:
   copy        - copy the source file from ART_ROOT byte for byte
   recolor     - hue-rotate the dominant fill of another game asset (clothing color variants)
-  placeholder - draw a UI placeholder (tools/make_placeholders.py)
+  placeholder - draw a UI or car stand-in (tools/make_placeholders.py)
   voice       - synthesize a spoken line (tools/make_voice.py)
   video       - convert a source clip to Ogg Theora for Godot
   music       - synthesize the placeholder background tune (tools/make_music.py)
@@ -91,7 +91,10 @@ def main() -> None:
         elif gen == "recolor":
             recolor(ROOT / e["from"], dst, e["hue_shift"])
         elif gen == "placeholder":
-            make_placeholders.ui(dst.stem, dst)
+            if dst.parent.name == "car":
+                make_placeholders.car(dst.stem, dst)
+            else:
+                make_placeholders.ui(dst.stem, dst)
         elif gen == "voice":
             import_voice.title_line(dst, e["text"])
         elif gen == "video":

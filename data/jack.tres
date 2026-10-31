@@ -12,3 +12,6 @@ intro_video = "res://assets/video/jack-intro.ogv"
 outfits = 6
 done_video = "res://assets/video/jack-done.ogv"
 min_color_gap = 1
+trunk_preplaced = PackedStringArray()
+trunk_outlines = false
+trunk_auto_turn = false

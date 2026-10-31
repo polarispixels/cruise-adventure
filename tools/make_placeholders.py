@@ -184,6 +184,73 @@ def ui(name, dst):
     img.resize((w, h), Image.LANCZOS).save(dst)
 
 
+TRUNK = Path(__file__).resolve().parent.parent / "data" / "trunk.json"
+BAG_LOOKS = {  # body, trim
+    "mommy-yellow": ("#F2C230", "#B8860B"), "daddy-gray": ("#8A9099", "#5A5F66"),
+    "jack-suitcase": ("#2F6FE4", "#1B4FB0"), "becca-suitcase": ("#F07AB0", "#C04F86"),
+    "daddy-backpack": ("#2A2A2A", "#555555"), "jack-backpack": ("#7A7F86", "#2A2A2A"),
+    "becca-backpack": ("#F07AB0", "#FFD1E6"), "mommy-purse": ("#2A2A2A", "#C9A227"),
+}
+
+
+def car(name, dst):
+    """Stand-ins for the To the car chapter (art round 5 replaces them): the eight bags at
+    200 px per trunk cell, the SUV open and closed, and the driveway."""
+    import json
+    data = json.loads(TRUNK.read_text())
+    cell = data["cell_px"]
+    if name.startswith("bag-"):
+        bag = name[4:]
+        w, h = next(b["size"] for b in data["bags"] if b["id"] == bag)
+        w, h = w * cell, h * cell
+        img, d = canvas(w, h)
+        body, trim = BAG_LOOKS[bag]
+        m = 8
+        top = m + (min(w, h) * 0.18 if "backpack" not in bag else 0)
+        if "purse" in bag or "yellow" in bag:  # a strap or handles over the top
+            d.arc(s(w * 0.3, m, w * 0.7, top * 2 + 20), 180, 360, fill=OUTLINE, width=10 * SS)
+        else:
+            d.rounded_rectangle(s(w * 0.38, m, w * 0.62, top + 24), radius=12 * SS, outline=OUTLINE, width=10 * SS)
+        d.rounded_rectangle(s(m, top, w - m, h - m), radius=min(w, h) * 0.12 * SS, fill=body, outline=OUTLINE, width=10 * SS)
+        if "backpack" in bag:
+            d.rounded_rectangle(s(w * 0.2, h * 0.55, w * 0.8, h * 0.85), radius=20 * SS, fill=trim, outline=OUTLINE, width=6 * SS)
+            if bag == "jack-backpack":  # a little red monster truck
+                d.rectangle(s(w * 0.3, h * 0.6, w * 0.7, h * 0.7), fill="#D7263D")
+                for cx in (0.35, 0.65):
+                    d.ellipse(s(w * cx - 14, h * 0.7 - 6, w * cx + 14, h * 0.7 + 22), fill="#111111")
+        else:
+            d.line(s(w * 0.5, top + 20, w * 0.5, h - m - 20), fill=trim, width=8 * SS)
+    elif name.startswith("suv"):
+        w, h = 2000, 1600
+        img, d = canvas(w, h)
+        x, y, cw, ch = data["cargo_rect"]
+        d.rounded_rectangle(s(x - 160, y - 120, x + cw + 160, y + ch + 120), radius=80 * SS, fill="#1E1E24", outline=OUTLINE, width=12 * SS)
+        for tx in (x - 120, x + cw + 40):  # taillights
+            d.rounded_rectangle(s(tx, y + 100, tx + 80, y + 380), radius=20 * SS, fill="#E03131", outline=OUTLINE, width=8 * SS)
+        for wx in (x - 60, x + cw - 200):  # tires
+            d.rounded_rectangle(s(wx, y + ch + 60, wx + 260, h - 20), radius=40 * SS, fill="#111111")
+        d.rectangle(s(x - 160, y + ch + 40, x + cw + 160, y + ch + 130), fill="#3A3A42", outline=OUTLINE, width=8 * SS)
+        if name == "suv-open":
+            d.rectangle(s(x, y, x + cw, y + ch), fill="#4A4D55")
+            for bx in (x, x + cw - cell):  # wheel wells
+                d.rounded_rectangle(s(bx, y + ch - cell, bx + cell, y + ch), radius=60 * SS, fill="#33363D")
+            d.rounded_rectangle(s(x - 120, 20, x + cw + 120, y - 30), radius=60 * SS, fill="#1E1E24", outline=OUTLINE, width=12 * SS)
+            d.rounded_rectangle(s(x + 80, 70, x + cw - 80, y - 90), radius=40 * SS, fill="#8EC5E8")
+        else:
+            d.rounded_rectangle(s(x - 20, y - 40, x + cw + 20, y + ch + 20), radius=50 * SS, fill="#26262E", outline=OUTLINE, width=12 * SS)
+            d.rounded_rectangle(s(x + 80, y + 10, x + cw - 80, y + ch * 0.45), radius=40 * SS, fill="#8EC5E8")
+    else:  # driveway
+        w, h = 1672, 941
+        img, d = canvas(w, h, (142, 205, 240, 255))
+        d.rectangle(s(0, 420, w, h), fill="#7CC36B")
+        d.rectangle(s(330, 120, 1340, 470), fill="#F3E3C3", outline=OUTLINE, width=8 * SS)
+        d.polygon(pts([(290, 140), (835, 20), (1380, 140)]), fill="#B5543C", outline=OUTLINE)
+        d.rectangle(s(780, 290, 890, 470), fill="#3E7CB1", outline=OUTLINE, width=6 * SS)
+        d.polygon(pts([(560, 470), (1110, 470), (1500, h), (170, h)]), fill="#B9B6B0")
+    Path(dst).parent.mkdir(parents=True, exist_ok=True)
+    img.resize((w, h), Image.LANCZOS).save(dst)
+
+
 if __name__ == "__main__":
     replay()
     star()

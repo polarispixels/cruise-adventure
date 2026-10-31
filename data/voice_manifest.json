@@ -7,6 +7,10 @@
   "kind": "placeholder",
   "text": "Close the suitcase!"
  },
+ "becca/close-trunk": {
+  "kind": "placeholder",
+  "text": "Everything's in! Close the trunk!"
+ },
  "becca/find-book": {
   "kind": "placeholder",
   "text": "Find your book!"
@@ -87,6 +91,18 @@
   "kind": "placeholder",
   "text": "Give it a big hug!"
  },
+ "becca/it-fits": {
+  "kind": "placeholder",
+  "text": "It fits!"
+ },
+ "becca/lets-go": {
+  "kind": "placeholder",
+  "text": "Airport, here we come!"
+ },
+ "becca/load-car": {
+  "kind": "placeholder",
+  "text": "Let's put all the bags in the car!"
+ },
  "becca/open-basket": {
   "kind": "recorded",
   "text": "Let's look in the basket!"
@@ -119,6 +135,14 @@
   "kind": "placeholder",
   "text": "Hmm... try another one!"
  },
+ "becca/try-another-spot": {
+  "kind": "placeholder",
+  "text": "Hmm... try another spot!"
+ },
+ "becca/turn-it": {
+  "kind": "placeholder",
+  "text": "Tap it to turn it!"
+ },
  "becca/who-do-you-want": {
   "kind": "recorded",
   "text": "Who do you want to play as?"
@@ -134,6 +158,10 @@
  "jack/close-suitcase": {
   "kind": "recorded",
   "text": "Close the suitcase!"
+ },
+ "jack/close-trunk": {
+  "kind": "placeholder",
+  "text": "Everything's in! Close the trunk!"
  },
  "jack/find-book": {
   "kind": "recorded",
@@ -215,6 +243,18 @@
   "kind": "recorded",
   "text": "Give it a big hug!"
  },
+ "jack/it-fits": {
+  "kind": "placeholder",
+  "text": "It fits!"
+ },
+ "jack/lets-go": {
+  "kind": "placeholder",
+  "text": "Airport, here we come!"
+ },
+ "jack/load-car": {
+  "kind": "placeholder",
+  "text": "Let's put all the bags in the car!"
+ },
  "jack/open-basket": {
   "kind": "recorded",
   "text": "Let's look in the basket!"
@@ -246,6 +286,14 @@
  "jack/try-again": {
   "kind": "recorded",
   "text": "Hmm... try another one!"
+ },
+ "jack/try-another-spot": {
+  "kind": "placeholder",
+  "text": "Hmm... try another spot!"
+ },
+ "jack/turn-it": {
+  "kind": "placeholder",
+  "text": "Tap it to turn it!"
  },
  "jack/who-do-you-want": {
   "kind": "recorded",

@@ -2307,5 +2307,71 @@
   "generator": "copy",
   "source": "Game Assets/Props/Shared/Shared - toybox-open v0.1 - PROVISIONAL.png",
   "approved": true
+ },
+ {
+  "game": "assets/car/bag-mommy-yellow.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
+  "game": "assets/car/bag-daddy-gray.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
+  "game": "assets/car/bag-jack-suitcase.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
+  "game": "assets/car/bag-becca-suitcase.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
+  "game": "assets/car/bag-daddy-backpack.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
+  "game": "assets/car/bag-jack-backpack.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
+  "game": "assets/car/bag-becca-backpack.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
+  "game": "assets/car/bag-mommy-purse.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
+  "game": "assets/car/suv-open.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
+  "game": "assets/car/suv-closed.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
+ },
+ {
+  "game": "assets/car/driveway.png",
+  "generator": "placeholder",
+  "source": null,
+  "approved": false
  }
 ]

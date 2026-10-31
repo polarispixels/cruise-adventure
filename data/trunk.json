@@ -1,0 +1,137 @@
+{
+ "cols": 7,
+ "rows": 5,
+ "blocked": [
+  [
+   0,
+   4
+  ],
+  [
+   6,
+   4
+  ]
+ ],
+ "cell_px": 200,
+ "cargo_rect": [
+  300,
+  380,
+  1400,
+  1000
+ ],
+ "bags": [
+  {
+   "id": "mommy-yellow",
+   "size": [
+    5,
+    2
+   ]
+  },
+  {
+   "id": "daddy-gray",
+   "size": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "jack-suitcase",
+   "size": [
+    2,
+    2
+   ]
+  },
+  {
+   "id": "becca-suitcase",
+   "size": [
+    2,
+    2
+   ]
+  },
+  {
+   "id": "daddy-backpack",
+   "size": [
+    2,
+    2
+   ]
+  },
+  {
+   "id": "jack-backpack",
+   "size": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "becca-backpack",
+   "size": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "mommy-purse",
+   "size": [
+    1,
+    1
+   ]
+  }
+ ],
+ "solution": {
+  "mommy-yellow": {
+   "cell": [
+    0,
+    0
+   ],
+   "turned": false
+  },
+  "jack-suitcase": {
+   "cell": [
+    5,
+    0
+   ],
+   "turned": false
+  },
+  "daddy-gray": {
+   "cell": [
+    0,
+    2
+   ],
+   "turned": true
+  },
+  "becca-suitcase": {
+   "cell": [
+    3,
+    2
+   ],
+   "turned": false
+  },
+  "daddy-backpack": {
+   "cell": [
+    5,
+    2
+   ],
+   "turned": false
+  },
+  "jack-backpack": {
+   "cell": [
+    1,
+    4
+   ],
+   "turned": true
+  },
+  "becca-backpack": {
+   "cell": [
+    3,
+    4
+   ],
+   "turned": true
+  },
+  "mommy-purse": {
+   "cell": [
+    5,
+    4
+   ],
+   "turned": false
+  }
+ }
+}

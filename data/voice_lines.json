@@ -134,5 +134,29 @@
  {
   "id": "all-packed",
   "text": "We packed everything! Cruise ship, here we come!"
+ },
+ {
+  "id": "load-car",
+  "text": "Let's put all the bags in the car!"
+ },
+ {
+  "id": "turn-it",
+  "text": "Tap it to turn it!"
+ },
+ {
+  "id": "try-another-spot",
+  "text": "Hmm... try another spot!"
+ },
+ {
+  "id": "it-fits",
+  "text": "It fits!"
+ },
+ {
+  "id": "close-trunk",
+  "text": "Everything's in! Close the trunk!"
+ },
+ {
+  "id": "lets-go",
+  "text": "Airport, here we come!"
  }
 ]
