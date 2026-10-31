@@ -76,12 +76,14 @@ The art, video and voice agents deliver into the Kids Packing Video folder. This
 | Delivery | Where it lands | What to run here |
 | --- | --- | --- |
 | Art (PNGs) | `Game Assets\...` | Point its `data/art_manifest.json` entry at the file (`"generator": "copy"`, `"source"`, `"approved": true`), then `python3 tools/import_art.py` and `tools/godot.sh --headless --import` |
-| Video (MP4) | `Videos\` | Add a `"generator": "video"` manifest entry (`assets/video/<name>.ogv`), then the same two commands |
+| Video (MP4) | `Videos\` | Add a `"generator": "video"` manifest entry (`assets/video/<name>.ogv`), then the same two commands. If the clip arrives with another stuck on its front or with burned-in text, add `"start"` (seconds to skip) and `"cover"` (`[x, y, w, h]` to blur) to the entry rather than editing the file |
 | Voice (m4a, any name) | Uploaded in chat | Copy to `recordings/<jack\|becca\|shared>/<line id>.m4a`, then `python3 tools/import_voice.py` |
 
 Then run the tests and preview locally. The next checkpoint ships it.
 
-New requests for the agents go into the repo (`docs/art/`, `docs/video/`, `docs/voice/`), with a copy in `Kids Packing Video\Specs\`.
+New requests for the agents go into the repo (`docs/art/`, `docs/video/`, `docs/voice/`), with a copy in `Kids Packing Video\Specs\`. When a request changes, update both copies.
+
+**Chapter specs.** Each chapter is designed in its own spec in `Kids Packing Video\Specs\` (from `Cruise Adventure - Chapter Spec Template.md`). When one is approved, link it from the game spec's Part 2 section, make the chapter's checklist in `docs/site/story.json` match the spec's acceptance checklist (with `files` and `voice` checks wherever the repo can tick them), and copy any art, video or voice request it produces into `docs/`.
 
 ## Never
 

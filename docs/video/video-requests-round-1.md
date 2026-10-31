@@ -6,7 +6,7 @@ Short clips that play inside the game. The kids talk to the player, who is a you
 
 **Rules for every clip:**
 - **Attach as references:** `Character Sheets/Jack-Jack and Becca Character Sheets v0.4.png` and the room background named in the clip.
-- **Characters:** Jack-Jack (6) has sandy light-brown hair, an olive green hoodie and blue jeans. Becca (4) has curly blonde hair, brown eyes, a pink hoodie and navy leggings. Hands empty, no props unless stated.
+- **Characters:** Jack-Jack (6) has golden sandy dirty-blonde hair (no copper or orange), an olive green hoodie and blue jeans. Becca (4) has curly blonde hair, brown eyes, a pink hoodie and navy leggings. Hands empty, no props unless stated.
 - **Format:** 16:9, 720p or 1080p, **8-10 seconds**, a locked-off camera at child eye level, no camera moves.
 - **No text, captions, logos or music.** The game adds its own sound.
 - **Start and end on a held still frame** (half a second each), with both kids standing still and smiling. The game cuts in and out of the clip there.

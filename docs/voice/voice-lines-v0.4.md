@@ -1,5 +1,7 @@
 # Cruise Adventure - Voice Lines v0.4 (To the car)
 
+> **Status (Oct 31, 2026):** waiting for recordings. The game uses a computer voice for these six lines until then.
+
 New lines for the trunk puzzle. As before, the helper sibling says them, so **Jack-Jack records them for Becca's game** and **Becca records them for Jack-Jack's game**. One file per line, named roughly after what's said, works fine.
 
 | Line id | Words | When it plays |

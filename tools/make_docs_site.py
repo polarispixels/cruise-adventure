@@ -278,7 +278,7 @@ TEMPLATE = """<!DOCTYPE html>
 {voices}
 
 <h2 id="characters">Characters</h2>
-<p class="lede">Character Sheets v0.4 win every argument: Becca's eyes are brown; Jack-Jack's hair is sandy light brown.</p>
+<p class="lede">Character Sheets v0.4 win every argument: Becca's eyes are brown; Jack-Jack's hair is golden sandy dirty-blonde, no copper or orange.</p>
 <div class="pics">{characters}</div>
 
 <h2 id="how">How we work</h2>

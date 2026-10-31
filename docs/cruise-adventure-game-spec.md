@@ -29,7 +29,7 @@ Rules that keep the handoffs clean:
 2. **Requests are documents.** The developer writes art and video requests into the repo (`docs/art/`, `docs/video/`). Ryan carries them to ChatGPT or Gemini.
 3. **The developer only reads the art and video folders.** It copies approved files into `assets/` through the import script and never edits the originals.
 4. **Provisional is fine until release.** Anything unapproved can appear in test builds. A version tag waits for Ryan's approval of the art and video in it.
-5. **The character sheets win.** Every agent works from Character Sheets v0.4 (Becca's eyes are brown; Jack-Jack's hair is sandy light brown).
+5. **The character sheets win.** Every agent works from Character Sheets v0.4 (Becca's eyes are brown; Jack-Jack's hair is golden sandy dirty-blonde, no copper or orange, as Ryan decided on October 31, 2026).
 6. **Gemini's budget is the scarcest resource.** On the current plan it produces about 4 clips every 5 hours. Video requests are ranked by priority, and clips the developer needs to unblock a release come first.
 
 ## Story arc
@@ -53,13 +53,27 @@ Part 1 is the storyboard's six chapters turned into play. Part 2 is the trip its
 
 | Chapter | Video segments | What the child plays | It teaches |
 | --- | --- | --- | --- |
-| 7. To the car | Pushing suitcases into the car (the Runway clip exists) | Load suitcases and booster seats in the right spots | Getting ready to leave |
-| 8. The airport | Walking through the airport (the Gemini clip exists) | Follow picture signs to the gate; put the bag on the security belt | What the airport is like |
+| 7. To the car | Both kids by the car (`ready-to-pack-the-car.mp4`); the SUV drives off (`car-drive-off`) | The trunk puzzle: fit all eight family bags into the black SUV, turning some on their side | Getting ready to leave |
+| 8. The airport | The kid leads the way in; the jet bridge payoff (see the chapter 8 spec) | Goodbye suitcases, Through security, Find our gate | What the airport is like |
 | 9. The flight | Takeoff out the window | Calm activities in the seat: buckle up, pick a snack, look out the window | What flying is like |
 | 10. The ship | Boarding the ship | Find the stateroom by matching the key card number to the doors | Numbers and finding your way |
 | 11. Ship and beach | Water slides, the beach | A playground of mini games that grows over time | Fun, and the reason for all the work |
 
 Part 2 can use real photos and memories from the trip to shape each chapter.
+
+**Chapter specs.** Chapter specs now live in the Kids Packing Video `Specs\` folder, one per chapter, each built from `Cruise Adventure - Chapter Spec Template.md`. A chapter spec holds the detail: the play segments, what's different for Jack-Jack and Becca, art, video, voice lines and an acceptance checklist. This spec keeps the structure and the rules, and wins if the two disagree. The project page's checklist for a chapter follows its spec's acceptance checklist.
+
+- Chapter 8, The airport: [Cruise Adventure - Chapter 08 - The Airport v0.1.md](file:///C:/Users/rgris/Documents/ChatGPT/Kids%20Packing%20Video/Specs/Cruise%20Adventure%20-%20Chapter%2008%20-%20The%20Airport%20v0.1.md) (`Kids Packing Video\Specs\`). Ryan approved it on October 31, 2026. It has three play segments: Goodbye suitcases, Through security and Find our gate.
+
+**October 31, 2026 decisions:**
+
+- **The family SUV is black,** as in Art Round 5. This supersedes the teal SUV in the game storyboard's keyframes 02-04, which will be corrected when those frames are revised. The car intro clip (`ready-to-pack-the-car.mp4`) also shows the teal car.
+- **The trip-wide bag plan is approved.** It's in section 3 of the chapter 8 spec, and later chapters follow it.
+  - Jack-Jack's blue suitcase, Becca's pink suitcase and Mommy's yellow duffel are checked at the airport and next appear at baggage claim.
+  - Daddy's gray suitcase is his carry-on, and goes in the overhead bin in chapter 9.
+  - The kids' backpacks are their activity bags, holding the tablet and buddy for the flight.
+  - Daddy's backpack and Mommy's purse are carry-ons.
+- **Jack-Jack's hair is golden sandy dirty-blonde, no copper or orange.** Character Sheets v0.4 still win.
 
 ## Segment pattern and design rules
 
@@ -89,11 +103,12 @@ The trip leaves November 10. The goal is a playable Chapter 2 before then, so th
 | Version | Contents | Target | Waiting on |
 | --- | --- | --- | --- |
 | 0.1 | Drag the shirt into the suitcase (pipeline proof) | Shipped Oct 29 | Nothing |
-| 0.2 | Chapters 1-2: pick a child, intro video, row 1, roll, pack, zip | Before Nov 10 | Developer build; `jack-pack.mp4`; video plays smoothly on the Fire tablet |
-| 0.3 | Chapter 3: rows 2-4, counting six bundles, the segment player as a reusable system | After the trip | Art round 2 (rows 2-4, hmm and hug poses); level-2 clips |
+| 0.2 | Chapters 1-2: pick a child, intro video, row 1, roll, pack, zip | Shipped inside 0.3.0 | Nothing |
+| 0.3 | Chapter 3: rows 2-4, the segment player as a reusable system | Shipped Oct 30 (v0.3.0) | Counting six bundles and the "all packed" clip were left out |
 | ~~0.4~~ | ~~Chapters 4-6: the mistake, inspection, the ship payoff~~ | Dropped Oct 30 | Packing is complete; the payoff moves to the ship |
-| 0.4 | Chapter 7, To the car: the trunk puzzle first, then a checkpoint to decide what follows | Next | Trunk puzzle design; car and trunk art |
-| 0.5+ | The rest of the journey, one stop per release. The expanded stops (baggage claim and rental car, hotel and beach) are proposed in `Specs/Cruise Adventure - Game Story Arc v0.2.md` | Ongoing | Trip photos and memories, new art and clips per chapter |
+| 0.4 | Chapter 7, To the car: the trunk puzzle first, then a checkpoint to decide what follows | In playtest (real art, both car clips) | The kids' checkpoint playtest; the trunk voice lines (Voice Lines v0.4); Ryan's OK to tag |
+| 0.5 | Chapter 8, The airport, per its approved chapter spec: Goodbye suitcases, Through security, Find our gate | Next | Art round 6, the airport clips, Voice Lines v0.5 |
+| 0.6+ | The rest of the journey, one stop per release. The expanded stops (baggage claim and rental car, hotel and beach) are proposed in `Specs/Cruise Adventure - Game Story Arc v0.2.md` | Ongoing | Trip photos and memories, new art and clips per chapter |
 
 The first developer task in 0.2 stays the video check on the Fire tablet. If 720p Theora stutters there, every later chapter needs lower-resolution clips, so it's worth knowing on day one.
 
@@ -102,5 +117,5 @@ The first developer task in 0.2 stays the video check on the Fire tablet. If 720
 - [ ] Is the 3-minute packing video retired, or still wanted later as a separate cut assembled from the game's clips?
 - [ ] Does Dad's narration (the training-film voice) stay in the game, and is it your recorded voice or a placeholder?
 - [x] ~~Chapter 4: one mistake per child, or both?~~ Moot: chapter 4 dropped Oct 30.
-- [ ] Is a playable Chapter 2 before November 10 the real target, or a nice-to-have?
+- [x] ~~Is a playable Chapter 2 before November 10 the real target?~~ Done: the whole card shipped as v0.3.0 on Oct 30.
 - [ ] Should the packing-video project's paused storyboard tasks (3 and 4) be closed out in favor of this spec, so ChatGPT stops waiting on them?
