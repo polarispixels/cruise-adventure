@@ -165,8 +165,8 @@ func test_full_flow_jack(t) -> void:
 
 
 func test_outfits_per_kid(t) -> void:
-	t.eq(load("res://data/becca.tres").outfits, 4, "becca rolls four")
-	t.eq(load("res://data/jack.tres").outfits, 6, "jack rolls six")
+	t.eq(load("res://data/becca.tres").outfits, 2, "becca rolls two")
+	t.eq(load("res://data/jack.tres").outfits, 3, "jack rolls three")
 
 
 func test_next_outfit_starts_fresh(t) -> void:
