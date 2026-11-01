@@ -278,5 +278,53 @@
  {
   "id": "flight-done",
   "text": "We landed! Time to get off the airplane!"
+ },
+ {
+  "id": "get-keycard",
+  "text": "Find the key card with your face!"
+ },
+ {
+  "id": "see-number",
+  "text": "That's our room number!"
+ },
+ {
+  "id": "see-sticker",
+  "text": "Look at your sticker!"
+ },
+ {
+  "id": "slide-hall",
+  "text": "Slide to walk down the hall!"
+ },
+ {
+  "id": "match-door-number",
+  "text": "Find the door with your number!"
+ },
+ {
+  "id": "match-door-sticker",
+  "text": "Find the door with your sticker!"
+ },
+ {
+  "id": "not-this-door",
+  "text": "Not this door! Keep looking!"
+ },
+ {
+  "id": "our-room",
+  "text": "Our room! Look at the round window!"
+ },
+ {
+  "id": "horn-warning",
+  "text": "The ship makes a big HONK sound. That's OK!"
+ },
+ {
+  "id": "follow-arrows",
+  "text": "Follow the arrows to the meeting spot!"
+ },
+ {
+  "id": "follow-feet",
+  "text": "Follow the footprints!"
+ },
+ {
+  "id": "all-together",
+  "text": "We're all together!"
  }
 ]

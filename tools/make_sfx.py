@@ -18,6 +18,9 @@ import import_art
 RATE = 44100
 OUT = Path(__file__).resolve().parent.parent / "assets" / "sfx"
 
+# Quieter than the rest: the ship horn is meant to be gentle.
+GAIN = {"ship-horn": 0.45}
+
 
 def t(seconds):
     return np.arange(int(seconds * RATE)) / RATE
@@ -61,6 +64,22 @@ def sounds():
         "arch-chime": np.concatenate([tone(659, 0.15, 9), tone(784, 0.15, 9), tone(1047, 0.5, 4)]),
         "step": mix(tone(140, 0.08, 45), 0.3 * noise(0.06, 50, rng, 30)),
         "whoosh": noise(0.9, 2.5, rng, 8) * np.sin(np.linspace(0, np.pi, int(0.9 * RATE))) ** 2,
+        **aboard_sounds(rng),
+    }
+
+
+def aboard_sounds(rng):
+    """Chapter 11: a soft two-tone ship horn (the Maze engine starts it after the helper's warning
+    line), a door click, a key-card beep and a door opening."""
+    n = int(1.6 * RATE)
+    swell = np.minimum(1, np.arange(n) / (0.25 * RATE)) * np.minimum(1, (n - np.arange(n)) / (0.4 * RATE))
+    horn = np.concatenate([tone(196, 0.8, 0.0, ((1, 1.0), (2, 0.4), (3, 0.15))), tone(147, 0.8, 0.0, ((1, 1.0), (2, 0.4), (3, 0.15)))])
+    horn = horn / max(1e-9, np.max(np.abs(horn))) * swell * 0.35
+    return {
+        "ship-horn": horn,
+        "door-click": mix(tone(900, 0.04, 80), 0.5 * noise(0.03, 90, rng, 4)),
+        "keycard-beep": tone(1319, 0.18, 12),
+        "door-open": np.concatenate([noise(0.4, 6, rng, 20) * 0.5, tone(784, 0.15, 9), tone(1047, 0.4, 5)]),
     }
 
 
@@ -85,7 +104,7 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         work = Path(tmp)
         for name, x in {**sounds(), **flight_sounds(np.random.default_rng(11))}.items():
-            pcm = (x / max(1e-9, np.max(np.abs(x))) * 0.7 * 32767).astype(np.int16)
+            pcm = (x / max(1e-9, np.max(np.abs(x))) * 0.7 * GAIN.get(name, 1.0) * 32767).astype(np.int16)
             with wave.open(str(work / f"{name}.wav"), "wb") as w:
                 w.setnchannels(1)
                 w.setsampwidth(2)

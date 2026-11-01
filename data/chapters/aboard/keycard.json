@@ -1,0 +1,92 @@
+{
+ "background": "res://assets/aboard/aboard-welcome-desk.png",
+ "layout": "row",
+ "row_y": 600,
+ "choice_height": 230,
+ "shuffle": true,
+ "seed": 3,
+ "key": "picture",
+ "target": "{kid}",
+ "rounds": [
+  {
+   "target": "{kid}",
+   "target_overlay": "res://assets/airport/token-{kid}.png",
+   "target_label": "8315"
+  }
+ ],
+ "target_height": 200,
+ "choices": [
+  {
+   "id": "{kid}",
+   "overlay": "res://assets/airport/token-{kid}.png",
+   "texture": "res://assets/aboard/keycard-blank.png",
+   "label": "8315"
+  },
+  {
+   "id": "{sibling}",
+   "overlay": "res://assets/airport/token-{sibling}.png",
+   "texture": "res://assets/aboard/keycard-blank.png",
+   "label": "8315"
+  },
+  {
+   "id": "mommy",
+   "overlay": "res://assets/aboard/token-mommy.png",
+   "texture": "res://assets/aboard/keycard-blank.png",
+   "label": "8315"
+  },
+  {
+   "id": "daddy",
+   "overlay": "res://assets/aboard/token-daddy.png",
+   "texture": "res://assets/aboard/keycard-blank.png",
+   "label": "8315"
+  }
+ ],
+ "player_feet": [
+  260,
+  920
+ ],
+ "start_line": "get-keycard",
+ "right_sound": "keycard-beep",
+ "wrong_line": "try-again",
+ "done_line": "see-number",
+ "becca": {
+  "count": 2,
+  "done_line": "see-sticker",
+  "choices": [
+   {
+    "id": "{kid}",
+    "overlay": "res://assets/airport/token-{kid}.png",
+    "texture": "res://assets/aboard/keycard-crab.png"
+   },
+   {
+    "id": "{sibling}",
+    "overlay": "res://assets/airport/token-{sibling}.png",
+    "texture": "res://assets/aboard/keycard-crab.png"
+   },
+   {
+    "id": "mommy",
+    "overlay": "res://assets/aboard/token-mommy.png",
+    "texture": "res://assets/aboard/keycard-crab.png"
+   },
+   {
+    "id": "daddy",
+    "overlay": "res://assets/aboard/token-daddy.png",
+    "texture": "res://assets/aboard/keycard-crab.png"
+   }
+  ],
+  "target_texture": "res://assets/aboard/keycard-crab.png",
+  "rounds": [
+   {
+    "target": "{kid}",
+    "target_overlay": "res://assets/airport/token-{kid}.png"
+   }
+  ]
+ },
+ "target_texture": "res://assets/aboard/keycard-blank.png",
+ "label_at": [
+  0,
+  78
+ ],
+ "label_size": 36,
+ "overlay_scale": 0.5
+}

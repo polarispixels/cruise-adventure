@@ -37,7 +37,12 @@ func test_json_has_the_53_ids(t) -> void:
 	for line in _lines():
 		ids.append(line["id"])
 		t.check(String(line["text"]) != "", "text for " + line["id"])
-	t.eq(ids, EXPECTED_IDS, "voice line ids")
+	# Later chapters append their lines after the original 53; ids stay unique.
+	t.eq(ids.slice(0, EXPECTED_IDS.size()), EXPECTED_IDS, "voice line ids")
+	var seen := {}
+	for id: String in ids:
+		t.check(not seen.has(id), "unique id " + id)
+		seen[id] = true
 
 
 func test_find_special_and_buddy_text_by_speaker(t) -> void:
