@@ -144,3 +144,57 @@ place of each scene, reading `last_scene_request` and `segment` after each step 
 
 Use a temp `Progress.path` (see `tests/test_map.gd`) if the scene saves progress, and set it back
 to `user://progress.json` at the end.
+
+## Placeholder art
+
+Every chapter lists the art it needs in `data/chapters/<chapter id>/art.json` (the journey map's
+stop icons in `data/chapters/map-art.json`). `tools/make_chapter_placeholders.py` draws a stand-in
+for each entry, so a chapter runs end to end before any real art exists:
+
+```json
+[
+ {"file": "assets/flight/aisle.png", "canvas": [1672, 941], "kind": "background", "color": "#BFD8F2", "label": "plane aisle"},
+ {"file": "assets/flight/overhead-bin.png", "canvas": [520, 260], "kind": "sprite", "color": "#C8CCD2", "shape": "rounded"},
+ {"file": "assets/stills/flight-takeoff.png", "kind": "still", "label": "takeoff out the window"}
+]
+```
+
+| Field | Meaning |
+| --- | --- |
+| `file` | The game path, `assets/<chapter>/<name>.png`. The art request uses exactly this name, so the real art replaces the placeholder with no code changes. |
+| `kind` | `background` (1672x941, opaque), `still` (854x480, opaque, always `assets/stills/<clip name>.png`, decision D6), `sprite` (transparent) or `icon` (transparent; map stops are 200x200). |
+| `canvas` | `[w, h]` in pixels. Fixed for backgrounds and stills (may be left out); for sprites and icons, the display size (below). |
+| `color` | `#rrggbb`, the main color of the real thing. Default per kind. |
+| `shape` | `rect`, `rounded`, `circle`, or a rough outline: `silhouette-person`, `-suitcase`, `-backpack`, `-plane`, `-ship`, `-car`, `-palm`, `-cloud`, `-star`. Default `rect` for backgrounds and stills, `rounded` otherwise. |
+| `label` | Optional words printed under the file name. |
+
+Each placeholder is a flat shape in its color, a dashed border (magenta on sprites, so it shows on
+any scene) and its file name with the word PLACEHOLDER printed in the middle.
+
+```bash
+python3 tools/make_chapter_placeholders.py                     # every art.json and map-art.json
+python3 tools/make_chapter_placeholders.py data/chapters/flight/art.json
+python3 tools/make_chapter_placeholders.py --still flight-takeoff   # a clip's fallback still
+tools/godot.sh --headless --import && python3 tools/set_import_modes.py && tools/godot.sh --headless --import
+```
+
+Each file drawn gets a `data/art_manifest.json` entry with `"generator": "placeholder"`,
+`"source": "placeholder"`, `"approved": false` and the `spec` it came from. Re-running updates
+the entries and never duplicates them. `tools/import_art.py` redraws them like any other entry.
+When real art arrives, change that file's entry to a `copy` (with its `source`) and the
+placeholder tool leaves it alone from then on. Unapproved entries are listed by
+`tools/check_art_approved.py`: playtest builds run with placeholders; a tagged release refuses them.
+
+### Display size (Technical Optimization Spec, T3)
+
+Art is made and requested at the size it is shown, not larger:
+
+- No image is stored larger than about **1.25 times its largest on-screen size** at the tablet's
+  1280x800 screen. A sprite shown 300 px tall is at most about 375 px tall.
+- Set a sprite's `canvas` to that size. The art request (Briefs agent) copies the same canvas, so
+  ChatGPT delivers at display size; full-size masters stay in the art project and only the game
+  copy is resized by the import.
+- Backgrounds stay 1672x941 (the scene is cropped to the tablet's 16:10) and stills 854x480,
+  the clip size.
+- Existing character poses are not downscaled yet; Phase 3 decides that against the size report
+  (`python3 tools/check_asset_budget.py`).

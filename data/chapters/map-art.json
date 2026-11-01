@@ -1,0 +1,9 @@
+[
+ {"file": "assets/map/stop-flight.png", "canvas": [200, 200], "kind": "icon", "color": "#6FA8EC", "shape": "silhouette-plane", "label": "flight"},
+ {"file": "assets/map/stop-florida.png", "canvas": [200, 200], "kind": "icon", "color": "#F28C28", "shape": "silhouette-car", "label": "Florida"},
+ {"file": "assets/map/stop-aboard.png", "canvas": [200, 200], "kind": "icon", "color": "#2F6FE4", "shape": "silhouette-ship", "label": "aboard"},
+ {"file": "assets/map/stop-island1.png", "canvas": [200, 200], "kind": "icon", "color": "#2DBE4E", "shape": "silhouette-palm", "label": "island 1"},
+ {"file": "assets/map/stop-island2.png", "canvas": [200, 200], "kind": "icon", "color": "#1B9E8C", "shape": "silhouette-palm", "label": "island 2"},
+ {"file": "assets/map/stop-seaday.png", "canvas": [200, 200], "kind": "icon", "color": "#26B5C9", "shape": "circle", "label": "sea day"},
+ {"file": "assets/map/stop-beach.png", "canvas": [200, 200], "kind": "icon", "color": "#FFD23F", "shape": "silhouette-star", "label": "beach"}
+]

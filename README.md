@@ -64,6 +64,8 @@ tools/godot.sh --headless --import   # let Godot import the new files
 python3 tools/layout_preview.py      # build/layout-<kid>.png: room layout over the art, with the tablet's 16:10 crop
 ```
 
+**Placeholders for new chapters.** Each chapter lists its art in `data/chapters/<id>/art.json`; `python3 tools/make_chapter_placeholders.py` draws a marked stand-in for each file at its display size and adds it to the manifest unapproved. See [Placeholder art](docs/chapters-format.md#placeholder-art).
+
 `ART_ROOT` points the import at the art project (default: `C:\Users\rgris\Documents\ChatGPT\Kids Packing Video` via `/mnt/c`). When new art arrives with the same file names, re-run the import; no code changes.
 
 **Voices.** `python3 tools/import_voice.py` builds every spoken line in `data/voice_lines.json` for both helpers. It uses the first recording it finds: the kid's own in the art project's `Voice/<Jack-Jack|Becca>/`, then `recordings/<jack|becca>/`, then `recordings/shared/` (one grown-up voice for both). Files are named by line ID, any of m4a/wav/mp3/ogg. Silence at both ends is trimmed and volume evened out. Lines with no recording get a computer voice.

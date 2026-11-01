@@ -2633,5 +2633,54 @@
   "generator": "sfx",
   "source": null,
   "approved": true
+ },
+ {
+  "game": "assets/map/stop-flight.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/map-art.json"
+ },
+ {
+  "game": "assets/map/stop-florida.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/map-art.json"
+ },
+ {
+  "game": "assets/map/stop-aboard.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/map-art.json"
+ },
+ {
+  "game": "assets/map/stop-island1.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/map-art.json"
+ },
+ {
+  "game": "assets/map/stop-island2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/map-art.json"
+ },
+ {
+  "game": "assets/map/stop-seaday.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/map-art.json"
+ },
+ {
+  "game": "assets/map/stop-beach.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/map-art.json"
  }
 ]
