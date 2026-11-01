@@ -115,6 +115,62 @@
   "kind": "placeholder",
   "text": "Put your things in a tray!"
  },
+ "becca/isle-all-shells": {
+  "kind": "placeholder",
+  "text": "Look at all our shells!"
+ },
+ "becca/isle-arrive": {
+  "kind": "placeholder",
+  "text": "We're on the island!"
+ },
+ "becca/isle-castle": {
+  "kind": "placeholder",
+  "text": "Let's build a sandcastle!"
+ },
+ "becca/isle-dab": {
+  "kind": "placeholder",
+  "text": "Dab it here!"
+ },
+ "becca/isle-day2": {
+  "kind": "placeholder",
+  "text": "Another island day!"
+ },
+ "becca/isle-decorate": {
+  "kind": "placeholder",
+  "text": "Now decorate it with shells!"
+ },
+ "becca/isle-great-castle": {
+  "kind": "placeholder",
+  "text": "What a sandcastle!"
+ },
+ "becca/isle-hat-sandals": {
+  "kind": "placeholder",
+  "text": "Now your hat and sandals!"
+ },
+ "becca/isle-in-castle": {
+  "kind": "placeholder",
+  "text": "Put it in the castle!"
+ },
+ "becca/isle-shells": {
+  "kind": "placeholder",
+  "text": "Find the shells that match!"
+ },
+ "becca/isle-splash": {
+  "kind": "placeholder",
+  "text": "Splash, splash!"
+ },
+ "becca/isle-sun-safe": {
+  "kind": "placeholder",
+  "text": "Now we're sun safe!"
+ },
+ "becca/isle-sunscreen": {
+  "kind": "placeholder",
+  "text": "Put on sunscreen!"
+ },
+ "becca/isle-this-one": {
+  "kind": "placeholder",
+  "text": "Look for this one!"
+ },
  "becca/it-fits": {
   "kind": "recorded",
   "text": "It fits!"
@@ -326,6 +382,62 @@
  "jack/in-a-tray": {
   "kind": "placeholder",
   "text": "Put your things in a tray!"
+ },
+ "jack/isle-all-shells": {
+  "kind": "placeholder",
+  "text": "Look at all our shells!"
+ },
+ "jack/isle-arrive": {
+  "kind": "placeholder",
+  "text": "We're on the island!"
+ },
+ "jack/isle-castle": {
+  "kind": "placeholder",
+  "text": "Let's build a sandcastle!"
+ },
+ "jack/isle-dab": {
+  "kind": "placeholder",
+  "text": "Dab it here!"
+ },
+ "jack/isle-day2": {
+  "kind": "placeholder",
+  "text": "Another island day!"
+ },
+ "jack/isle-decorate": {
+  "kind": "placeholder",
+  "text": "Now decorate it with shells!"
+ },
+ "jack/isle-great-castle": {
+  "kind": "placeholder",
+  "text": "What a sandcastle!"
+ },
+ "jack/isle-hat-sandals": {
+  "kind": "placeholder",
+  "text": "Now your hat and sandals!"
+ },
+ "jack/isle-in-castle": {
+  "kind": "placeholder",
+  "text": "Put it in the castle!"
+ },
+ "jack/isle-shells": {
+  "kind": "placeholder",
+  "text": "Find the shells that match!"
+ },
+ "jack/isle-splash": {
+  "kind": "placeholder",
+  "text": "Splash, splash!"
+ },
+ "jack/isle-sun-safe": {
+  "kind": "placeholder",
+  "text": "Now we're sun safe!"
+ },
+ "jack/isle-sunscreen": {
+  "kind": "placeholder",
+  "text": "Put on sunscreen!"
+ },
+ "jack/isle-this-one": {
+  "kind": "placeholder",
+  "text": "Look for this one!"
  },
  "jack/it-fits": {
   "kind": "recorded",

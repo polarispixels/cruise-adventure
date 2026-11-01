@@ -218,5 +218,61 @@
  {
   "id": "found-gate",
   "text": "We found our gate!"
+ },
+ {
+  "id": "isle-arrive",
+  "text": "We're on the island!"
+ },
+ {
+  "id": "isle-day2",
+  "text": "Another island day!"
+ },
+ {
+  "id": "isle-sunscreen",
+  "text": "Put on sunscreen!"
+ },
+ {
+  "id": "isle-dab",
+  "text": "Dab it here!"
+ },
+ {
+  "id": "isle-hat-sandals",
+  "text": "Now your hat and sandals!"
+ },
+ {
+  "id": "isle-sun-safe",
+  "text": "Now we're sun safe!"
+ },
+ {
+  "id": "isle-shells",
+  "text": "Find the shells that match!"
+ },
+ {
+  "id": "isle-this-one",
+  "text": "Look for this one!"
+ },
+ {
+  "id": "isle-all-shells",
+  "text": "Look at all our shells!"
+ },
+ {
+  "id": "isle-castle",
+  "text": "Let's build a sandcastle!"
+ },
+ {
+  "id": "isle-in-castle",
+  "text": "Put it in the castle!"
+ },
+ {
+  "id": "isle-decorate",
+  "text": "Now decorate it with shells!"
+ },
+ {
+  "id": "isle-great-castle",
+  "text": "What a sandcastle!"
+ },
+ {
+  "id": "isle-splash",
+  "text": "Splash, splash!"
  }
 ]

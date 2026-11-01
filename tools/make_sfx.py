@@ -61,6 +61,18 @@ def sounds():
         "arch-chime": np.concatenate([tone(659, 0.15, 9), tone(784, 0.15, 9), tone(1047, 0.5, 4)]),
         "step": mix(tone(140, 0.08, 45), 0.3 * noise(0.06, 50, rng, 30)),
         "whoosh": noise(0.9, 2.5, rng, 8) * np.sin(np.linspace(0, np.pi, int(0.9 * RATE))) ** 2,
+        **island_sounds(rng),
+    }
+
+
+def island_sounds(rng):
+    """Chapter 12, Island days: waves, a sunscreen squirt, a sandy plop, a shell clink."""
+    swell = np.sin(np.linspace(0, 2 * np.pi, int(2.6 * RATE))) * 0.5 + 0.5
+    return {
+        "waves": noise(2.6, 0.4, rng, 14) * (0.25 + 0.75 * swell),
+        "sunscreen-squirt": mix(noise(0.22, 14, rng, 6) * np.sin(np.linspace(0, np.pi, int(0.22 * RATE))), 0.2 * tone(520, 0.12, 25)),
+        "sand-plop": mix(tone(150, 0.14, 26, ((1, 1.0), (2, 0.2))), 0.5 * noise(0.12, 28, rng, 18)),
+        "shell-clink": mix(tone(2100, 0.2, 30, ((1, 1.0), (2.4, 0.4))), tone(2800, 0.12, 40)),
     }
 
 
