@@ -103,6 +103,17 @@ class CheckTest(unittest.TestCase):
         self.assertIn("Jack-Jack's side: 1 kid, 0 grown-up, 1 computer", html)
         self.assertIn("Becca's side: 0 kid, 1 grown-up, 1 computer", html)
 
+    def test_updated_stamp_is_eastern_twelve_hour_without_leading_zeros(self):
+        # daylight time ends the morning of Nov 1, so 16:00:15 UTC is 11:00:15 AM EST
+        self.assertIn("Game last updated 11:00:15 AM, Sunday, November 1 \u00b7 ",
+                      site.updated_stamp("2026-11-01T16:00:15+00:00", "46e421b"))
+        self.assertIn(">46e421b</a>", site.updated_stamp("2026-11-01T16:00:15+00:00", "46e421b"))
+        # a PM time, single-digit day, and a non-UTC offset
+        self.assertIn("Game last updated 5:07:09 PM, Wednesday, July 8",
+                      site.updated_stamp("2026-07-08T17:07:09-04:00", "abc1234"))
+        self.assertIn("Game last updated 12:30:00 AM, Thursday, July 9",
+                      site.updated_stamp("2026-07-09T04:30:00+00:00", "abc1234"))
+
 
 if __name__ == "__main__":
     unittest.main()
