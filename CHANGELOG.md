@@ -4,19 +4,20 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
-### 1.0.0 - The whole trip (in progress)
+### 1.0.0 - The whole trip (release notes draft, in playtest)
 
-- In playtest: chapter 9, The flight (find our seat, stow the bag, buckle up, snack, clouds, takeoff and landing).
-- Planned: chapter 10, Hello Florida (bags on the carousel, booster seats, the minivan, a sleepy hotel night).
-- In playtest: chapter 11, Welcome aboard (key card, find our room, the safety drill, sail away).
-- Planned: chapter 12, Island days (sun safe, shell hunt, sandcastle; played twice).
-- In playtest: chapter 13, Sea day (swimsuit, the big slide, splash zone, dinner).
-- Planned: chapter 14, Beach hotel (the minivan again, the hotel room, waves, the finale on the journey map).
-- Done: chapters now run from data. A segment player drives chapters 1-8 exactly as before, and the journey map shows stops 7-14.
-- Done: six reusable play engines (Match, Place, Fit, Maze, Moving targets, Tap moments) with tests.
-- Done: placeholder art and stills for anything not drawn yet, and a media fallback so a missing clip never stops the game; saved progress carries over.
-- Done: every video clip is now 854x480 (smaller downloads, same look on the tablet).
-- Done: the other size work from the technical optimization spec (T2, T5, T6).
+The game now runs the whole trip, from the car to the beach hotel, in 14 chapters. Chapters 9-14 use placeholder art and clips at their final file names; real ones replace them with no code change.
+
+- Chapter 9, The flight: find your seat, stow the bag in the overhead bin, slide the backpacks under the seat, buckle up, pick a snack and match cloud shapes out the window.
+- Chapter 10, Hello Florida: spot your bags on the carousel, put the booster seats in the rental minivan, load the trunk, and a sleepy hotel night.
+- Chapter 11, Welcome aboard: get your key card, find your room in the hallway, and a safety drill that makes the ship's horn friendly.
+- Chapter 12, Island days (played twice): sun safe, a shell hunt and a sandcastle, with a different beach and shells each day.
+- Chapter 13, Sea day: swimsuit on, the big slide (Jack-Jack rides; Becca hears "next time" and splashes), the splash zone and dress for dinner.
+- Chapter 14, Beach hotel: load the minivan again, the elevator and hallway, jump the waves, build a sandcastle, then the journey map lights every stop and the "We did it!" celebration plays.
+- The journey map shows stops 7-14, says "Tap the next stop!", and every finished chapter can be replayed.
+- Framework: chapters run from data (`data/chapters.json`) through a segment player; six reusable engines (Match, Place, Fit, Maze, Moving targets, Tap moments); a media fallback so a missing clip or picture shows a placeholder card instead of stopping the game; saved progress carries over.
+- Size work: every video clip is 854x480 (video 41.9 to 18.9 MB), plus the other savings from the technical optimization spec (T2, T5, T6). Runtime tinting (T4) is skipped.
+- Still placeholder: the real art for chapters 9-14 (Art Requests Rounds 7-9), the video clips (Video Requests Round 4; a still with a slow zoom stands in) and the kids' recorded voices (Voice Lines v1.0, Nov 8); a computer voice is used until then.
 
 ### 0.5.0 - The airport (in playtest)
 

@@ -783,22 +783,29 @@
      ]
     },
     {
-     "label": "Build: Spot our bags (Moving targets), both kids, a missed bag comes around again"
+     "label": "Build: Spot our bags (Moving targets), both kids, a missed bag comes around again",
+     "done": true
     },
     {
-     "label": "Build: boosters (Place) and the minivan trunk (Fit)"
+     "label": "Build: boosters (Place) and the minivan trunk (Fit)",
+     "done": true
     },
     {
-     "label": "Build: intro, drive and hotel night segments in chapters.json"
+     "label": "Build: intro, drive and hotel night segments in chapters.json",
+     "done": true
     },
     {
-     "label": "Unit test per segment and a headless playthrough for both kids"
+     "label": "Unit test per segment and a headless playthrough for both kids",
+     "done": true
     },
     {
      "label": "Playtest on the Fire tablet with both kids, especially carousel speed and hit area"
+    },
+    {
+     "label": "Real art approved (round 7)"
     }
    ],
-   "status": "Not started"
+   "status": "In playtest"
   },
   {
    "number": 11,
@@ -946,29 +953,32 @@
      ]
     },
     {
-     "label": "Art: day 1 shells, castle outline and pieces",
+     "label": "Art: day 1 shells (six, with the moon snail), castle outline and pieces",
      "files": [
+      "assets/island/castle-flag.png",
       "assets/island/shell-spiral.png",
       "assets/island/shell-fan.png",
       "assets/island/shell-cone.png",
       "assets/island/shell-star.png",
       "assets/island/shell-clam.png",
+      "assets/island/shell-moon.png",
       "assets/island/castle-outline.png",
       "assets/island/castle-piece-1.png",
-      "assets/island/castle-piece-2.png",
       "assets/island/castle-piece-3.png",
       "assets/island/castle-piece-4.png",
       "assets/island/castle-piece-5.png"
      ]
     },
     {
-     "label": "Art: day 2 shells, castle outline and pieces",
+     "label": "Art: day 2 shells (six, with the limpet), castle outline and pieces",
      "files": [
-      "assets/island/shell-conch-2.png",
+      "assets/island/castle-piece-2.png",
       "assets/island/shell-scallop-2.png",
+      "assets/island/shell-conch-2.png",
       "assets/island/shell-sand-dollar-2.png",
       "assets/island/shell-snail-2.png",
       "assets/island/shell-mussel-2.png",
+      "assets/island/shell-limpet-2.png",
       "assets/island/castle-outline-2.png",
       "assets/island/castle-piece-1-2.png",
       "assets/island/castle-piece-2-2.png",
@@ -1025,16 +1035,25 @@
      ]
     },
     {
-     "label": "Build: Sun safe (Place), Shell hunt (Match) and Sandcastle (Place), per-child data and a unit test each"
+     "label": "Build: Sun safe (Place), Shell hunt (Match) and Sandcastle (Place), per-child data and a unit test each",
+     "done": true
     },
     {
-     "label": "Build: Island day 1 chapter, and Island day 2 as data only, headless playthrough for both kids"
+     "label": "Build: Island day 1 chapter, and Island day 2 as data only, headless playthrough for both kids",
+     "done": true
+    },
+    {
+     "label": "Headless playthrough for both kids",
+     "done": true
     },
     {
      "label": "Layout preview at 16:10 and playtest on the Fire tablet with both kids"
+    },
+    {
+     "label": "Real art approved (round 9)"
     }
    ],
-   "status": "Not started"
+   "status": "In playtest"
   },
   {
    "number": 13,
@@ -1183,28 +1202,18 @@
      ]
     },
     {
-     "label": "Art: elevator doors, buttons, panel and key dots",
+     "label": "Art: elevator buttons (blank, red, blue, green)",
      "files": [
-      "assets/beach/elevator-door-left.png",
-      "assets/beach/elevator-door-right.png",
       "assets/beach/elevator-button-blank.png",
       "assets/beach/elevator-button-red.png",
       "assets/beach/elevator-button-blue.png",
-      "assets/beach/elevator-button-green.png",
-      "assets/beach/elevator-button-lit.png",
-      "assets/beach/elevator-panel.png",
-      "assets/beach/key-dot-red.png",
-      "assets/beach/key-dot-blue.png",
-      "assets/beach/key-dot-green.png"
+      "assets/beach/elevator-button-green.png"
      ]
     },
     {
-     "label": "Art: wave band, splash, foam puff, umbrella",
+     "label": "Art: the rolling wave",
      "files": [
-      "assets/beach/wave-front.png",
-      "assets/beach/wave-splash.png",
-      "assets/beach/foam-puff.png",
-      "assets/beach/beach-umbrella.png"
+      "assets/beach/wave.png"
      ]
     },
     {
@@ -1259,19 +1268,29 @@
      ]
     },
     {
-     "label": "Build: Load the minivan again (Fit) and Elevator (Match, number and color keys), a unit test each"
+     "label": "Build: Load the minivan again (Fit) and Elevator (Match, number and color keys), a unit test each",
+     "done": true
     },
     {
-     "label": "Build: Hotel hallway (Match), Jump the waves (Tap moments) and Sandcastle (Place, hotel skin), a unit test each"
+     "label": "Build: Hotel hallway (Match), Jump the waves (Tap moments) and Sandcastle (Place, hotel skin), a unit test each",
+     "done": true
     },
     {
-     "label": "Build: chapter data in chapters.json, finale light-up of every stop, celebration clip, map with replay"
+     "label": "Build: chapter data in chapters.json, finale light-up of every stop, celebration clip, map with replay",
+     "done": true
     },
     {
-     "label": "Headless playthrough for both kids, layout preview at 16:10, playtest on the Fire tablet"
+     "label": "Headless playthrough for both kids",
+     "done": true
+    },
+    {
+     "label": "Layout preview at 16:10 and playtest on the Fire tablet with both kids"
+    },
+    {
+     "label": "Real art approved (round 9)"
     }
    ],
-   "status": "Not started"
+   "status": "In playtest"
   }
  ],
  "panels": [
