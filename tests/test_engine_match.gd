@@ -130,3 +130,42 @@ func test_layout_fits_the_tablet(t) -> void:
 	for id: String in grid.choice_ids():
 		t.check(kit.on_screen(grid, grid.choice_rect(id)), "%s on screen" % id)
 	kit.done(t, grid)
+
+
+## Key cards: a face drawn on each card, the room number at a set spot, and the
+## target card showing the same face and number.
+func test_label_at_label_size_and_overlays(t) -> void:
+	var data := {"done_delay": 0.0, "hint_delay": 60.0, "key": "picture", "label_at": [0, 40], "label_size": 30,
+		"overlay_scale": 0.4, "target_texture": "res://assets/airport/tray-empty.png",
+		"choices": [
+			{"id": "jack-card", "texture": "res://assets/airport/tray-empty.png", "label": "7012",
+				"overlay": "res://assets/airport/token-jack.png"},
+			{"id": "becca-card", "texture": "res://assets/airport/tray-empty.png", "label": "7012",
+				"overlay": "res://assets/airport/token-becca.png", "overlay_scale": 0.6}],
+		"rounds": [{"target": "jack-card", "target_overlay": "res://assets/airport/token-jack.png", "target_label": "7012"}]}
+	var scene: Node2D = await kit.make(t, SCENE, data, "jack")
+	var card: Node2D = scene.get_node("Stage").find_child("jack-card", true, false)
+	var label: Label = card.get_node("Label")
+	t.eq(label.label_settings.font_size, 30, "label_size")
+	t.check((label.position + label.size / 2).distance_to(Vector2(0, 40)) < 1.0, "label_at from the texture center")
+	var face: Sprite2D = card.get_node("Overlay")
+	t.check(face.position == Vector2.ZERO, "the face is centered")
+	t.check(absf(face.texture.get_size().y * face.scale.y - 220.0 * 0.4) < 1.0, "overlay_scale of the card height")
+	var other: Sprite2D = scene.get_node("Stage").find_child("becca-card", true, false).get_node("Overlay")
+	t.check(absf(other.texture.get_size().y * other.scale.y - 220.0 * 0.6) < 1.0, "a choice's own overlay_scale")
+	var target: Node2D = scene.get_node("Stage/Target")
+	t.check(target.get_node_or_null("Overlay") != null, "the target card shows the face")
+	var tl: Label = target.get_node_or_null("TargetLabel")
+	t.check(tl != null and tl.text == "7012", "and the number")
+	await kit.tap(t, scene.choice_point("jack-card"))
+	t.check(kit.finished(t), "picked")
+	kit.done(t, scene)
+
+
+func test_no_overlay_or_target_label_without_the_keys(t) -> void:
+	var scene: Node2D = await kit.make(t, SCENE, _seat(), "jack")
+	var target: Node2D = scene.get_node("Stage/Target")
+	t.check(target.get_node_or_null("Overlay") == null and target.get_node_or_null("TargetLabel") == null, "nothing new")
+	var label: Label = scene.get_node("Stage").find_child("row-12", true, false).get_node("Label")
+	t.eq(label.label_settings.font_size, int(220 * 0.32), "the old label size")
+	kit.done(t, scene)
