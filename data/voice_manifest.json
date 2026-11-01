@@ -650,5 +650,85 @@
  "title/who-do-you-want": {
   "kind": "recorded",
   "text": "Who do you want to play as?"
+ },
+ "becca/boosters-first": {
+  "kind": "placeholder",
+  "text": "Put the booster seats in!"
+ },
+ "becca/got-our-bags": {
+  "kind": "placeholder",
+  "text": "We got all our bags!"
+ },
+ "becca/hello-florida": {
+  "kind": "placeholder",
+  "text": "Hello, Florida!"
+ },
+ "becca/hotel-night": {
+  "kind": "placeholder",
+  "text": "Good night, Florida!"
+ },
+ "becca/load-minivan": {
+  "kind": "placeholder",
+  "text": "Now pack the minivan!"
+ },
+ "becca/look-there": {
+  "kind": "placeholder",
+  "text": "Look over there!"
+ },
+ "becca/not-ours": {
+  "kind": "placeholder",
+  "text": "Hmm, that's not ours!"
+ },
+ "becca/seats-in": {
+  "kind": "placeholder",
+  "text": "The booster seats are in!"
+ },
+ "becca/spot-bags": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find all three!"
+ },
+ "becca/spot-pink": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find the pink suitcase!"
+ },
+ "jack/boosters-first": {
+  "kind": "placeholder",
+  "text": "Put the booster seats in!"
+ },
+ "jack/got-our-bags": {
+  "kind": "placeholder",
+  "text": "We got all our bags!"
+ },
+ "jack/hello-florida": {
+  "kind": "placeholder",
+  "text": "Hello, Florida!"
+ },
+ "jack/hotel-night": {
+  "kind": "placeholder",
+  "text": "Good night, Florida!"
+ },
+ "jack/load-minivan": {
+  "kind": "placeholder",
+  "text": "Now pack the minivan!"
+ },
+ "jack/look-there": {
+  "kind": "placeholder",
+  "text": "Look over there!"
+ },
+ "jack/not-ours": {
+  "kind": "placeholder",
+  "text": "Hmm, that's not ours!"
+ },
+ "jack/seats-in": {
+  "kind": "placeholder",
+  "text": "The booster seats are in!"
+ },
+ "jack/spot-bags": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find all three!"
+ },
+ "jack/spot-pink": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find the pink suitcase!"
  }
 }

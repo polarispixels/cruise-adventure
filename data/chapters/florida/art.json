@@ -1,0 +1,137 @@
+[
+ {
+  "file": "assets/florida/baggage-claim.png",
+  "kind": "background",
+  "color": "#D9E4EC",
+  "label": "baggage claim with carousel"
+ },
+ {
+  "file": "assets/florida/minivan-interior.png",
+  "kind": "background",
+  "color": "#C9D8E8",
+  "label": "minivan back seat"
+ },
+ {
+  "file": "assets/florida/minivan-open.png",
+  "canvas": [
+   2000,
+   1600
+  ],
+  "kind": "sprite",
+  "color": "#8A97A6",
+  "shape": "silhouette-car",
+  "label": "minivan trunk open"
+ },
+ {
+  "file": "assets/florida/minivan-closed.png",
+  "canvas": [
+   2000,
+   1600
+  ],
+  "kind": "sprite",
+  "color": "#8A97A6",
+  "shape": "silhouette-car",
+  "label": "minivan trunk closed"
+ },
+ {
+  "file": "assets/florida/booster-blue.png",
+  "canvas": [
+   250,
+   250
+  ],
+  "kind": "sprite",
+  "color": "#3A7BD5"
+ },
+ {
+  "file": "assets/florida/booster-pink.png",
+  "canvas": [
+   250,
+   250
+  ],
+  "kind": "sprite",
+  "color": "#FF7EB9"
+ },
+ {
+  "file": "assets/florida/decoy-blue-case.png",
+  "canvas": [
+   210,
+   210
+  ],
+  "kind": "sprite",
+  "color": "#5C8FD6",
+  "shape": "silhouette-suitcase"
+ },
+ {
+  "file": "assets/florida/decoy-pink-case.png",
+  "canvas": [
+   210,
+   210
+  ],
+  "kind": "sprite",
+  "color": "#F08FB8",
+  "shape": "silhouette-suitcase"
+ },
+ {
+  "file": "assets/florida/decoy-yellow-bag.png",
+  "canvas": [
+   420,
+   170
+  ],
+  "kind": "sprite",
+  "color": "#E8C84A"
+ },
+ {
+  "file": "assets/florida/decoy-brown-box.png",
+  "canvas": [
+   210,
+   210
+  ],
+  "kind": "sprite",
+  "color": "#A67C52"
+ },
+ {
+  "file": "assets/florida/decoy-green-backpack.png",
+  "canvas": [
+   210,
+   210
+  ],
+  "kind": "sprite",
+  "color": "#4E9A5A",
+  "shape": "silhouette-backpack"
+ },
+ {
+  "file": "assets/florida/decoy-black-case.png",
+  "canvas": [
+   210,
+   210
+  ],
+  "kind": "sprite",
+  "color": "#33363B",
+  "shape": "silhouette-suitcase"
+ },
+ {
+  "file": "assets/florida/decoy-red-case.png",
+  "canvas": [
+   210,
+   210
+  ],
+  "kind": "sprite",
+  "color": "#CC4B4B",
+  "shape": "silhouette-suitcase"
+ },
+ {
+  "file": "assets/stills/florida-arrival.png",
+  "kind": "still",
+  "label": "family leaving the airport in Florida"
+ },
+ {
+  "file": "assets/stills/florida-drive.png",
+  "kind": "still",
+  "label": "minivan at sunset"
+ },
+ {
+  "file": "assets/stills/hotel-night.png",
+  "kind": "still",
+  "label": "hotel by the ship at night"
+ }
+]

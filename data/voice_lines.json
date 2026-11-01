@@ -390,5 +390,45 @@
  {
   "id": "sea-yummy",
   "text": "Yum! Dinner time!"
+ },
+ {
+  "id": "spot-bags",
+  "text": "Here come our bags! Find all three!"
+ },
+ {
+  "id": "spot-pink",
+  "text": "Here come our bags! Find the pink suitcase!"
+ },
+ {
+  "id": "look-there",
+  "text": "Look over there!"
+ },
+ {
+  "id": "not-ours",
+  "text": "Hmm, that's not ours!"
+ },
+ {
+  "id": "got-our-bags",
+  "text": "We got all our bags!"
+ },
+ {
+  "id": "boosters-first",
+  "text": "Put the booster seats in!"
+ },
+ {
+  "id": "seats-in",
+  "text": "The booster seats are in!"
+ },
+ {
+  "id": "load-minivan",
+  "text": "Now pack the minivan!"
+ },
+ {
+  "id": "hello-florida",
+  "text": "Hello, Florida!"
+ },
+ {
+  "id": "hotel-night",
+  "text": "Good night, Florida!"
  }
 ]

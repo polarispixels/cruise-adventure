@@ -1,0 +1,98 @@
+{
+ "background": "res://assets/florida/baggage-claim.png",
+ "path": "loop",
+ "loop_rect": [
+  316,
+  400,
+  1040,
+  340
+ ],
+ "collect_point": [
+  420,
+  880
+ ],
+ "player_feet": [
+  220,
+  930
+ ],
+ "music": "res://assets/music/airport.ogg",
+ "start_sound": "carousel-start",
+ "right_sound": "arch-chime",
+ "wrong_line": "not-ours",
+ "done_line": "got-our-bags",
+ "hint_line": "look-there",
+ "jack": {
+  "start_line": "spot-bags",
+  "hint_delay": 10.0,
+  "speed": 140,
+  "targets": [
+   "jack-suitcase",
+   "becca-suitcase",
+   "mommy-yellow"
+  ],
+  "items": [
+   {
+    "id": "jack-suitcase",
+    "texture": "res://assets/car/bag-jack-suitcase.png"
+   },
+   {
+    "id": "becca-suitcase",
+    "texture": "res://assets/car/bag-becca-suitcase.png"
+   },
+   {
+    "id": "mommy-yellow",
+    "texture": "res://assets/car/bag-mommy-yellow.png"
+   },
+   {
+    "id": "decoy-blue-case",
+    "texture": "res://assets/florida/decoy-blue-case.png"
+   },
+   {
+    "id": "decoy-pink-case",
+    "texture": "res://assets/florida/decoy-pink-case.png"
+   },
+   {
+    "id": "decoy-yellow-bag",
+    "texture": "res://assets/florida/decoy-yellow-bag.png"
+   },
+   {
+    "id": "decoy-brown-box",
+    "texture": "res://assets/florida/decoy-brown-box.png"
+   },
+   {
+    "id": "decoy-black-case",
+    "texture": "res://assets/florida/decoy-black-case.png"
+   }
+  ]
+ },
+ "becca": {
+  "start_line": "spot-pink",
+  "hint_delay": 6.0,
+  "speed": 70,
+  "targets": [
+   "becca-suitcase"
+  ],
+  "items": [
+   {
+    "id": "becca-suitcase",
+    "texture": "res://assets/car/bag-becca-suitcase.png"
+   },
+   {
+    "id": "decoy-brown-box",
+    "texture": "res://assets/florida/decoy-brown-box.png"
+   },
+   {
+    "id": "decoy-green-backpack",
+    "texture": "res://assets/florida/decoy-green-backpack.png"
+   },
+   {
+    "id": "decoy-black-case",
+    "texture": "res://assets/florida/decoy-black-case.png"
+   },
+   {
+    "id": "decoy-red-case",
+    "texture": "res://assets/florida/decoy-red-case.png"
+   }
+  ]
+ }
+}

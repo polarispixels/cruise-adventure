@@ -31,7 +31,14 @@
     {"kind": "scene", "id": "snack", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/flight/snack.json"},
     {"kind": "scene", "id": "clouds", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/flight/clouds.json"},
     {"kind": "clip", "id": "landing", "name": "flight-landing", "line": "flight-done"}]},
-  {"id": "florida", "number": 10, "title": "Hello Florida", "segments": []},
+  {"id": "florida", "number": 10, "title": "Hello Florida",
+   "segments": [
+     {"kind": "still", "id": "arrival", "name": "florida-arrival", "line": "hello-florida", "once": true},
+     {"kind": "scene", "id": "bags", "scene": "res://scenes/engines/moving.tscn", "data": "res://data/chapters/florida/bags.json"},
+     {"kind": "scene", "id": "boosters", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/florida/boosters.json"},
+     {"kind": "scene", "id": "trunk", "scene": "res://scenes/engines/fit.tscn", "data": "res://data/chapters/florida/trunk.json"},
+     {"kind": "clip", "id": "drive", "name": "florida-drive", "once": true},
+     {"kind": "clip", "id": "hotel", "name": "hotel-night", "line": "hotel-night"}]},
   {"id": "aboard", "number": 11, "title": "Welcome aboard",
    "segments": [
      {"kind": "clip", "id": "aboard-intro", "name": "aboard-walk-on", "once": true},

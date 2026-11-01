@@ -57,7 +57,7 @@ func test_videos_hold_the_music(t) -> void:
 
 
 func test_sfx_files_load(t) -> void:
-	for name in ["belt", "tag-snap", "thump", "flaps", "tray-slide", "scanner-chime", "arch-chime", "step", "whoosh"]:
+	for name in ["belt", "tag-snap", "thump", "flaps", "tray-slide", "scanner-chime", "arch-chime", "step", "whoosh", "carousel-start", "seatbelt-click", "hatch-close"]:
 		var path := "res://assets/sfx/%s.ogg" % name
 		t.check(ResourceLoader.exists(path) and load(path) is AudioStream, "sound " + name)
 

@@ -1,0 +1,80 @@
+{
+ "background": "res://assets/florida/minivan-interior.png",
+ "player_feet": [
+  220,
+  930
+ ],
+ "start_line": "boosters-first",
+ "done_line": "seats-in",
+ "place_line": "",
+ "place_sound": "seatbelt-click",
+ "slots": [
+  {
+   "id": "seat-left",
+   "rect": [
+    410,
+    450,
+    300,
+    300
+   ]
+  },
+  {
+   "id": "seat-right",
+   "rect": [
+    960,
+    450,
+    300,
+    300
+   ]
+  }
+ ],
+ "jack": {
+  "hint_delay": 8.0,
+  "items": [
+   {
+    "id": "booster-blue",
+    "texture": "res://assets/florida/booster-blue.png",
+    "slot": "seat-left",
+    "height": 200,
+    "pos": [
+     520,
+     840
+    ]
+   },
+   {
+    "id": "booster-pink",
+    "texture": "res://assets/florida/booster-pink.png",
+    "slot": "seat-right",
+    "height": 200,
+    "pos": [
+     1150,
+     840
+    ]
+   }
+  ]
+ },
+ "becca": {
+  "hint_delay": 6.0,
+  "always_glow": true,
+  "items": [
+   {
+    "id": "booster-blue",
+    "texture": "res://assets/florida/booster-blue.png",
+    "height": 200,
+    "pos": [
+     520,
+     840
+    ]
+   },
+   {
+    "id": "booster-pink",
+    "texture": "res://assets/florida/booster-pink.png",
+    "height": 200,
+    "pos": [
+     1150,
+     840
+    ]
+   }
+  ]
+ }
+}

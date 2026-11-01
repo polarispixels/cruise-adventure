@@ -52,6 +52,15 @@ def mix(*parts):
     return out
 
 
+def florida_sounds(rng):
+    """Chapter 10: the carousel starting, a booster seat clicking in, the minivan hatch closing."""
+    return {
+        "carousel-start": mix(env(0.3 * np.sin(2 * np.pi * 55 * t(0.8)), 0.1, 3), np.concatenate([tone(523, 0.18, 8), tone(659, 0.4, 5)])),
+        "seatbelt-click": mix(tone(1400, 0.08, 50), tone(2100, 0.1, 45), 0.3 * noise(0.04, 70, rng)),
+        "hatch-close": mix(tone(110, 0.35, 12, ((1, 1.0), (1.5, 0.4))), 0.25 * noise(0.12, 25, rng, 50), np.concatenate([np.zeros(int(0.1 * RATE)), tone(880, 0.3, 9)]) * 0.3),
+    }
+
+
 def sounds():
     rng = np.random.default_rng(7)
     return {
@@ -64,6 +73,7 @@ def sounds():
         "arch-chime": np.concatenate([tone(659, 0.15, 9), tone(784, 0.15, 9), tone(1047, 0.5, 4)]),
         "step": mix(tone(140, 0.08, 45), 0.3 * noise(0.06, 50, rng, 30)),
         "whoosh": noise(0.9, 2.5, rng, 8) * np.sin(np.linspace(0, np.pi, int(0.9 * RATE))) ** 2,
+        **florida_sounds(rng),
         **aboard_sounds(rng),
         **seaday_sounds(rng),
     }
