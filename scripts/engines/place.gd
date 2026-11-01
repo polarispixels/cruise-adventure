@@ -88,6 +88,8 @@ func _build() -> void:
 		else:
 			sprite.position = Vector2(free_x[k], float(data["tray_y"]))
 			k += 1
+		# appears_after: waits, hidden, until that slot is filled.
+		sprite.visible = str(it.get("appears_after", "")) == ""
 		_layer.add_child(sprite)
 		item_nodes[id] = sprite
 		_home[id] = sprite.position
@@ -251,7 +253,17 @@ func _put(id: String, slot: Dictionary) -> void:
 		if bool(item.get("hide_on_place", false)):
 			t.chain().tween_callback(func() -> void: sprite.visible = false)
 		if slot.has("fill_texture"):
+			# hide_marker_on_fill: the filled picture takes the slot picture's place.
+			var own := _marks.get_node_or_null(NodePath(sid))
+			if own and bool(slot.get("hide_marker_on_fill", false)):
+				(own as CanvasItem).visible = false
 			_mark(slot, {})
+	for it in _items:
+		if str(it.get("appears_after", "")) == sid:
+			var waiting: Sprite2D = item_nodes[str(it.get("id", ""))]
+			if not waiting.visible:
+				waiting.visible = true
+				pop(waiting)
 	if _all_done():
 		finish()
 		return
@@ -298,7 +310,7 @@ func _back(id: String) -> void:
 func _show_hint() -> void:
 	for it in _items:
 		var id := str(it.get("id", ""))
-		if _placed.has(id):
+		if _placed.has(id) or not (item_nodes[id] as Sprite2D).visible:
 			continue
 		for s in _slots:
 			if takes(s, id):
@@ -326,7 +338,7 @@ func _item_at(local: Vector2) -> String:
 	var best := ""
 	var best_area := INF
 	for id in item_ids():
-		if _placed.has(id):
+		if _placed.has(id) or not (item_nodes[id] as Sprite2D).visible:
 			continue
 		var r := sprite_rect(item_nodes[id] as Sprite2D)
 		if r.grow(30).has_point(local) and r.get_area() <= best_area:

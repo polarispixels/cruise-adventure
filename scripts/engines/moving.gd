@@ -5,6 +5,8 @@
 # the left. Done when every target has been tapped.
 extends EngineBase
 
+## How long a tap_effect shows.
+const TAP_EFFECT_TIME := 0.4
 const HIT_SLACK := 30.0
 const COLLECT_TIME := 0.5
 
@@ -99,20 +101,28 @@ func _move(delta: float) -> void:
 	_phase += delta * float(data["speed"])
 	var path := str(data["path"])
 	var n := _items.size()
+	# Drifting things are spaced among themselves (still ones, like jets, don't count).
+	var drift_n := 0
+	for it in _items:
+		if not it.has("pos"):
+			drift_n += 1
+	var drift_i := -1
 	for i in n:
 		var it := _items[i]
 		var id := str(it.get("id", ""))
 		if _tapped.has(id):
 			continue
 		var s: Sprite2D = item_nodes[id]
+		if not it.has("pos"):
+			drift_i += 1
 		if path == "still" or it.has("pos"):
 			s.position = vec(it.get("pos"), Vector2(lerpf(SAFE.position.x + 120, SAFE.end.x - 120, (i + 0.5) / n), 600))
 		elif path == "drift":
 			var lanes: Array = data["lanes"] as Array
 			var spacing := float(data["spacing"])
-			var span := maxf(spacing * n, SAFE.size.x + spacing)
+			var span := maxf(spacing * drift_n, SAFE.size.x + spacing)
 			var left := SAFE.position.x - spacing
-			var x := fposmod(spacing * i + _phase, span)
+			var x := fposmod(spacing * drift_i + _phase, span)
 			s.position = Vector2(left + x, float(lanes[i % lanes.size()]))
 		else:
 			var r := rect_of(data["loop_rect"])
@@ -141,6 +151,7 @@ func _tap(id: String) -> void:
 	_tapped[id] = true
 	stop_pulse(s)
 	sound(str(data["right_sound"]))
+	_tap_effect(s.position)
 	if player:
 		player.cheer()
 	var t := create_tween().set_parallel()
@@ -158,28 +169,54 @@ func _tap(id: String) -> void:
 	say(line("right_line"))
 
 
+## A spray (or any picture) shown for a moment where a target was tapped.
+func _tap_effect(at: Vector2) -> void:
+	sound(str(data.get("tap_effect_sound", "")))
+	var path := str(data.get("tap_effect", ""))
+	if path == "":
+		return
+	var fx := Sprite2D.new()
+	fx.name = "TapEffect"
+	fx.texture = texture_or(path, Vector2(160, 160), Color(0.7, 0.9, 1.0))
+	set_height(fx, float(data.get("tap_effect_height", data.get("item_height", 170))))
+	fx.position = at
+	fx.z_index = 2
+	stage.add_child(fx)
+	var t := create_tween()
+	t.tween_property(fx, "modulate:a", 0.0, TAP_EFFECT_TIME).set_ease(Tween.EASE_IN)
+	t.tween_callback(fx.queue_free)
+
+
+## Points at the untapped target nearest the middle of the screen, never at one
+## off screen; a moving one first, a still one (a jet) only when no moving one is left.
 func _show_hint() -> void:
+	var view := stage_view()
 	var best := ""
 	var best_d := INF
-	var view := stage_view()
+	var moving_left := false
 	for id in _targets:
-		if _tapped.has(id):
+		if not _tapped.has(id) and not _is_still(id):
+			moving_left = true
+	for id in _targets:
+		if _tapped.has(id) or (moving_left and _is_still(id)):
 			continue
 		var p := (item_nodes[id] as Sprite2D).position
 		var d := p.distance_to(view.get_center())
-		if view.has_point(p) and d < best_d:
+		if view.grow(-40).has_point(p) and d < best_d:
 			best = id
 			best_d = d
-	if best == "":
-		for id in _targets:
-			if not _tapped.has(id):
-				best = id
-				break
 	if best == "":
 		return
 	_hint = best
 	pulse(item_nodes[best] as Sprite2D)
 	point_helper((item_nodes[best] as Sprite2D).position)
+
+
+func _is_still(id: String) -> bool:
+	for it in _items:
+		if str(it.get("id", "")) == id:
+			return str(data["path"]) == "still" or it.has("pos")
+	return false
 
 
 func _hide_hint() -> void:

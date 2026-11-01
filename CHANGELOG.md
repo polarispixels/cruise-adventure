@@ -12,6 +12,9 @@ All notable changes to this project are documented here.
 - Planned: chapter 12, Island days (sun safe, shell hunt, sandcastle; played twice).
 - Planned: chapter 13, Sea day (swimsuit, the big slide, splash zone, dinner).
 - Planned: chapter 14, Beach hotel (the minivan again, the hotel room, waves, the finale on the journey map).
+- Done: chapters now run from data. A segment player drives chapters 1-8 exactly as before, and the journey map shows stops 7-14.
+- Done: six reusable play engines (Match, Place, Fit, Maze, Moving targets, Tap moments) with tests.
+- Done: placeholder art and stills for anything not drawn yet, and a media fallback so a missing clip never stops the game; saved progress carries over.
 - Done: every video clip is now 854x480 (smaller downloads, same look on the tablet).
 - Done: the other size work from the technical optimization spec (T2, T5, T6).
 

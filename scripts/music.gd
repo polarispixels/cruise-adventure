@@ -56,5 +56,5 @@ func hold(on: bool) -> void:
 func _process(delta: float) -> void:
 	if _want != _current:
 		_switch(_want)
-	var target := DUCKED_DB if Voice.is_speaking() else NORMAL_DB
+	var target := DUCKED_DB if Voice.is_speaking() or Sfx.ducking() else NORMAL_DB
 	player.volume_db = move_toward(player.volume_db, target, FADE_RATE * delta)
