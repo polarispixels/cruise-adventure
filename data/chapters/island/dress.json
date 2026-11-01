@@ -1,0 +1,120 @@
+{
+ "kid_scale": 0.65,
+ "player_feet": [
+  780,
+  900
+ ],
+ "helper_scale": 0.3,
+ "helper_feet": [
+  1440,
+  930
+ ],
+ "start_line": "",
+ "hint_line": "isle-hat-sandals",
+ "done_line": "isle-sun-safe",
+ "place_sound": "thump",
+ "items": [
+  {
+   "id": "hat",
+   "texture": "res://assets/props/{kid}/hat-card.png",
+   "pos": [
+    330,
+    400
+   ],
+   "height": 230
+  },
+  {
+   "id": "sandals",
+   "texture": "res://assets/props/{kid}/sandals-card.png",
+   "pos": [
+    330,
+    700
+   ],
+   "height": 230
+  }
+ ],
+ "slots": [
+  {
+   "id": "head",
+   "rect": [
+    685,
+    140,
+    190,
+    150
+   ],
+   "accepts": [
+    "hat"
+   ]
+  },
+  {
+   "id": "feet",
+   "rect": [
+    650,
+    810,
+    260,
+    110
+   ],
+   "accepts": [
+    "sandals"
+   ]
+  }
+ ],
+ "jack": {
+  "always_glow": false,
+  "slots": [
+   {
+    "id": "head",
+    "rect": [
+     685,
+     140,
+     190,
+     150
+    ],
+    "accepts": [
+     "hat"
+    ]
+   },
+   {
+    "id": "feet",
+    "rect": [
+     650,
+     810,
+     260,
+     110
+    ],
+    "accepts": [
+     "sandals"
+    ]
+   }
+  ]
+ },
+ "becca": {
+  "always_glow": true,
+  "slots": [
+   {
+    "id": "head",
+    "rect": [
+     655,
+     190,
+     250,
+     200
+    ],
+    "accepts": [
+     "hat"
+    ]
+   },
+   {
+    "id": "feet",
+    "rect": [
+     620,
+     790,
+     320,
+     150
+    ],
+    "accepts": [
+     "sandals"
+    ]
+   }
+  ]
+ }
+}

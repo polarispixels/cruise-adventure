@@ -111,6 +111,19 @@ jobs:
     steps:
       - id: deploy
         uses: actions/deploy-pages@v5
+      - name: Confirm the live project page shows this commit
+        # The page's stamp links the commit it was built from. GitHub's CDN caches for up to
+        # 10 minutes, so retry with no-cache headers before calling the deploy silent.
+        run: |
+          short="${GITHUB_SHA:0:7}"
+          url="https://polarispixels.github.io/cruise-adventure/docs/?v=$GITHUB_SHA"
+          for i in $(seq 1 20); do
+            if curl -fsSL -H 'Cache-Control: no-cache' -H 'Pragma: no-cache' "$url" | grep -q "commit/$short"; then
+              echo "Live page shows $short"; exit 0
+            fi
+            echo "attempt $i: live page does not show $short yet"; sleep 30
+          done
+          echo "::error title=Pages deploy::The live project page never showed commit $short"; exit 1
 
   android:
     needs: test

@@ -1,0 +1,204 @@
+{
+ "start_line": "beach-build",
+ "hint_line": "beach-build",
+ "place_line": "it-fits",
+ "wrong_line": "try-another-spot",
+ "place_sound": "sand-plop",
+ "done_line": "beach-decorate",
+ "tray_y": 835,
+ "helper_feet": [
+  1500,
+  930
+ ],
+ "slots": [
+  {
+   "id": "outline",
+   "rect": [
+    436,
+    100,
+    800,
+    600
+   ],
+   "texture": "res://assets/island/castle-outline.png",
+   "inert": true
+  },
+  {
+   "id": "p1",
+   "rect": [
+    736,
+    500,
+    200,
+    200
+   ]
+  },
+  {
+   "id": "p2",
+   "rect": [
+    526,
+    500,
+    200,
+    200
+   ]
+  },
+  {
+   "id": "p3",
+   "rect": [
+    946,
+    500,
+    200,
+    200
+   ]
+  },
+  {
+   "id": "p4",
+   "rect": [
+    736,
+    300,
+    200,
+    200
+   ]
+  },
+  {
+   "id": "p5",
+   "rect": [
+    736,
+    100,
+    200,
+    200
+   ]
+  }
+ ],
+ "jack": {
+  "items": [
+   {
+    "id": "p1",
+    "texture": "res://assets/island/castle-piece-1.png",
+    "height": 200,
+    "slot": "p1"
+   },
+   {
+    "id": "p2",
+    "texture": "res://assets/island/castle-piece-2.png",
+    "height": 200,
+    "slot": "p2"
+   },
+   {
+    "id": "p3",
+    "texture": "res://assets/island/castle-piece-3.png",
+    "height": 200,
+    "slot": "p3"
+   },
+   {
+    "id": "p4",
+    "texture": "res://assets/island/castle-piece-4.png",
+    "height": 200,
+    "slot": "p4"
+   },
+   {
+    "id": "p5",
+    "texture": "res://assets/island/castle-piece-5.png",
+    "height": 200,
+    "slot": "p5"
+   }
+  ]
+ },
+ "becca": {
+  "slots": [
+   {
+    "id": "outline",
+    "rect": [
+     436,
+     100,
+     800,
+     600
+    ],
+    "texture": "res://assets/island/castle-outline.png",
+    "inert": true
+   },
+   {
+    "id": "b2",
+    "rect": [
+     526,
+     500,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-2.png",
+    "inert": true
+   },
+   {
+    "id": "b3",
+    "rect": [
+     946,
+     500,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-3.png",
+    "inert": true
+   },
+   {
+    "id": "p1",
+    "rect": [
+     736,
+     500,
+     200,
+     200
+    ]
+   },
+   {
+    "id": "p4",
+    "rect": [
+     736,
+     300,
+     200,
+     200
+    ]
+   },
+   {
+    "id": "p5",
+    "rect": [
+     736,
+     100,
+     200,
+     200
+    ]
+   }
+  ],
+  "items": [
+   {
+    "id": "p1",
+    "texture": "res://assets/island/castle-piece-1.png",
+    "height": 200,
+    "slot": "p1",
+    "pos": [
+     836,
+     835
+    ]
+   },
+   {
+    "id": "p4",
+    "texture": "res://assets/island/castle-piece-4.png",
+    "height": 200,
+    "slot": "p4",
+    "pos": [
+     836,
+     835
+    ],
+    "appears_after": "p1"
+   },
+   {
+    "id": "p5",
+    "texture": "res://assets/island/castle-piece-5.png",
+    "height": 200,
+    "slot": "p5",
+    "pos": [
+     836,
+     835
+    ],
+    "appears_after": "p4"
+   }
+  ]
+ },
+ "background": "res://assets/beach/beach-sand.png"
+}

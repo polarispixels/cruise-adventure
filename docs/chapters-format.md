@@ -41,7 +41,10 @@ as floats: read them with `int(Game.segment["choices"])`.
 A chapter with an empty `segments` list is not built yet: it has no map stop, and starting it
 just returns to the map without marking it done. The journey map itself can be a segment:
 `{"kind": "scene", "scene": "res://scenes/map.tscn", "finale": true}` lights up the whole route
-(`light_up_route()`), holds a moment, and goes on (chapter 14's finale).
+(`light_up_route()`), holds a moment, and goes on (chapter 14's finale). Its `finale_sound` (an
+`Sfx` name) plays once the whole route is lit. The map says nothing over the finale.
+Its spoken line: "pick-a-row" until the card is packed, then `next-stop` while a stop is waiting
+(else "all-packed"), and `beach-replay` once the beach is done (`Voice.has_line()` guards both).
 
 ## Per-kid differences: `jack` and `becca` blocks
 
@@ -289,6 +292,8 @@ slides back. A tap sends a thing to the next slot that takes it.
 | `always_glow` | `false` | Glow every free slot even when nothing is held (sunscreen spots). |
 | `tap_places` | `true` | A tap places a thing in its next slot. |
 | `place_line`, `wrong_line` | `found`, `""` | `place_sound`: `tag-snap`. |
+
+A slot with `"inert": true` is only a picture (its `texture`, at its `rect`): it takes nothing, never glows and is never a drop target (the castle outline, pieces already built).
 
 Swimsuit on: slot `texture` the kid, `fill_texture` the kid in the swimsuit, slot
 `hide_marker_on_fill: true` (the slot's own `texture` disappears as the fill shows; without it,

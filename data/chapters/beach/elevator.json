@@ -1,0 +1,78 @@
+{
+ "background": "res://assets/beach/beach-elevator.png",
+ "target_texture": "res://assets/aboard/keycard-blank.png",
+ "target_height": 200,
+ "target_pos": [
+  836,
+  150
+ ],
+ "start_line": "beach-elevator",
+ "done_line": "beach-ding",
+ "done_sound": "elevator-ding",
+ "right_sound": "tag-snap",
+ "wrong_line": "try-again",
+ "hint_line": "this-way",
+ "choice_height": 200,
+ "row_y": 560,
+ "layout": "row",
+ "jack": {
+  "key": "number",
+  "round_line": "beach-floor-number",
+  "rounds": [
+   {
+    "target": "f7",
+    "label": "7"
+   }
+  ],
+  "choices": [
+   {
+    "id": "f3",
+    "texture": "res://assets/beach/elevator-button-blank.png",
+    "label": "3"
+   },
+   {
+    "id": "f5",
+    "texture": "res://assets/beach/elevator-button-blank.png",
+    "label": "5"
+   },
+   {
+    "id": "f7",
+    "texture": "res://assets/beach/elevator-button-blank.png",
+    "label": "7"
+   },
+   {
+    "id": "f9",
+    "texture": "res://assets/beach/elevator-button-blank.png",
+    "label": "9"
+   }
+  ]
+ },
+ "becca": {
+  "key": "color",
+  "round_line": "beach-floor-color",
+  "choice_height": 240,
+  "rounds": [
+   {
+    "target": "green",
+    "color": "#3fae5a"
+   }
+  ],
+  "choices": [
+   {
+    "id": "red",
+    "texture": "res://assets/beach/elevator-button-red.png",
+    "color": "#e0443c"
+   },
+   {
+    "id": "blue",
+    "texture": "res://assets/beach/elevator-button-blue.png",
+    "color": "#3a7bd5"
+   },
+   {
+    "id": "green",
+    "texture": "res://assets/beach/elevator-button-green.png",
+    "color": "#3fae5a"
+   }
+  ]
+ }
+}

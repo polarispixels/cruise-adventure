@@ -198,7 +198,7 @@ func test_all_done_map_cheers(t) -> void:
 	voice.enabled = false
 	voice.last_line = ""
 	var map := await _make(t, "becca", [0, 1, 2, 3])
-	t.eq(voice.last_line, "all-packed", "everything packed")
+	t.eq(voice.last_line, "next-stop", "the card is packed: tap the next stop (the car)")
 	voice.enabled = true
 	_done(t, map)
 
@@ -304,15 +304,16 @@ func test_journey_has_a_stop_per_chapter_7_to_14(t) -> void:
 
 
 func test_unbuilt_chapters_have_no_stop(t) -> void:
+	# Whatever chapters are built by now, an empty one gets no stop: empty all but car and airport.
 	var game: Node = t.tree.root.get_node("Game")
 	game.use_chapters([])
-	var built: Array[String] = []
-	for c: Dictionary in game.chapters():
-		if int(c["number"]) >= 7 and not (c["segments"] as Array).is_empty():
-			built.append(str(c["id"]))
+	var list: Array = game.chapters().duplicate(true)
+	for c: Dictionary in list:
+		if not ["car", "airport"].has(c["id"]):
+			c["segments"] = []
+	game.use_chapters(list)
 	var map := await _map_with(t, "jack", ["car", "airport"])
-	t.eq(map.stop_ids, built, "only chapters with segments (whichever chapters are built so far)")
-	t.check(not map.stop_ids.has("beach") or not (game.chapter("beach")["segments"] as Array).is_empty(), "an unbuilt chapter has no stop")
+	t.eq(map.stop_ids, ["car", "airport"] as Array[String], "only chapters with segments get a stop")
 	_done(t, map)
 	game.use_chapters([])
 
@@ -415,3 +416,50 @@ func test_finale_segment_lights_up_and_goes_on(t) -> void:
 	await t.tree.create_timer(ALL_STOPS.size() * 0.35 + 2.5).timeout
 	t.eq(game.last_scene_request, "res://scenes/intro.tscn", "then the celebration")
 	_done(t, map)
+
+
+func test_finale_says_nothing_over_the_light_up(t) -> void:
+	_all_built(t)
+	var game: Node = t.tree.root.get_node("Game")
+	for c: Dictionary in game.chapters():
+		if c["id"] == "beach":
+			c["segments"] = [{"kind": "scene", "scene": "res://scenes/map.tscn", "finale": true}]
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = false
+	var progress: Node = t.tree.root.get_node("Progress")
+	progress.path = TMP
+	progress.reset()
+	game.navigate = false
+	game.kid = load("res://data/jack.tres")
+	game.play_chapter("beach")
+	voice.last_line = ""
+	var map := await _map_with(t, "jack", ALL_STOPS.slice(0, 8))
+	t.eq(voice.last_line, "", "no all-packed over the finale")
+	await t.tree.create_timer(game.kid.hint_delay + 0.5).timeout
+	t.eq(voice.last_line, "", "and no idle prompt during it")
+	voice.enabled = true
+	_done(t, map)
+
+
+func test_after_the_beach_the_map_offers_replays(t) -> void:
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = false
+	_all_built(t)
+	var has_replay: bool = voice.has_line("beach-replay")
+	voice.last_line = ""
+	var map := await _map_with(t, "becca", ALL_STOPS)
+	t.eq(voice.last_line, "beach-replay" if has_replay else "all-packed", "the replay line once it exists, else the cheer")
+	_done(t, map)
+	voice._ids["beach-replay"] = true
+	voice.last_line = ""
+	_all_built(t)
+	map = await _map_with(t, "becca", ALL_STOPS)
+	t.eq(voice.last_line, "beach-replay", "after the beach: tap any stop to play it again")
+	_done(t, map)
+	voice.last_line = ""
+	_all_built(t)
+	map = await _map_with(t, "becca", ["car"])
+	t.eq(voice.last_line, "next-stop", "mid-trip: tap the next stop")
+	_done(t, map)
+	voice._ids.clear()
+	voice.enabled = true
