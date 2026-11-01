@@ -67,5 +67,16 @@
      {"kind": "scene", "id": "splash", "scene": "res://scenes/engines/moving.tscn", "data": "res://data/chapters/seaday/splash.json"},
      {"kind": "scene", "id": "dinner", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/seaday/dinner.json"},
      {"kind": "clip", "id": "seaday-evening", "name": "sea-evening-deck"}]},
-  {"id": "beach", "number": 14, "title": "Beach hotel", "segments": []}
+  {"id": "beach", "number": 14, "title": "Beach hotel",
+   "segments": [
+     {"kind": "clip", "id": "beach-intro", "name": "beach-walk-sand", "once": true, "line": "beach-arrive"},
+     {"kind": "scene", "id": "trunk", "scene": "res://scenes/engines/fit.tscn", "data": "res://data/chapters/beach/trunk.json"},
+     {"kind": "scene", "id": "elevator", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/beach/elevator.json"},
+     {"kind": "scene", "id": "hallway", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/beach/hallway.json"},
+     {"kind": "scene", "id": "room", "scene": "res://scenes/engines/moments.tscn", "data": "res://data/chapters/beach/room.json"},
+     {"kind": "scene", "id": "waves", "scene": "res://scenes/engines/moments.tscn", "data": "res://data/chapters/beach/waves.json"},
+     {"kind": "scene", "id": "castle", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/beach/castle.json"},
+     {"kind": "scene", "id": "decorate", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/beach/decorate.json"},
+     {"kind": "scene", "id": "finale-map", "scene": "res://scenes/map.tscn", "finale": true, "finale_sound": "celebration-fanfare"},
+     {"kind": "clip", "id": "celebration", "name": "beach-celebration", "line": "beach-replay"}]}
 ]}

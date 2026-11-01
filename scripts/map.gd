@@ -148,6 +148,8 @@ func light_up_route() -> void:
 		t.tween_property(b, "scale", Vector2.ONE, LIGHT_STEP / 2)
 	_fit()
 	if Game.playing() and Game.segment.get("finale", false):
+		if str(Game.segment.get("finale_sound", "")) != "":
+			t.tween_callback(func(): Sfx.play(str(Game.segment["finale_sound"])))
 		t.tween_interval(FINALE_HOLD)
 		t.tween_callback(Game.segment_done)
 
