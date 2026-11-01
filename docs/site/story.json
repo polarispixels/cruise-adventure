@@ -920,34 +920,115 @@
    "images": [],
    "checks": [
     {
-     "label": "Chapter design reviewed by Ryan (the chapter spec) (chapter 12 spec still to come)"
+     "label": "Chapter design approved by Ryan (the chapter spec)"
     },
     {
-     "label": "Art: island backgrounds, sunscreen, shells, bucket pieces and castle outline"
+     "label": "Art: day 1 backgrounds",
+     "files": [
+      "assets/island/island-beach.png",
+      "assets/island/island-sand.png"
+     ]
     },
     {
-     "label": "Video: island arrival and splashing in shallow water (day 2 can reuse day 1's clips)"
+     "label": "Art: day 2 backgrounds",
+     "files": [
+      "assets/island/island-beach-2.png",
+      "assets/island/island-sand-2.png"
+     ]
     },
     {
-     "label": "Voice Lines v1.0 for the island lines recorded by both kids"
+     "label": "Art: sunscreen, spot, dab, bucket, flag",
+     "files": [
+      "assets/island/sunscreen.png",
+      "assets/island/sun-spot.png",
+      "assets/island/sun-dab.png",
+      "assets/island/bucket.png",
+      "assets/island/castle-flag.png"
+     ]
     },
     {
-     "label": "Build: Sun safe (Place), per-child data and a unit test"
+     "label": "Art: day 1 shells, castle outline and pieces",
+     "files": [
+      "assets/island/shell-spiral.png",
+      "assets/island/shell-fan.png",
+      "assets/island/shell-cone.png",
+      "assets/island/shell-star.png",
+      "assets/island/shell-clam.png",
+      "assets/island/castle-outline.png",
+      "assets/island/castle-piece-1.png",
+      "assets/island/castle-piece-2.png",
+      "assets/island/castle-piece-3.png",
+      "assets/island/castle-piece-4.png",
+      "assets/island/castle-piece-5.png"
+     ]
     },
     {
-     "label": "Build: Shell hunt (Match), 3 large shells for Becca, 5 among decoys for Jack-Jack, unit test"
+     "label": "Art: day 2 shells, castle outline and pieces",
+     "files": [
+      "assets/island/shell-conch-2.png",
+      "assets/island/shell-scallop-2.png",
+      "assets/island/shell-sand-dollar-2.png",
+      "assets/island/shell-snail-2.png",
+      "assets/island/shell-mussel-2.png",
+      "assets/island/castle-outline-2.png",
+      "assets/island/castle-piece-1-2.png",
+      "assets/island/castle-piece-2-2.png",
+      "assets/island/castle-piece-3-2.png",
+      "assets/island/castle-piece-4-2.png",
+      "assets/island/castle-piece-5-2.png"
+     ]
     },
     {
-     "label": "Build: Sandcastle (Place), 3 pieces for Becca, 5 for Jack-Jack, then decorate with the shells, unit test"
+     "label": "Video: island-arrival",
+     "files": [
+      "assets/video/island-arrival.ogv",
+      "assets/stills/island-arrival.png"
+     ]
     },
     {
-     "label": "Chapter data for Island day 1 and Island day 2 (same code, different data)"
+     "label": "Video: island-splash",
+     "files": [
+      "assets/video/island-splash.ogv",
+      "assets/stills/island-splash.png"
+     ]
     },
     {
-     "label": "Headless playthrough of both island days for both kids"
+     "label": "Voice Lines v1.0: the 12 island lines recorded by both kids",
+     "voice": [
+      "becca/isle-all-shells",
+      "becca/isle-castle",
+      "becca/isle-dab",
+      "becca/isle-day2",
+      "becca/isle-decorate",
+      "becca/isle-great-castle",
+      "becca/isle-hat-sandals",
+      "becca/isle-in-castle",
+      "becca/isle-shells",
+      "becca/isle-sun-safe",
+      "becca/isle-sunscreen",
+      "becca/isle-this-one",
+      "jack/isle-all-shells",
+      "jack/isle-castle",
+      "jack/isle-dab",
+      "jack/isle-day2",
+      "jack/isle-decorate",
+      "jack/isle-great-castle",
+      "jack/isle-hat-sandals",
+      "jack/isle-in-castle",
+      "jack/isle-shells",
+      "jack/isle-sun-safe",
+      "jack/isle-sunscreen",
+      "jack/isle-this-one"
+     ]
     },
     {
-     "label": "Playtest on the Fire tablet with both kids"
+     "label": "Build: Sun safe (Place), Shell hunt (Match) and Sandcastle (Place), per-child data and a unit test each"
+    },
+    {
+     "label": "Build: Island day 1 chapter, and Island day 2 as data only, headless playthrough for both kids"
+    },
+    {
+     "label": "Layout preview at 16:10 and playtest on the Fire tablet with both kids"
     }
    ],
    "status": "Not started"
@@ -1075,34 +1156,104 @@
    "images": [],
    "checks": [
     {
-     "label": "Chapter design reviewed by Ryan (the chapter spec) (chapter 14 spec still to come)"
+     "label": "Chapter design approved by Ryan (the chapter spec)"
     },
     {
-     "label": "Art: hotel lobby, elevator, hallway, beach and hotel skins"
+     "label": "Art: six backgrounds",
+     "files": [
+      "assets/beach/beach-hotel-front.png",
+      "assets/beach/beach-elevator.png",
+      "assets/beach/beach-hallway.png",
+      "assets/beach/beach-room.png",
+      "assets/beach/beach-waves.png",
+      "assets/beach/beach-sand.png"
+     ]
     },
     {
-     "label": "Video: walking out onto the sand (intro) and the celebration (finale)"
+     "label": "Art: elevator doors, buttons, panel and key dots",
+     "files": [
+      "assets/beach/elevator-door-left.png",
+      "assets/beach/elevator-door-right.png",
+      "assets/beach/elevator-button-blank.png",
+      "assets/beach/elevator-button-red.png",
+      "assets/beach/elevator-button-blue.png",
+      "assets/beach/elevator-button-green.png",
+      "assets/beach/elevator-button-lit.png",
+      "assets/beach/elevator-panel.png",
+      "assets/beach/key-dot-red.png",
+      "assets/beach/key-dot-blue.png",
+      "assets/beach/key-dot-green.png"
+     ]
     },
     {
-     "label": "Voice Lines v1.0 for the beach hotel lines recorded by both kids"
+     "label": "Art: wave band, splash, foam puff, umbrella",
+     "files": [
+      "assets/beach/wave-front.png",
+      "assets/beach/wave-splash.png",
+      "assets/beach/foam-puff.png",
+      "assets/beach/beach-umbrella.png"
+     ]
     },
     {
-     "label": "Build: Load the minivan again (Fit), half the bags pre-loaded for both kids, unit test"
+     "label": "Video: beach-celebration",
+     "files": [
+      "assets/video/beach-celebration.ogv",
+      "assets/stills/beach-celebration.png"
+     ]
     },
     {
-     "label": "Build: Find our room (elevator floor pick, hallway with the chapter 11 room finder in a hotel skin), unit test"
+     "label": "Video: beach-walk-sand",
+     "files": [
+      "assets/video/beach-walk-sand.ogv",
+      "assets/stills/beach-walk-sand.png"
+     ]
     },
     {
-     "label": "Build: Beach time (Tap moments waves, then the chapter 12 sandcastle in the hotel beach skin), unit test"
+     "label": "Voice Lines v1.0: the 16 beach lines recorded by both kids",
+     "voice": [
+      "becca/beach-build",
+      "becca/beach-castle-done",
+      "becca/beach-decorate",
+      "becca/beach-ding",
+      "becca/beach-elevator",
+      "becca/beach-find-room",
+      "becca/beach-floor-color",
+      "becca/beach-jump",
+      "becca/beach-jumped",
+      "becca/beach-look-back",
+      "becca/beach-our-room",
+      "becca/beach-pack-again",
+      "becca/beach-packed",
+      "becca/beach-replay",
+      "becca/beach-waves",
+      "jack/beach-build",
+      "jack/beach-castle-done",
+      "jack/beach-decorate",
+      "jack/beach-ding",
+      "jack/beach-elevator",
+      "jack/beach-find-room",
+      "jack/beach-floor-number",
+      "jack/beach-jump",
+      "jack/beach-jumped",
+      "jack/beach-look-back",
+      "jack/beach-our-room",
+      "jack/beach-pack-again",
+      "jack/beach-packed",
+      "jack/beach-replay",
+      "jack/beach-waves"
+     ]
     },
     {
-     "label": "Finale: the journey map lights up every stop, the celebration clip plays, then back to the map with all chapters replayable"
+     "label": "Build: Load the minivan again (Fit) and Elevator (Match, number and color keys), a unit test each"
     },
     {
-     "label": "Headless playthrough for both kids"
+     "label": "Build: Hotel hallway (Match), Jump the waves (Tap moments) and Sandcastle (Place, hotel skin), a unit test each"
     },
     {
-     "label": "Playtest on the Fire tablet with both kids"
+     "label": "Build: chapter data in chapters.json, finale light-up of every stop, celebration clip, map with replay"
+    },
+    {
+     "label": "Headless playthrough for both kids, layout preview at 16:10, playtest on the Fire tablet"
     }
    ],
    "status": "Not started"
