@@ -83,6 +83,26 @@ class CheckTest(unittest.TestCase):
         self.assertIn("Not doing this one.", html)
         self.assertNotIn("0 of 1", html)
 
+    def test_chapter_status_overrides_the_pill(self):
+        story = {"chapters": [{"number": 7, "title": "Car", "release": "v0.4", "status": "In playtest",
+                               "checks": [{"label": "one", "done": True}, {"label": "two"}]}], "panels": [], "parts": []}
+        html = site.render(story, self.root)
+        self.assertIn(">In playtest</span>", html)
+        self.assertNotIn(">In progress</span>", html)
+
+    def test_apk_badge_names_the_newest_release_tag(self):
+        story = {"chapters": [], "panels": [], "parts": []}
+        html = site.render(story, self.root, latest_release="playtest-v0.5-2")
+        self.assertIn("releases/tag/playtest-v0.5-2", html)
+        self.assertIn("Tablet APK (playtest-v0.5-2)", html)
+        html = site.render(story, self.root)
+        self.assertIn("/releases\"", html)  # no tag known: the list of all builds
+
+    def test_voice_counts_split_kid_grown_up_computer(self):
+        html = site.render({"chapters": [], "panels": [], "parts": []}, self.root)
+        self.assertIn("Jack-Jack's side: 1 kid, 0 grown-up, 1 computer", html)
+        self.assertIn("Becca's side: 0 kid, 1 grown-up, 1 computer", html)
+
 
 if __name__ == "__main__":
     unittest.main()

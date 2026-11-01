@@ -82,7 +82,12 @@ jobs:
       - name: Test the docs page builder
         run: python3 -m unittest discover -s tests -p "test_*.py"
       - name: Build the docs page
-        run: python3 tools/make_docs_site.py build/web/docs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # The newest release (playtests included) for the APK button.
+        run: |
+          export LATEST_RELEASE=$(gh release list --repo "$GITHUB_REPOSITORY" --limit 1 --json tagName -q '.[0].tagName' || true)
+          python3 tools/make_docs_site.py build/web/docs
       - uses: actions/upload-pages-artifact@v5
         with:
           path: build/web
