@@ -1,0 +1,6 @@
+{"background": "res://assets/dummy/bg.png", "key": "picture", "target": "shell", "layout": "row",
+ "done_delay": 0, "hint_delay": 60,
+ "choices": [{"id": "shell", "texture": "res://assets/dummy/shell.png"},
+             {"id": "hat-1", "texture": "res://assets/dummy/hat.png"},
+             {"id": "hat-2", "texture": "res://assets/dummy/hat.png"}],
+ "becca": {"count": 2}}

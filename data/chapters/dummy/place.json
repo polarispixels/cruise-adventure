@@ -1,0 +1,6 @@
+{"background": "res://assets/dummy/bg.png", "player_feet": [836, 900], "done_delay": 0, "hint_delay": 60,
+ "items": [{"id": "hat", "texture": "res://assets/dummy/hat.png", "slot": "head", "pos": [300, 820]}],
+ "slots": [{"id": "head", "point": [836, 300], "size": 160}],
+ "jack": {"items": [{"id": "hat", "texture": "res://assets/dummy/hat.png", "slot": "head", "pos": [300, 820]},
+                    {"id": "shell", "texture": "res://assets/dummy/shell.png", "slot": "hand", "pos": [500, 820]}],
+          "slots": [{"id": "head", "point": [836, 300], "size": 160}, {"id": "hand", "point": [1100, 600], "size": 140}]}}

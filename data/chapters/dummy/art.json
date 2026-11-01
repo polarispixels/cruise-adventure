@@ -1,0 +1,7 @@
+[
+ {"file": "assets/dummy/bg.png", "kind": "background", "color": "#9FD6C8", "label": "dummy background"},
+ {"file": "assets/dummy/shell.png", "canvas": [200, 200], "kind": "sprite", "color": "#F7C6D9", "shape": "circle"},
+ {"file": "assets/dummy/hat.png", "canvas": [240, 160], "kind": "sprite", "color": "#F2A541", "shape": "rounded"},
+ {"file": "assets/stills/dummy-intro.png", "kind": "still", "label": "dummy intro"},
+ {"file": "assets/map/stop-dummy.png", "canvas": [200, 200], "kind": "icon", "color": "#AA66CC", "shape": "silhouette-star"}
+]
