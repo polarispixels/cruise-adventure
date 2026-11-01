@@ -37,11 +37,11 @@ func test_json_has_the_53_ids(t) -> void:
 	for line in _lines():
 		ids.append(line["id"])
 		t.check(String(line["text"]) != "", "text for " + line["id"])
-	# The first 53 are the original lines; chapters 9-14 append theirs, and an id is never reused.
+	# The first 53 are the original set, in order; chapters 9-14 add their own ids after them, never repeated.
 	t.eq(ids.slice(0, EXPECTED_IDS.size()), EXPECTED_IDS, "voice line ids")
 	var seen := {}
-	for id: Variant in ids:
-		t.check(not seen.has(id), "voice line id used once: " + str(id))
+	for id in ids:
+		t.check(not seen.has(id), "line id used once: " + str(id))
 		seen[id] = true
 
 

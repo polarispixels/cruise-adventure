@@ -1,0 +1,159 @@
+{
+ "kid_scale": 0.65,
+ "player_feet": [
+  780,
+  900
+ ],
+ "helper_scale": 0.3,
+ "helper_feet": [
+  1440,
+  930
+ ],
+ "start_line": "isle-sunscreen",
+ "start_sound": "waves",
+ "start_sound_after_line": true,
+ "hint_line": "isle-dab",
+ "place_sound": "sunscreen-squirt",
+ "always_glow": true,
+ "done_line": "isle-hat-sandals",
+ "items": [
+  {
+   "id": "sunscreen",
+   "texture": "res://assets/island/sunscreen.png",
+   "reusable": true,
+   "pos": [
+    330,
+    560
+   ],
+   "height": 240,
+   "mark_texture": "res://assets/island/sun-dab.png"
+  }
+ ],
+ "slots": [
+  {
+   "id": "forehead",
+   "point": [
+    785,
+    276
+   ],
+   "size": 90,
+   "texture": "res://assets/island/sun-spot.png"
+  },
+  {
+   "id": "cheek-l",
+   "point": [
+    727,
+    344
+   ],
+   "size": 90,
+   "texture": "res://assets/island/sun-spot.png"
+  },
+  {
+   "id": "cheek-r",
+   "point": [
+    854,
+    344
+   ],
+   "size": 90,
+   "texture": "res://assets/island/sun-spot.png"
+  },
+  {
+   "id": "shoulder-l",
+   "point": [
+    694,
+    510
+   ],
+   "size": 90,
+   "texture": "res://assets/island/sun-spot.png"
+  },
+  {
+   "id": "shoulder-r",
+   "point": [
+    866,
+    510
+   ],
+   "size": 90,
+   "texture": "res://assets/island/sun-spot.png"
+  }
+ ],
+ "jack": {
+  "slots": [
+   {
+    "id": "forehead",
+    "point": [
+     785,
+     276
+    ],
+    "size": 90,
+    "texture": "res://assets/island/sun-spot.png"
+   },
+   {
+    "id": "cheek-l",
+    "point": [
+     727,
+     344
+    ],
+    "size": 90,
+    "texture": "res://assets/island/sun-spot.png"
+   },
+   {
+    "id": "cheek-r",
+    "point": [
+     854,
+     344
+    ],
+    "size": 90,
+    "texture": "res://assets/island/sun-spot.png"
+   },
+   {
+    "id": "shoulder-l",
+    "point": [
+     694,
+     510
+    ],
+    "size": 90,
+    "texture": "res://assets/island/sun-spot.png"
+   },
+   {
+    "id": "shoulder-r",
+    "point": [
+     866,
+     510
+    ],
+    "size": 90,
+    "texture": "res://assets/island/sun-spot.png"
+   }
+  ]
+ },
+ "becca": {
+  "slots": [
+   {
+    "id": "nose",
+    "point": [
+     782,
+     386
+    ],
+    "size": 130,
+    "texture": "res://assets/island/sun-spot.png"
+   },
+   {
+    "id": "shoulder-l",
+    "point": [
+     707,
+     510
+    ],
+    "size": 130,
+    "texture": "res://assets/island/sun-spot.png"
+   },
+   {
+    "id": "shoulder-r",
+    "point": [
+     863,
+     510
+    ],
+    "size": 130,
+    "texture": "res://assets/island/sun-spot.png"
+   }
+  ]
+ }
+}
