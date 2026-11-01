@@ -1,0 +1,74 @@
+{
+ "background": "res://assets/flight/flight-aisle.png",
+ "start_line": "find-seat",
+ "done_line": "our-seats",
+ "layout": "doors",
+ "door_spacing": 520,
+ "row_y": 590,
+ "choice_height": 420,
+ "player_feet": [
+  260,
+  930
+ ],
+ "target_pos": [
+  1400,
+  140
+ ],
+ "target_height": 170,
+ "target_texture": "res://assets/flight/flight-pass.png",
+ "jack": {
+  "key": "number",
+  "target": "row-14",
+  "hint_line": "match-number",
+  "choices": [
+   {
+    "id": "row-12",
+    "texture": "res://assets/flight/seat-row.png",
+    "label": "12"
+   },
+   {
+    "id": "row-13",
+    "texture": "res://assets/flight/seat-row.png",
+    "label": "13"
+   },
+   {
+    "id": "row-14",
+    "texture": "res://assets/flight/seat-row.png",
+    "label": "14"
+   },
+   {
+    "id": "row-15",
+    "texture": "res://assets/flight/seat-row.png",
+    "label": "15"
+   }
+  ],
+  "round_line": "match-number"
+ },
+ "becca": {
+  "key": "color",
+  "layout": "row",
+  "target": "green",
+  "hint_line": "match-sticker",
+  "choice_height": 400,
+  "choices": [
+   {
+    "id": "red",
+    "texture": "res://assets/flight/seat-row.png",
+    "color": "#e0463c"
+   },
+   {
+    "id": "green",
+    "texture": "res://assets/flight/seat-row.png",
+    "color": "#4caf50"
+   },
+   {
+    "id": "blue",
+    "texture": "res://assets/flight/seat-row.png",
+    "color": "#3a7bd5"
+   }
+  ],
+  "round_line": "match-sticker"
+ },
+ "music": "res://assets/music/flight.ogg",
+ "wrong_line": "try-again"
+}

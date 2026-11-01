@@ -1,0 +1,282 @@
+[
+ {
+  "file": "assets/flight/flight-aisle.png",
+  "kind": "background",
+  "color": "#D9E4EE",
+  "label": "cabin aisle"
+ },
+ {
+  "file": "assets/flight/flight-seats.png",
+  "kind": "background",
+  "color": "#C9D6E3",
+  "label": "seats and window"
+ },
+ {
+  "file": "assets/flight/flight-bin.png",
+  "kind": "background",
+  "color": "#E3E6EA",
+  "label": "open overhead bin"
+ },
+ {
+  "file": "assets/flight/window-sky.png",
+  "kind": "background",
+  "color": "#8EC9F2",
+  "label": "sky"
+ },
+ {
+  "file": "assets/flight/window-frame.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "sprite",
+  "color": "#F2F2F2",
+  "shape": "rounded",
+  "label": "window frame overlay"
+ },
+ {
+  "file": "assets/flight/seat-row.png",
+  "canvas": [
+   480,
+   560
+  ],
+  "kind": "sprite",
+  "color": "#4A6FA5",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/row-sign.png",
+  "canvas": [
+   240,
+   120
+  ],
+  "kind": "sprite",
+  "color": "#FFFFFF",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/sticker-red.png",
+  "canvas": [
+   120,
+   120
+  ],
+  "kind": "sprite",
+  "color": "#E0463C",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/flight/sticker-green.png",
+  "canvas": [
+   120,
+   120
+  ],
+  "kind": "sprite",
+  "color": "#4CAF50",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/flight/sticker-blue.png",
+  "canvas": [
+   120,
+   120
+  ],
+  "kind": "sprite",
+  "color": "#3A7BD5",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/flight/flight-pass.png",
+  "canvas": [
+   400,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#F4EFE0",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/bin-door.png",
+  "canvas": [
+   1180,
+   300
+  ],
+  "kind": "sprite",
+  "color": "#C8CCD2",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/belt-tab.png",
+  "canvas": [
+   160,
+   120
+  ],
+  "kind": "sprite",
+  "color": "#9AA3AD",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/belt-buckle.png",
+  "canvas": [
+   160,
+   120
+  ],
+  "kind": "sprite",
+  "color": "#6B747E",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/seatbelt-sign-off.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#555B63",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/seatbelt-sign-on.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#FFD23F",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/flight/snack-cart.png",
+  "canvas": [
+   520,
+   420
+  ],
+  "kind": "sprite",
+  "color": "#B8C2CC",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/snack-tray.png",
+  "canvas": [
+   500,
+   220
+  ],
+  "kind": "sprite",
+  "color": "#DADFE5",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/snack-apple.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D8362F",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/snack-crackers.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#F2B84B",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/snack-juice.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#F28C28",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/flight/cloud-heart.png",
+  "canvas": [
+   360,
+   240
+  ],
+  "kind": "sprite",
+  "color": "#FFFFFF",
+  "shape": "silhouette-cloud",
+  "label": "heart"
+ },
+ {
+  "file": "assets/flight/cloud-star.png",
+  "canvas": [
+   360,
+   240
+  ],
+  "kind": "sprite",
+  "color": "#FFFFFF",
+  "shape": "silhouette-cloud",
+  "label": "star"
+ },
+ {
+  "file": "assets/flight/cloud-fish.png",
+  "canvas": [
+   360,
+   240
+  ],
+  "kind": "sprite",
+  "color": "#FFFFFF",
+  "shape": "silhouette-cloud",
+  "label": "fish"
+ },
+ {
+  "file": "assets/flight/cloud-bunny.png",
+  "canvas": [
+   360,
+   240
+  ],
+  "kind": "sprite",
+  "color": "#FFFFFF",
+  "shape": "silhouette-cloud",
+  "label": "bunny"
+ },
+ {
+  "file": "assets/flight/cloud-boat.png",
+  "canvas": [
+   360,
+   240
+  ],
+  "kind": "sprite",
+  "color": "#FFFFFF",
+  "shape": "silhouette-cloud",
+  "label": "boat"
+ },
+ {
+  "file": "assets/flight/cloud-bubble.png",
+  "canvas": [
+   260,
+   260
+  ],
+  "kind": "sprite",
+  "color": "#EAF4FF",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/flight/plane-wing.png",
+  "canvas": [
+   900,
+   300
+  ],
+  "kind": "sprite",
+  "color": "#AEB6BF",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/stills/takeoff-window.png",
+  "kind": "still",
+  "label": "takeoff out the window"
+ },
+ {
+  "file": "assets/stills/flight-landing.png",
+  "kind": "still",
+  "label": "landing in Florida"
+ }
+]

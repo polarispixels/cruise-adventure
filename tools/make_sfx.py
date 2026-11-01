@@ -64,12 +64,27 @@ def sounds():
     }
 
 
+def flight_sounds(rng):
+    """Chapter 9 (the flight) stand-ins."""
+    return {
+        "bin-latch": mix(tone(220, 0.12, 30), 0.5 * tone(110, 0.25, 14), 0.2 * noise(0.05, 60, rng, 8)),
+        "buckle-click": mix(tone(2200, 0.06, 60), 0.5 * tone(1500, 0.1, 40), 0.3 * noise(0.03, 80, rng)),
+        "engine-hum": env(mix(0.5 * np.sin(2 * np.pi * 85 * t(1.5)), 0.25 * np.sin(2 * np.pi * 170 * t(1.5)),
+                              0.2 * noise(1.5, 0.3, rng, 30)), 0.1, 0.8),
+        "takeoff-roar": env(mix(0.4 * np.sin(2 * np.pi * (80 + 60 * t(2.5)) * t(2.5)), 0.4 * noise(2.5, 0.5, rng, 20)), 0.3, 0.8),
+        "cart-rattle": mix(noise(0.6, 5, rng, 6) * 0.5, tone(300, 0.1, 25), tone(400, 0.1, 25)),
+        "crunch": mix(noise(0.08, 40, rng, 5), 0.6 * noise(0.1, 30, rng, 9)),
+        "cloud-puff": mix(noise(0.3, 9, rng, 14) * np.sin(np.linspace(0, np.pi, int(0.3 * RATE))), 0.3 * tone(880, 0.2, 14)),
+        "landing-thud": mix(tone(70, 0.4, 10), 0.3 * noise(0.2, 20, rng, 50)),
+    }
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     cli, mount = import_art.docker()
     with tempfile.TemporaryDirectory() as tmp:
         work = Path(tmp)
-        for name, x in sounds().items():
+        for name, x in {**sounds(), **flight_sounds(np.random.default_rng(11))}.items():
             pcm = (x / max(1e-9, np.max(np.abs(x))) * 0.7 * 32767).astype(np.int16)
             with wave.open(str(work / f"{name}.wav"), "wb") as w:
                 w.setnchannels(1)

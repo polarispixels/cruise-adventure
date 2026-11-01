@@ -23,6 +23,8 @@ BAR = 4 * BEAT
 OUT = Path(__file__).resolve().parent.parent / "assets" / "music" / "theme.ogg"
 ## The airport bed: the same tune a fourth higher, a little quicker and lighter (no bass).
 AIRPORT_OUT = OUT.parent / "airport.ogg"
+## The flight bed (chapter 9): the tune a third lower, slow and floating, no bass.
+FLIGHT_OUT = OUT.parent / "flight.ogg"
 AIRPORT_SHIFT = 5
 AIRPORT_BPM = 126
 
@@ -93,6 +95,7 @@ def render(shift=0, bpm=BPM, bass=True):
 def main():
     write(render(), OUT)
     write(render(AIRPORT_SHIFT, AIRPORT_BPM, bass=False), AIRPORT_OUT)
+    write(render(-3, 84, bass=False), FLIGHT_OUT)
 
 
 def write(track, out):
