@@ -3590,5 +3590,114 @@
   "source": "placeholder",
   "approved": false,
   "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/beach/beach-hotel-front.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/beach/beach-elevator.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/beach/beach-hallway.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/beach/beach-room.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/beach/beach-waves.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/beach/beach-sand.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/beach/elevator-button-blank.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/beach/elevator-button-red.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/beach/elevator-button-blue.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/beach/elevator-button-green.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/beach/wave.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/beach/art.json"
+ },
+ {
+  "game": "assets/stills/beach-walk-sand.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "placeholder": {
+   "kind": "still",
+   "canvas": [
+    854,
+    480
+   ],
+   "color": "#B9A6E0",
+   "shape": "rect",
+   "label": "still for beach-walk-sand"
+  }
+ },
+ {
+  "game": "assets/stills/beach-celebration.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "placeholder": {
+   "kind": "still",
+   "canvas": [
+    854,
+    480
+   ],
+   "color": "#B9A6E0",
+   "shape": "rect",
+   "label": "still for beach-celebration"
+  }
  }
 ]

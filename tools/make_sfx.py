@@ -67,6 +67,7 @@ def sounds():
         **aboard_sounds(rng),
         **seaday_sounds(rng),
         **island_sounds(rng),
+        **beach_sounds(rng),
     }
 
 
@@ -108,6 +109,19 @@ def seaday_sounds(rng):
         "water-jet": noise(0.5, 3, rng, 3) * swell(0.5),
         "slide-whoosh": noise(1.6, 1.2, rng, 10) * swell(1.6) ** 1.5 * (0.6 + 0.4 * np.sin(2 * np.pi * 5 * t(1.6))),
         "toy-pop": mix(tone(520, 0.12, 30), tone(780, 0.1, 35), 0.2 * noise(0.04, 80, rng)),
+    }
+
+
+def beach_sounds(rng):
+    """Chapter 14, Beach hotel: an elevator ding, a surf swell, a wave splash and the finale fanfare."""
+    swell = lambda s: np.sin(np.linspace(0, np.pi, int(s * RATE)))
+    fan = [tone(f, d, 3.0, ((1, 1.0), (2, 0.4), (3, 0.2))) for f, d in ((523, 0.18), (659, 0.18), (784, 0.18), (1047, 0.7))]
+    chord = mix(tone(523, 0.9, 3.0), tone(659, 0.9, 3.0), tone(784, 0.9, 3.0), tone(1047, 0.9, 3.0))
+    return {
+        "elevator-ding": np.concatenate([tone(1175, 0.18, 9), tone(880, 0.6, 5)]),
+        "wave-roll": noise(1.5, 0.5, rng, 14) * swell(1.5),
+        "wave-splash": mix(env(noise(0.7, 4, rng, 6), 0.01, 5.0) * 0.8, 0.2 * tone(660, 0.1, 30)),
+        "celebration-fanfare": np.concatenate(fan[:3] + [chord]),
     }
 
 

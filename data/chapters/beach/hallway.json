@@ -1,0 +1,85 @@
+{
+ "background": "res://assets/beach/beach-hallway.png",
+ "layout": "doors",
+ "door_spacing": 420,
+ "row_y": 520,
+ "key": "number",
+ "target_texture": "res://assets/aboard/keycard-blank.png",
+ "target_height": 200,
+ "target_pos": [
+  836,
+  150
+ ],
+ "choices": [
+  {
+   "id": "d7204",
+   "texture": "res://assets/aboard/door-closed.png",
+   "label": "7204",
+   "height": 480
+  },
+  {
+   "id": "d7205",
+   "texture": "res://assets/aboard/door-closed.png",
+   "label": "7205",
+   "height": 480
+  },
+  {
+   "id": "d7206",
+   "texture": "res://assets/aboard/door-closed.png",
+   "label": "7206",
+   "height": 480
+  },
+  {
+   "id": "d7207",
+   "texture": "res://assets/aboard/door-closed.png",
+   "label": "7207",
+   "height": 480
+  }
+ ],
+ "rounds": [
+  {
+   "target": "d7206",
+   "label": "7206",
+   "line": "match-door-number"
+  }
+ ],
+ "player_feet": [
+  260,
+  920
+ ],
+ "start_line": "beach-find-room",
+ "round_line": "match-door-number",
+ "hint_line": "this-way",
+ "right_sound": "door-open",
+ "wrong_sound": "door-click",
+ "wrong_line": "not-this-door",
+ "becca": {
+  "layout": "doors",
+  "door_spacing": 520,
+  "key": "picture",
+  "round_line": "match-door-sticker",
+  "rounds": [
+   {
+    "target": "crab",
+    "texture": "res://assets/aboard/sticker-crab.png"
+   }
+  ],
+  "choices": [
+   {
+    "id": "fish",
+    "texture": "res://assets/aboard/door-fish.png",
+    "height": 480
+   },
+   {
+    "id": "crab",
+    "texture": "res://assets/aboard/door-crab.png",
+    "height": 480
+   }
+  ]
+ },
+ "label_at": [
+  0,
+  -120
+ ],
+ "label_size": 46
+}

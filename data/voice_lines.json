@@ -446,5 +446,73 @@
  {
   "id": "isle-splash",
   "text": "Splash, splash!"
+ },
+ {
+  "id": "beach-arrive",
+  "text": "We made it to the beach hotel!"
+ },
+ {
+  "id": "beach-pack-again",
+  "text": "Pack the minivan again!"
+ },
+ {
+  "id": "beach-packed",
+  "text": "All packed! Off we go!"
+ },
+ {
+  "id": "beach-elevator",
+  "text": "Ride the elevator!"
+ },
+ {
+  "id": "beach-floor-number",
+  "text": "Push the number on your key!"
+ },
+ {
+  "id": "beach-floor-color",
+  "text": "Push the color on your key!"
+ },
+ {
+  "id": "beach-ding",
+  "text": "Ding! Here's our floor!"
+ },
+ {
+  "id": "beach-find-room",
+  "text": "Now find our room!"
+ },
+ {
+  "id": "beach-our-room",
+  "text": "Our room! I can see the ocean!"
+ },
+ {
+  "id": "beach-waves",
+  "text": "Here come the waves!"
+ },
+ {
+  "id": "beach-jump",
+  "text": "Tap to jump!"
+ },
+ {
+  "id": "beach-jumped",
+  "text": "Splash! You jumped them all!"
+ },
+ {
+  "id": "beach-build",
+  "text": "Let's build a sandcastle!"
+ },
+ {
+  "id": "beach-decorate",
+  "text": "Put shells on the castle!"
+ },
+ {
+  "id": "beach-castle-done",
+  "text": "What a beautiful castle!"
+ },
+ {
+  "id": "beach-replay",
+  "text": "Tap any stop to play it again!"
+ },
+ {
+  "id": "beach-tap-window",
+  "text": "Tap the window!"
  }
 ]

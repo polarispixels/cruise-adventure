@@ -103,7 +103,6 @@ func _playthrough(t, kid_id: String) -> void:
 	kit.game.play_chapter("car")
 	t.eq(kit.game.last_scene_request, kit.game.TRUNK, "%s: replaying the car goes straight to the trunk" % kid_id)
 	kit.game.stop_chapter()
-	kit.game.use_chapters([])
 	kit.end()
 
 
