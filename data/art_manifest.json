@@ -3791,5 +3791,43 @@
    "shape": "rect",
    "label": "still for beach-celebration"
   }
+ },
+ {
+  "game": "assets/sfx/waves.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/sunscreen-squirt.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/sand-plop.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/shell-clink.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/island/shell-moon.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-limpet-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
  }
 ]
