@@ -55,15 +55,26 @@ Part 1 is the storyboard's six chapters turned into play. Part 2 is the trip its
 | --- | --- | --- | --- |
 | 7. To the car | Both kids by the car (`ready-to-pack-the-car.mp4`); the SUV drives off (`car-drive-off`) | The trunk puzzle: fit all eight family bags into the black SUV, turning some on their side | Getting ready to leave |
 | 8. The airport | The kid leads the way in; the jet bridge payoff (see the chapter 8 spec) | Goodbye suitcases, Through security, Find our gate | What the airport is like |
-| 9. The flight | Takeoff out the window | Calm activities in the seat: buckle up, pick a snack, look out the window | What flying is like |
-| 10. The ship | Boarding the ship | Find the stateroom by matching the key card number to the doors | Numbers and finding your way |
-| 11. Ship and beach | Water slides, the beach | A playground of mini games that grows over time | Fun, and the reason for all the work |
+| 9. The flight | Takeoff out the window; landing in Florida | Find our seat (match the row number or color sticker), stow Daddy's bag in the overhead bin, slide the backpacks under the seat, buckle up, pick a snack, spot cloud shapes out the window | What flying is like |
+| 10. Hello Florida | The family arrives (a still); the minivan at sunset; a sleepy hotel night | Spot our bags on the carousel, put the booster seats in the rental minivan, then load the trunk | The suitcases come back, and the car seats go in before the bags |
+| 11. Welcome aboard | Walking onto the ship; the ship sails away | Get your key card, find your room in the hallway, and a short safety drill that makes the ship's horn friendly | What boarding is like, and that the big HONK is fine |
+| 12. Island days | Walking onto the island; splashing in the shallows | Sun safe (sunscreen, hat, sandals), shell hunt, build and decorate a sandcastle. Played twice, as Island day 1 and 2, with different art | A beach day, sun safety first |
+| 13. Sea day | The pool deck; the evening on deck | Swimsuit on, the big slide (Jack-Jack rides; Becca is too small and hears "next time", then splashes), the splash zone, dress for dinner | What the ship is like, with honest height rules |
+| 14. Beach hotel | Walking out onto the sand; the "We did it!" celebration | Load the minivan again, the elevator and hotel hallway, jump the waves, build a sandcastle, then the journey map lights every stop | The trip's end, and every chapter can be replayed |
 
-Part 2 can use real photos and memories from the trip to shape each chapter.
+All places are generic ("our big ship," "the island," "the beach hotel").
+
+Chapters 9-14 were built for version 1.0 and are in playtest with placeholder art at the final file names.
 
 **Chapter specs.** Chapter specs now live in the Kids Packing Video `Specs\` folder, one per chapter, each built from `Cruise Adventure - Chapter Spec Template.md`. A chapter spec holds the detail: the play segments, what's different for Jack-Jack and Becca, art, video, voice lines and an acceptance checklist. This spec keeps the structure and the rules, and wins if the two disagree. The project page's checklist for a chapter follows its spec's acceptance checklist.
 
 - Chapter 8, The airport: [Cruise Adventure - Chapter 08 - The Airport v0.1.md](file:///C:/Users/rgris/Documents/ChatGPT/Kids%20Packing%20Video/Specs/Cruise%20Adventure%20-%20Chapter%2008%20-%20The%20Airport%20v0.1.md) (`Kids Packing Video\Specs\`). Ryan approved it on October 31, 2026. It has three play segments: Goodbye suitcases, Through security and Find our gate.
+- Chapter 9, The flight: [Cruise Adventure - Chapter 09 - The Flight v0.1.md](file:///C:/Users/rgris/Documents/ChatGPT/Kids%20Packing%20Video/Specs/Cruise%20Adventure%20-%20Chapter%2009%20-%20The%20Flight%20v0.1.md) (`Kids Packing Video\Specs\`). Draft from the v1.0 Build Spec, for Ryan's review.
+- Chapter 10, Hello Florida: [Cruise Adventure - Chapter 10 - Hello Florida v0.1.md](file:///C:/Users/rgris/Documents/ChatGPT/Kids%20Packing%20Video/Specs/Cruise%20Adventure%20-%20Chapter%2010%20-%20Hello%20Florida%20v0.1.md) (`Kids Packing Video\Specs\`). Draft from the v1.0 Build Spec, for Ryan's review.
+- Chapter 11, Welcome aboard: [Cruise Adventure - Chapter 11 - Welcome Aboard v0.1.md](file:///C:/Users/rgris/Documents/ChatGPT/Kids%20Packing%20Video/Specs/Cruise%20Adventure%20-%20Chapter%2011%20-%20Welcome%20Aboard%20v0.1.md) (`Kids Packing Video\Specs\`). Draft from the v1.0 Build Spec, for Ryan's review.
+- Chapter 12, Island days: [Cruise Adventure - Chapter 12 - Island Days v0.1.md](file:///C:/Users/rgris/Documents/ChatGPT/Kids%20Packing%20Video/Specs/Cruise%20Adventure%20-%20Chapter%2012%20-%20Island%20Days%20v0.1.md) (`Kids Packing Video\Specs\`). Draft from the v1.0 Build Spec, for Ryan's review.
+- Chapter 13, Sea day: [Cruise Adventure - Chapter 13 - Sea Day v0.1.md](file:///C:/Users/rgris/Documents/ChatGPT/Kids%20Packing%20Video/Specs/Cruise%20Adventure%20-%20Chapter%2013%20-%20Sea%20Day%20v0.1.md) (`Kids Packing Video\Specs\`). Draft from the v1.0 Build Spec, for Ryan's review.
+- Chapter 14, Beach hotel: [Cruise Adventure - Chapter 14 - Beach Hotel v0.1.md](file:///C:/Users/rgris/Documents/ChatGPT/Kids%20Packing%20Video/Specs/Cruise%20Adventure%20-%20Chapter%2014%20-%20Beach%20Hotel%20v0.1.md) (`Kids Packing Video\Specs\`). Draft from the v1.0 Build Spec, for Ryan's review.
 
 **October 31, 2026 decisions:**
 
@@ -74,6 +85,18 @@ Part 2 can use real photos and memories from the trip to shape each chapter.
   - The kids' backpacks are their activity bags, holding the tablet and buddy for the flight.
   - Daddy's backpack and Mommy's purse are carry-ons.
 - **Jack-Jack's hair is golden sandy dirty-blonde, no copper or orange.** Character Sheets v0.4 still win.
+
+**November 1, 2026 decisions (the v1.0 build):**
+
+- Finish everything before the trip, using simplified, generic versions of the real ship and places. No trip photos.
+- The places are generic in the game: "our big ship," "the island," "the beach hotel." No cruise-line characters, logos or brand names in code, art, clips, voice lines or request documents.
+- Chapters 9-14 are as in the table above. The game ends with the beach celebration; there is no going-home chapter.
+- Becca is shown honestly as too short for the big slide (39 inches; the slide needs 42; Jack-Jack is 46). She plays in the splash area and hears "next time."
+- Chapter 11 includes a short safety drill so the ship's horn is not scary.
+- Build now with placeholder art at final file names, and do not wait for art or clips. Real art replaces a placeholder by file name.
+- One stop for Ryan, at the end. Playtest builds go out along the way without waiting for him.
+- The Technical Optimization Spec is part of the build. Budgets are guidelines: 90 percent is good enough, and never trade the date, playability or obvious quality for megabytes or polish.
+- Chapters are driven by data (`data/chapters.json`) through a segment player, and six reusable engines (Match, Place, Fit, Maze, Moving targets, Tap moments) build the new chapters.
 
 ## Segment pattern and design rules
 
@@ -108,7 +131,7 @@ The trip leaves November 10. The goal is a playable Chapter 2 before then, so th
 | ~~0.4~~ | ~~Chapters 4-6: the mistake, inspection, the ship payoff~~ | Dropped Oct 30 | Packing is complete; the payoff moves to the ship |
 | 0.4 | Chapter 7, To the car: the trunk puzzle first, then a checkpoint to decide what follows | In playtest (real art, both car clips) | The kids' checkpoint playtest; the trunk voice lines (Voice Lines v0.4); Ryan's OK to tag |
 | 0.5 | Chapter 8, The airport, per its approved chapter spec: Goodbye suitcases, Through security, Find our gate | In playtest (art round 6 in; synthesized sounds) | The airport clips; Voice Lines v0.5; the kids' playtest, especially maze hallway width |
-| 0.6+ | The rest of the journey, one stop per release. The expanded stops (baggage claim and rental car, hotel and beach) are proposed in `Specs/Cruise Adventure - Game Story Arc v0.2.md` | Ongoing | Trip photos and memories, new art and clips per chapter |
+| 1.0 | Chapters 9-14, the whole trip to the beach hotel, from data and the six engines; the framework, the size work and the finale | Candidate in playtest (placeholder art and clips at the final file names) | Art Rounds 7-9, Video Requests Round 4, Voice Lines v1.0 (kids record Nov 8), the kids' playtest, Ryan's OK to tag |
 
 The first developer task in 0.2 stays the video check on the Fire tablet. If 720p Theora stutters there, every later chapter needs lower-resolution clips, so it's worth knowing on day one.
 
@@ -116,6 +139,6 @@ The first developer task in 0.2 stays the video check on the Fire tablet. If 720
 
 - [ ] Is the 3-minute packing video retired, or still wanted later as a separate cut assembled from the game's clips?
 - [ ] Does Dad's narration (the training-film voice) stay in the game, and is it your recorded voice or a placeholder?
-- [x] ~~Chapter 4: one mistake per child, or both?~~ Moot: chapter 4 dropped Oct 30.
-- [x] ~~Is a playable Chapter 2 before November 10 the real target?~~ Done: the whole card shipped as v0.3.0 on Oct 30.
+- [ ] Ryan's OK to tag v1.0 after the kids' playtest (tags always need it).
+- [ ] Which real art and clips arrive before the trip, and which stay as placeholders?
 - [ ] Should the packing-video project's paused storyboard tasks (3 and 4) be closed out in favor of this spec, so ChatGPT stops waiting on them?

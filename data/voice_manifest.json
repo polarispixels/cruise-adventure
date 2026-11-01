@@ -7,6 +7,94 @@
   "kind": "placeholder",
   "text": "We're all together!"
  },
+ "becca/beach-arrive": {
+  "kind": "placeholder",
+  "text": "We made it to the beach hotel!"
+ },
+ "becca/beach-build": {
+  "kind": "placeholder",
+  "text": "Let's build a sandcastle!"
+ },
+ "becca/beach-castle-done": {
+  "kind": "placeholder",
+  "text": "What a beautiful castle!"
+ },
+ "becca/beach-decorate": {
+  "kind": "placeholder",
+  "text": "Put shells on the castle!"
+ },
+ "becca/beach-ding": {
+  "kind": "placeholder",
+  "text": "Ding! Here's our floor!"
+ },
+ "becca/beach-elevator": {
+  "kind": "placeholder",
+  "text": "Ride the elevator!"
+ },
+ "becca/beach-find-room": {
+  "kind": "placeholder",
+  "text": "Now find our room!"
+ },
+ "becca/beach-floor-color": {
+  "kind": "placeholder",
+  "text": "Push the color on your key!"
+ },
+ "becca/beach-floor-number": {
+  "kind": "placeholder",
+  "text": "Push the number on your key!"
+ },
+ "becca/beach-jump": {
+  "kind": "placeholder",
+  "text": "Tap to jump!"
+ },
+ "becca/beach-jumped": {
+  "kind": "placeholder",
+  "text": "Splash! You jumped them all!"
+ },
+ "becca/beach-our-room": {
+  "kind": "placeholder",
+  "text": "Our room! I can see the ocean!"
+ },
+ "becca/beach-pack-again": {
+  "kind": "placeholder",
+  "text": "Pack the minivan again!"
+ },
+ "becca/beach-packed": {
+  "kind": "placeholder",
+  "text": "All packed! Off we go!"
+ },
+ "becca/beach-replay": {
+  "kind": "placeholder",
+  "text": "Tap any stop to play it again!"
+ },
+ "becca/beach-tap-window": {
+  "kind": "placeholder",
+  "text": "Tap the window!"
+ },
+ "becca/beach-waves": {
+  "kind": "placeholder",
+  "text": "Here come the waves!"
+ },
+ "becca/bin-shut": {
+  "kind": "placeholder",
+  "text": "Close the bin!"
+ },
+ "becca/bin-up": {
+  "kind": "placeholder",
+  "text": "Put the big bag up in the bin!"
+ },
+ "becca/boosters-first": {
+  "kind": "placeholder",
+  "text": "Put the booster seats in!"
+ },
+ "becca/buckle-becca": {
+  "kind": "placeholder",
+  "text": "Now help me buckle!"
+ },
+ "becca/buckle-up": {
+  "kind": "placeholder",
+  "text": "Buckle your seatbelt!"
+ },
  "becca/bye-suitcases": {
   "kind": "placeholder",
   "text": "Bye-bye, suitcases! See you soon!"
@@ -30,6 +118,10 @@
  "becca/find-buddy": {
   "kind": "recorded",
   "text": "Find your teddy!"
+ },
+ "becca/find-cloud": {
+  "kind": "placeholder",
+  "text": "Find the cloud that looks like this!"
  },
  "becca/find-gate": {
   "kind": "placeholder",
@@ -58,6 +150,10 @@
  "becca/find-sandals": {
   "kind": "recorded",
   "text": "Find your sandals!"
+ },
+ "becca/find-seat": {
+  "kind": "placeholder",
+  "text": "Let's find our seats!"
  },
  "becca/find-shirt": {
   "kind": "recorded",
@@ -91,6 +187,10 @@
   "kind": "recorded",
   "text": "Find your underwear!"
  },
+ "becca/flight-done": {
+  "kind": "placeholder",
+  "text": "We landed! Time to get off the airplane!"
+ },
  "becca/follow-arrows": {
   "kind": "placeholder",
   "text": "Follow the arrows to the meeting spot!"
@@ -123,9 +223,21 @@
   "kind": "placeholder",
   "text": "Get your things back!"
  },
+ "becca/got-our-bags": {
+  "kind": "placeholder",
+  "text": "We got all our bags!"
+ },
+ "becca/hello-florida": {
+  "kind": "placeholder",
+  "text": "Hello, Florida!"
+ },
  "becca/horn-warning": {
   "kind": "placeholder",
   "text": "The ship makes a big HONK sound. That's OK!"
+ },
+ "becca/hotel-night": {
+  "kind": "placeholder",
+  "text": "Good night, Florida!"
  },
  "becca/hug-buddy": {
   "kind": "recorded",
@@ -135,6 +247,62 @@
   "kind": "placeholder",
   "text": "Put your things in a tray!"
  },
+ "becca/isle-all-shells": {
+  "kind": "placeholder",
+  "text": "Look at all our shells!"
+ },
+ "becca/isle-arrive": {
+  "kind": "placeholder",
+  "text": "We're on the island!"
+ },
+ "becca/isle-castle": {
+  "kind": "placeholder",
+  "text": "Let's build a sandcastle!"
+ },
+ "becca/isle-dab": {
+  "kind": "placeholder",
+  "text": "Dab it here!"
+ },
+ "becca/isle-day2": {
+  "kind": "placeholder",
+  "text": "Another island day!"
+ },
+ "becca/isle-decorate": {
+  "kind": "placeholder",
+  "text": "Now decorate it with shells!"
+ },
+ "becca/isle-great-castle": {
+  "kind": "placeholder",
+  "text": "What a sandcastle!"
+ },
+ "becca/isle-hat-sandals": {
+  "kind": "placeholder",
+  "text": "Now your hat and sandals!"
+ },
+ "becca/isle-in-castle": {
+  "kind": "placeholder",
+  "text": "Put it in the castle!"
+ },
+ "becca/isle-shells": {
+  "kind": "placeholder",
+  "text": "Find the shells that match!"
+ },
+ "becca/isle-splash": {
+  "kind": "placeholder",
+  "text": "Splash, splash!"
+ },
+ "becca/isle-sun-safe": {
+  "kind": "placeholder",
+  "text": "Now we're sun safe!"
+ },
+ "becca/isle-sunscreen": {
+  "kind": "placeholder",
+  "text": "Put on sunscreen!"
+ },
+ "becca/isle-this-one": {
+  "kind": "placeholder",
+  "text": "Look for this one!"
+ },
  "becca/it-fits": {
   "kind": "recorded",
   "text": "It fits!"
@@ -143,9 +311,21 @@
   "kind": "recorded",
   "text": "Airport, here we come!"
  },
+ "becca/light-on": {
+  "kind": "placeholder",
+  "text": "Click! The light is on!"
+ },
  "becca/load-car": {
   "kind": "recorded",
   "text": "Let's put all the bags in the car!"
+ },
+ "becca/load-minivan": {
+  "kind": "placeholder",
+  "text": "Now pack the minivan!"
+ },
+ "becca/look-there": {
+  "kind": "placeholder",
+  "text": "Look over there!"
  },
  "becca/match-airplane": {
   "kind": "placeholder",
@@ -159,9 +339,29 @@
   "kind": "placeholder",
   "text": "Find the door with your sticker!"
  },
+ "becca/match-number": {
+  "kind": "placeholder",
+  "text": "Find the number on your ticket!"
+ },
+ "becca/match-sticker": {
+  "kind": "placeholder",
+  "text": "Find the same color sticker!"
+ },
  "becca/needs-tag": {
   "kind": "placeholder",
   "text": "It needs a tag!"
+ },
+ "becca/next-stop": {
+  "kind": "placeholder",
+  "text": "Tap the next stop!"
+ },
+ "becca/nice-cloud": {
+  "kind": "placeholder",
+  "text": "A cloud shape! Nice!"
+ },
+ "becca/not-ours": {
+  "kind": "placeholder",
+  "text": "Hmm, that's not ours!"
  },
  "becca/not-this-door": {
   "kind": "placeholder",
@@ -195,6 +395,10 @@
   "kind": "placeholder",
   "text": "Our room! Look at the round window!"
  },
+ "becca/our-seats": {
+  "kind": "placeholder",
+  "text": "Here are our seats!"
+ },
  "becca/pack-it": {
   "kind": "recorded",
   "text": "Put it in the suitcase!"
@@ -202,6 +406,10 @@
  "becca/pick-a-row": {
   "kind": "recorded",
   "text": "Let's pack! Tap the row that's wiggling!"
+ },
+ "becca/pick-snack": {
+  "kind": "placeholder",
+  "text": "Pick a snack!"
  },
  "becca/push-it": {
   "kind": "placeholder",
@@ -275,6 +483,10 @@
   "kind": "placeholder",
   "text": "Yum! Dinner time!"
  },
+ "becca/seats-in": {
+  "kind": "placeholder",
+  "text": "The booster seats are in!"
+ },
  "becca/see-number": {
   "kind": "placeholder",
   "text": "That's our room number!"
@@ -286,6 +498,14 @@
  "becca/slide-hall": {
   "kind": "placeholder",
   "text": "Slide to walk down the hall!"
+ },
+ "becca/spot-bags": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find all three!"
+ },
+ "becca/spot-pink": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find the pink suitcase!"
  },
  "becca/tablet-tray": {
   "kind": "placeholder",
@@ -311,6 +531,10 @@
   "kind": "recorded",
   "text": "Tap it to turn it!"
  },
+ "becca/under-seat": {
+  "kind": "placeholder",
+  "text": "Slide your bag under the seat!"
+ },
  "becca/walk-through": {
   "kind": "placeholder",
   "text": "Now walk through!"
@@ -318,6 +542,10 @@
  "becca/who-do-you-want": {
   "kind": "recorded",
   "text": "Who do you want to play as?"
+ },
+ "becca/yum": {
+  "kind": "placeholder",
+  "text": "Yum! Crunch crunch!"
  },
  "becca/zip-it": {
   "kind": "recorded",
@@ -330,6 +558,94 @@
  "jack/all-together": {
   "kind": "placeholder",
   "text": "We're all together!"
+ },
+ "jack/beach-arrive": {
+  "kind": "placeholder",
+  "text": "We made it to the beach hotel!"
+ },
+ "jack/beach-build": {
+  "kind": "placeholder",
+  "text": "Let's build a sandcastle!"
+ },
+ "jack/beach-castle-done": {
+  "kind": "placeholder",
+  "text": "What a beautiful castle!"
+ },
+ "jack/beach-decorate": {
+  "kind": "placeholder",
+  "text": "Put shells on the castle!"
+ },
+ "jack/beach-ding": {
+  "kind": "placeholder",
+  "text": "Ding! Here's our floor!"
+ },
+ "jack/beach-elevator": {
+  "kind": "placeholder",
+  "text": "Ride the elevator!"
+ },
+ "jack/beach-find-room": {
+  "kind": "placeholder",
+  "text": "Now find our room!"
+ },
+ "jack/beach-floor-color": {
+  "kind": "placeholder",
+  "text": "Push the color on your key!"
+ },
+ "jack/beach-floor-number": {
+  "kind": "placeholder",
+  "text": "Push the number on your key!"
+ },
+ "jack/beach-jump": {
+  "kind": "placeholder",
+  "text": "Tap to jump!"
+ },
+ "jack/beach-jumped": {
+  "kind": "placeholder",
+  "text": "Splash! You jumped them all!"
+ },
+ "jack/beach-our-room": {
+  "kind": "placeholder",
+  "text": "Our room! I can see the ocean!"
+ },
+ "jack/beach-pack-again": {
+  "kind": "placeholder",
+  "text": "Pack the minivan again!"
+ },
+ "jack/beach-packed": {
+  "kind": "placeholder",
+  "text": "All packed! Off we go!"
+ },
+ "jack/beach-replay": {
+  "kind": "placeholder",
+  "text": "Tap any stop to play it again!"
+ },
+ "jack/beach-tap-window": {
+  "kind": "placeholder",
+  "text": "Tap the window!"
+ },
+ "jack/beach-waves": {
+  "kind": "placeholder",
+  "text": "Here come the waves!"
+ },
+ "jack/bin-shut": {
+  "kind": "placeholder",
+  "text": "Close the bin!"
+ },
+ "jack/bin-up": {
+  "kind": "placeholder",
+  "text": "Put the big bag up in the bin!"
+ },
+ "jack/boosters-first": {
+  "kind": "placeholder",
+  "text": "Put the booster seats in!"
+ },
+ "jack/buckle-becca": {
+  "kind": "placeholder",
+  "text": "Now help me buckle!"
+ },
+ "jack/buckle-up": {
+  "kind": "placeholder",
+  "text": "Buckle your seatbelt!"
  },
  "jack/bye-suitcases": {
   "kind": "placeholder",
@@ -354,6 +670,10 @@
  "jack/find-buddy": {
   "kind": "recorded",
   "text": "Find your unicorn!"
+ },
+ "jack/find-cloud": {
+  "kind": "placeholder",
+  "text": "Find the cloud that looks like this!"
  },
  "jack/find-gate": {
   "kind": "placeholder",
@@ -382,6 +702,10 @@
  "jack/find-sandals": {
   "kind": "recorded",
   "text": "Find your sandals!"
+ },
+ "jack/find-seat": {
+  "kind": "placeholder",
+  "text": "Let's find our seats!"
  },
  "jack/find-shirt": {
   "kind": "recorded",
@@ -415,6 +739,10 @@
   "kind": "recorded",
   "text": "Find your underwear!"
  },
+ "jack/flight-done": {
+  "kind": "placeholder",
+  "text": "We landed! Time to get off the airplane!"
+ },
  "jack/follow-arrows": {
   "kind": "placeholder",
   "text": "Follow the arrows to the meeting spot!"
@@ -447,9 +775,21 @@
   "kind": "placeholder",
   "text": "Get your things back!"
  },
+ "jack/got-our-bags": {
+  "kind": "placeholder",
+  "text": "We got all our bags!"
+ },
+ "jack/hello-florida": {
+  "kind": "placeholder",
+  "text": "Hello, Florida!"
+ },
  "jack/horn-warning": {
   "kind": "placeholder",
   "text": "The ship makes a big HONK sound. That's OK!"
+ },
+ "jack/hotel-night": {
+  "kind": "placeholder",
+  "text": "Good night, Florida!"
  },
  "jack/hug-buddy": {
   "kind": "recorded",
@@ -459,6 +799,62 @@
   "kind": "placeholder",
   "text": "Put your things in a tray!"
  },
+ "jack/isle-all-shells": {
+  "kind": "placeholder",
+  "text": "Look at all our shells!"
+ },
+ "jack/isle-arrive": {
+  "kind": "placeholder",
+  "text": "We're on the island!"
+ },
+ "jack/isle-castle": {
+  "kind": "placeholder",
+  "text": "Let's build a sandcastle!"
+ },
+ "jack/isle-dab": {
+  "kind": "placeholder",
+  "text": "Dab it here!"
+ },
+ "jack/isle-day2": {
+  "kind": "placeholder",
+  "text": "Another island day!"
+ },
+ "jack/isle-decorate": {
+  "kind": "placeholder",
+  "text": "Now decorate it with shells!"
+ },
+ "jack/isle-great-castle": {
+  "kind": "placeholder",
+  "text": "What a sandcastle!"
+ },
+ "jack/isle-hat-sandals": {
+  "kind": "placeholder",
+  "text": "Now your hat and sandals!"
+ },
+ "jack/isle-in-castle": {
+  "kind": "placeholder",
+  "text": "Put it in the castle!"
+ },
+ "jack/isle-shells": {
+  "kind": "placeholder",
+  "text": "Find the shells that match!"
+ },
+ "jack/isle-splash": {
+  "kind": "placeholder",
+  "text": "Splash, splash!"
+ },
+ "jack/isle-sun-safe": {
+  "kind": "placeholder",
+  "text": "Now we're sun safe!"
+ },
+ "jack/isle-sunscreen": {
+  "kind": "placeholder",
+  "text": "Put on sunscreen!"
+ },
+ "jack/isle-this-one": {
+  "kind": "placeholder",
+  "text": "Look for this one!"
+ },
  "jack/it-fits": {
   "kind": "recorded",
   "text": "It fits!"
@@ -467,9 +863,21 @@
   "kind": "recorded",
   "text": "Airport, here we come!"
  },
+ "jack/light-on": {
+  "kind": "placeholder",
+  "text": "Click! The light is on!"
+ },
  "jack/load-car": {
   "kind": "recorded",
   "text": "Let's put all the bags in the car!"
+ },
+ "jack/load-minivan": {
+  "kind": "placeholder",
+  "text": "Now pack the minivan!"
+ },
+ "jack/look-there": {
+  "kind": "placeholder",
+  "text": "Look over there!"
  },
  "jack/match-airplane": {
   "kind": "placeholder",
@@ -483,9 +891,29 @@
   "kind": "placeholder",
   "text": "Find the door with your sticker!"
  },
+ "jack/match-number": {
+  "kind": "placeholder",
+  "text": "Find the number on your ticket!"
+ },
+ "jack/match-sticker": {
+  "kind": "placeholder",
+  "text": "Find the same color sticker!"
+ },
  "jack/needs-tag": {
   "kind": "placeholder",
   "text": "It needs a tag!"
+ },
+ "jack/next-stop": {
+  "kind": "placeholder",
+  "text": "Tap the next stop!"
+ },
+ "jack/nice-cloud": {
+  "kind": "placeholder",
+  "text": "A cloud shape! Nice!"
+ },
+ "jack/not-ours": {
+  "kind": "placeholder",
+  "text": "Hmm, that's not ours!"
  },
  "jack/not-this-door": {
   "kind": "placeholder",
@@ -519,6 +947,10 @@
   "kind": "placeholder",
   "text": "Our room! Look at the round window!"
  },
+ "jack/our-seats": {
+  "kind": "placeholder",
+  "text": "Here are our seats!"
+ },
  "jack/pack-it": {
   "kind": "recorded",
   "text": "Put it in the suitcase!"
@@ -526,6 +958,10 @@
  "jack/pick-a-row": {
   "kind": "recorded",
   "text": "Let's pack! Tap the row that's wiggling!"
+ },
+ "jack/pick-snack": {
+  "kind": "placeholder",
+  "text": "Pick a snack!"
  },
  "jack/push-it": {
   "kind": "placeholder",
@@ -599,6 +1035,10 @@
   "kind": "placeholder",
   "text": "Yum! Dinner time!"
  },
+ "jack/seats-in": {
+  "kind": "placeholder",
+  "text": "The booster seats are in!"
+ },
  "jack/see-number": {
   "kind": "placeholder",
   "text": "That's our room number!"
@@ -610,6 +1050,14 @@
  "jack/slide-hall": {
   "kind": "placeholder",
   "text": "Slide to walk down the hall!"
+ },
+ "jack/spot-bags": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find all three!"
+ },
+ "jack/spot-pink": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find the pink suitcase!"
  },
  "jack/tablet-tray": {
   "kind": "placeholder",
@@ -635,6 +1083,10 @@
   "kind": "recorded",
   "text": "Tap it to turn it!"
  },
+ "jack/under-seat": {
+  "kind": "placeholder",
+  "text": "Slide your bag under the seat!"
+ },
  "jack/walk-through": {
   "kind": "placeholder",
   "text": "Now walk through!"
@@ -642,6 +1094,10 @@
  "jack/who-do-you-want": {
   "kind": "recorded",
   "text": "Who do you want to play as?"
+ },
+ "jack/yum": {
+  "kind": "placeholder",
+  "text": "Yum! Crunch crunch!"
  },
  "jack/zip-it": {
   "kind": "recorded",

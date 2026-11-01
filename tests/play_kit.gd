@@ -111,6 +111,9 @@ func run(stop_at := "") -> void:
 				await _security(scene)
 			game.MAZE:
 				await _maze(scene)
+			game.MAP:
+				# The finale map lights up the route by itself, holds, and goes on: nothing to tap.
+				t.check(game.segment.get("finale", false), "the map is only a segment as the finale")
 			_:
 				if path.begins_with("res://scenes/engines/"):
 					await _engine(scene)

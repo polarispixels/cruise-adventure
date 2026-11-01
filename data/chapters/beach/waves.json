@@ -1,0 +1,40 @@
+{
+ "background": "res://assets/beach/beach-waves.png",
+ "player_feet": [
+  700,
+  900
+ ],
+ "textures": [
+  "res://assets/beach/wave.png"
+ ],
+ "arrive_height": 300,
+ "arrive_from": [
+  1800,
+  720
+ ],
+ "arrive_to": [
+  900,
+  720
+ ],
+ "leave_to": [
+  -300,
+  720
+ ],
+ "action": "hop",
+ "hop_height": 170,
+ "start_line": "beach-waves",
+ "prompt_line": "beach-jump",
+ "success_line": "found",
+ "success_sound": "wave-splash",
+ "arrive_sound": "wave-roll",
+ "done_line": "beach-jumped",
+ "music": "res://assets/music/theme.ogg",
+ "jack": {
+  "moments": 5,
+  "arrive_time": 1.5
+ },
+ "becca": {
+  "moments": 3,
+  "arrive_time": 2.4
+ }
+}
