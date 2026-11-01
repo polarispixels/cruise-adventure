@@ -12,6 +12,9 @@ var last_line := ""
 ## The line actually playing, or waiting to play next.
 var current_line := ""
 
+const LINES := "res://data/voice_lines.json"
+
+var _ids := {}
 var _player := AudioStreamPlayer.new()
 var _found_index := 0
 var _pending := ""
@@ -70,6 +73,17 @@ func stop() -> void:
 	if _player.playing:
 		_player.stop()
 		line_finished.emit(current_line)
+
+
+## Whether data/voice_lines.json has line `line_id`.
+func has_line(line_id: String) -> bool:
+	if _ids.is_empty():
+		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(LINES))
+		if parsed is Array:
+			for l: Variant in parsed:
+				if l is Dictionary:
+					_ids[str((l as Dictionary).get("id", ""))] = true
+	return _ids.has(line_id)
 
 
 func is_speaking() -> bool:

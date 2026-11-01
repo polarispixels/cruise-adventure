@@ -41,7 +41,9 @@ as floats: read them with `int(Game.segment["choices"])`.
 A chapter with an empty `segments` list is not built yet: it has no map stop, and starting it
 just returns to the map without marking it done. The journey map itself can be a segment:
 `{"kind": "scene", "scene": "res://scenes/map.tscn", "finale": true}` lights up the whole route
-(`light_up_route()`), holds a moment, and goes on (chapter 14's finale).
+(`light_up_route()`), holds a moment, and goes on (chapter 14's finale). The map says nothing over the finale.
+Its spoken line: "pick-a-row" until the card is packed, then `next-stop` once such a line exists
+(else "all-packed"), and `beach-replay` once the beach is done (`Voice.has_line()` guards both).
 
 ## Per-kid differences: `jack` and `becca` blocks
 

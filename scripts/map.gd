@@ -16,6 +16,9 @@ const HOME_SIZE := 150.0
 ## The car button (shown once the card is packed) is this tall, beside the card.
 const CAR_HEIGHT := 260.0
 const AIRPORT_GAP := 30.0
+## Map lines that later chapters add (used once data/voice_lines.json has them).
+const REPLAY_LINE := "beach-replay"
+const NEXT_STOP_LINE := "next-stop"
 ## Later stops' icons are this big.
 const STOP_SIZE := 150.0
 ## The first three stops sit down the left of the card at these heights (share of the view).
@@ -63,10 +66,12 @@ func _ready() -> void:
 		if done.has(row):
 			_card.stamp_row(row)
 	_card.highlight_row(Progress.next_level(kid.id))
-	Voice.say(_line(), Game.sibling())
+	var finale: bool = Game.playing() and Game.segment.get("finale", false)
+	if not finale:
+		Voice.say(_line(), Game.sibling())
 	get_viewport().size_changed.connect(_fit)
 	_fit()
-	if Game.playing() and Game.segment.get("finale", false):
+	if finale:
 		_started = true
 		light_up_route()
 
@@ -215,9 +220,18 @@ func _prompt() -> void:
 	Voice.say(_line(), Game.sibling())
 
 
-## "Tap the row that's wiggling", or a cheer once the whole card is packed.
+## "Tap the row that's wiggling" while the card isn't packed; after the beach,
+## "tap any stop to play it again"; in between, a next-stop line once there is
+## one, else the all-packed cheer.
 func _line() -> String:
-	return "all-packed" if Progress.next_level(Game.kid.id) >= Progress.LEVELS else "pick-a-row"
+	var kid_id := Game.kid.id
+	if Progress.next_level(kid_id) < Progress.LEVELS:
+		return "pick-a-row"
+	if Progress.chapter_done(kid_id, "beach") and Voice.has_line(REPLAY_LINE):
+		return REPLAY_LINE
+	if Voice.has_line(NEXT_STOP_LINE):
+		return NEXT_STOP_LINE
+	return "all-packed"
 
 
 func _playable(row: int) -> bool:

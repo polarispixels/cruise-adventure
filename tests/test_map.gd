@@ -415,3 +415,50 @@ func test_finale_segment_lights_up_and_goes_on(t) -> void:
 	await t.tree.create_timer(ALL_STOPS.size() * 0.35 + 2.5).timeout
 	t.eq(game.last_scene_request, "res://scenes/intro.tscn", "then the celebration")
 	_done(t, map)
+
+
+func test_finale_says_nothing_over_the_light_up(t) -> void:
+	_all_built(t)
+	var game: Node = t.tree.root.get_node("Game")
+	for c: Dictionary in game.chapters():
+		if c["id"] == "beach":
+			c["segments"] = [{"kind": "scene", "scene": "res://scenes/map.tscn", "finale": true}]
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = false
+	var progress: Node = t.tree.root.get_node("Progress")
+	progress.path = TMP
+	progress.reset()
+	game.navigate = false
+	game.kid = load("res://data/jack.tres")
+	game.play_chapter("beach")
+	voice.last_line = ""
+	var map := await _map_with(t, "jack", ALL_STOPS.slice(0, 8))
+	t.eq(voice.last_line, "", "no all-packed over the finale")
+	await t.tree.create_timer(game.kid.hint_delay + 0.5).timeout
+	t.eq(voice.last_line, "", "and no idle prompt during it")
+	voice.enabled = true
+	_done(t, map)
+
+
+func test_after_the_beach_the_map_offers_replays(t) -> void:
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = false
+	_all_built(t)
+	var has_replay: bool = voice.has_line("beach-replay")
+	voice.last_line = ""
+	var map := await _map_with(t, "becca", ALL_STOPS)
+	t.eq(voice.last_line, "beach-replay" if has_replay else "all-packed", "the replay line once it exists, else the cheer")
+	_done(t, map)
+	voice._ids["beach-replay"] = true
+	voice.last_line = ""
+	_all_built(t)
+	map = await _map_with(t, "becca", ALL_STOPS)
+	t.eq(voice.last_line, "beach-replay", "after the beach: tap any stop to play it again")
+	_done(t, map)
+	voice.last_line = ""
+	_all_built(t)
+	map = await _map_with(t, "becca", ["car"])
+	t.eq(voice.last_line, "all-packed", "mid-trip without a next-stop line: the cheer")
+	_done(t, map)
+	voice._ids.clear()
+	voice.enabled = true
