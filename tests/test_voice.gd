@@ -35,7 +35,12 @@ func test_json_has_the_53_ids(t) -> void:
 	for line in _lines():
 		ids.append(line["id"])
 		t.check(String(line["text"]) != "", "text for " + line["id"])
-	t.eq(ids, EXPECTED_IDS, "voice line ids")
+	# Chapters 9-14 add lines after the original ones: the first 53 stay as they were, and no id repeats.
+	t.eq(ids.slice(0, EXPECTED_IDS.size()), EXPECTED_IDS, "voice line ids")
+	var seen := {}
+	for id in ids:
+		t.check(not seen.has(id), "no id is used twice: " + id)
+		seen[id] = true
 
 
 func test_find_special_and_buddy_text_by_speaker(t) -> void:

@@ -3,6 +3,10 @@
   "kind": "recorded",
   "text": "We packed everything! Cruise ship, here we come!"
  },
+ "becca/boosters-first": {
+  "kind": "placeholder",
+  "text": "Put the booster seats in!"
+ },
  "becca/bye-suitcases": {
   "kind": "placeholder",
   "text": "Bye-bye, suitcases! See you soon!"
@@ -107,6 +111,10 @@
   "kind": "placeholder",
   "text": "Get your things back!"
  },
+ "becca/got-our-bags": {
+  "kind": "placeholder",
+  "text": "We got all our bags!"
+ },
  "becca/hug-buddy": {
   "kind": "recorded",
   "text": "Give it a big hug!"
@@ -127,6 +135,14 @@
   "kind": "recorded",
   "text": "Let's put all the bags in the car!"
  },
+ "becca/load-minivan": {
+  "kind": "placeholder",
+  "text": "Now pack the minivan!"
+ },
+ "becca/look-there": {
+  "kind": "placeholder",
+  "text": "Look over there!"
+ },
  "becca/match-airplane": {
   "kind": "placeholder",
   "text": "Find the airplane on your ticket!"
@@ -134,6 +150,10 @@
  "becca/needs-tag": {
   "kind": "placeholder",
   "text": "It needs a tag!"
+ },
+ "becca/not-ours": {
+  "kind": "placeholder",
+  "text": "Hmm, that's not ours!"
  },
  "becca/not-this-one": {
   "kind": "placeholder",
@@ -175,6 +195,18 @@
   "kind": "recorded",
   "text": "Tap the clothes to roll them up!"
  },
+ "becca/seats-in": {
+  "kind": "placeholder",
+  "text": "The booster seats are in!"
+ },
+ "becca/spot-bags": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find all three!"
+ },
+ "becca/spot-pink": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find the pink suitcase!"
+ },
  "becca/tablet-tray": {
   "kind": "placeholder",
   "text": "The tablet gets its own tray!"
@@ -214,6 +246,10 @@
  "jack/all-packed": {
   "kind": "recorded",
   "text": "We packed everything! Cruise ship, here we come!"
+ },
+ "jack/boosters-first": {
+  "kind": "placeholder",
+  "text": "Put the booster seats in!"
  },
  "jack/bye-suitcases": {
   "kind": "placeholder",
@@ -319,6 +355,10 @@
   "kind": "placeholder",
   "text": "Get your things back!"
  },
+ "jack/got-our-bags": {
+  "kind": "placeholder",
+  "text": "We got all our bags!"
+ },
  "jack/hug-buddy": {
   "kind": "recorded",
   "text": "Give it a big hug!"
@@ -339,6 +379,14 @@
   "kind": "recorded",
   "text": "Let's put all the bags in the car!"
  },
+ "jack/load-minivan": {
+  "kind": "placeholder",
+  "text": "Now pack the minivan!"
+ },
+ "jack/look-there": {
+  "kind": "placeholder",
+  "text": "Look over there!"
+ },
  "jack/match-airplane": {
   "kind": "placeholder",
   "text": "Find the airplane on your ticket!"
@@ -346,6 +394,10 @@
  "jack/needs-tag": {
   "kind": "placeholder",
   "text": "It needs a tag!"
+ },
+ "jack/not-ours": {
+  "kind": "placeholder",
+  "text": "Hmm, that's not ours!"
  },
  "jack/not-this-one": {
   "kind": "placeholder",
@@ -386,6 +438,18 @@
  "jack/roll-it": {
   "kind": "recorded",
   "text": "Tap the clothes to roll them up!"
+ },
+ "jack/seats-in": {
+  "kind": "placeholder",
+  "text": "The booster seats are in!"
+ },
+ "jack/spot-bags": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find all three!"
+ },
+ "jack/spot-pink": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find the pink suitcase!"
  },
  "jack/tablet-tray": {
   "kind": "placeholder",
