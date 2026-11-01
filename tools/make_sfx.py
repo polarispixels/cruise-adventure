@@ -119,7 +119,7 @@ def beach_sounds(rng):
     chord = mix(tone(523, 0.9, 3.0), tone(659, 0.9, 3.0), tone(784, 0.9, 3.0), tone(1047, 0.9, 3.0))
     return {
         "elevator-ding": np.concatenate([tone(1175, 0.18, 9), tone(880, 0.6, 5)]),
-        "wave-roll": noise(3.0, 0.5, rng, 14) * swell(3.0),
+        "wave-roll": noise(1.5, 0.5, rng, 14) * swell(1.5),
         "wave-splash": mix(env(noise(0.7, 4, rng, 6), 0.01, 5.0) * 0.8, 0.2 * tone(660, 0.1, 30)),
         "celebration-fanfare": np.concatenate(fan[:3] + [chord]),
     }

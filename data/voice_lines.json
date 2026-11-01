@@ -510,5 +510,9 @@
  {
   "id": "beach-replay",
   "text": "Tap any stop to play it again!"
+ },
+ {
+  "id": "beach-tap-window",
+  "text": "Tap the window!"
  }
 ]

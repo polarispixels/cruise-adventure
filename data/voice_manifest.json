@@ -67,6 +67,10 @@
   "kind": "placeholder",
   "text": "Tap any stop to play it again!"
  },
+ "becca/beach-tap-window": {
+  "kind": "placeholder",
+  "text": "Tap the window!"
+ },
  "becca/beach-waves": {
   "kind": "placeholder",
   "text": "Here come the waves!"
@@ -570,6 +574,10 @@
  "jack/beach-replay": {
   "kind": "placeholder",
   "text": "Tap any stop to play it again!"
+ },
+ "jack/beach-tap-window": {
+  "kind": "placeholder",
+  "text": "Tap the window!"
  },
  "jack/beach-waves": {
   "kind": "placeholder",

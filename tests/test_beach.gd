@@ -68,9 +68,11 @@ func test_chapter_is_wired(t) -> void:
 # --- Load the minivan again (Fit) ------------------------------------------------
 
 func test_trunk(t) -> void:
-	for kid in [["jack", 4], ["becca", 6]]:
+	for kid in [["jack", 4], ["becca", 7]]:
 		var kid_id: String = kid[0]
 		var scene: Node2D = await _open(t, "trunk", kid_id)
+		if kid_id == "becca":
+			t.check(scene.is_locked("becca-backpack") and not scene.is_locked("mommy-purse"), "becca: only the purse is left, it cannot dead-end")
 		var locked := 0
 		for id: String in scene.model.bag_ids:
 			if scene.is_locked(id):
@@ -147,6 +149,9 @@ func test_hallway(t) -> void:
 func test_room(t) -> void:
 	for kid_id in ["becca", "jack"]:
 		var scene: Node2D = await _open(t, "room", kid_id)
+		var seg: Dictionary = _game(t).segment
+		t.eq(str(seg["prompt_line"]), "beach-tap-window", kid_id + ": prompt line")
+		t.eq(seg["arrive_from"], seg["arrive_to"], kid_id + ": the door does not glide")
 		t.check(kit.said.has("beach-our-room"), kid_id + ": the room line")
 		await kit.tap(t, Vector2(100, 100))  # not the window: nothing happens
 		t.check(not kit.finished(t) or scene.state != "gap", kid_id + ": waiting")
@@ -282,7 +287,12 @@ func _finale(t, pk) -> void:
 	var taps_before: String = game.last_scene_request
 	await pk.tap(map.stop_point("car"))
 	t.eq(game.last_scene_request, taps_before, "taps start nothing during the finale")
-	var moved: bool = await pk.until(func(): return game.last_scene_request == game.INTRO, 20.0)
+	var sfx: Node = t.tree.root.get_node("Sfx")
+	var fanfare := {"heard": false}
+	var moved: bool = await pk.until(func():
+		fanfare["heard"] = fanfare["heard"] or sfx.last == "celebration-fanfare"
+		return game.last_scene_request == game.INTRO, 20.0)
+	t.check(fanfare["heard"], "the fanfare plays as the route finishes lighting")
 	t.check(moved, "then the celebration clip")
 	map.free()
 
