@@ -1,0 +1,97 @@
+{
+ "background": "res://assets/flight/flight-seats.png",
+ "start_line": "buckle-up",
+ "done_line": "light-on",
+ "done_sound": "arch-chime",
+ "place_sound": "buckle-click",
+ "player_feet": [
+  420,
+  930
+ ],
+ "jack": {
+  "items": [
+   {
+    "id": "tab-1",
+    "texture": "res://assets/flight/belt-tab.png",
+    "slot": "buckle-1",
+    "pos": [
+     400,
+     780
+    ],
+    "height": 110
+   },
+   {
+    "id": "tab-2",
+    "texture": "res://assets/flight/belt-tab.png",
+    "slot": "buckle-2",
+    "pos": [
+     650,
+     780
+    ],
+    "height": 110
+   }
+  ],
+  "slots": [
+   {
+    "id": "buckle-1",
+    "rect": [
+     900,
+     600,
+     170,
+     130
+    ],
+    "accepts": [
+     "tab-1"
+    ],
+    "texture": "res://assets/flight/belt-buckle.png",
+    "sound": "buckle-click",
+    "line": "buckle-becca"
+   },
+   {
+    "id": "buckle-2",
+    "rect": [
+     1200,
+     600,
+     170,
+     130
+    ],
+    "accepts": [
+     "tab-2"
+    ],
+    "texture": "res://assets/flight/belt-buckle.png",
+    "sound": "buckle-click"
+   }
+  ]
+ },
+ "becca": {
+  "items": [
+   {
+    "id": "tab-1",
+    "texture": "res://assets/flight/belt-tab.png",
+    "slot": "buckle-1",
+    "pos": [
+     500,
+     780
+    ],
+    "height": 110
+   }
+  ],
+  "slots": [
+   {
+    "id": "buckle-1",
+    "rect": [
+     980,
+     600,
+     170,
+     130
+    ],
+    "accepts": [
+     "tab-1"
+    ],
+    "texture": "res://assets/flight/belt-buckle.png",
+    "sound": "buckle-click"
+   }
+  ]
+ },
+ "music": "res://assets/music/flight.ogg"
+}

@@ -2682,5 +2682,215 @@
   "source": "placeholder",
   "approved": false,
   "spec": "data/chapters/map-art.json"
+ },
+ {
+  "game": "assets/flight/flight-aisle.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/flight-seats.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/flight-bin.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/window-sky.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/window-frame.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/seat-row.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/row-sign.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/sticker-red.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/sticker-green.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/sticker-blue.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/flight-pass.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/bin-door.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/belt-tab.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/belt-buckle.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/seatbelt-sign-off.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/seatbelt-sign-on.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/snack-cart.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/snack-tray.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/snack-apple.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/snack-crackers.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/snack-juice.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-heart.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-star.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-fish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-bunny.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-boat.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-bubble.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/plane-wing.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/stills/takeoff-window.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/stills/flight-landing.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
  }
 ]

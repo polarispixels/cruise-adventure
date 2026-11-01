@@ -1,0 +1,29 @@
+{
+ "background": "res://assets/flight/flight-seats.png",
+ "moments": 1,
+ "textures": [
+  "res://assets/flight/snack-cart.png"
+ ],
+ "arrive_height": 420,
+ "arrive_from": [
+  1900,
+  640
+ ],
+ "arrive_to": [
+  1000,
+  640
+ ],
+ "leave_to": [
+  -300,
+  640
+ ],
+ "action": "hop",
+ "prompt_line": "pick-snack",
+ "success_line": "yum",
+ "arrive_sound": "cart-rattle",
+ "success_sound": "scanner-chime",
+ "player_feet": [
+  420,
+  930
+ ]
+}

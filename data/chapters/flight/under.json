@@ -1,0 +1,87 @@
+{
+ "background": "res://assets/flight/flight-seats.png",
+ "start_line": "under-seat",
+ "done_line": "hug-buddy",
+ "place_sound": "tray-slide",
+ "player_feet": [
+  420,
+  930
+ ],
+ "items": [
+  {
+   "id": "jack-backpack",
+   "texture": "res://assets/car/bag-jack-backpack.png",
+   "slot": "a",
+   "pos": [
+    400,
+    800
+   ],
+   "height": 170
+  },
+  {
+   "id": "mommy-purse",
+   "texture": "res://assets/car/bag-mommy-purse.png",
+   "slot": "b",
+   "pos": [
+    700,
+    800
+   ],
+   "height": 130
+  }
+ ],
+ "slots": [
+  {
+   "id": "a",
+   "rect": [
+    880,
+    680,
+    260,
+    170
+   ],
+   "accepts": [
+    "jack-backpack"
+   ]
+  },
+  {
+   "id": "b",
+   "rect": [
+    1160,
+    690,
+    240,
+    150
+   ],
+   "accepts": [
+    "mommy-purse"
+   ]
+  }
+ ],
+ "becca": {
+  "items": [
+   {
+    "id": "becca-backpack",
+    "texture": "res://assets/car/bag-becca-backpack.png",
+    "slot": "a",
+    "pos": [
+     500,
+     800
+    ],
+    "height": 170
+   }
+  ],
+  "slots": [
+   {
+    "id": "a",
+    "rect": [
+     880,
+     680,
+     300,
+     170
+    ],
+    "accepts": [
+     "becca-backpack"
+    ]
+   }
+  ]
+ },
+ "music": "res://assets/music/flight.ogg"
+}

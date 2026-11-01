@@ -1,0 +1,71 @@
+{
+ "background": "res://assets/flight/flight-bin.png",
+ "start_line": "bin-up",
+ "done_line": "bin-shut",
+ "done_sound": "bin-latch",
+ "area": [
+  356,
+  130,
+  960,
+  320
+ ],
+ "hint_line": "turn-it",
+ "player_feet": [
+  200,
+  930
+ ],
+ "jack": {
+  "grid": [
+   4,
+   2
+  ],
+  "pieces": [
+   {
+    "id": "daddy-gray",
+    "size": [
+     3,
+     2
+    ],
+    "pos": [
+     600,
+     770
+    ]
+   },
+   {
+    "id": "daddy-backpack",
+    "size": [
+     1,
+     2
+    ],
+    "rotated": true,
+    "pos": [
+     1150,
+     780
+    ]
+   }
+  ]
+ },
+ "becca": {
+  "grid": [
+   3,
+   2
+  ],
+  "outlines": true,
+  "auto_turn": true,
+  "hint_line": "",
+  "pieces": [
+   {
+    "id": "daddy-gray",
+    "size": [
+     3,
+     2
+    ],
+    "pos": [
+     836,
+     770
+    ]
+   }
+  ]
+ },
+ "music": "res://assets/music/flight.ogg"
+}
