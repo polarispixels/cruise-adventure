@@ -36,6 +36,8 @@ var _waiting := false
 var _advanced_frame := -1
 ## The chapter (or card row) was already done when it started: `once` clips are skipped.
 var _replay := false
+## The `line` of the segment that ended the chapter just finished (the map skips saying it again).
+var closing_line := ""
 ## Where stills live (tests point it at their fixtures).
 var stills_dir := "res://assets/stills/"
 ## data/chapters.json, loaded on first use.
@@ -44,6 +46,9 @@ var _chapters: Array = []
 
 ## The title screen picked a kid: their intro the first time, then the map.
 func pick(kid_id: String) -> void:
+	# A chapter left by Home (even mid-finale) must not carry over to this kid.
+	stop_chapter()
+	closing_line = ""
 	kid = load(KIDS[kid_id])
 	if Progress.intro_seen(kid_id):
 		goto(MAP)
@@ -142,6 +147,7 @@ func _skip(seg: Dictionary) -> bool:
 
 func _finish() -> void:
 	var c := chapter(_chapter_id)
+	closing_line = str(segment.get("line", ""))
 	_chapter_id = ""
 	_segment_index = -1
 	_waiting = false

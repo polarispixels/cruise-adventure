@@ -3829,5 +3829,77 @@
   "generator": "sfx",
   "source": null,
   "approved": true
+ },
+ {
+  "game": "assets/sfx/celebration-fanfare.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/door-click.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/door-open.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/elevator-ding.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/keycard-beep.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/ship-horn.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/slide-whoosh.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/splash.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/toy-pop.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/water-jet.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/wave-roll.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/wave-splash.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
  }
 ]

@@ -133,12 +133,18 @@ func load_file() -> void:
 				_data[kid_id] = _migrate(parsed[kid_id])
 
 
+## Writes a temp file, then renames it over the save, so a crash mid-write never
+## leaves a half-written save.
 func save_file() -> void:
-	var file := FileAccess.open(path, FileAccess.WRITE)
+	var tmp := path + ".tmp"
+	var file := FileAccess.open(tmp, FileAccess.WRITE)
 	if file == null:
-		print("Progress: could not save to ", path)
+		print("Progress: could not save to ", tmp)
 		return
 	file.store_string(JSON.stringify(_data))
+	file.close()
+	if DirAccess.rename_absolute(tmp, path) != OK:
+		print("Progress: could not move ", tmp, " to ", path)
 
 
 ## A v0.5 entry's flags become chapter ids; nothing already saved is lost.

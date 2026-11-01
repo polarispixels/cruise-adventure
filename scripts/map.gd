@@ -67,7 +67,10 @@ func _ready() -> void:
 			_card.stamp_row(row)
 	_card.highlight_row(Progress.next_level(kid.id))
 	var finale: bool = Game.playing() and Game.segment.get("finale", false)
-	if not finale:
+	# Not over the finale, and not again if the chapter just ended on this very line.
+	var closing := Game.closing_line
+	Game.closing_line = ""
+	if not finale and closing != _line():
 		Voice.say(_line(), Game.sibling())
 	get_viewport().size_changed.connect(_fit)
 	_fit()

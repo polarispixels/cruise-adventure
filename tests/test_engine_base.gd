@@ -187,3 +187,16 @@ func test_no_foreground_lines_or_overlay_without_the_keys(t) -> void:
 	var stage: Node2D = scene.get_node("Stage")
 	t.check(stage.get_node_or_null("Foreground") == null and stage.get_node_or_null("Lines") == null, "nothing extra")
 	kit.done(t, scene)
+
+
+func test_no_idle_hint_during_the_intro(t) -> void:
+	var scene: Node2D = await kit.make(t, "res://scenes/engines/moments.tscn",
+		{"done_delay": 0.0, "hint_delay": 0.2, "hint_line": "this-way", "moments": 1, "arrive_time": 0.05}, "jack")
+	scene.intro_done = false  # as if the start line were still playing
+	kit.said.clear()
+	await kit.wait(t, 0.6)
+	t.check(not kit.said.has("this-way"), "the hint waits for the intro")
+	scene.intro_done = true
+	await kit.wait(t, 0.6)
+	t.check(kit.said.has("this-way"), "then the idle hint comes")
+	kit.done(t, scene)

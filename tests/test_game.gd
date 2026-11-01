@@ -512,3 +512,42 @@ func test_clip_segment_line_with_the_voice_off_goes_on_at_once(t) -> void:
 	intro.queue_free()
 	voice.enabled = true
 	_restore_progress(t)
+
+
+## Home during the beach finale, then the other kid: nothing of the first kid's chapter carries over.
+func test_home_mid_finale_then_the_other_kid(t) -> void:
+	var game := _setup(t)
+	var progress := _temp_progress(t)
+	progress.mark_intro_seen("becca")
+	game.kid = load("res://data/jack.tres")
+	game.use_chapters([{"id": "beach", "number": 14, "title": "t", "segments": [
+		{"kind": "scene", "scene": "res://scenes/map.tscn", "finale": true},
+		{"kind": "clip", "name": "no-such-celebration", "line": "beach-replay"}]}])
+	game.play_chapter("beach")
+	t.check(game.playing() and game.segment.get("finale", false), "in the finale")
+	game.goto(game.TITLE)
+	game.pick("becca")
+	t.check(not game.playing(), "the chapter is over")
+	t.eq(game.last_scene_request, game.MAP, "becca's map")
+	var map: Node = load("res://scenes/map.tscn").instantiate()
+	t.tree.root.add_child(map)
+	await t.tree.process_frame
+	t.check(not map.route_lit(), "not the finale")
+	await t.tree.create_timer(map.LIGHT_STEP * 2 + map.FINALE_HOLD + 0.5).timeout
+	t.check(not progress.chapter_done("becca", "beach"), "beach not done for becca")
+	t.check(not progress.chapter_done("jack", "beach"), "nor for jack")
+	map.free()
+	_restore_progress(t)
+
+
+func test_finish_remembers_the_closing_line(t) -> void:
+	var game := _setup(t)
+	_temp_progress(t)
+	game.kid = load("res://data/jack.tres")
+	game.use_chapters([{"id": "test-close", "number": 99, "title": "t", "segments": [
+		{"kind": "scene", "scene": "res://scenes/trunk.tscn", "line": "beach-replay"}]}])
+	game.play_chapter("test-close")
+	game.segment_done()
+	t.eq(game.closing_line, "beach-replay", "the last segment's line")
+	game.closing_line = ""
+	_restore_progress(t)
