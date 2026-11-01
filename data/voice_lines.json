@@ -218,5 +218,177 @@
  {
   "id": "found-gate",
   "text": "We found our gate!"
+ },
+ {
+  "id": "find-seat",
+  "text": "Let's find our seats!"
+ },
+ {
+  "id": "match-number",
+  "text": "Find the number on your ticket!"
+ },
+ {
+  "id": "match-sticker",
+  "text": "Find the same color sticker!"
+ },
+ {
+  "id": "our-seats",
+  "text": "Here are our seats!"
+ },
+ {
+  "id": "bin-up",
+  "text": "Put the big bag up in the bin!"
+ },
+ {
+  "id": "bin-shut",
+  "text": "Close the bin!"
+ },
+ {
+  "id": "under-seat",
+  "text": "Slide your bag under the seat!"
+ },
+ {
+  "id": "buckle-up",
+  "text": "Buckle your seatbelt!"
+ },
+ {
+  "id": "buckle-becca",
+  "text": "Now help me buckle!"
+ },
+ {
+  "id": "light-on",
+  "text": "Click! The light is on!"
+ },
+ {
+  "id": "pick-snack",
+  "text": "Pick a snack!"
+ },
+ {
+  "id": "yum",
+  "text": "Yum! Crunch crunch!"
+ },
+ {
+  "id": "find-cloud",
+  "text": "Find the cloud that looks like this!"
+ },
+ {
+  "id": "nice-cloud",
+  "text": "A cloud shape! Nice!"
+ },
+ {
+  "id": "flight-done",
+  "text": "We landed! Time to get off the airplane!"
+ },
+ {
+  "id": "get-keycard",
+  "text": "Find the key card with your face!"
+ },
+ {
+  "id": "see-number",
+  "text": "That's our room number!"
+ },
+ {
+  "id": "see-sticker",
+  "text": "Look at your sticker!"
+ },
+ {
+  "id": "slide-hall",
+  "text": "Slide to walk down the hall!"
+ },
+ {
+  "id": "match-door-number",
+  "text": "Find the door with your number!"
+ },
+ {
+  "id": "match-door-sticker",
+  "text": "Find the door with your sticker!"
+ },
+ {
+  "id": "not-this-door",
+  "text": "Not this door! Keep looking!"
+ },
+ {
+  "id": "our-room",
+  "text": "Our room! Look at the round window!"
+ },
+ {
+  "id": "horn-warning",
+  "text": "The ship makes a big HONK sound. That's OK!"
+ },
+ {
+  "id": "follow-arrows",
+  "text": "Follow the arrows to the meeting spot!"
+ },
+ {
+  "id": "follow-feet",
+  "text": "Follow the footprints!"
+ },
+ {
+  "id": "all-together",
+  "text": "We're all together!"
+ },
+ {
+  "id": "sea-swimsuit",
+  "text": "Put on your swimsuit!"
+ },
+ {
+  "id": "sea-height",
+  "text": "Are you tall enough?"
+ },
+ {
+  "id": "sea-height-becca",
+  "text": "Let's see how tall we are!"
+ },
+ {
+  "id": "sea-tall-enough",
+  "text": "You're tall enough! Hop on!"
+ },
+ {
+  "id": "sea-next-time",
+  "text": "When you're a little bigger, you can ride it! Let's splash!"
+ },
+ {
+  "id": "sea-watch-me",
+  "text": "Watch me go!"
+ },
+ {
+  "id": "sea-splash-me",
+  "text": "I'm going to splash!"
+ },
+ {
+  "id": "sea-tap-go",
+  "text": "Tap to go!"
+ },
+ {
+  "id": "sea-whee",
+  "text": "Wheee!"
+ },
+ {
+  "id": "sea-splash-time",
+  "text": "Tap the water and the toys!"
+ },
+ {
+  "id": "sea-toys",
+  "text": "Tap the toys!"
+ },
+ {
+  "id": "sea-ducks",
+  "text": "Catch the ducks!"
+ },
+ {
+  "id": "sea-what-a-splash",
+  "text": "What a splash!"
+ },
+ {
+  "id": "sea-dinner",
+  "text": "Time to dress up for dinner!"
+ },
+ {
+  "id": "sea-sit",
+  "text": "Now sit at the table!"
+ },
+ {
+  "id": "sea-yummy",
+  "text": "Yum! Dinner time!"
  }
 ]

@@ -4,6 +4,7 @@
 # this loop is what changes scenes.
 extends RefCounted
 
+const EngineKit := preload("res://tests/engine_kit.gd")
 const Step := preload("res://scripts/room.gd").Step
 const TMP := "user://test_playthrough_progress.json"
 ## What a kid does in security, per kid: item -> tray.
@@ -111,8 +112,11 @@ func run(stop_at := "") -> void:
 			game.MAZE:
 				await _maze(scene)
 			_:
-				t.check(false, "unexpected scene asked for: " + path)
-				game.stop_chapter()
+				if path.begins_with("res://scenes/engines/"):
+					await _engine(scene)
+				else:
+					t.check(false, "unexpected scene asked for: " + path)
+					game.stop_chapter()
 		var moved := await until(func(): return not game.playing() or game.segment != seg, 15.0)
 		scene.free()
 		if not moved:
@@ -200,7 +204,7 @@ func until(cond: Callable, timeout := 5.0) -> bool:
 	var end := Time.get_ticks_msec() + timeout * 1000
 	while not cond.call():
 		if Time.get_ticks_msec() > end:
-			t.check(false, "timed out waiting")
+			t.check(false, "timed out waiting (segment %s/%s)" % [game.segment.get("chapter", ""), game.segment.get("id", "")])
 			return false
 		await t.tree.process_frame
 	return true
@@ -331,3 +335,78 @@ func _maze(maze: Node2D) -> void:
 	points.append(maze.gate_point(m.correct))
 	await drag_through(points)
 	await press(maze.get_node("Finish/ContinueButton"))
+
+
+# --- engines (scenes/engines/*, docs/chapters-format.md) -------------------
+
+## Finishes any engine scene with real touches (engine_kit does the touching).
+## Supported: match, moments, maze, place, moving, fit. Another engine fails the test until it is added here.
+func _engine(scene: Node2D) -> void:
+	var ek := EngineKit.new()
+	ek.to_screen = to_screen
+	var engine := str((scene.get_script() as Script).resource_path).get_file()
+	match engine:
+		"match.gd":
+			var guard := 0
+			while not scene.finished and guard < 12:
+				guard += 1
+				var round_before: int = scene.round_index
+				var picked := ""
+				for id: String in scene.choice_ids():
+					if scene.is_right(id):
+						picked = id
+						break
+				if picked == "":
+					break
+				for scroll in 8:  # a hallway wider than the screen scrolls by dragging
+					if scene.view_rect().has_point(scene.choice_point(picked)):
+						break
+					await ek.drag(t, Vector2(1500, 300), Vector2(700, 300))
+				await ek.tap(t, scene.choice_point(picked))
+				await until(func(): return scene.finished or scene.round_index != round_before, 10.0)
+				await wait(0.9)  # the next round's target flies in; taps in between are ignored
+		"moments.gd":
+			var guard := 0
+			while not scene.finished and guard < 30:
+				guard += 1
+				await ek.tap(t, scene.thing_point())
+				await wait(0.4)
+		"maze.gd":
+			# hold_input_until_intro: drags wait for the start line, horn and after-sound line.
+			await until(func(): return scene.intro_done, 20.0)
+			var m: MazeModel = scene.maze
+			var points: Array[Vector2] = [scene.token_position()]
+			for c in m.path(scene.token_cell(), m.gates[scene.right_goal()]):
+				points.append(scene.cell_center(c))
+			await ek.drag_through(t, points)
+		"place.gd":
+			var guard := 0
+			while not scene.finished and guard < 40:
+				guard += 1
+				for id: String in scene.item_ids():
+					if scene.finished:
+						break
+					if not scene.is_placed(id) and scene.item_nodes[id].visible:
+						await ek.tap(t, scene.item_point(id))  # a tap sends a thing to the next spot that takes it
+						await wait(0.7)
+		"moving.gd":
+			var guard := 0
+			while not scene.finished and guard < 400:
+				guard += 1
+				for id: String in scene.targets():
+					if not scene.is_tapped(id) and scene.view_rect().grow(-60).has_point(scene.item_point(id)):
+						await ek.tap(t, scene.item_point(id))
+				await wait(0.1)
+		"fit.gd":
+			var ref: Dictionary = scene.model.reference_solution()
+			for id: String in ref:
+				if scene.is_locked(id) or scene.model.cell_of(id) != TrunkModel.NOWHERE:
+					continue
+				scene.model.set_turned(id, ref[id]["turned"])
+				scene.pieces[id].set_turned(ref[id]["turned"])
+				var size: Vector2i = scene.model.size_of(id, scene.model.is_turned(id))
+				await ek.drag(t, scene.piece_point(id), scene.cell_center(ref[id]["cell"], size))
+				await wait(0.6)
+		_:
+			t.check(false, "play_kit can't drive the engine " + engine)
+			game.stop_chapter()

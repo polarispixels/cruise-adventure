@@ -79,6 +79,8 @@ jobs:
         with:
           name: web
           path: build/web
+      - name: Python tools the tests use
+        run: pip install pillow numpy
       - name: Test the docs page builder
         run: python3 -m unittest discover -s tests -p "test_*.py"
       - name: Build the docs page

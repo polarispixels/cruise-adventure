@@ -3,6 +3,10 @@
   "kind": "recorded",
   "text": "We packed everything! Cruise ship, here we come!"
  },
+ "becca/all-together": {
+  "kind": "placeholder",
+  "text": "We're all together!"
+ },
  "becca/bye-suitcases": {
   "kind": "placeholder",
   "text": "Bye-bye, suitcases! See you soon!"
@@ -87,6 +91,14 @@
   "kind": "recorded",
   "text": "Find your underwear!"
  },
+ "becca/follow-arrows": {
+  "kind": "placeholder",
+  "text": "Follow the arrows to the meeting spot!"
+ },
+ "becca/follow-feet": {
+  "kind": "placeholder",
+  "text": "Follow the footprints!"
+ },
  "becca/found-1": {
   "kind": "recorded",
   "text": "You found it!"
@@ -103,9 +115,17 @@
   "kind": "placeholder",
   "text": "We found our gate!"
  },
+ "becca/get-keycard": {
+  "kind": "placeholder",
+  "text": "Find the key card with your face!"
+ },
  "becca/get-your-things": {
   "kind": "placeholder",
   "text": "Get your things back!"
+ },
+ "becca/horn-warning": {
+  "kind": "placeholder",
+  "text": "The ship makes a big HONK sound. That's OK!"
  },
  "becca/hug-buddy": {
   "kind": "recorded",
@@ -131,9 +151,21 @@
   "kind": "placeholder",
   "text": "Find the airplane on your ticket!"
  },
+ "becca/match-door-number": {
+  "kind": "placeholder",
+  "text": "Find the door with your number!"
+ },
+ "becca/match-door-sticker": {
+  "kind": "placeholder",
+  "text": "Find the door with your sticker!"
+ },
  "becca/needs-tag": {
   "kind": "placeholder",
   "text": "It needs a tag!"
+ },
+ "becca/not-this-door": {
+  "kind": "placeholder",
+  "text": "Not this door! Keep looking!"
  },
  "becca/not-this-one": {
   "kind": "placeholder",
@@ -159,6 +191,10 @@
   "kind": "recorded",
   "text": "Let's look in the toy box!"
  },
+ "becca/our-room": {
+  "kind": "placeholder",
+  "text": "Our room! Look at the round window!"
+ },
  "becca/pack-it": {
   "kind": "recorded",
   "text": "Put it in the suitcase!"
@@ -174,6 +210,82 @@
  "becca/roll-it": {
   "kind": "recorded",
   "text": "Tap the clothes to roll them up!"
+ },
+ "becca/sea-dinner": {
+  "kind": "placeholder",
+  "text": "Time to dress up for dinner!"
+ },
+ "becca/sea-ducks": {
+  "kind": "placeholder",
+  "text": "Catch the ducks!"
+ },
+ "becca/sea-height": {
+  "kind": "placeholder",
+  "text": "Are you tall enough?"
+ },
+ "becca/sea-height-becca": {
+  "kind": "placeholder",
+  "text": "Let's see how tall we are!"
+ },
+ "becca/sea-next-time": {
+  "kind": "placeholder",
+  "text": "When you're a little bigger, you can ride it! Let's splash!"
+ },
+ "becca/sea-sit": {
+  "kind": "placeholder",
+  "text": "Now sit at the table!"
+ },
+ "becca/sea-splash-me": {
+  "kind": "placeholder",
+  "text": "I'm going to splash!"
+ },
+ "becca/sea-splash-time": {
+  "kind": "placeholder",
+  "text": "Tap the water and the toys!"
+ },
+ "becca/sea-swimsuit": {
+  "kind": "placeholder",
+  "text": "Put on your swimsuit!"
+ },
+ "becca/sea-tall-enough": {
+  "kind": "placeholder",
+  "text": "You're tall enough! Hop on!"
+ },
+ "becca/sea-tap-go": {
+  "kind": "placeholder",
+  "text": "Tap to go!"
+ },
+ "becca/sea-toys": {
+  "kind": "placeholder",
+  "text": "Tap the toys!"
+ },
+ "becca/sea-watch-me": {
+  "kind": "placeholder",
+  "text": "Watch me go!"
+ },
+ "becca/sea-what-a-splash": {
+  "kind": "placeholder",
+  "text": "What a splash!"
+ },
+ "becca/sea-whee": {
+  "kind": "placeholder",
+  "text": "Wheee!"
+ },
+ "becca/sea-yummy": {
+  "kind": "placeholder",
+  "text": "Yum! Dinner time!"
+ },
+ "becca/see-number": {
+  "kind": "placeholder",
+  "text": "That's our room number!"
+ },
+ "becca/see-sticker": {
+  "kind": "placeholder",
+  "text": "Look at your sticker!"
+ },
+ "becca/slide-hall": {
+  "kind": "placeholder",
+  "text": "Slide to walk down the hall!"
  },
  "becca/tablet-tray": {
   "kind": "placeholder",
@@ -214,6 +326,10 @@
  "jack/all-packed": {
   "kind": "recorded",
   "text": "We packed everything! Cruise ship, here we come!"
+ },
+ "jack/all-together": {
+  "kind": "placeholder",
+  "text": "We're all together!"
  },
  "jack/bye-suitcases": {
   "kind": "placeholder",
@@ -299,6 +415,14 @@
   "kind": "recorded",
   "text": "Find your underwear!"
  },
+ "jack/follow-arrows": {
+  "kind": "placeholder",
+  "text": "Follow the arrows to the meeting spot!"
+ },
+ "jack/follow-feet": {
+  "kind": "placeholder",
+  "text": "Follow the footprints!"
+ },
  "jack/found-1": {
   "kind": "recorded",
   "text": "You found it!"
@@ -315,9 +439,17 @@
   "kind": "placeholder",
   "text": "We found our gate!"
  },
+ "jack/get-keycard": {
+  "kind": "placeholder",
+  "text": "Find the key card with your face!"
+ },
  "jack/get-your-things": {
   "kind": "placeholder",
   "text": "Get your things back!"
+ },
+ "jack/horn-warning": {
+  "kind": "placeholder",
+  "text": "The ship makes a big HONK sound. That's OK!"
  },
  "jack/hug-buddy": {
   "kind": "recorded",
@@ -343,9 +475,21 @@
   "kind": "placeholder",
   "text": "Find the airplane on your ticket!"
  },
+ "jack/match-door-number": {
+  "kind": "placeholder",
+  "text": "Find the door with your number!"
+ },
+ "jack/match-door-sticker": {
+  "kind": "placeholder",
+  "text": "Find the door with your sticker!"
+ },
  "jack/needs-tag": {
   "kind": "placeholder",
   "text": "It needs a tag!"
+ },
+ "jack/not-this-door": {
+  "kind": "placeholder",
+  "text": "Not this door! Keep looking!"
  },
  "jack/not-this-one": {
   "kind": "placeholder",
@@ -371,6 +515,10 @@
   "kind": "recorded",
   "text": "Let's look in the toy box!"
  },
+ "jack/our-room": {
+  "kind": "placeholder",
+  "text": "Our room! Look at the round window!"
+ },
  "jack/pack-it": {
   "kind": "recorded",
   "text": "Put it in the suitcase!"
@@ -386,6 +534,82 @@
  "jack/roll-it": {
   "kind": "recorded",
   "text": "Tap the clothes to roll them up!"
+ },
+ "jack/sea-dinner": {
+  "kind": "placeholder",
+  "text": "Time to dress up for dinner!"
+ },
+ "jack/sea-ducks": {
+  "kind": "placeholder",
+  "text": "Catch the ducks!"
+ },
+ "jack/sea-height": {
+  "kind": "placeholder",
+  "text": "Are you tall enough?"
+ },
+ "jack/sea-height-becca": {
+  "kind": "placeholder",
+  "text": "Let's see how tall we are!"
+ },
+ "jack/sea-next-time": {
+  "kind": "placeholder",
+  "text": "When you're a little bigger, you can ride it! Let's splash!"
+ },
+ "jack/sea-sit": {
+  "kind": "placeholder",
+  "text": "Now sit at the table!"
+ },
+ "jack/sea-splash-me": {
+  "kind": "placeholder",
+  "text": "I'm going to splash!"
+ },
+ "jack/sea-splash-time": {
+  "kind": "placeholder",
+  "text": "Tap the water and the toys!"
+ },
+ "jack/sea-swimsuit": {
+  "kind": "placeholder",
+  "text": "Put on your swimsuit!"
+ },
+ "jack/sea-tall-enough": {
+  "kind": "placeholder",
+  "text": "You're tall enough! Hop on!"
+ },
+ "jack/sea-tap-go": {
+  "kind": "placeholder",
+  "text": "Tap to go!"
+ },
+ "jack/sea-toys": {
+  "kind": "placeholder",
+  "text": "Tap the toys!"
+ },
+ "jack/sea-watch-me": {
+  "kind": "placeholder",
+  "text": "Watch me go!"
+ },
+ "jack/sea-what-a-splash": {
+  "kind": "placeholder",
+  "text": "What a splash!"
+ },
+ "jack/sea-whee": {
+  "kind": "placeholder",
+  "text": "Wheee!"
+ },
+ "jack/sea-yummy": {
+  "kind": "placeholder",
+  "text": "Yum! Dinner time!"
+ },
+ "jack/see-number": {
+  "kind": "placeholder",
+  "text": "That's our room number!"
+ },
+ "jack/see-sticker": {
+  "kind": "placeholder",
+  "text": "Look at your sticker!"
+ },
+ "jack/slide-hall": {
+  "kind": "placeholder",
+  "text": "Slide to walk down the hall!"
  },
  "jack/tablet-tray": {
   "kind": "placeholder",

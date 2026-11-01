@@ -23,6 +23,7 @@ const WIGGLE_ANGLE := deg_to_rad(8.0)
 const WIGGLE_TIME := 0.3
 const GLIDE_TIME := 0.3
 const PULSE_TIME := 0.45
+const DONE_OVERLAY_FADE := 0.35
 
 ## Settings: the engine's defaults with Game.segment laid over them.
 var data: Dictionary = {}
@@ -39,8 +40,13 @@ var player: Character
 var helper: Character
 var home_button: TextureButton
 
+## True once the start line, the start sound and the after-sound line have all finished.
+var intro_done := false
+signal intro_finished
+
 var _idle := 0.0
 var _hinting := false
+var _intro_parts := 0
 var _pressing := false
 var _moved := false
 var _press_global := Vector2.ZERO
@@ -63,8 +69,19 @@ func _ready() -> void:
 	glows = Glows.new()
 	glows.name = "Glows"
 	stage.add_child(glows)
+	_draw_lines()
 	player = _character(data.get("player_feet"), Game.kid, false)
 	helper = _character(data.get("helper_feet"), Game.sibling(), true)
+	var fg := str(data.get("foreground", ""))
+	if fg != "":
+		var front := Sprite2D.new()
+		front.name = "Foreground"
+		front.centered = false
+		front.texture = texture_or(fg, BG_SIZE, Color(0, 0, 0, 0))
+		var r := rect_of(data.get("foreground_rect"), Rect2(Vector2.ZERO, BG_SIZE))
+		front.position = r.position
+		front.scale = r.size / front.texture.get_size()
+		stage.add_child(front)
 	home_button = TextureButton.new()
 	home_button.name = "Home"
 	home_button.texture_normal = HOME_TEXTURE
@@ -77,8 +94,7 @@ func _ready() -> void:
 		Music.want(music)
 	get_viewport().size_changed.connect(_fit)
 	_fit()
-	sound(str(data.get("start_sound", "")))
-	say(str(data.get("start_line", "")))
+	_begin_intro()
 	_started()
 
 
@@ -146,9 +162,67 @@ func say(line_id: String, wait := false) -> void:
 		Voice.say(line_id, Game.sibling(), wait)
 
 
-func sound(name: String) -> void:
+func sound(name: String, duck := false) -> AudioStreamPlayer:
 	if name != "":
-		Sfx.play(name)
+		return Sfx.play(name, duck)
+	return null
+
+
+## Calls `then` once line `line_id` (just said) has finished; next frame when it
+## isn't playing (empty, voice off, file missing). Nothing runs if the scene is gone.
+func after_line(line_id: String, then: Callable) -> void:
+	if line_id == "" or not Voice.is_speaking() or Voice.current_line != line_id:
+		_run.call_deferred(then)
+		return
+	Voice.line_finished.connect(_line_done.bind(then), CONNECT_ONE_SHOT)
+
+
+func _line_done(_id: String, then: Callable) -> void:
+	then.call()
+
+
+func _run(then: Callable) -> void:
+	then.call()
+
+
+## The start: start_line and start_sound (with start_sound_after_line, the sound
+## waits for the line), then after_sound_line once the sound ends. The music
+## dips under the start sound. intro_done turns true when all of it is over.
+func _begin_intro() -> void:
+	var start_line := str(data.get("start_line", ""))
+	if bool(data.get("start_sound_after_line", false)):
+		_intro_parts = 1
+		say(start_line)
+		after_line(start_line, _start_sound_part)
+	else:
+		_intro_parts = 2
+		_start_sound_part()
+		say(start_line)
+		after_line(start_line, _intro_part_done)
+
+
+func _start_sound_part() -> void:
+	var p := sound(str(data.get("start_sound", "")), true)
+	if p:
+		p.finished.connect(_start_sound_ended, CONNECT_ONE_SHOT)
+	else:
+		_run.call_deferred(_start_sound_ended)
+
+
+func _start_sound_ended() -> void:
+	var after := str(data.get("after_sound_line", ""))
+	if after == "":
+		_intro_part_done()
+	else:
+		say(after)
+		after_line(after, _intro_part_done)
+
+
+func _intro_part_done() -> void:
+	_intro_parts -= 1
+	if _intro_parts <= 0 and not intro_done:
+		intro_done = true
+		intro_finished.emit()
 
 
 ## The data line for `key`; "found" means the rotating found-1/2/3 cheer.
@@ -173,12 +247,52 @@ func finish() -> void:
 	if player:
 		player.cheer()
 	sound(str(data.get("done_sound", "")))
+	_show_done_overlay()
 	say(str(data.get("done_line", "")), true)
 	var delay := float(data.get("done_delay", 1.6))
 	if delay <= 0.0:
 		_complete()
 	else:
 		get_tree().create_timer(delay).timeout.connect(_complete)
+
+
+## done_overlay: {texture, pos (its center), size} fades in when the segment is done.
+func _show_done_overlay() -> void:
+	var o: Variant = data.get("done_overlay")
+	if not (o is Dictionary):
+		return
+	var d: Dictionary = o
+	var sprite := Sprite2D.new()
+	sprite.name = "DoneOverlay"
+	var size := vec(d.get("size"), Vector2(200, 200))
+	sprite.texture = texture_or(str(d.get("texture", "")), size, Color(1.0, 0.9, 0.4))
+	sprite.scale = size / sprite.texture.get_size()
+	sprite.position = vec(d.get("pos"), BG_SIZE / 2)
+	sprite.modulate.a = 0.0
+	stage.add_child(sprite)
+	create_tween().tween_property(sprite, "modulate:a", 1.0, DONE_OVERLAY_FADE)
+	sound(str(data.get("done_overlay_sound", "")))
+
+
+## lines: [{y, from_x, to_x, color, width}] drawn across the stage under the characters.
+func _draw_lines() -> void:
+	var list: Variant = data.get("lines", [])
+	if not (list is Array) or (list as Array).is_empty():
+		return
+	var layer := Node2D.new()
+	layer.name = "Lines"
+	stage.add_child(layer)
+	for l: Variant in list:
+		if not (l is Dictionary):
+			continue
+		var d: Dictionary = l
+		var line_node := Line2D.new()
+		var y := float(d.get("y", 0))
+		line_node.points = PackedVector2Array([Vector2(float(d.get("from_x", SAFE.position.x)), y),
+				Vector2(float(d.get("to_x", SAFE.end.x)), y)])
+		line_node.width = float(d.get("width", 8))
+		line_node.default_color = color_of(d.get("color", ""), Color("#e03030"))
+		layer.add_child(line_node)
 
 
 func _complete() -> void:
@@ -319,7 +433,8 @@ func _character(feet: Variant, kid: KidProfile, mirrored: bool) -> Character:
 	c.name = "Helper" if mirrored else "Player"
 	stage.add_child(c)
 	c.kid = kid
-	c.height_scale = float(data.get("kid_scale", KID_SCALE))
+	var kid_scale := float(data.get("kid_scale", KID_SCALE))
+	c.height_scale = float(data.get("helper_scale", kid_scale)) if mirrored else kid_scale
 	c.mirrored = mirrored and bool(data.get("helper_mirrored", true))
 	c.position = vec(feet)
 	return c
