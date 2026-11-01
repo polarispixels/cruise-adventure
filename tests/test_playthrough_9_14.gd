@@ -60,7 +60,8 @@ func _play_from_map(t, kid_id: String, id: String) -> void:
 	t.eq(kit.requests.back(), kit.game.MAP, "%s: lands on the map" % kid_id)
 	var map: Node2D = await kit.make_map()
 	t.eq(map.next_stop(), id, "%s: %s is the next stop" % [kid_id, id])
-	var view := Rect2(Vector2.ZERO, map.get_viewport().get_visible_rect().size)
+	var seen_size: Vector2 = map.get_viewport().get_visible_rect().size
+	var view := Rect2(Vector2(960, 540) - seen_size / 2, seen_size)
 	var stop: TextureButton = map.stop_button(id)
 	t.check(stop.visible and view.encloses(Rect2(stop.global_position, stop.size)), "%s: the stop is on screen" % kid_id)
 	await kit.tap(map.stop_point(id))
@@ -113,6 +114,30 @@ func test_florida_jack(t) -> void:
 
 func test_florida_becca(t) -> void:
 	await _play_from_map(t, "becca", "florida")
+
+
+func test_beach_jack(t) -> void:
+	await _play_from_map(t, "jack", "beach")
+
+
+func test_beach_becca(t) -> void:
+	await _play_from_map(t, "becca", "beach")
+
+
+func test_island1_jack(t) -> void:
+	await _play_from_map(t, "jack", "island1")
+
+
+func test_island1_becca(t) -> void:
+	await _play_from_map(t, "becca", "island1")
+
+
+func test_island2_jack(t) -> void:
+	await _play_from_map(t, "jack", "island2")
+
+
+func test_island2_becca(t) -> void:
+	await _play_from_map(t, "becca", "island2")
 
 
 func test_seaday_jack(t) -> void:
@@ -195,6 +220,18 @@ func test_flight_layout(t) -> void:
 
 func test_florida_layout(t) -> void:
 	await _layout(t, "florida")
+
+
+func test_beach_layout(t) -> void:
+	await _layout(t, "beach")
+
+
+func test_island1_layout(t) -> void:
+	await _layout(t, "island1")
+
+
+func test_island2_layout(t) -> void:
+	await _layout(t, "island2")
 
 
 func test_seaday_layout(t) -> void:
@@ -315,13 +352,14 @@ func test_map_stops_for_the_built_chapters(t) -> void:
 		for size in [Vector2i(1920, 1200), Vector2i(1920, 1080), Vector2i(1280, 800)]:
 			kit.t.tree.root.size = size
 			var map: Node2D = await _map_for(kit, kid_id, built)
-			var view := Rect2(Vector2.ZERO, map.get_viewport().get_visible_rect().size)
+			var seen_size: Vector2 = map.get_viewport().get_visible_rect().size
+			var view := Rect2(Vector2(960, 540) - seen_size / 2, seen_size)  # the camera is centered on 960, 540
 			t.eq(map.stop_ids, built, "%s %s: a stop for every built chapter, none for unbuilt ones" % [kid_id, size])
 			for id: String in built:
 				var b: TextureButton = map.stop_button(id)
 				t.check(b.visible, "%s: %s shows" % [id, size])
 				t.check(b.size.x >= 120.0 and b.size.y >= 120.0, "%s %s: %s is %s, big enough to tap" % [kid_id, size, id, str(b.size)])
-				t.check(view.grow(1.0).encloses(Rect2(b.global_position, b.size)), "%s %s: %s on screen" % [kid_id, size, id])
+				t.check(view.grow(1.0).encloses(Rect2(b.global_position, b.size)), "%s %s: %s on screen: %s in %s" % [kid_id, size, id, str(Rect2(b.global_position, b.size)), str(view)])
 				t.check(b.get_node_or_null("Check") != null, "%s: %s is checked" % [id, size])
 			t.eq(map.next_stop(), "", "%s %s: nothing left to wiggle" % [kid_id, size])
 			map.free()
