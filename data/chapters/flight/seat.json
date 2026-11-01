@@ -4,7 +4,7 @@
  "done_line": "our-seats",
  "layout": "doors",
  "door_spacing": 520,
- "row_y": 520,
+ "row_y": 590,
  "choice_height": 420,
  "player_feet": [
   260,
@@ -41,7 +41,8 @@
     "texture": "res://assets/flight/seat-row.png",
     "label": "15"
    }
-  ]
+  ],
+  "round_line": "match-number"
  },
  "becca": {
   "key": "color",
@@ -65,7 +66,9 @@
     "texture": "res://assets/flight/seat-row.png",
     "color": "#3a7bd5"
    }
-  ]
+  ],
+  "round_line": "match-sticker"
  },
- "music": "res://assets/music/flight.ogg"
+ "music": "res://assets/music/flight.ogg",
+ "wrong_line": "try-again"
 }

@@ -9,7 +9,6 @@
   160
  ],
  "target_height": 230,
- "target_texture": "res://assets/flight/cloud-bubble.png",
  "start_line": "find-cloud",
  "right_line": "nice-cloud",
  "right_sound": "cloud-puff",
@@ -67,7 +66,8 @@
    "heart",
    "star"
   ],
-  "count": 3
+  "count": 2
  },
- "music": "res://assets/music/flight.ogg"
+ "music": "res://assets/music/flight.ogg",
+ "wrong_line": "try-again"
 }

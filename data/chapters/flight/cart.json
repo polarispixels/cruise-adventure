@@ -18,8 +18,8 @@
   640
  ],
  "action": "hop",
- "prompt_line": "pick-snack",
- "success_line": "yum",
+ "prompt_line": "",
+ "success_line": "",
  "arrive_sound": "cart-rattle",
  "success_sound": "scanner-chime",
  "player_feet": [

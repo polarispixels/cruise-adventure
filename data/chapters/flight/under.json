@@ -39,7 +39,8 @@
     170
    ],
    "accepts": [
-    "jack-backpack"
+    "jack-backpack",
+    "mommy-purse"
    ]
   },
   {
@@ -51,6 +52,7 @@
     150
    ],
    "accepts": [
+    "jack-backpack",
     "mommy-purse"
    ]
   }

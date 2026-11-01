@@ -41,7 +41,8 @@
      130
     ],
     "accepts": [
-     "tab-1"
+     "tab-1",
+     "tab-2"
     ],
     "texture": "res://assets/flight/belt-buckle.png",
     "sound": "buckle-click",
@@ -56,6 +57,7 @@
      130
     ],
     "accepts": [
+     "tab-1",
      "tab-2"
     ],
     "texture": "res://assets/flight/belt-buckle.png",

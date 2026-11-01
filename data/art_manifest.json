@@ -2892,5 +2892,59 @@
   "source": "placeholder",
   "approved": false,
   "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/music/flight.ogg",
+  "generator": "music",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/bin-latch.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/buckle-click.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/engine-hum.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/takeoff-roar.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/cart-rattle.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/crunch.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/cloud-puff.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/landing-thud.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
  }
 ]
