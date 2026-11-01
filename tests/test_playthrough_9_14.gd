@@ -287,3 +287,54 @@ func test_seaday_place_segments_change_the_kid(t) -> void:
 				t.check(scene.is_filled("chair"), tag + ": sat in the chair")
 			t.check(ek.finished(t), tag + ": segment done")
 			ek.done(t, scene)
+
+
+# --- the journey map with the chapters built so far ---
+
+func _map_for(kit, kid_id: String, done: Array) -> Node2D:
+	kit.progress.reset()
+	kit.progress.mark_chapter_done(kid_id, "mission")
+	for level in 4:
+		kit.progress.mark_done(kid_id, level)
+	for id: String in done:
+		kit.progress.mark_chapter_done(kid_id, id)
+	kit.pick(kid_id)
+	return await kit.make_map()
+
+
+func test_map_stops_for_the_built_chapters(t) -> void:
+	var kit := Kit.new()
+	kit.begin(t)
+	var parsed: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/chapters.json"))
+	var built: Array[String] = []
+	for c: Dictionary in parsed["chapters"]:
+		if int(c["number"]) >= 7 and not c.get("dropped", false) and not (c["segments"] as Array).is_empty():
+			built.append(c["id"])
+	for kid_id in ["jack", "becca"]:
+		# Everything built is done: every stop shows, checked, big enough, on screen; nothing wiggles.
+		for size in [Vector2i(1920, 1200), Vector2i(1920, 1080), Vector2i(1280, 800)]:
+			kit.t.tree.root.size = size
+			var map: Node2D = await _map_for(kit, kid_id, built)
+			var view := Rect2(Vector2.ZERO, map.get_viewport().get_visible_rect().size)
+			t.eq(map.stop_ids, built, "%s %s: a stop for every built chapter, none for unbuilt ones" % [kid_id, size])
+			for id: String in built:
+				var b: TextureButton = map.stop_button(id)
+				t.check(b.visible, "%s: %s shows" % [id, size])
+				t.check(b.size.x >= 120.0 and b.size.y >= 120.0, "%s %s: %s is %s, big enough to tap" % [kid_id, size, id, str(b.size)])
+				t.check(view.grow(1.0).encloses(Rect2(b.global_position, b.size)), "%s %s: %s on screen" % [kid_id, size, id])
+				t.check(b.get_node_or_null("Check") != null, "%s: %s is checked" % [id, size])
+			t.eq(map.next_stop(), "", "%s %s: nothing left to wiggle" % [kid_id, size])
+			map.free()
+		kit.t.tree.root.size = Vector2i(1920, 1200)
+		# The first unfinished built stop wiggles, the ones after it wait (hidden).
+		var done: Array = built.slice(0, built.find("aboard"))  # everything before chapter 11
+		var map: Node2D = await _map_for(kit, kid_id, done)
+		t.eq(map.next_stop(), "aboard", "%s: the next stop is chapter 11, the first unfinished built one" % kid_id)
+		await kit.wait(0.45)
+		t.check(absf(map.stop_button("aboard").rotation) > 0.01, "%s: it wiggles" % kid_id)
+		for id: String in built:
+			if id != "aboard":
+				t.check(absf(map.stop_button(id).rotation) < 0.001, "%s: %s does not wiggle" % [kid_id, id])
+		t.check(not map.stop_button("seaday").visible, "%s: a later stop waits until this one is done" % kid_id)
+		map.free()
+	kit.end()
