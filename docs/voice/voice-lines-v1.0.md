@@ -4,8 +4,8 @@
 
 This is every line that is not yet recorded: the airport's 15 lines (Voice Lines v0.5, never recorded; Becca records all 15 and Jack-Jack 12, because three of them are only heard in Jack-Jack's game) plus all the new lines for chapters 9 to 14. As always, the helper sibling says the instructions, so **Jack-Jack records the lines heard in Becca's game and Becca records the lines heard in Jack-Jack's game.** Each of you also records the lines that play in both games.
 
-- **Becca records 89 lines** (for Jack-Jack's game).
-- **Jack-Jack records 85 lines** (for Becca's game).
+- **Becca records 91 lines** (for Jack-Jack's game).
+- **Jack-Jack records 87 lines** (for Becca's game).
 
 ## How to record
 
@@ -109,6 +109,8 @@ This is every line that is not yet recorded: the airport's 15 lines (Voice Lines
 | 87 | `beach-decorate` | "Put shells on the castle!" | The castle is built (also its hint) | 14 Beach hotel |
 | 88 | `beach-castle-done` | "What a beautiful castle!" | The castle is decorated | 14 Beach hotel |
 | 89 | `beach-replay` | "Tap any stop to play it again!" | The celebration clip ends, before the map | 14 Beach hotel |
+| 90 | `beach-tap-window` | "Tap the window!" | See the chapter spec | 14 Beach hotel |
+| 91 | `next-stop` | "Tap the next stop!" | The journey map, after the card is packed, until the trip is done | Journey map |
 
 ## Jack-Jack records (these play in Becca's game)
 
@@ -199,6 +201,8 @@ This is every line that is not yet recorded: the airport's 15 lines (Voice Lines
 | 83 | `beach-decorate` | "Put shells on the castle!" | The castle is built (also its hint) | 14 Beach hotel |
 | 84 | `beach-castle-done` | "What a beautiful castle!" | The castle is decorated | 14 Beach hotel |
 | 85 | `beach-replay` | "Tap any stop to play it again!" | The celebration clip ends, before the map | 14 Beach hotel |
+| 86 | `beach-tap-window` | "Tap the window!" | See the chapter spec | 14 Beach hotel |
+| 87 | `next-stop` | "Tap the next stop!" | The journey map, after the card is packed, until the trip is done | Journey map |
 
 ## Notes
 

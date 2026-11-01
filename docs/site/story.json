@@ -1222,7 +1222,7 @@
      ]
     },
     {
-     "label": "Voice Lines v1.0: the 16 new lines recorded",
+     "label": "Voice Lines v1.0: the 17 new lines recorded",
      "voice": [
       "becca/beach-arrive",
       "becca/beach-build",
@@ -1238,6 +1238,7 @@
       "becca/beach-pack-again",
       "becca/beach-packed",
       "becca/beach-replay",
+      "becca/beach-tap-window",
       "becca/beach-waves",
       "jack/beach-arrive",
       "jack/beach-build",
@@ -1253,6 +1254,7 @@
       "jack/beach-pack-again",
       "jack/beach-packed",
       "jack/beach-replay",
+      "jack/beach-tap-window",
       "jack/beach-waves"
      ]
     },
