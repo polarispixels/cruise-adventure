@@ -103,7 +103,7 @@ func _ready() -> void:
 				_add_outline(id, ref[id]["cell"], ref[id]["turned"])
 	$Finish/HomeButton.pressed.connect(func(): Game.goto(Game.TITLE))
 	$Finish/ReplayButton.pressed.connect(func(): Game.goto(Game.TRUNK))
-	$Finish/ContinueButton.pressed.connect(func(): Game.play_airport())
+	$Finish/ContinueButton.pressed.connect(func(): Game.segment_done())
 	filled.connect(_on_filled)
 	get_viewport().size_changed.connect(_fit)
 	_fit()

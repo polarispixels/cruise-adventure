@@ -1,0 +1,30 @@
+{"chapters": [
+  {"id": "mission", "number": 1, "title": "The mission",
+   "segments": [{"kind": "clip", "id": "intro", "name": "{kid}-intro", "optional": true}]},
+  {"id": "routine", "number": 2, "title": "The routine", "rows": [0],
+   "segments": [{"kind": "scene", "id": "room", "scene": "res://scenes/room.tscn"}]},
+  {"id": "your-turn", "number": 3, "title": "Your turn", "rows": [1, 2, 3],
+   "segments": [
+     {"kind": "clip", "id": "row-intro", "name": "{kid}-level{row}", "once": true, "optional": true},
+     {"kind": "scene", "id": "room", "scene": "res://scenes/room.tscn"}]},
+  {"id": "uh-oh", "number": 4, "title": "Uh oh", "dropped": true, "segments": []},
+  {"id": "inspection", "number": 5, "title": "Inspection", "dropped": true, "segments": []},
+  {"id": "payoff", "number": 6, "title": "Payoff", "dropped": true, "segments": []},
+  {"id": "car", "number": 7, "title": "To the car", "after": "next",
+   "segments": [
+     {"kind": "clip", "id": "car-intro", "name": "car-intro", "once": true, "optional": true},
+     {"kind": "scene", "id": "trunk", "scene": "res://scenes/trunk.tscn"}]},
+  {"id": "airport", "number": 8, "title": "The airport",
+   "segments": [
+     {"kind": "clip", "id": "airport-intro", "name": "{kid}-airport", "once": true, "optional": true},
+     {"kind": "scene", "id": "checkin", "scene": "res://scenes/checkin.tscn"},
+     {"kind": "scene", "id": "security", "scene": "res://scenes/security.tscn"},
+     {"kind": "scene", "id": "maze", "scene": "res://scenes/maze.tscn"}]},
+  {"id": "flight", "number": 9, "title": "The flight", "segments": []},
+  {"id": "florida", "number": 10, "title": "Hello Florida", "segments": []},
+  {"id": "aboard", "number": 11, "title": "Welcome aboard", "segments": []},
+  {"id": "island1", "number": 12, "title": "Island day 1", "segments": []},
+  {"id": "island2", "number": 12, "title": "Island day 2", "segments": []},
+  {"id": "seaday", "number": 13, "title": "Sea day", "segments": []},
+  {"id": "beach", "number": 14, "title": "Beach hotel", "segments": []}
+]}

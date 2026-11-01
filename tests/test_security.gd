@@ -167,6 +167,9 @@ func test_arch_after_everything_is_through(t) -> void:
 
 func test_collecting_everything_goes_to_the_maze(t) -> void:
 	var scene := await _make(t, "jack")
+	var game: Node = t.tree.root.get_node("Game")
+	game.play_chapter("airport", 2)  # security as the airport chapter's segment
+	game.last_scene_request = ""
 	await _scan_all(t, scene, {"tablet": 0, "jack-backpack": 1, "mommy-purse": 1, "buddy": 2})
 	await _tap(t, scene.arch_point())
 	await t.tree.create_timer(scene.WALK_TIME + 0.3).timeout
@@ -174,11 +177,11 @@ func test_collecting_everything_goes_to_the_maze(t) -> void:
 		await _drag(t, scene.item_point(id), scene.backpack_point())
 	await _drag(t, scene.item_point("buddy"), scene.kid_point())
 	t.check(_said.has("hug-buddy"), "give it a big hug")
-	var game: Node = t.tree.root.get_node("Game")
 	var end := Time.get_ticks_msec() + 6000
 	while game.last_scene_request == "" and Time.get_ticks_msec() < end:
 		await t.tree.process_frame
 	t.eq(game.last_scene_request, "res://scenes/maze.tscn", "on to the gate maze")
+	game.stop_chapter()
 	_done(t, scene)
 
 

@@ -100,7 +100,7 @@ func _ready() -> void:
 	_play_home.pressed.connect(func(): Game.goto(Game.TITLE))
 	$Finish/HomeButton.pressed.connect(func(): Game.goto(Game.TITLE))
 	$Finish/ReplayButton.pressed.connect(func(): Game.goto(Game.MAZE))
-	$Finish/ContinueButton.pressed.connect(func(): Game.goto(Game.MAP))
+	$Finish/ContinueButton.pressed.connect(func(): Game.segment_done())
 	get_viewport().size_changed.connect(_fit)
 	_fit()
 	_best = _distance_left()

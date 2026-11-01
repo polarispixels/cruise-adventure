@@ -11,8 +11,7 @@ chapter's own scene) must do. Engines and chapter builders code against this pag
    "segments": [
      {"kind": "clip", "name": "car-intro", "once": true, "optional": true},
      {"kind": "scene", "scene": "res://scenes/trunk.tscn"}]},
-  {"id": "uh-oh", "number": 4, "title": "Uh oh", "dropped": true, "segments": []}
-]}
+  {"id": "uh-oh", "number": 4, "title": "Uh oh", "dropped": true, "segments": []}]}
 ```
 
 Chapters are listed in play order. Chapter fields:
@@ -36,7 +35,13 @@ Segment fields, by `kind`:
 | `scene` | `scene`: the `res://` scene to run. `data` (optional): `res://data/chapters/<chapter id>/<segment>.json`. |
 
 Every segment may also have an `id` (a short name, used on the placeholder card and in tests) and
-any other keys the scene needs. Unknown keys are passed through untouched.
+any other keys the scene needs. Unknown keys are passed through untouched. JSON numbers arrive
+as floats: read them with `int(Game.segment["choices"])`.
+
+A chapter with an empty `segments` list is not built yet: it has no map stop, and starting it
+just returns to the map without marking it done. The journey map itself can be a segment:
+`{"kind": "scene", "scene": "res://scenes/map.tscn", "finale": true}` lights up the whole route
+(`light_up_route()`), holds a moment, and goes on (chapter 14's finale).
 
 ## Per-kid differences: `jack` and `becca` blocks
 
@@ -49,8 +54,7 @@ merged). The other kid's block is dropped.
 {"kind": "scene", "scene": "res://scenes/engines/match.tscn", "choices": 4, "key": "number",
  "becca": {"choices": 3, "key": "color"}}
 ```
-
-Becca gets `{"kind": "scene", "scene": ..., "choices": 3, "key": "color"}`.
+Becca gets `choices` 3 and `key` "color"; Jack-Jack gets 4 and "number".
 
 ## How `Game.segment` is built
 
@@ -76,21 +80,12 @@ A clip or still segment's `name` (after placeholders) names both files:
 else a plain placeholder card showing the segment's `id` or `name` (developer placeholder). A tap
 skips any of the three. A missing clip never blocks a chapter.
 
-Per-kid clips use the placeholder (`"name": "{kid}-airport"`) or a kid block
-(`"jack": {"name": "jack-car"}`).
+Per-kid clips: `"name": "{kid}-airport"`, or a kid block `"jack": {"name": "jack-car"}`.
 
 ## The contract for a segment scene
 
-`Game` (autoload, `scripts/game.gd`):
-
-```gdscript
-var segment: Dictionary          # this segment's data, merged for Game.kid
-signal segment_finished
-var last_segment_done := false
-func segment_done() -> void      # call once when the segment is finished
-```
-
-A segment scene:
+`Game` (autoload) has `var segment: Dictionary`, `signal segment_finished`,
+`var last_segment_done := false` and `func segment_done() -> void`. A segment scene:
 
 - reads its settings from `Game.segment` in `_ready()` (never branches on `Game.kid.id`);
 - calls `Game.segment_done()` exactly once when the kid has finished (the payoff or the Continue
@@ -99,8 +94,8 @@ A segment scene:
   keeps `Game.segment`);
 - has no failure state: wrong moves wiggle and slide back.
 
-Voice: `Voice.say(line_id, Game.sibling(), wait)`. Sounds: `Sfx.play(name)`. Glows:
-`Glows.show_rects()`. Engines live in `scenes/engines/<name>.tscn` + `scripts/engines/<name>.gd`.
+Voice `Voice.say(line_id, Game.sibling(), wait)`, sounds `Sfx.play(name)`, glows `Glows.show_rects()`.
+Engines live in `scenes/engines/<name>.tscn` + `scripts/engines/<name>.gd`.
 
 ## The player (`Game`)
 
@@ -108,14 +103,16 @@ Voice: `Voice.say(line_id, Game.sibling(), wait)`. Sounds: `Sfx.play(name)`. Glo
 | --- | --- |
 | `Game.chapters()` | The chapter list (Array of Dictionary), dropped ones included. |
 | `Game.chapter(id)` | One chapter's Dictionary, or `{}`. |
-| `Game.play_chapter(id)` | Starts a chapter at its first segment. |
+| `Game.play_chapter(id, from := 0)` | Starts a chapter at segment `from`. |
+| `Game.playing()` | Whether a chapter is running. |
 | `Game.segment_done()` | Next segment; after the last, `Progress.mark_chapter_done(kid, id)`, then the map or the next chapter (`after`). |
 | `Game.stop_chapter()` | Forgets the running chapter (tests call it when they finish). |
 
 Clip and still segments run in `Game.INTRO`; scene segments change to their `scene`. Scene changes
 go through `Game.goto()`, so with `Game.navigate = false` nothing changes scene and the request
-lands in `Game.last_scene_request`. If no chapter is running, `segment_done()` only sets the flag
-and emits the signal.
+lands in `Game.last_scene_request`. If no chapter is running, `segment_done()` sets the flag,
+emits the signal and goes to the map. While navigating for real, a second `segment_done()` in
+the same frame (a double tap on Continue) is ignored.
 
 Progress: `Progress.chapter_done(kid_id, chapter_id)` and `Progress.mark_chapter_done(kid_id,
 chapter_id)`. The journey map has a stop per chapter from 7 on; a stop's icon is
@@ -131,7 +128,7 @@ func test_match_jack(t) -> void:
 	game.kid = load("res://data/jack.tres")
 	game.segment = game.merge_segment(
 		{"kind": "scene", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/flight/seat.json"}, "jack")
-	game.last_segment_done = false
+	game.last_segment_done = false  # merge_segment() doesn't add "chapter"/"index"
 	var scene: Node = load("res://scenes/engines/match.tscn").instantiate()
 	t.tree.root.add_child(scene)
 	await t.tree.process_frame
@@ -139,6 +136,11 @@ func test_match_jack(t) -> void:
 	t.check(game.last_segment_done, "finished")
 	scene.free()
 ```
+
+A test of a whole chapter calls `game.play_chapter(id)` and then `game.segment_done()` in
+place of each scene, reading `last_scene_request` and `segment` after each step (see
+`tests/test_game.gd`). Tests that swap the list with `Game.use_chapters(list)` restore it with
+`Game.use_chapters([])`; `Game.stills_dir` can point at `res://tests/fixtures/`.
 
 Use a temp `Progress.path` (see `tests/test_map.gd`) if the scene saves progress, and set it back
 to `user://progress.json` at the end.

@@ -12,7 +12,7 @@ const COLOR_STEPS := 8
 @export var choices: int
 ## Seconds of no input before the helper sibling points at what to do next.
 @export var hint_delay: float
-## res:// path of the intro clip, or "" to go straight to the room.
+## Unused since v1.0: data/chapters.json names the intro clip ("{kid}-intro").
 @export var intro_video: String
 ## How many outfits get rolled and packed before the suitcase is closed.
 @export var outfits: int = 6
@@ -50,23 +50,6 @@ func character(pose: String) -> Texture2D:
 
 func prop(name: String) -> Texture2D:
 	return load("res://assets/props/%s/%s.png" % [id, name])
-
-
-## The video before card row `level` (0-3). Row 1 has none: the kid intro covers it.
-func level_intro(level: int) -> String:
-	return "res://assets/video/%s-level%d.ogv" % [id, level + 1]
-
-
-## The clip before the trunk puzzle: the kid's own if there is one, else the
-## shared one (both kids on the driveway).
-func car_intro() -> String:
-	var own := "res://assets/video/%s-car.ogv" % id
-	return own if ResourceLoader.exists(own) else "res://assets/video/car-intro.ogv"
-
-
-## The clip before the airport.
-func airport_intro() -> String:
-	return "res://assets/video/%s-airport.ogv" % id
 
 
 func room() -> Texture2D:

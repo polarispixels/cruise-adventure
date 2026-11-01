@@ -45,11 +45,13 @@ func test_videos_hold_the_music(t) -> void:
 	var game: Node = t.tree.root.get_node("Game")
 	game.navigate = false
 	game.kid = load("res://data/becca.tres")
+	game.segment = {"kind": "clip", "name": "becca-intro"}
 	var intro: Control = load("res://scenes/intro.tscn").instantiate()
 	t.tree.root.add_child(intro)
 	await t.tree.process_frame
 	t.check(m.player.stream_paused, "paused during the intro")
 	intro.free()
+	game.segment = {}
 	await t.tree.process_frame
 	t.check(not m.player.stream_paused, "back on when the intro goes")
 

@@ -1,32 +1,55 @@
-# Plays the chosen child's intro clip full screen, or a card row's video before
-# that row, or the car clip before the trunk (Game.intro_level). A tap skips it;
-# the card map (or the row's room, or the trunk)
-# always follows, whether the clip ends, is skipped or doesn't exist.
+# Plays a clip or still segment (Game.segment) full screen: the clip when it
+# exists, else its still with a slow zoom, else a placeholder card with the
+# segment's name. A tap skips any of them, and the chapter always goes on
+# (Game.segment_done()), so a missing clip never blocks a chapter.
 extends Control
 
+## Seconds a still shows when the segment doesn't say (`seconds`).
+const STILL_SECONDS := 6.0
+## The still zooms from 1 to this over its time.
+const STILL_ZOOM := 1.12
+## Seconds the developer placeholder card shows.
+const CARD_SECONDS := 3.0
+
+## What's showing: "clip", "still" or "card" (tests read it).
+var mode := ""
 var _left := false
 
 @onready var _player: VideoStreamPlayer = $Player
+@onready var _still: TextureRect = $Still
+@onready var _card: ColorRect = $Card
 
 
 func _ready() -> void:
-	var path := ""
-	if Game.kid:
-		if Game.intro_level == Game.CAR:
-			path = Game.kid.car_intro()
-		elif Game.intro_level == Game.AIRPORT:
-			path = Game.kid.airport_intro()
-		elif Game.intro_level >= 0:
-			path = Game.kid.level_intro(Game.intro_level)
-		else:
-			path = Game.kid.intro_video
-	if path == "" or not ResourceLoader.exists(path):
+	_still.visible = false
+	_card.visible = false
+	if Game.segment.is_empty():
 		_leave.call_deferred()
 		return
-	_player.stream = load(path)
-	_player.finished.connect(_leave)
-	Music.hold(true)
-	_player.play()
+	var media: String = str(Game.segment.get("name", ""))
+	var clip := Game.clip_path(media)
+	var still := Game.still_path(media)
+	if Game.segment.get("kind") == "clip" and ResourceLoader.exists(clip):
+		mode = "clip"
+		_player.stream = load(clip)
+		_player.finished.connect(_leave)
+		Music.hold(true)
+		_player.play()
+	elif ResourceLoader.exists(still):
+		mode = "still"
+		_still.texture = load(still)
+		_still.visible = true
+		var seconds := float(Game.segment.get("seconds", STILL_SECONDS))
+		_still.pivot_offset = _still.size / 2
+		var t := create_tween()
+		t.tween_property(_still, "scale", Vector2.ONE * STILL_ZOOM, seconds) \
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		t.tween_callback(_leave)
+	else:
+		mode = "card"
+		_card.visible = true
+		($Card/Name as Label).text = str(Game.segment.get("id", media))
+		get_tree().create_timer(CARD_SECONDS).timeout.connect(_leave)
 
 
 func _exit_tree() -> void:
@@ -39,15 +62,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _leave() -> void:
-	if _left:
+	if _left or not is_inside_tree():
 		return
 	_left = true
 	_player.stop()
-	if Game.intro_level >= 0:
-		var next: String = {Game.CAR: Game.TRUNK, Game.AIRPORT: Game.CHECKIN}.get(Game.intro_level, Game.ROOM)
-		Game.intro_level = -1
-		Game.goto(next)
-		return
-	if Game.kid:
-		Progress.mark_intro_seen(Game.kid.id)
-	Game.goto(Game.MAP)
+	if Game.playing():
+		Game.segment_done()
+	else:
+		Game.goto(Game.MAP)

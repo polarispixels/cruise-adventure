@@ -133,7 +133,7 @@ func _exit_tree() -> void:
 
 ## This part of the airport is finished: on to security.
 func done() -> void:
-	Game.goto(Game.SECURITY)
+	Game.segment_done()
 
 
 func _make_tag(color: String, at: Vector2) -> Sprite2D:

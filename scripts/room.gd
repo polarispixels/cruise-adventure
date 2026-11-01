@@ -285,7 +285,7 @@ func home() -> void:
 
 ## Continue: back to the card, where the new check shows and the next row wiggles.
 func go_on() -> void:
-	Game.goto(Game.MAP)
+	Game.segment_done()
 
 
 ## Things packed so far (bundles and single items).

@@ -13,17 +13,12 @@ const TRUNK := "res://scenes/trunk.tscn"
 const CHECKIN := "res://scenes/checkin.tscn"
 const SECURITY := "res://scenes/security.tscn"
 const MAZE := "res://scenes/maze.tscn"
-## intro_level for the car clip before the trunk puzzle.
-const CAR := 4
-## intro_level for the airport clip before check-in.
-const AIRPORT := 5
+const CHAPTERS := "res://data/chapters.json"
 const KIDS := {"jack": "res://data/jack.tres", "becca": "res://data/becca.tres"}
 
 var kid: KidProfile
 ## Which card row (0-3) the room is playing.
 var level := 0
-## The row whose video the intro scene plays next (CAR: the car clip); -1 means the kid's own intro.
-var intro_level := -1
 ## Tests turn this off to observe navigation without changing scenes.
 var navigate := true
 var last_scene_request := ""
@@ -33,54 +28,170 @@ var segment: Dictionary = {}
 var last_segment_done := false
 ## The chapter the segment player is running, or "".
 var _chapter_id := ""
+## Which of its segments is playing.
+var _segment_index := -1
+## The running segment hasn't called segment_done() yet.
+var _waiting := false
+## The frame of the last advance: a second segment_done() in it is ignored.
+var _advanced_frame := -1
+## The chapter (or card row) was already done when it started: `once` clips are skipped.
+var _replay := false
+## Where stills live (tests point it at their fixtures).
+var stills_dir := "res://assets/stills/"
+## data/chapters.json, loaded on first use.
+var _chapters: Array = []
 
 
+## The title screen picked a kid: their intro the first time, then the map.
 func pick(kid_id: String) -> void:
 	kid = load(KIDS[kid_id])
-	goto(MAP if Progress.intro_seen(kid_id) else INTRO)
+	if Progress.intro_seen(kid_id):
+		goto(MAP)
+	else:
+		play_chapter("mission")
 
 
-## A row not packed yet starts with its video, when there is one.
+## A card row: chapter 2 (row 0) or 3 (rows 1-3). A row not packed yet starts with its video.
 func play_level(n: int) -> void:
 	level = n
-	var video := kid.level_intro(n)
-	if n > 0 and not Progress.levels_done(kid.id).has(n) and ResourceLoader.exists(video):
-		intro_level = n
-		goto(INTRO)
-	else:
-		goto(ROOM)
+	for c: Dictionary in chapters():
+		if (c.get("rows", []) as Array).has(float(n)):
+			_start(c["id"], 0, Progress.levels_done(kid.id).has(n))
+			return
+	goto(ROOM)
 
 
-## The trunk puzzle, after the kid's car clip the first time.
-func play_car() -> void:
-	if not Progress.car_done(kid.id) and ResourceLoader.exists(kid.car_intro()):
-		intro_level = CAR
-		goto(INTRO)
-	else:
-		goto(TRUNK)
+## Every chapter in order, dropped ones included.
+func chapters() -> Array:
+	if _chapters.is_empty():
+		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(CHAPTERS))
+		if parsed is Dictionary and parsed.get("chapters") is Array:
+			_chapters = parsed["chapters"]
+		else:
+			push_error("unreadable " + CHAPTERS)
+	return _chapters
 
 
-## The airport chapter: the kid's airport clip the first time, then check-in.
-func play_airport() -> void:
-	if not Progress.airport_done(kid.id) and ResourceLoader.exists(kid.airport_intro()):
-		intro_level = AIRPORT
-		goto(INTRO)
-	else:
-		goto(CHECKIN)
+## Tests swap in their own chapter list; an empty list reloads the file.
+func use_chapters(list: Array) -> void:
+	_chapters = list
+
+
+func chapter(id: String) -> Dictionary:
+	for c: Dictionary in chapters():
+		if c.get("id") == id:
+			return c
+	return {}
+
+
+## Starts chapter `id` at segment `from`.
+func play_chapter(id: String, from := 0) -> void:
+	_start(id, from, Progress.chapter_done(kid.id, id))
+
+
+## Whether the segment player is running a chapter.
+func playing() -> bool:
+	return _chapter_id != ""
+
+
+## res:// paths of a clip or still segment's media.
+func clip_path(media_name: String) -> String:
+	return "res://assets/video/%s.ogv" % media_name
+
+
+func still_path(media_name: String) -> String:
+	return "%s%s.png" % [stills_dir, media_name]
+
+
+func _start(id: String, from: int, replay: bool) -> void:
+	_chapter_id = id
+	_replay = replay
+	_run(from)
+
+
+func _run(from: int) -> void:
+	var segs: Array = chapter(_chapter_id).get("segments", [])
+	var i := from
+	while i < segs.size():
+		var seg := merge_segment(segs[i], kid.id)
+		seg["chapter"] = _chapter_id
+		seg["index"] = i
+		if _skip(seg):
+			i += 1
+			continue
+		_segment_index = i
+		_waiting = true
+		segment = seg
+		last_segment_done = false
+		goto(str(seg["scene"]) if seg.get("kind") == "scene" else INTRO)
+		return
+	_finish()
+
+
+## A replayed chapter skips its `once` clips; an `optional` clip with no clip or still is skipped.
+func _skip(seg: Dictionary) -> bool:
+	var kind: String = seg.get("kind", "")
+	if kind != "clip" and kind != "still":
+		return false
+	if _replay and seg.get("once", false):
+		return true
+	var media: String = seg.get("name", "")
+	var has_media := ResourceLoader.exists(clip_path(media)) or ResourceLoader.exists(still_path(media))
+	return seg.get("optional", false) and not has_media
+
+
+func _finish() -> void:
+	var c := chapter(_chapter_id)
+	_chapter_id = ""
+	_segment_index = -1
+	_waiting = false
+	segment = {}
+	if (c.get("segments", []) as Array).is_empty():
+		goto(MAP)
+		return
+	if not c.has("rows"):
+		Progress.mark_chapter_done(kid.id, c["id"])
+	if c.get("after", "map") == "next":
+		var next := _next_chapter(c["id"])
+		if next != "":
+			play_chapter(next)
+			return
+	goto(MAP)
+
+
+## The chapter after `id` that is neither dropped nor empty, or "".
+func _next_chapter(id: String) -> String:
+	var found := false
+	for c: Dictionary in chapters():
+		if found and not c.get("dropped", false) and not (c.get("segments", []) as Array).is_empty():
+			return c["id"]
+		if c.get("id") == id:
+			found = true
+	return ""
 
 
 ## A segment scene calls this once when it is finished. If a chapter is running,
-## the player moves on to the next segment (scene changes still obey `navigate`).
+## the player moves on to the next segment; if not, the map follows. (Scene
+## changes still obey `navigate`.)
 func segment_done() -> void:
 	last_segment_done = true
 	segment_finished.emit()
-	if _chapter_id != "":
-		_advance()
+	if _chapter_id == "":
+		goto(MAP)
+	elif _waiting and not (navigate and Engine.get_process_frames() == _advanced_frame):
+		# The old scene stays until the frame ends: a second tap on its Continue
+		# in that frame must not skip the next segment.
+		_advanced_frame = Engine.get_process_frames()
+		_waiting = false
+		_run(_segment_index + 1)
 
 
 ## Forgets the running chapter.
 func stop_chapter() -> void:
 	_chapter_id = ""
+	_segment_index = -1
+	_waiting = false
+	segment = {}
 
 
 ## A segment entry merged for one kid: the kid's block over the common keys, then
@@ -125,11 +236,6 @@ func _fill(value: Variant, subs: Dictionary) -> Variant:
 			d[k] = _fill(value[k], subs)
 		return d
 	return value
-
-
-## Filled in by the segment player.
-func _advance() -> void:
-	pass
 
 
 func sibling() -> KidProfile:
