@@ -576,67 +576,687 @@
    "number": 9,
    "part": 1,
    "title": "The flight",
-   "release": "v0.6+",
+   "release": "v1.0",
    "panels": "",
-   "video": "Takeoff out the window",
-   "play": "Calm activities in the seat: buckle up, pick a snack, look out the window.",
+   "video": "Takeoff out the window (after buckling). Payoff: landing in Florida",
+   "play": "Find our seat, stow the bag in the bin, buckle up, pick a snack, spot cloud shapes out the window.",
    "teaches": "What flying is like",
    "images": [],
    "checks": [
     {
-     "label": "Design the play"
+     "label": "Chapter design reviewed by Ryan (the chapter spec)"
     },
     {
-     "label": "Art and clips"
+     "label": "Art: four backgrounds and the window frame",
+     "files": [
+      "assets/flight/flight-aisle.png",
+      "assets/flight/flight-seats.png",
+      "assets/flight/flight-bin.png",
+      "assets/flight/window-sky.png",
+      "assets/flight/window-frame.png"
+     ]
     },
     {
-     "label": "Build it"
+     "label": "Art: seats, row sign, stickers, flight pass",
+     "files": [
+      "assets/flight/seat-row.png",
+      "assets/flight/row-sign.png",
+      "assets/flight/sticker-red.png",
+      "assets/flight/sticker-green.png",
+      "assets/flight/sticker-blue.png",
+      "assets/flight/flight-pass.png"
+     ]
+    },
+    {
+     "label": "Art: bin door, belt tab and buckle, seatbelt signs",
+     "files": [
+      "assets/flight/bin-door.png",
+      "assets/flight/belt-tab.png",
+      "assets/flight/belt-buckle.png",
+      "assets/flight/seatbelt-sign-off.png",
+      "assets/flight/seatbelt-sign-on.png"
+     ]
+    },
+    {
+     "label": "Art: snack cart, tray and three snacks",
+     "files": [
+      "assets/flight/snack-cart.png",
+      "assets/flight/snack-tray.png",
+      "assets/flight/snack-apple.png",
+      "assets/flight/snack-crackers.png",
+      "assets/flight/snack-juice.png"
+     ]
+    },
+    {
+     "label": "Art: five cloud shapes, cloud bubble, wing",
+     "files": [
+      "assets/flight/cloud-heart.png",
+      "assets/flight/cloud-star.png",
+      "assets/flight/cloud-fish.png",
+      "assets/flight/cloud-bunny.png",
+      "assets/flight/cloud-boat.png",
+      "assets/flight/cloud-bubble.png",
+      "assets/flight/plane-wing.png"
+     ]
+    },
+    {
+     "label": "Video: takeoff-window",
+     "files": [
+      "assets/video/takeoff-window.ogv",
+      "assets/stills/takeoff-window.png"
+     ]
+    },
+    {
+     "label": "Video: flight-landing",
+     "files": [
+      "assets/video/flight-landing.ogv",
+      "assets/stills/flight-landing.png"
+     ]
+    },
+    {
+     "label": "Voice Lines v1.0: the 15 flight lines recorded by both kids",
+     "voice": [
+      "becca/bin-shut",
+      "becca/bin-up",
+      "becca/buckle-up",
+      "becca/find-cloud",
+      "becca/find-seat",
+      "becca/flight-done",
+      "becca/light-on",
+      "becca/match-sticker",
+      "becca/nice-cloud",
+      "becca/our-seats",
+      "becca/pick-snack",
+      "becca/under-seat",
+      "becca/yum",
+      "jack/bin-shut",
+      "jack/bin-up",
+      "jack/buckle-becca",
+      "jack/buckle-up",
+      "jack/find-cloud",
+      "jack/find-seat",
+      "jack/flight-done",
+      "jack/light-on",
+      "jack/match-number",
+      "jack/nice-cloud",
+      "jack/our-seats",
+      "jack/pick-snack",
+      "jack/under-seat",
+      "jack/yum"
+     ]
+    },
+    {
+     "label": "Build: the six play segments (Match, Fit, Place, Place, Tap moments, Match), a unit test each"
+    },
+    {
+     "label": "Chapter data in chapters.json, headless playthrough for both kids, layout preview at 16:10"
+    },
+    {
+     "label": "Playtest on the Fire tablet with both kids"
     }
-   ]
+   ],
+   "status": "Not started"
   },
   {
    "number": 10,
    "part": 1,
-   "title": "The ship",
-   "release": "v0.6+",
+   "title": "Hello Florida",
+   "release": "v1.0",
    "panels": "",
-   "video": "Boarding the ship",
-   "play": "Find the stateroom by matching the key card number to the doors.",
-   "teaches": "Numbers and finding your way",
+   "video": "Intro still with a slow zoom. Drive to the hotel, then a sleepy night with the ship's lights out the window",
+   "play": "Spot our bags on the carousel, put the booster seats in the minivan, then load the trunk.",
+   "teaches": "That the suitcases come back, and the car seats go in before the bags",
    "images": [],
    "checks": [
     {
-     "label": "Design the play"
+     "label": "Chapter design reviewed by Ryan (the chapter spec)"
     },
     {
-     "label": "Art and clips"
+     "label": "Art: baggage claim, minivan inside, open and closed, hotel room at night",
+     "files": [
+      "assets/florida/baggage-claim.png",
+      "assets/florida/minivan-interior.png",
+      "assets/florida/minivan-open.png",
+      "assets/florida/minivan-closed.png",
+      "assets/florida/hotel-room-night.png"
+     ]
     },
     {
-     "label": "Build it"
+     "label": "Art: boosters, seven decoy bags, luggage cart",
+     "files": [
+      "assets/florida/booster-blue.png",
+      "assets/florida/booster-pink.png",
+      "assets/florida/decoy-blue-case.png",
+      "assets/florida/decoy-pink-case.png",
+      "assets/florida/decoy-yellow-bag.png",
+      "assets/florida/decoy-brown-box.png",
+      "assets/florida/decoy-green-backpack.png",
+      "assets/florida/decoy-black-case.png",
+      "assets/florida/decoy-red-case.png",
+      "assets/florida/luggage-cart.png"
+     ]
+    },
+    {
+     "label": "Art: stills for the arrival, the drive and the hotel night",
+     "files": [
+      "assets/stills/florida-arrival.png",
+      "assets/stills/florida-drive.png",
+      "assets/stills/hotel-night.png"
+     ]
+    },
+    {
+     "label": "Video: hotel-night (priority 1)",
+     "files": [
+      "assets/video/hotel-night.ogv"
+     ]
+    },
+    {
+     "label": "Video: florida-drive (priority 2)",
+     "files": [
+      "assets/video/florida-drive.ogv"
+     ]
+    },
+    {
+     "label": "Voice Lines v1.0: the 14 new Florida lines recorded by both kids",
+     "voice": [
+      "becca/bags-coming",
+      "becca/blue-seat",
+      "becca/boosters-first",
+      "becca/comes-around",
+      "becca/got-our-bags",
+      "becca/hello-florida",
+      "becca/hotel-night",
+      "becca/load-minivan",
+      "becca/look-there",
+      "becca/not-ours",
+      "becca/pink-seat",
+      "becca/seats-in",
+      "becca/spot-pink",
+      "jack/bags-coming",
+      "jack/blue-seat",
+      "jack/boosters-first",
+      "jack/comes-around",
+      "jack/got-our-bags",
+      "jack/hello-florida",
+      "jack/hotel-night",
+      "jack/load-minivan",
+      "jack/look-there",
+      "jack/not-ours",
+      "jack/pink-seat",
+      "jack/seats-in",
+      "jack/spot-bags"
+     ]
+    },
+    {
+     "label": "Build: Spot our bags (Moving targets), both kids, a missed bag comes around again"
+    },
+    {
+     "label": "Build: boosters (Place) and the minivan trunk (Fit)"
+    },
+    {
+     "label": "Build: intro, drive and hotel night segments in chapters.json"
+    },
+    {
+     "label": "Unit test per segment and a headless playthrough for both kids"
+    },
+    {
+     "label": "Playtest on the Fire tablet with both kids, especially carousel speed and hit area"
     }
-   ]
+   ],
+   "status": "Not started"
   },
   {
    "number": 11,
    "part": 1,
-   "title": "Ship and beach",
-   "release": "v0.6+",
+   "title": "Welcome aboard",
+   "release": "v1.0",
    "panels": "",
-   "video": "Water slides, the beach",
-   "play": "A playground of mini games that grows over time.",
-   "teaches": "Fun, and the reason for all the work",
+   "video": "Intro: walking onto the ship. Payoff: the ship sails away, everyone waving",
+   "play": "Get your key card, find your room in the hallway, and practice the safety drill so the ship's horn is not scary.",
+   "teaches": "What boarding is like, and that the big HONK is normal",
    "images": [],
    "checks": [
     {
-     "label": "Pick the first mini games"
+     "label": "Chapter design reviewed by Ryan (the chapter spec)"
     },
     {
-     "label": "Art and clips"
+     "label": "Art: five backgrounds (desk, hallway, room, drill floor, ship outside)",
+     "files": [
+      "assets/aboard/aboard-welcome-desk.png",
+      "assets/aboard/aboard-hallway.png",
+      "assets/aboard/aboard-room.png",
+      "assets/aboard/aboard-drill-floor.png",
+      "assets/aboard/aboard-ship-outside.png"
+     ]
     },
     {
-     "label": "Build it"
+     "label": "Art: key card, family face tokens, doors, picture stickers",
+     "files": [
+      "assets/aboard/keycard-blank.png",
+      "assets/aboard/token-mommy.png",
+      "assets/aboard/token-daddy.png",
+      "assets/aboard/door-closed.png",
+      "assets/aboard/door-open.png",
+      "assets/aboard/sticker-fish.png",
+      "assets/aboard/sticker-starfish.png",
+      "assets/aboard/sticker-crab.png"
+     ]
+    },
+    {
+     "label": "Art: drill sign, meeting spot, four deck decor pieces",
+     "files": [
+      "assets/aboard/drill-sign-arrow.png",
+      "assets/aboard/drill-meeting-spot.png",
+      "assets/aboard/drill-decor-lifering.png",
+      "assets/aboard/drill-decor-bench.png",
+      "assets/aboard/drill-decor-crate.png",
+      "assets/aboard/drill-decor-lifeboat.png"
+     ]
+    },
+    {
+     "label": "Video: aboard-walk-on",
+     "files": [
+      "assets/video/aboard-walk-on.ogv",
+      "assets/stills/aboard-walk-on.png"
+     ]
+    },
+    {
+     "label": "Video: aboard-sail-away",
+     "files": [
+      "assets/video/aboard-sail-away.ogv",
+      "assets/stills/aboard-sail-away.png"
+     ]
+    },
+    {
+     "label": "Voice Lines v1.0: the 13 aboard lines recorded by both kids",
+     "voice": [
+      "becca/all-together",
+      "becca/find-room",
+      "becca/follow-arrows",
+      "becca/follow-feet",
+      "becca/get-keycard",
+      "becca/horn-warning",
+      "becca/match-door-sticker",
+      "becca/not-this-door",
+      "becca/our-room",
+      "becca/see-sticker",
+      "becca/slide-hall",
+      "jack/all-together",
+      "jack/find-room",
+      "jack/follow-arrows",
+      "jack/get-keycard",
+      "jack/horn-warning",
+      "jack/match-door-number",
+      "jack/not-this-door",
+      "jack/our-room",
+      "jack/see-number",
+      "jack/slide-hall"
+     ]
+    },
+    {
+     "label": "Build: Get your key card and Find our room (Match, hallway scroll mode), a unit test each"
+    },
+    {
+     "label": "Build: Safety drill (Maze, fixed layouts, horn beat), unit test"
+    },
+    {
+     "label": "Chapter data in chapters.json, headless playthrough for both kids"
+    },
+    {
+     "label": "Playtest on the Fire tablet with both kids, especially the horn and the hallway drag"
     }
-   ]
+   ],
+   "status": "Not started"
+  },
+  {
+   "number": 12,
+   "part": 1,
+   "title": "Island days",
+   "release": "v1.0",
+   "panels": "",
+   "video": "Intro: the tender or a walk onto the island. Payoff: splashing in shallow water",
+   "play": "Sun safe (sunscreen, hat and sandals), shell hunt, and build a sandcastle. Played twice, as Island day 1 and Island day 2.",
+   "teaches": "What a beach day on an island is like",
+   "images": [],
+   "checks": [
+    {
+     "label": "Chapter design approved by Ryan (the chapter spec)"
+    },
+    {
+     "label": "Art: day 1 backgrounds",
+     "files": [
+      "assets/island/island-beach.png",
+      "assets/island/island-sand.png"
+     ]
+    },
+    {
+     "label": "Art: day 2 backgrounds",
+     "files": [
+      "assets/island/island-beach-2.png",
+      "assets/island/island-sand-2.png"
+     ]
+    },
+    {
+     "label": "Art: sunscreen, spot, dab, bucket, flag",
+     "files": [
+      "assets/island/sunscreen.png",
+      "assets/island/sun-spot.png",
+      "assets/island/sun-dab.png",
+      "assets/island/bucket.png",
+      "assets/island/castle-flag.png"
+     ]
+    },
+    {
+     "label": "Art: day 1 shells, castle outline and pieces",
+     "files": [
+      "assets/island/shell-spiral.png",
+      "assets/island/shell-fan.png",
+      "assets/island/shell-cone.png",
+      "assets/island/shell-star.png",
+      "assets/island/shell-clam.png",
+      "assets/island/castle-outline.png",
+      "assets/island/castle-piece-1.png",
+      "assets/island/castle-piece-2.png",
+      "assets/island/castle-piece-3.png",
+      "assets/island/castle-piece-4.png",
+      "assets/island/castle-piece-5.png"
+     ]
+    },
+    {
+     "label": "Art: day 2 shells, castle outline and pieces",
+     "files": [
+      "assets/island/shell-conch-2.png",
+      "assets/island/shell-scallop-2.png",
+      "assets/island/shell-sand-dollar-2.png",
+      "assets/island/shell-snail-2.png",
+      "assets/island/shell-mussel-2.png",
+      "assets/island/castle-outline-2.png",
+      "assets/island/castle-piece-1-2.png",
+      "assets/island/castle-piece-2-2.png",
+      "assets/island/castle-piece-3-2.png",
+      "assets/island/castle-piece-4-2.png",
+      "assets/island/castle-piece-5-2.png"
+     ]
+    },
+    {
+     "label": "Video: island-arrival",
+     "files": [
+      "assets/video/island-arrival.ogv",
+      "assets/stills/island-arrival.png"
+     ]
+    },
+    {
+     "label": "Video: island-splash",
+     "files": [
+      "assets/video/island-splash.ogv",
+      "assets/stills/island-splash.png"
+     ]
+    },
+    {
+     "label": "Voice Lines v1.0: the 12 island lines recorded by both kids",
+     "voice": [
+      "becca/isle-all-shells",
+      "becca/isle-castle",
+      "becca/isle-dab",
+      "becca/isle-day2",
+      "becca/isle-decorate",
+      "becca/isle-great-castle",
+      "becca/isle-hat-sandals",
+      "becca/isle-in-castle",
+      "becca/isle-shells",
+      "becca/isle-sun-safe",
+      "becca/isle-sunscreen",
+      "becca/isle-this-one",
+      "jack/isle-all-shells",
+      "jack/isle-castle",
+      "jack/isle-dab",
+      "jack/isle-day2",
+      "jack/isle-decorate",
+      "jack/isle-great-castle",
+      "jack/isle-hat-sandals",
+      "jack/isle-in-castle",
+      "jack/isle-shells",
+      "jack/isle-sun-safe",
+      "jack/isle-sunscreen",
+      "jack/isle-this-one"
+     ]
+    },
+    {
+     "label": "Build: Sun safe (Place), Shell hunt (Match) and Sandcastle (Place), per-child data and a unit test each"
+    },
+    {
+     "label": "Build: Island day 1 chapter, and Island day 2 as data only, headless playthrough for both kids"
+    },
+    {
+     "label": "Layout preview at 16:10 and playtest on the Fire tablet with both kids"
+    }
+   ],
+   "status": "Not started"
+  },
+  {
+   "number": 13,
+   "part": 1,
+   "title": "Sea day",
+   "release": "v1.0",
+   "panels": "",
+   "video": "Intro: the pool deck. Payoff: the evening on deck",
+   "play": "Swimsuit on, the big slide (Jack-Jack rides, Becca hears \"next time\"), the splash zone, and dress for dinner.",
+   "teaches": "What the ship is like, including honest height rules",
+   "images": [],
+   "checks": [
+    {
+     "label": "Chapter design reviewed by Ryan (the chapter spec)"
+    },
+    {
+     "label": "Art: four backgrounds (pool deck, slide, splash zone, dining)",
+     "files": [
+      "assets/seaday/seaday-pool-deck.png",
+      "assets/seaday/seaday-slide.png",
+      "assets/seaday/seaday-splash-zone.png",
+      "assets/seaday/seaday-dining.png"
+     ]
+    },
+    {
+     "label": "Art: swimsuit, cheer, ride and nice-outfit poses",
+     "files": [
+      "assets/seaday/jack-swimsuit.png",
+      "assets/seaday/becca-swimsuit.png",
+      "assets/seaday/jack-swimsuit-cheer.png",
+      "assets/seaday/becca-swimsuit-cheer.png",
+      "assets/seaday/jack-swimsuit-ride.png",
+      "assets/seaday/jack-nice-outfit.png",
+      "assets/seaday/becca-nice-outfit.png",
+      "assets/seaday/jack-nice-outfit-sit.png",
+      "assets/seaday/becca-nice-outfit-sit.png"
+     ]
+    },
+    {
+     "label": "Art: height sign, splash, jets, toys, toy pop, chair glow",
+     "files": [
+      "assets/seaday/height-sign.png",
+      "assets/seaday/slide-splash.png",
+      "assets/seaday/water-jet.png",
+      "assets/seaday/water-spray.png",
+      "assets/seaday/toy-duck.png",
+      "assets/seaday/toy-ball.png",
+      "assets/seaday/toy-boat.png",
+      "assets/seaday/toy-fish.png",
+      "assets/seaday/toy-pop.png",
+      "assets/seaday/chair-glow.png"
+     ]
+    },
+    {
+     "label": "Video: sea-pool-deck",
+     "files": [
+      "assets/video/sea-pool-deck.ogv",
+      "assets/stills/sea-pool-deck.png"
+     ]
+    },
+    {
+     "label": "Video: sea-evening-deck",
+     "files": [
+      "assets/video/sea-evening-deck.ogv",
+      "assets/stills/sea-evening-deck.png"
+     ]
+    },
+    {
+     "label": "Voice Lines v1.0: the 16 sea-day lines recorded by both kids",
+     "voice": [
+      "becca/sea-dinner",
+      "becca/sea-height-becca",
+      "becca/sea-next-time",
+      "becca/sea-sit",
+      "becca/sea-splash-time",
+      "becca/sea-swimsuit",
+      "becca/sea-tap-go",
+      "becca/sea-toys",
+      "becca/sea-watch-me",
+      "becca/sea-what-a-splash",
+      "becca/sea-whee",
+      "becca/sea-yummy",
+      "jack/sea-dinner",
+      "jack/sea-ducks",
+      "jack/sea-height",
+      "jack/sea-sit",
+      "jack/sea-splash-me",
+      "jack/sea-splash-time",
+      "jack/sea-swimsuit",
+      "jack/sea-tall-enough",
+      "jack/sea-tap-go",
+      "jack/sea-toys",
+      "jack/sea-what-a-splash",
+      "jack/sea-whee",
+      "jack/sea-yummy"
+     ]
+    },
+    {
+     "label": "Build: Swimsuit on (Place) and Dress for dinner (Place), per-child data, a unit test each"
+    },
+    {
+     "label": "Build: The big slide (Tap moments), Jack-Jack rides, Becca hears \"next time\", unit test"
+    },
+    {
+     "label": "Build: Splash zone (Moving targets), missed toys come around, unit test"
+    },
+    {
+     "label": "Headless playthrough for both kids and layout preview at 16:10; playtest on the Fire tablet, especially Becca's slide moment"
+    }
+   ],
+   "status": "Not started"
+  },
+  {
+   "number": 14,
+   "part": 1,
+   "title": "Beach hotel",
+   "release": "v1.0",
+   "panels": "",
+   "video": "Intro: walking out onto the sand. Finale: the \"We did it!\" celebration clip",
+   "play": "Load the minivan again, find our hotel room, jump the waves, build a sandcastle, then the journey map lights every stop.",
+   "teaches": "That the trip ends at a beach hotel, and every chapter can be replayed",
+   "images": [],
+   "checks": [
+    {
+     "label": "Chapter design approved by Ryan (the chapter spec)"
+    },
+    {
+     "label": "Art: six backgrounds",
+     "files": [
+      "assets/beach/beach-hotel-front.png",
+      "assets/beach/beach-elevator.png",
+      "assets/beach/beach-hallway.png",
+      "assets/beach/beach-room.png",
+      "assets/beach/beach-waves.png",
+      "assets/beach/beach-sand.png"
+     ]
+    },
+    {
+     "label": "Art: elevator doors, buttons, panel and key dots",
+     "files": [
+      "assets/beach/elevator-door-left.png",
+      "assets/beach/elevator-door-right.png",
+      "assets/beach/elevator-button-blank.png",
+      "assets/beach/elevator-button-red.png",
+      "assets/beach/elevator-button-blue.png",
+      "assets/beach/elevator-button-green.png",
+      "assets/beach/elevator-button-lit.png",
+      "assets/beach/elevator-panel.png",
+      "assets/beach/key-dot-red.png",
+      "assets/beach/key-dot-blue.png",
+      "assets/beach/key-dot-green.png"
+     ]
+    },
+    {
+     "label": "Art: wave band, splash, foam puff, umbrella",
+     "files": [
+      "assets/beach/wave-front.png",
+      "assets/beach/wave-splash.png",
+      "assets/beach/foam-puff.png",
+      "assets/beach/beach-umbrella.png"
+     ]
+    },
+    {
+     "label": "Video: beach-celebration",
+     "files": [
+      "assets/video/beach-celebration.ogv",
+      "assets/stills/beach-celebration.png"
+     ]
+    },
+    {
+     "label": "Video: beach-walk-sand",
+     "files": [
+      "assets/video/beach-walk-sand.ogv",
+      "assets/stills/beach-walk-sand.png"
+     ]
+    },
+    {
+     "label": "Voice Lines v1.0: the 16 beach lines recorded by both kids",
+     "voice": [
+      "becca/beach-build",
+      "becca/beach-castle-done",
+      "becca/beach-decorate",
+      "becca/beach-ding",
+      "becca/beach-elevator",
+      "becca/beach-find-room",
+      "becca/beach-floor-color",
+      "becca/beach-jump",
+      "becca/beach-jumped",
+      "becca/beach-look-back",
+      "becca/beach-our-room",
+      "becca/beach-pack-again",
+      "becca/beach-packed",
+      "becca/beach-replay",
+      "becca/beach-waves",
+      "jack/beach-build",
+      "jack/beach-castle-done",
+      "jack/beach-decorate",
+      "jack/beach-ding",
+      "jack/beach-elevator",
+      "jack/beach-find-room",
+      "jack/beach-floor-number",
+      "jack/beach-jump",
+      "jack/beach-jumped",
+      "jack/beach-look-back",
+      "jack/beach-our-room",
+      "jack/beach-pack-again",
+      "jack/beach-packed",
+      "jack/beach-replay",
+      "jack/beach-waves"
+     ]
+    },
+    {
+     "label": "Build: Load the minivan again (Fit) and Elevator (Match, number and color keys), a unit test each"
+    },
+    {
+     "label": "Build: Hotel hallway (Match), Jump the waves (Tap moments) and Sandcastle (Place, hotel skin), a unit test each"
+    },
+    {
+     "label": "Build: chapter data in chapters.json, finale light-up of every stop, celebration clip, map with replay"
+    },
+    {
+     "label": "Headless playthrough for both kids, layout preview at 16:10, playtest on the Fire tablet"
+    }
+   ],
+   "status": "Not started"
   }
  ],
  "panels": [

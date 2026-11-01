@@ -351,12 +351,14 @@ func test_finish_buttons_go_home_replay_continue(t) -> void:
 	for pair in [["HomeButton", game.TITLE], ["ReplayButton", game.TRUNK], ["ContinueButton", game.CHECKIN]]:
 		var trunk := await _make(t, "jack")
 		trunk.payoff_video = ""
+		game.play_chapter("car", 1)  # the trunk as the car chapter's segment: the airport follows
 		await _fill(t, trunk)
 		await _tap(t, trunk.hatch_point())
 		await t.tree.create_timer(0.8).timeout  # the buttons wake up after a moment
 		var button: TextureButton = trunk.get_node("Finish/" + pair[0])
 		await _tap(t, button.global_position + button.size / 2)
 		t.eq(game.last_scene_request, pair[1], pair[0])
+		game.stop_chapter()
 		_done(t, trunk)
 
 

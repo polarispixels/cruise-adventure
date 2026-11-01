@@ -16,6 +16,12 @@ var gates: Array[Vector2i] = []
 ## Index into gates of the kid's gate.
 var correct := 0
 
+## Fixed layouts: wall cells, and arrow signs {cell: direction}.
+var walls := {}
+var arrows := {}
+## Fixed layouts: each goal's letter, in the same order as gates.
+var goal_names: Array[String] = []
+
 ## Open passages, stored once per pair: {Vector2i cell: bits}, bit 1 = right, bit 2 = down.
 var _open := {}
 
@@ -35,6 +41,48 @@ static func generate(maze_size: Vector2i, braid: float, loops: int, max_turns: i
 	for y in range(m.start.y, g.y, step):
 		m._set_open(Vector2i(g.x, y), Vector2i(g.x, y + step))
 	return m
+
+
+## A fixed layout from rows of text, one character per cell:
+## "#" wall, "." floor, "S" start, "G" the right goal, "A"-"F" other goals
+## (or the right one, when `right_goal` names it), and ">" "<" "^" "v" floor
+## with an arrow sign. Floor cells next to each other are always connected.
+static func from_rows(rows: Array, right_goal := "G") -> MazeModel:
+	var m := MazeModel.new()
+	var width := 0
+	for r: Variant in rows:
+		width = maxi(width, str(r).length())
+	m.size = Vector2i(width, rows.size())
+	var arrow_dirs := {">": Vector2i.RIGHT, "<": Vector2i.LEFT, "^": Vector2i.UP, "v": Vector2i.DOWN}
+	for y in rows.size():
+		var row := str(rows[y])
+		for x in width:
+			var ch := row[x] if x < row.length() else "#"
+			var c := Vector2i(x, y)
+			if ch == "#" or ch == " ":
+				m.walls[c] = true
+			elif ch == "S":
+				m.start = c
+			elif ch == "G" or "ABCDEF".contains(ch):
+				m.gates.append(c)
+				m.goal_names.append(ch)
+			elif arrow_dirs.has(ch):
+				m.arrows[c] = arrow_dirs[ch]
+	m.correct = maxi(m.goal_names.find(right_goal), 0)
+	for y in m.size.y:
+		for x in m.size.x:
+			var c := Vector2i(x, y)
+			if m.walls.has(c):
+				continue
+			for d: Vector2i in [Vector2i.RIGHT, Vector2i.DOWN]:
+				var n := c + d
+				if m._inside(n) and not m.walls.has(n):
+					m._set_open(c, n)
+	return m
+
+
+func is_wall(c: Vector2i) -> bool:
+	return walls.has(c)
 
 
 static func _attempt(maze_size: Vector2i, braid: float, loops: int, gate_count: int, rng: RandomNumberGenerator) -> MazeModel:

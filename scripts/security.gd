@@ -137,7 +137,7 @@ func _exit_tree() -> void:
 
 ## This part of the airport is finished: on to the gate maze.
 func done() -> void:
-	Game.goto(Game.MAZE)
+	Game.segment_done()
 
 
 func _texture(id: String) -> Texture2D:

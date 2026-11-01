@@ -15,9 +15,11 @@ import html
 import json
 import os
 import re
+import subprocess
 import shutil
 import sys
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "docs" / "site"
@@ -160,6 +162,26 @@ def _apk_badge(tag: str, version: str) -> str:
     return f'<a class="alt" href="{REPO}/releases">Tablet APK (v{e(version)})</a>'
 
 
+def updated_stamp(iso_date: str, sha: str) -> str:
+    """'Game last updated 11:00:15 AM, Sunday, November 1 · 46e421b' (Eastern time), linked to the commit."""
+    if not iso_date:
+        return "Game last updated: unknown"
+    t = datetime.datetime.fromisoformat(iso_date).astimezone(ZoneInfo("America/New_York"))
+    hour = t.hour % 12 or 12
+    text = f"Game last updated {hour}:{t:%M:%S %p}, {t:%A}, {t:%B} {t.day}"
+    return text + (f' \u00b7 <a href="{REPO}/commit/{sha}">{sha}</a>' if sha else "")
+
+
+def _newest_commit(root: Path) -> tuple[str, str]:
+    """ISO date and short hash of the newest commit, or empty strings outside a git checkout."""
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cI %h"], cwd=root, capture_output=True,
+                             text=True, check=True).stdout.split()
+        return out[0], out[1]
+    except (OSError, subprocess.CalledProcessError, IndexError):
+        return "", ""
+
+
 def render(story: dict, root: Path, latest_release: str = "") -> str:
     chapters = story.get("chapters", [])
     parts_html = ""
@@ -180,9 +202,7 @@ def render(story: dict, root: Path, latest_release: str = "") -> str:
                      f'<small>{e(c.get("release", ""))}</small>{_progress(sum(ticks), len(ticks))}</a>')
     panels = "".join(_panel(p) for p in story.get("panels", []))
     routine = " → ".join(e(s) for s in story.get("routine", []))
-    stamp = datetime.date.today().isoformat()
-    sha = os.environ.get("GITHUB_SHA", "")[:7]
-    built = f"Built {stamp}" + (f' from <a href="{REPO}/commit/{sha}">{sha}</a>' if sha else "")
+    built = updated_stamp(*_newest_commit(root))
     return TEMPLATE.format(
         title=e(story.get("title", "")), tagline=e(story.get("tagline", "")), routine=routine,
         apk=_apk_badge(latest_release, _version(root)), repo=REPO, overview=overview, parts=parts_html, panels=panels,
@@ -204,6 +224,8 @@ TEMPLATE = """<!DOCTYPE html>
   * {{ box-sizing:border-box; }}
   body {{ margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }}
   a {{ color:var(--sea); }}
+  .stamp {{ font-size:.85rem; opacity:.85; margin:6px 0 0; }}
+  .stamp a {{ color:#fff; }}
   .top {{ background:linear-gradient(160deg,#0d4f7d,#1677b8 60%,#4fb3e8); color:#fff; padding:40px 16px 34px; text-align:center; }}
   .top h1 {{ margin:0 0 6px; font-size:clamp(1.6rem,4vw,2.3rem); }}
   .top p {{ margin:4px auto; max-width:720px; color:#dff1ff; }}
@@ -268,6 +290,7 @@ TEMPLATE = """<!DOCTYPE html>
   <h1>{title}</h1>
   <p>“{tagline}”</p>
   <p class="routine">{routine}</p>
+  <p class="stamp">{built}</p>
   <div class="badges"><a href="../">▶ Play in the browser</a>{apk}<a class="alt" href="{repo}">GitHub</a></div>
 </div>
 <main>

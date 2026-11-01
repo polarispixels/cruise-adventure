@@ -114,15 +114,18 @@ func test_becca_yellow_goes_by_itself(t) -> void:
 
 func test_all_gone_goes_to_security(t) -> void:
 	var scene := await _make(t, "becca")
+	var game: Node = t.tree.root.get_node("Game")
+	game.play_chapter("airport", 1)  # check-in as the airport chapter's segment
+	game.last_scene_request = ""
 	for pair in [["pink", "becca-suitcase"], ["blue", "jack-suitcase"]]:
 		await _drag(t, scene.tag_point(pair[0]), scene.bag_point(pair[1]))
 		await _drag(t, scene.bag_point(pair[1]), scene.scale_point())
-	var game: Node = t.tree.root.get_node("Game")
 	var end := Time.get_ticks_msec() + 12000
 	while game.last_scene_request == "" and Time.get_ticks_msec() < end:
 		await t.tree.process_frame
 	t.eq(game.last_scene_request, "res://scenes/security.tscn", "on to security")
 	t.check(t.tree.root.get_node("Voice").last_line in ["bye-suitcases"], "bye-bye, suitcases")
+	game.stop_chapter()
 	_done(t, scene)
 
 

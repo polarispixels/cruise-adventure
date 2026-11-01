@@ -1,14 +1,19 @@
-# Autoload: which card rows each child has packed, and whether they've seen
-# their intro. Saved as JSON on the device. A missing or corrupt file simply
-# means a fresh start.
+# Autoload: which card rows each child has packed and which chapters they've
+# finished (keyed by chapter id, see data/chapters.json). Saved as JSON on the
+# device. A missing or corrupt file simply means a fresh start. A v0.5 save
+# (intro_seen / car_done / airport_done flags) is carried over on load.
 extends Node
 
 const LEVELS := 4
+## Chapters played on the card: done when all their rows are packed.
+const ROW_CHAPTERS := {"routine": [0], "your-turn": [1, 2, 3]}
+## v0.5 save flags and the chapter each one became.
+const OLD_FLAGS := {"intro_seen": "mission", "car_done": "car", "airport_done": "airport"}
 
 ## Tests point this at a temp file.
 var path := "user://progress.json"
 
-## {kid_id: {"levels_done": [int], "intro_seen": bool, "car_done": bool, "airport_done": bool}}
+## {kid_id: {"levels_done": [int], "chapters_done": [String]}}
 var _data: Dictionary = {}
 
 
@@ -45,33 +50,66 @@ func next_level(kid_id: String) -> int:
 	return LEVELS
 
 
+## Whether the kid has finished chapter `chapter_id`.
+func chapter_done(kid_id: String, chapter_id: String) -> bool:
+	if ROW_CHAPTERS.has(chapter_id):
+		var done := levels_done(kid_id)
+		for row: int in ROW_CHAPTERS[chapter_id]:
+			if not done.has(row):
+				return false
+		return true
+	return chapters_done(kid_id).has(chapter_id)
+
+
+func mark_chapter_done(kid_id: String, chapter_id: String) -> void:
+	if ROW_CHAPTERS.has(chapter_id):
+		for row: int in ROW_CHAPTERS[chapter_id]:
+			mark_done(kid_id, row)
+		return
+	var done := chapters_done(kid_id)
+	if done.has(chapter_id):
+		return
+	done.append(chapter_id)
+	_entry(kid_id)["chapters_done"] = done
+	save_file()
+
+
+## Finished chapter ids (rows aside), in the order they were finished.
+func chapters_done(kid_id: String) -> Array[String]:
+	var out: Array[String] = []
+	var raw: Variant = _kid(kid_id).get("chapters_done", [])
+	if raw is Array:
+		for id: Variant in raw:
+			if id is String:
+				out.append(id)
+	return out
+
+
+## The kid's own intro clip (chapter 1).
 func intro_seen(kid_id: String) -> bool:
-	return bool(_kid(kid_id).get("intro_seen", false))
+	return chapter_done(kid_id, "mission")
 
 
 func mark_intro_seen(kid_id: String) -> void:
-	_entry(kid_id)["intro_seen"] = true
-	save_file()
+	mark_chapter_done(kid_id, "mission")
 
 
 ## Whether the kid has loaded the car (the trunk puzzle).
 func car_done(kid_id: String) -> bool:
-	return bool(_kid(kid_id).get("car_done", false))
+	return chapter_done(kid_id, "car")
 
 
 func mark_car_done(kid_id: String) -> void:
-	_entry(kid_id)["car_done"] = true
-	save_file()
+	mark_chapter_done(kid_id, "car")
 
 
 ## Whether the kid has made it through the airport to the gate.
 func airport_done(kid_id: String) -> bool:
-	return bool(_kid(kid_id).get("airport_done", false))
+	return chapter_done(kid_id, "airport")
 
 
 func mark_airport_done(kid_id: String) -> void:
-	_entry(kid_id)["airport_done"] = true
-	save_file()
+	mark_chapter_done(kid_id, "airport")
 
 
 ## Forgets everything, on disk too.
@@ -92,7 +130,7 @@ func load_file() -> void:
 	if parsed is Dictionary:
 		for kid_id in parsed:
 			if parsed[kid_id] is Dictionary:
-				_data[kid_id] = parsed[kid_id]
+				_data[kid_id] = _migrate(parsed[kid_id])
 
 
 func save_file() -> void:
@@ -101,6 +139,18 @@ func save_file() -> void:
 		print("Progress: could not save to ", path)
 		return
 	file.store_string(JSON.stringify(_data))
+
+
+## A v0.5 entry's flags become chapter ids; nothing already saved is lost.
+func _migrate(entry: Dictionary) -> Dictionary:
+	var done: Array = entry.get("chapters_done", []) if entry.get("chapters_done", []) is Array else []
+	for flag: String in OLD_FLAGS:
+		if entry.has(flag):
+			if bool(entry[flag]) and not done.has(OLD_FLAGS[flag]):
+				done.append(OLD_FLAGS[flag])
+			entry.erase(flag)
+	entry["chapters_done"] = done
+	return entry
 
 
 func _kid(kid_id: String) -> Dictionary:

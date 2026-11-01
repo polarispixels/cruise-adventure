@@ -7,6 +7,9 @@ func _setup(t) -> Node:
 	var game: Node = t.tree.root.get_node("Game")
 	game.navigate = false
 	game.last_scene_request = ""
+	game.stop_chapter()
+	game.use_chapters([])
+	game.level = 0
 	_requests.clear()
 	if not game.scene_requested.is_connected(_on_request):
 		game.scene_requested.connect(_on_request)
@@ -94,6 +97,11 @@ func _temp_progress(t) -> Node:
 
 
 func _restore_progress(t) -> void:
+	var game: Node = t.tree.root.get_node("Game")
+	game.stop_chapter()
+	game.use_chapters([])
+	game.level = 0
+	game.stills_dir = "res://assets/stills/"
 	var progress: Node = t.tree.root.get_node("Progress")
 	progress.reset()
 	progress.path = "user://progress.json"
@@ -106,6 +114,7 @@ func test_pick_goes_to_intro_first_time(t) -> void:
 	t.eq(game.kid.id, "becca", "kid")
 	t.eq(game.sibling().id, "jack", "sibling")
 	t.eq(game.last_scene_request, game.INTRO, "requested intro")
+	t.eq(game.segment.get("name"), "becca-intro", "the kid's own clip")
 	_restore_progress(t)
 
 
@@ -120,6 +129,53 @@ func test_pick_goes_to_map_after_intro(t) -> void:
 	_restore_progress(t)
 
 
+func test_registry_lists_every_chapter_in_order(t) -> void:
+	var game := _setup(t)
+	var numbers: Array = []
+	var ids: Array = []
+	for c: Dictionary in game.chapters():
+		numbers.append(int(c["number"]))
+		ids.append(c["id"])
+		t.check(c.has("title") and c["segments"] is Array, "%s has a title and segments" % c["id"])
+		t.eq(c.get("dropped", false), int(c["number"]) in [4, 5, 6], "%s dropped only if 4-6" % c["id"])
+	t.eq(numbers, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 14], "chapters 1-14, 12 twice")
+	for id in ["flight", "florida", "aboard", "island1", "island2", "seaday", "beach"]:
+		t.check(ids.has(id), "has " + id)
+	for c: Dictionary in game.chapters():
+		for seg: Dictionary in c["segments"]:
+			if seg["kind"] == "scene":
+				t.check(ResourceLoader.exists(seg["scene"]), "scene exists: %s" % seg["scene"])
+				if seg.has("data"):
+					t.check(FileAccess.file_exists(seg["data"]), "data exists: %s" % seg["data"])
+	_restore_progress(t)
+
+
+func test_merge_segment_lays_the_kid_block_over(t) -> void:
+	var game := _setup(t)
+	var entry := {"kind": "scene", "scene": "res://x.tscn", "choices": 4, "art": "{kid}-{sibling}",
+		"list": ["{kid}"], "becca": {"choices": 3}, "jack": {"extra": true}}
+	var becca: Dictionary = game.merge_segment(entry, "becca")
+	t.eq(becca, {"kind": "scene", "scene": "res://x.tscn", "choices": 3, "art": "becca-jack", "list": ["becca"]}, "becca")
+	var jack: Dictionary = game.merge_segment(entry, "jack")
+	t.eq([jack["choices"], jack["extra"], jack["art"]], [4, true, "jack-becca"], "jack")
+	t.eq(entry["choices"], 4, "the entry itself is untouched")
+	_restore_progress(t)
+
+
+func test_merge_segment_reads_the_data_file(t) -> void:
+	var game := _setup(t)
+	var path := "user://test_segment_data.json"
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	file.store_string('{"choices": 4, "target": "{kid}-card", "becca": {"choices": 2}}')
+	file.close()
+	var entry := {"kind": "scene", "scene": "res://x.tscn", "data": path, "choices": 9, "keep": 1}
+	var becca: Dictionary = game.merge_segment(entry, "becca")
+	t.eq([becca["choices"], becca["target"], becca["keep"]], [2.0, "becca-card", 1], "data file wins, kid block on top")
+	t.eq(game.merge_segment(entry, "jack")["choices"], 4.0, "jack")
+	DirAccess.remove_absolute(path)
+	_restore_progress(t)
+
+
 func test_play_level_sets_level_and_goes_to_room(t) -> void:
 	var game := _setup(t)
 	var progress := _temp_progress(t)
@@ -128,7 +184,6 @@ func test_play_level_sets_level_and_goes_to_room(t) -> void:
 	game.play_level(2)
 	t.eq(game.level, 2, "level")
 	t.eq(game.last_scene_request, game.ROOM, "a finished row replays without its video")
-	game.level = 0
 	_restore_progress(t)
 
 
@@ -141,44 +196,17 @@ func test_new_row_plays_its_intro_first(t) -> void:
 			game.play_level(n)
 			t.eq(game.level, n, "level")
 			t.eq(game.last_scene_request, game.INTRO, "%s row %d starts with its video" % [kid_id, n + 1])
+			t.eq(game.segment.get("name"), "%s-level%d" % [kid_id, n + 1], "the row's clip")
 	game.play_level(0)
 	t.eq(game.last_scene_request, game.ROOM, "row 1 has the kid intro instead")
 	game.kid = game.kid.duplicate()
 	game.kid.id = "nobody"
 	game.play_level(1)
 	t.eq(game.last_scene_request, game.ROOM, "no video yet, straight to the room")
-	game.level = 0
-	game.intro_level = -1
 	_restore_progress(t)
 
 
-func test_level_intro_goes_on_to_the_room(t) -> void:
-	var progress := _temp_progress(t)
-	var game := _setup(t)
-	game.kid = load("res://data/becca.tres")
-	game.play_level(1)
-	var intro: Node = load("res://scenes/intro.tscn").instantiate()
-	t.tree.root.add_child(intro)
-	await t.tree.process_frame
-	await t.tree.process_frame
-	var player: VideoStreamPlayer = intro.get_node("Player")
-	t.check(player.is_playing(), "video playing")
-	t.eq(player.stream.resource_path, "res://assets/video/becca-level2.ogv", "the row 2 video")
-	await _click(t, t.tree.root.get_visible_rect().get_center())
-	t.eq(_requests.back(), game.ROOM, "a tap goes on to the room")
-	t.eq(game.level, 1, "still row 2")
-	t.check(not progress.intro_seen("becca"), "the kid intro isn't marked seen")
-	t.eq(game.intro_level, -1, "the next intro is the kid's own again")
-	intro.queue_free()
-	game.level = 0
-	_restore_progress(t)
-
-
-func _intro(t, kid_id: String, without_video := false) -> Node:
-	var game := _setup(t)
-	game.kid = load("res://data/%s.tres" % kid_id).duplicate()
-	if without_video:
-		game.kid.intro_video = ""
+func _intro(t) -> Node:
 	var intro: Node = load("res://scenes/intro.tscn").instantiate()
 	t.tree.root.add_child(intro)
 	await t.tree.process_frame
@@ -186,22 +214,50 @@ func _intro(t, kid_id: String, without_video := false) -> Node:
 	return intro
 
 
+func test_level_intro_goes_on_to_the_room(t) -> void:
+	var progress := _temp_progress(t)
+	var game := _setup(t)
+	game.kid = load("res://data/becca.tres")
+	game.play_level(1)
+	var intro := await _intro(t)
+	var player: VideoStreamPlayer = intro.get_node("Player")
+	t.check(player.is_playing(), "video playing")
+	t.eq(intro.mode, "clip", "the clip")
+	t.eq(player.stream.resource_path, "res://assets/video/becca-level2.ogv", "the row 2 video")
+	await _click(t, t.tree.root.get_visible_rect().get_center())
+	t.eq(_requests.back(), game.ROOM, "a tap goes on to the room")
+	t.eq(game.level, 1, "still row 2")
+	t.check(not progress.intro_seen("becca"), "the kid intro isn't marked seen")
+	intro.queue_free()
+	game.segment_done()
+	t.eq(game.last_scene_request, game.MAP, "the room's Continue goes back to the card")
+	t.check(not game.playing(), "the row is over")
+	_restore_progress(t)
+
+
 func test_intro_without_video_goes_to_map_and_is_remembered(t) -> void:
 	var progress := _temp_progress(t)
-	var intro := await _intro(t, "jack", true)
-	t.eq(_requests, [t.tree.root.get_node("Game").MAP] as Array[String], "straight to map")
+	var game := _setup(t)
+	game.kid = load("res://data/jack.tres").duplicate()
+	game.kid.id = "jack"
+	game.use_chapters([{"id": "mission", "number": 1, "title": "t",
+		"segments": [{"kind": "clip", "name": "nobody-intro", "optional": true}]}])
+	game.play_chapter("mission")
+	t.eq(_requests, [game.MAP] as Array[String], "straight to map")
 	t.check(progress.intro_seen("jack"), "remembered")
 	t.check(not progress.intro_seen("becca"), "only jack")
-	intro.queue_free()
 	_restore_progress(t)
 
 
 func test_intro_tap_skips_to_map(t) -> void:
 	var progress := _temp_progress(t)
-	var intro := await _intro(t, "becca")
+	var game := _setup(t)
+	game.pick("becca")
+	_requests.clear()
+	var intro := await _intro(t)
 	t.check(intro.get_node("Player").is_playing(), "video playing")
 	await _click(t, t.tree.root.get_visible_rect().get_center())
-	t.eq(_requests, [t.tree.root.get_node("Game").MAP] as Array[String], "tap skips once")
+	t.eq(_requests, [game.MAP] as Array[String], "tap skips once")
 	t.check(progress.intro_seen("becca"), "remembered")
 	intro.queue_free()
 	_restore_progress(t)
@@ -209,45 +265,127 @@ func test_intro_tap_skips_to_map(t) -> void:
 
 func test_intro_always_reaches_map(t) -> void:
 	_temp_progress(t)
-	var intro := await _intro(t, "becca")
+	var game := _setup(t)
+	game.pick("becca")
+	_requests.clear()
+	var intro := await _intro(t)
 	intro.get_node("Player").finished.emit()
 	intro.get_node("Player").finished.emit()
 	await _click(t, t.tree.root.get_visible_rect().get_center())
-	t.eq(_requests, [t.tree.root.get_node("Game").MAP] as Array[String], "finished reaches map exactly once")
+	t.eq(_requests, [game.MAP] as Array[String], "finished reaches map exactly once")
 	intro.queue_free()
 	_restore_progress(t)
 
 
-func test_car_intro_is_shared_unless_a_kid_has_their_own(t) -> void:
-	var jack: KidProfile = load("res://data/jack.tres")
-	t.eq(jack.car_intro(), "res://assets/video/car-intro.ogv", "both kids share the car clip")
+## F2: a missing clip shows its still with a slow zoom; a missing still, a placeholder card.
+func _media_chapter(game: Node, media: String) -> void:
+	game.use_chapters([{"id": "test-media", "number": 99, "title": "t", "segments": [
+		{"kind": "clip", "id": "test-card", "name": media},
+		{"kind": "scene", "scene": "res://scenes/trunk.tscn"}]}])
+
+
+func test_missing_clip_shows_the_still(t) -> void:
+	_temp_progress(t)
+	var game := _setup(t)
+	game.kid = load("res://data/jack.tres")
+	_media_chapter(game, "test-still")
+	# The test still lives with the tests, out of the build.
+	game.stills_dir = "res://tests/fixtures/"
+	var still: String = game.still_path("test-still")
+	t.check(not ResourceLoader.exists(game.clip_path("test-still")), "no clip")
+	if not ResourceLoader.exists(still):
+		t.check(false, "fixture still missing: " + still)
+		_restore_progress(t)
+		return
+	game.play_chapter("test-media")
+	t.eq(game.last_scene_request, game.INTRO, "the still plays in the intro scene")
+	var intro := await _intro(t)
+	t.eq(intro.mode, "still", "still mode")
+	var rect: TextureRect = intro.get_node("Still")
+	t.check(rect.visible and rect.texture != null, "the still shows")
+	var before: Vector2 = rect.scale
+	await t.tree.create_timer(1.0).timeout
+	t.check(rect.scale.x > before.x, "it zooms slowly: %s" % rect.scale)
+	t.check(game.last_scene_request == game.INTRO, "still showing after a second")
+	await _click(t, t.tree.root.get_visible_rect().get_center())
+	t.eq(game.last_scene_request, game.TRUNK, "a tap goes on")
+	intro.queue_free()
+	_restore_progress(t)
+
+
+func test_still_ends_by_itself(t) -> void:
+	_temp_progress(t)
+	var game := _setup(t)
+	game.kid = load("res://data/jack.tres")
+	game.stills_dir = "res://tests/fixtures/"
+	game.use_chapters([{"id": "test-media", "number": 99, "title": "t", "segments": [
+		{"kind": "still", "name": "test-still", "seconds": 0.5},
+		{"kind": "scene", "scene": "res://scenes/trunk.tscn"}]}])
+	game.play_chapter("test-media")
+	var intro := await _intro(t)
+	t.eq(intro.mode, "still", "a still segment")
+	await t.tree.create_timer(0.8).timeout
+	t.eq(game.last_scene_request, game.TRUNK, "goes on after its seconds")
+	intro.queue_free()
+	_restore_progress(t)
+
+
+func test_missing_clip_and_still_show_a_placeholder_card(t) -> void:
+	_temp_progress(t)
+	var game := _setup(t)
+	game.kid = load("res://data/jack.tres")
+	_media_chapter(game, "no-such-clip")
+	game.play_chapter("test-media")
+	t.eq(game.last_scene_request, game.INTRO, "a missing clip still plays something")
+	var intro := await _intro(t)
+	t.eq(intro.mode, "card", "the placeholder card")
+	t.check(intro.get_node("Card").visible, "card shows")
+	t.eq(intro.get_node("Card/Name").text, "test-card", "with the segment's name")
+	await t.tree.create_timer(intro.CARD_SECONDS + 0.3).timeout
+	t.eq(game.last_scene_request, game.TRUNK, "and the chapter goes on by itself")
+	intro.queue_free()
+	_restore_progress(t)
+
+
+func test_clip_plays_when_it_exists(t) -> void:
+	_temp_progress(t)
+	var game := _setup(t)
+	game.kid = load("res://data/jack.tres")
+	_media_chapter(game, "car-intro")
+	game.play_chapter("test-media")
+	var intro := await _intro(t)
+	t.eq(intro.mode, "clip", "the clip")
+	t.check(intro.get_node("Player").is_playing(), "playing")
+	t.check(not intro.get_node("Still").visible and not intro.get_node("Card").visible, "nothing else")
+	await _click(t, t.tree.root.get_visible_rect().get_center())
+	t.eq(game.last_scene_request, game.TRUNK, "a tap goes on")
+	intro.queue_free()
+	_restore_progress(t)
 
 
 func test_play_car_plays_the_car_clip_first_time(t) -> void:
 	var game := _setup(t)
 	var progress := _temp_progress(t)
 	game.kid = load("res://data/jack.tres")
-	game.play_car()
+	game.play_chapter("car")
 	t.eq(game.last_scene_request, game.INTRO, "the car clip first")
-	t.eq(game.intro_level, game.CAR, "queued as the car clip")
-	game.intro_level = -1
+	t.eq(game.segment.get("name"), "car-intro", "the shared car clip")
 	progress.mark_car_done("jack")
-	game.play_car()
+	game.play_chapter("car")
 	t.eq(game.last_scene_request, game.TRUNK, "once the car's loaded, straight to the trunk")
-	t.eq(game.intro_level, -1, "no intro queued")
 	_restore_progress(t)
 
 
 func test_intro_for_car_goes_on_to_the_trunk(t) -> void:
 	var game := _setup(t)
 	var progress := _temp_progress(t)
-	game.intro_level = game.CAR
-	var intro := await _intro(t, "becca")
+	game.kid = load("res://data/becca.tres")
+	game.play_chapter("car")
+	var intro := await _intro(t)
 	var player: VideoStreamPlayer = intro.get_node("Player")
 	t.eq(player.stream.resource_path if player.stream else "", "res://assets/video/car-intro.ogv", "the car clip")
 	await _click(t, t.tree.root.get_visible_rect().get_center())
 	t.eq(_requests.back() if _requests.size() else "", game.TRUNK, "a tap goes on to the trunk")
-	t.eq(game.intro_level, -1, "reset")
 	t.check(not progress.intro_seen("becca"), "the kid intro isn't marked seen")
 	intro.queue_free()
 	_restore_progress(t)
@@ -264,39 +402,68 @@ func test_airport_settings_per_kid(t) -> void:
 	t.check(jack.tablet_own_tray and not becca.tablet_own_tray, "only jack's tablet needs its own tray")
 	t.eq([jack.maze_size, jack.maze_gates, jack.maze_hint_delay, jack.maze_footprints], [Vector2i(10, 5), 3, 10.0, false], "jack's maze")
 	t.eq([becca.maze_size, becca.maze_gates, becca.maze_hint_delay, becca.maze_footprints, becca.maze_max_turns], [Vector2i(6, 4), 1, 6.0, true, 4], "becca's maze")
-	t.eq(jack.airport_intro(), "res://assets/video/jack-airport.ogv", "jack's airport clip")
 
 
 func test_play_airport_without_a_clip_goes_to_checkin(t) -> void:
 	var game := _setup(t)
 	_temp_progress(t)
 	game.kid = load("res://data/jack.tres")
-	game.play_airport()
+	game.play_chapter("airport")
 	t.eq(game.last_scene_request, game.CHECKIN, "no airport clip yet, straight to check-in")
-	t.eq(game.intro_level, -1, "no intro queued")
 	_restore_progress(t)
 
 
-func test_airport_intro_goes_on_to_checkin(t) -> void:
+func test_car_goes_straight_on_to_the_airport(t) -> void:
 	var game := _setup(t)
-	_temp_progress(t)
-	game.intro_level = game.AIRPORT
-	var intro := await _intro(t, "becca")
-	t.eq(_requests.back() if _requests.size() else "", game.CHECKIN, "on to check-in")
-	t.eq(game.intro_level, -1, "reset")
-	intro.queue_free()
+	var progress := _temp_progress(t)
+	game.kid = load("res://data/becca.tres")
+	game.play_chapter("car", 1)
+	t.eq(game.last_scene_request, game.TRUNK, "the trunk")
+	game.segment_done()
+	t.check(progress.car_done("becca"), "the car is done")
+	t.eq(game.last_scene_request, game.CHECKIN, "the airport follows the car")
+	t.eq(game.segment.get("chapter"), "airport", "now in the airport")
 	_restore_progress(t)
 
 
 func test_airport_segments_follow_each_other(t) -> void:
 	var game := _setup(t)
-	_temp_progress(t)
+	var progress := _temp_progress(t)
 	game.kid = load("res://data/becca.tres")
+	game.play_chapter("airport")
 	for pair in [[game.CHECKIN, game.SECURITY], [game.SECURITY, game.MAZE]]:
+		t.eq(game.last_scene_request, pair[0], "at %s" % pair[0])
 		var scene: Node = load(pair[0]).instantiate()
 		t.tree.root.add_child(scene)
 		await t.tree.process_frame
 		scene.done()
 		t.eq(game.last_scene_request, pair[1], "%s goes on" % pair[0])
 		scene.free()
+	game.segment_done()
+	t.eq(game.last_scene_request, game.MAP, "the gate, then the map")
+	t.check(progress.airport_done("becca"), "the airport is done")
+	t.check(not game.playing(), "the chapter is over")
+	_restore_progress(t)
+
+
+func test_segment_done_without_a_chapter_goes_to_the_map(t) -> void:
+	var game := _setup(t)
+	game.last_segment_done = false
+	var heard := [false]
+	var on_done := func(): heard[0] = true
+	game.segment_finished.connect(on_done)
+	game.segment_done()
+	game.segment_finished.disconnect(on_done)
+	t.check(game.last_segment_done and heard[0], "flag and signal")
+	t.eq(game.last_scene_request, game.MAP, "the map")
+	_restore_progress(t)
+
+
+func test_empty_chapter_returns_to_the_map_unfinished(t) -> void:
+	var game := _setup(t)
+	var progress := _temp_progress(t)
+	game.kid = load("res://data/jack.tres")
+	game.play_chapter("flight")
+	t.eq(game.last_scene_request, game.MAP, "nothing to play yet")
+	t.check(not progress.chapter_done("jack", "flight"), "not marked done")
 	_restore_progress(t)

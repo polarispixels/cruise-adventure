@@ -19,6 +19,13 @@ position = Vector2(960, 540)
 [node name="Dim" type="Sprite2D" parent="."]
 texture = ExtResource("4_dim")
 
+[node name="Route" type="Line2D" parent="."]
+width = 18.0
+default_color = Color(1, 1, 1, 0.45)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="Card" parent="." instance=ExtResource("2_card")]
 
 [node name="Helper" parent="." instance=ExtResource("3_char")]

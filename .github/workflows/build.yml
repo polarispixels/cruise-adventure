@@ -79,6 +79,8 @@ jobs:
         with:
           name: web
           path: build/web
+      - name: Python tools the tests use
+        run: pip install pillow numpy
       - name: Test the docs page builder
         run: python3 -m unittest discover -s tests -p "test_*.py"
       - name: Build the docs page
@@ -160,6 +162,19 @@ jobs:
           name: android-apk
           path: build/android/*.apk
           if-no-files-found: error
+
+  size:
+    # The size report and budget warnings (never fails the build): see tools/check_asset_budget.py.
+    needs: android
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          name: android-apk
+          path: build/android
+      - name: Size report
+        run: python3 tools/check_asset_budget.py --apk "$(ls build/android/*.apk | head -1)"
 
   release:
     needs: android

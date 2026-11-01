@@ -121,3 +121,60 @@ func test_airport_done_saved_and_reset(t) -> void:
 	p.reset()
 	t.check(not p.airport_done("becca"), "reset clears it")
 	_restore(t)
+
+
+func test_chapters_done_by_id(t) -> void:
+	var p := _progress(t)
+	t.check(not p.chapter_done("jack", "flight"), "not yet")
+	p.mark_chapter_done("jack", "flight")
+	p.mark_chapter_done("jack", "flight")
+	t.check(p.chapter_done("jack", "flight"), "done")
+	t.check(not p.chapter_done("becca", "flight"), "only jack")
+	t.eq(p.chapters_done("jack"), ["flight"] as Array[String], "once")
+	p.load_file()
+	t.check(p.chapter_done("jack", "flight"), "saved")
+	_restore(t)
+
+
+func test_row_chapters_follow_the_card(t) -> void:
+	var p := _progress(t)
+	p.mark_done("becca", 0)
+	t.check(p.chapter_done("becca", "routine"), "row 1 is chapter 2")
+	p.mark_done("becca", 1)
+	p.mark_done("becca", 2)
+	t.check(not p.chapter_done("becca", "your-turn"), "rows 2-4 are chapter 3")
+	p.mark_done("becca", 3)
+	t.check(p.chapter_done("becca", "your-turn"), "the whole card")
+	_restore(t)
+
+
+func test_old_flags_are_chapters(t) -> void:
+	var p := _progress(t)
+	p.mark_car_done("jack")
+	t.check(p.chapter_done("jack", "car"), "the car is chapter 'car'")
+	p.mark_chapter_done("jack", "airport")
+	t.check(p.airport_done("jack"), "and the airport reads back")
+	p.mark_chapter_done("becca", "mission")
+	t.check(p.intro_seen("becca"), "the intro is chapter 'mission'")
+	_restore(t)
+
+
+func test_v05_save_migrates(t) -> void:
+	var p := _progress(t)
+	var file := FileAccess.open(TMP, FileAccess.WRITE)
+	file.store_string('{"jack": {"levels_done": [0,1,2,3], "intro_seen": true, "car_done": true, "airport_done": false}, "becca": {"levels_done": [0], "intro_seen": true}}')
+	file.close()
+	p.load_file()
+	t.eq(p.levels_done("jack"), [0, 1, 2, 3] as Array[int], "rows kept")
+	t.check(p.intro_seen("jack"), "intro kept")
+	t.check(p.car_done("jack") and p.chapter_done("jack", "car"), "the car counts as done")
+	t.check(not p.airport_done("jack") and not p.chapter_done("jack", "airport"), "the airport doesn't")
+	t.check(p.chapter_done("jack", "your-turn"), "the card counts as done")
+	t.eq(p.levels_done("becca"), [0] as Array[int], "becca's row kept")
+	t.check(not p.car_done("becca"), "becca's car not done")
+	p.mark_chapter_done("jack", "airport")
+	p.load_file()
+	t.check(p.car_done("jack") and p.airport_done("jack"), "migrated save writes and reads back")
+	var saved: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(TMP))
+	t.check(not (saved["jack"] as Dictionary).has("car_done"), "old flags folded in")
+	_restore(t)
