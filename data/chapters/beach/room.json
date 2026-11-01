@@ -21,5 +21,6 @@
  "success_line": "found",
  "arrive_sound": "door-open",
  "start_line": "beach-our-room",
+ "done_line": "found-2",
  "prompt_line": "beach-tap-window"
 }

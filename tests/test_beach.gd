@@ -345,3 +345,9 @@ func test_playthrough_jack(t) -> void:
 
 func test_playthrough_becca(t) -> void:
 	await _chapter_for(t, "becca")
+
+
+func test_hallway_and_room_end_with_a_line(t) -> void:
+	for file in ["hallway", "room"]:
+		var d: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/chapters/beach/%s.json" % file))
+		t.check(str(d.get("done_line", "")) != "" and t.tree.root.get_node("Voice").has_line(str(d["done_line"])), "%s has a spoken done line" % file)

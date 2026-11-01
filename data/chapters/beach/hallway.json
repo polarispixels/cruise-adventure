@@ -48,6 +48,7 @@
   920
  ],
  "start_line": "beach-find-room",
+ "done_line": "found-3",
  "round_line": "match-door-number",
  "hint_line": "this-way",
  "right_sound": "door-open",
