@@ -18,6 +18,9 @@ import import_art
 RATE = 44100
 OUT = Path(__file__).resolve().parent.parent / "assets" / "sfx"
 
+# Quieter than the rest: the ship horn is meant to be gentle.
+GAIN = {"ship-horn": 0.45}
+
 
 def t(seconds):
     return np.arange(int(seconds * RATE)) / RATE
@@ -61,6 +64,49 @@ def sounds():
         "arch-chime": np.concatenate([tone(659, 0.15, 9), tone(784, 0.15, 9), tone(1047, 0.5, 4)]),
         "step": mix(tone(140, 0.08, 45), 0.3 * noise(0.06, 50, rng, 30)),
         "whoosh": noise(0.9, 2.5, rng, 8) * np.sin(np.linspace(0, np.pi, int(0.9 * RATE))) ** 2,
+        **aboard_sounds(rng),
+        **seaday_sounds(rng),
+    }
+
+
+def aboard_sounds(rng):
+    """Chapter 11: a soft two-tone ship horn (the Maze engine starts it after the helper's warning
+    line), a door click, a key-card beep and a door opening."""
+    n = int(1.6 * RATE)
+    swell = np.minimum(1, np.arange(n) / (0.25 * RATE)) * np.minimum(1, (n - np.arange(n)) / (0.4 * RATE))
+    horn = np.concatenate([tone(196, 0.8, 0.0, ((1, 1.0), (2, 0.4), (3, 0.15))), tone(147, 0.8, 0.0, ((1, 1.0), (2, 0.4), (3, 0.15)))])
+    horn = horn / max(1e-9, np.max(np.abs(horn))) * swell * 0.35
+    return {
+        "ship-horn": horn,
+        "door-click": mix(tone(900, 0.04, 80), 0.5 * noise(0.03, 90, rng, 4)),
+        "keycard-beep": tone(1319, 0.18, 12),
+        "door-open": np.concatenate([noise(0.4, 6, rng, 20) * 0.5, tone(784, 0.15, 9), tone(1047, 0.4, 5)]),
+    }
+
+
+def flight_sounds(rng):
+    """Chapter 9 (the flight) stand-ins."""
+    return {
+        "bin-latch": mix(tone(220, 0.12, 30), 0.5 * tone(110, 0.25, 14), 0.2 * noise(0.05, 60, rng, 8)),
+        "buckle-click": mix(tone(2200, 0.06, 60), 0.5 * tone(1500, 0.1, 40), 0.3 * noise(0.03, 80, rng)),
+        "engine-hum": env(mix(0.5 * np.sin(2 * np.pi * 85 * t(1.5)), 0.25 * np.sin(2 * np.pi * 170 * t(1.5)),
+                              0.2 * noise(1.5, 0.3, rng, 30)), 0.1, 0.8),
+        "takeoff-roar": env(mix(0.4 * np.sin(2 * np.pi * (80 + 60 * t(2.5)) * t(2.5)), 0.4 * noise(2.5, 0.5, rng, 20)), 0.3, 0.8),
+        "cart-rattle": mix(noise(0.6, 5, rng, 6) * 0.5, tone(300, 0.1, 25), tone(400, 0.1, 25)),
+        "crunch": mix(noise(0.08, 40, rng, 5), 0.6 * noise(0.1, 30, rng, 9)),
+        "cloud-puff": mix(noise(0.3, 9, rng, 14) * np.sin(np.linspace(0, np.pi, int(0.3 * RATE))), 0.3 * tone(880, 0.2, 14)),
+        "landing-thud": mix(tone(70, 0.4, 10), 0.3 * noise(0.2, 20, rng, 50)),
+    }
+
+
+def seaday_sounds(rng):
+    """Chapter 13 (sea day) stand-ins: splash, water jet, slide whoosh, toy pop."""
+    swell = lambda s: np.sin(np.linspace(0, np.pi, int(s * RATE)))
+    return {
+        "splash": env(noise(0.8, 4, rng, 6), 0.01, 4.0) * 0.9,
+        "water-jet": noise(0.5, 3, rng, 3) * swell(0.5),
+        "slide-whoosh": noise(1.6, 1.2, rng, 10) * swell(1.6) ** 1.5 * (0.6 + 0.4 * np.sin(2 * np.pi * 5 * t(1.6))),
+        "toy-pop": mix(tone(520, 0.12, 30), tone(780, 0.1, 35), 0.2 * noise(0.04, 80, rng)),
     }
 
 
@@ -69,8 +115,8 @@ def main():
     cli, mount = import_art.docker()
     with tempfile.TemporaryDirectory() as tmp:
         work = Path(tmp)
-        for name, x in sounds().items():
-            pcm = (x / max(1e-9, np.max(np.abs(x))) * 0.7 * 32767).astype(np.int16)
+        for name, x in {**sounds(), **flight_sounds(np.random.default_rng(11))}.items():
+            pcm = (x / max(1e-9, np.max(np.abs(x))) * 0.7 * GAIN.get(name, 1.0) * 32767).astype(np.int16)
             with wave.open(str(work / f"{name}.wav"), "wb") as w:
                 w.setnchannels(1)
                 w.setsampwidth(2)

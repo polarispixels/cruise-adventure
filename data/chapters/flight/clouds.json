@@ -1,0 +1,74 @@
+{
+ "background": "res://assets/flight/window-sky.png",
+ "key": "picture",
+ "layout": "row",
+ "row_y": 560,
+ "choice_height": 240,
+ "target_pos": [
+  836,
+  160
+ ],
+ "target_height": 230,
+ "start_line": "find-cloud",
+ "right_line": "nice-cloud",
+ "right_sound": "cloud-puff",
+ "done_line": "found",
+ "player_feet": [
+  300,
+  930
+ ],
+ "jack": {
+  "choices": [
+   {
+    "id": "heart",
+    "texture": "res://assets/flight/cloud-heart.png"
+   },
+   {
+    "id": "star",
+    "texture": "res://assets/flight/cloud-star.png"
+   },
+   {
+    "id": "fish",
+    "texture": "res://assets/flight/cloud-fish.png"
+   },
+   {
+    "id": "bunny",
+    "texture": "res://assets/flight/cloud-bunny.png"
+   },
+   {
+    "id": "boat",
+    "texture": "res://assets/flight/cloud-boat.png"
+   }
+  ],
+  "count": 4,
+  "rounds": [
+   "heart",
+   "star",
+   "fish"
+  ]
+ },
+ "becca": {
+  "choices": [
+   {
+    "id": "heart",
+    "texture": "res://assets/flight/cloud-heart.png"
+   },
+   {
+    "id": "star",
+    "texture": "res://assets/flight/cloud-star.png"
+   },
+   {
+    "id": "fish",
+    "texture": "res://assets/flight/cloud-fish.png"
+   }
+  ],
+  "rounds": [
+   "heart",
+   "star"
+  ],
+  "count": 2
+ },
+ "music": "res://assets/music/flight.ogg",
+ "wrong_line": "try-again",
+ "foreground": "res://assets/flight/window-frame.png"
+}

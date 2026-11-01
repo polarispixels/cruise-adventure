@@ -11,6 +11,8 @@ const EXPECTED_IDS := [
 	"tag-bags", "needs-tag", "on-the-belt", "bye-suitcases", "in-a-tray", "tablet-tray", "push-it",
 	"comes-back", "walk-through", "get-your-things", "find-gate", "match-airplane", "this-way",
 	"not-this-one", "found-gate",
+	"find-seat", "match-number", "match-sticker", "our-seats", "bin-up", "bin-shut", "under-seat", "buckle-up",
+	"buckle-becca", "light-on", "pick-snack", "yum", "find-cloud", "nice-cloud", "flight-done",
 ]
 
 
@@ -35,7 +37,12 @@ func test_json_has_the_53_ids(t) -> void:
 	for line in _lines():
 		ids.append(line["id"])
 		t.check(String(line["text"]) != "", "text for " + line["id"])
-	t.eq(ids, EXPECTED_IDS, "voice line ids")
+	# The first 53 are the original lines; chapters 9-14 append theirs, and an id is never reused.
+	t.eq(ids.slice(0, EXPECTED_IDS.size()), EXPECTED_IDS, "voice line ids")
+	var seen := {}
+	for id: Variant in ids:
+		t.check(not seen.has(id), "voice line id used once: " + str(id))
+		seen[id] = true
 
 
 func test_find_special_and_buddy_text_by_speaker(t) -> void:

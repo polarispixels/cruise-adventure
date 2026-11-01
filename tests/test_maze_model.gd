@@ -132,3 +132,37 @@ func test_fixed_layout_connects_floor_only(t) -> void:
 func test_fixed_layout_named_goal(t) -> void:
 	var m := MazeModel.from_rows(FIXED, "A")
 	t.eq(m.correct, 0, "goal A is right when named")
+
+
+# --- Thin-wall layouts: odd characters are cells, the ones between are walls ---
+
+const THIN := [
+	"#############",
+	"#S.>..|.....#",
+	"#-+-+.+.+-+.#",
+	"#...|.....|A#",
+	"#.+-+-+.+.+.#",
+	"#.......|..G#",
+	"#############"]
+
+
+func test_thin_wall_layout_reads_big_cells(t) -> void:
+	var m := MazeModel.from_rows(THIN, "G", true)
+	t.eq(m.size, Vector2i(6, 3), "13x7 text is a 6x3 maze")
+	t.eq(m.start, Vector2i(0, 0), "start")
+	t.eq(m.gates, [Vector2i(5, 1), Vector2i(5, 2)] as Array[Vector2i], "goals")
+	t.eq(m.correct, 1, "G is right")
+	t.eq(m.arrows.get(Vector2i(1, 0)), Vector2i.RIGHT, "an arrow on a cell")
+	t.check(m.open(Vector2i(0, 0), Vector2i(1, 0)), "open between cells")
+	t.check(not m.open(Vector2i(2, 0), Vector2i(3, 0)), "a | wall")
+	t.check(not m.open(Vector2i(0, 0), Vector2i(0, 1)), "a - wall")
+	t.check(m.open(Vector2i(2, 0), Vector2i(2, 1)), "a gap in the - wall")
+	t.check(m.walls.is_empty(), "no solid cells")
+	t.check(m.path(m.start, m.gates[m.correct]).size() > 0, "the right goal is reachable")
+
+
+func test_thin_wall_solid_cell(t) -> void:
+	var m := MazeModel.from_rows(["#####", "#S.##", "#####"], "G", true)
+	t.eq(m.size, Vector2i(2, 1), "size")
+	t.check(m.is_wall(Vector2i(1, 0)), "a # cell is solid")
+	t.check(not m.open(Vector2i(0, 0), Vector2i(1, 0)), "and closed")

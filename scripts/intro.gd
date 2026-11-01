@@ -1,7 +1,8 @@
 # Plays a clip or still segment (Game.segment) full screen: the clip when it
 # exists, else its still with a slow zoom, else a placeholder card with the
 # segment's name. A tap skips any of them, and the chapter always goes on
-# (Game.segment_done()), so a missing clip never blocks a chapter.
+# (Game.segment_done()), so a missing clip never blocks a chapter. A segment's
+# "line" is said by the sibling when the picture is done, before going on.
 extends Control
 
 ## Seconds a still shows when the segment doesn't say (`seconds`).
@@ -66,6 +67,21 @@ func _leave() -> void:
 		return
 	_left = true
 	_player.stop()
+	# A closing line ("We landed!"), said by the sibling once the picture is done.
+	var line := str(Game.segment.get("line", ""))
+	if line != "" and Game.kid:
+		Voice.say(line, Game.sibling())
+		if Voice.is_speaking() and Voice.current_line == line:
+			Voice.line_finished.connect(_go_on_after_line, CONNECT_ONE_SHOT)
+			return
+	_go_on()
+
+
+func _go_on_after_line(_id: String) -> void:
+	_go_on()
+
+
+func _go_on() -> void:
 	if Game.playing():
 		Game.segment_done()
 	else:

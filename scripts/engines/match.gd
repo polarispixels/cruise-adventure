@@ -332,9 +332,21 @@ func _make_choice(c: Dictionary) -> Node2D:
 		dot.name = "Sticker"
 		dot.position = vec(c.get("sticker_at"), Vector2(0, -size.y * 0.15))
 		node.add_child(dot)
+	if c.has("overlay"):
+		node.add_child(_overlay(str(c["overlay"]), height * float(c.get("overlay_scale", data.get("overlay_scale", 0.5)))))
 	if c.has("label"):
-		node.add_child(_label(str(c["label"]), height * 0.32, vec(c.get("label_at"), Vector2.ZERO)))
+		var size_px := float(c.get("label_size", data.get("label_size", height * 0.32)))
+		node.add_child(_label(str(c["label"]), size_px, vec(c.get("label_at", data.get("label_at")), Vector2.ZERO)))
 	return node
+
+
+## A picture centered on a choice or the target (a face on a key card), `height` tall.
+func _overlay(path: String, height: float) -> Sprite2D:
+	var sprite := Sprite2D.new()
+	sprite.name = "Overlay"
+	sprite.texture = texture_or(path, Vector2(height, height), Color(0.95, 0.8, 0.7))
+	set_height(sprite, height)
+	return sprite
 
 
 func _show_target() -> void:
@@ -370,6 +382,19 @@ func _show_target() -> void:
 		_target.add_child(dot)
 	elif key == "number":
 		_target.add_child(_label(str(r.get("label", right.get("label", ""))), h * 0.5, Vector2.ZERO))
+	# A face and a number on the target card, placed as on the choices (scaled to the card).
+	var k := h / float(data.get("choice_height"))
+	var overlay := str(r.get("target_overlay", data.get("target_overlay", "")))
+	if overlay != "":
+		var share := float(r.get("overlay_scale", right.get("overlay_scale", data.get("overlay_scale", 0.5))))
+		_target.add_child(_overlay(overlay, h * share))
+	var text := str(r.get("target_label", data.get("target_label", "")))
+	if text != "":
+		var size_px := float(data.get("label_size", float(data.get("choice_height")) * 0.32)) * k
+		var at := vec(data.get("label_at"), Vector2.ZERO) * k
+		var label := _label(text, size_px, at)
+		label.name = "TargetLabel"
+		_target.add_child(label)
 	pop(_target)
 
 

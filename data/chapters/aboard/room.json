@@ -1,0 +1,24 @@
+{
+ "background": "res://assets/aboard/aboard-room.png",
+ "player_feet": [
+  700,
+  900
+ ],
+ "moments": 1,
+ "textures": [
+  "res://assets/aboard/door-open.png"
+ ],
+ "arrive_height": 480,
+ "arrive_from": [
+  -200,
+  560
+ ],
+ "arrive_to": [
+  420,
+  560
+ ],
+ "action": "hop",
+ "success_line": "found",
+ "arrive_sound": "door-open",
+ "start_line": "our-room"
+}
