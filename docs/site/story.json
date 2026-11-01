@@ -686,16 +686,21 @@
      ]
     },
     {
-     "label": "Build: the six play segments (Match, Fit, Place, Place, Tap moments, Match), a unit test each"
+     "label": "Build: the six play segments (Match, Fit, Place, Place, Tap moments, Match), a unit test each",
+     "done": true
     },
     {
-     "label": "Chapter data in chapters.json, headless playthrough for both kids, layout preview at 16:10"
+     "label": "Chapter data in chapters.json, headless playthrough for both kids, layout preview at 16:10",
+     "done": true
     },
     {
      "label": "Playtest on the Fire tablet with both kids"
+    },
+    {
+     "label": "Real art approved (round 7)"
     }
    ],
-   "status": "Not started"
+   "status": "In playtest"
   },
   {
    "number": 10,
@@ -880,19 +885,25 @@
      ]
     },
     {
-     "label": "Build: Get your key card and Find our room (Match, hallway scroll mode), a unit test each"
+     "label": "Build: Get your key card and Find our room (Match, hallway scroll mode), a unit test each",
+     "done": true
     },
     {
-     "label": "Build: Safety drill (Maze, fixed layouts, horn beat), unit test"
+     "label": "Build: Safety drill (Maze, fixed layouts, horn beat), unit test",
+     "done": true
     },
     {
-     "label": "Chapter data in chapters.json, headless playthrough for both kids"
+     "label": "Chapter data in chapters.json, headless playthrough for both kids",
+     "done": true
     },
     {
      "label": "Playtest on the Fire tablet with both kids, especially the horn and the hallway drag"
+    },
+    {
+     "label": "Real art approved (round 8)"
     }
    ],
-   "status": "Not started"
+   "status": "In playtest"
   },
   {
    "number": 12,
@@ -1116,19 +1127,29 @@
      ]
     },
     {
-     "label": "Build: Swimsuit on (Place) and Dress for dinner (Place), per-child data, a unit test each"
+     "label": "Build: Swimsuit on (Place) and Dress for dinner (Place), per-child data, a unit test each",
+     "done": true
     },
     {
-     "label": "Build: The big slide (Tap moments), Jack-Jack rides, Becca hears \"next time\", unit test"
+     "label": "Build: The big slide (Tap moments), Jack-Jack rides, Becca hears \"next time\", unit test",
+     "done": true
     },
     {
-     "label": "Build: Splash zone (Moving targets), missed toys come around, unit test"
+     "label": "Build: Splash zone (Moving targets), missed toys come around, unit test",
+     "done": true
     },
     {
-     "label": "Headless playthrough for both kids and layout preview at 16:10; playtest on the Fire tablet, especially Becca's slide moment"
+     "label": "Headless playthrough for both kids",
+     "done": true
+    },
+    {
+     "label": "Layout preview at 16:10 and playtest on the Fire tablet with both kids, especially Becca's slide moment"
+    },
+    {
+     "label": "Real art approved (round 8)"
     }
    ],
-   "status": "Not started"
+   "status": "In playtest"
   },
   {
    "number": 14,
