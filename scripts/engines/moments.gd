@@ -14,6 +14,7 @@ var moment := 0
 var state := "gap"
 
 var _thing: Sprite2D
+var _arrival: Tween
 var _actor: Character
 var _actor_home := Vector2.ZERO
 var _textures: Array[String] = []
@@ -98,10 +99,10 @@ func _begin_moment() -> void:
 	_thing.position = vec(data["arrive_from"])
 	_thing.visible = true
 	sound(str(data.get("arrive_sound", "")))
-	var t := create_tween()
-	t.tween_property(_thing, "position", vec(data["arrive_to"]), float(data["arrive_time"])) \
+	_arrival = create_tween()
+	_arrival.tween_property(_thing, "position", vec(data["arrive_to"]), float(data["arrive_time"])) \
 			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	t.tween_callback(_arrived)
+	_arrival.tween_callback(_arrived)
 
 
 func _arrived() -> void:
@@ -111,6 +112,9 @@ func _arrived() -> void:
 
 
 func _success() -> void:
+	# A tap mid-arrival: the arrival stops here, so it doesn't fight the leaving tween.
+	if _arrival and _arrival.is_valid():
+		_arrival.kill()
 	state = "acting"
 	_clear_hint()
 	stop_pulse(_thing)

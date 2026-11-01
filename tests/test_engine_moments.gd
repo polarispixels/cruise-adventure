@@ -133,3 +133,16 @@ func test_thing_leaves_without_keep_thing(t) -> void:
 	t.check((scene.get_node("Stage/Thing") as Sprite2D).modulate.a < 0.05, "faded as before")
 	t.check(scene.get_node_or_null("Stage/RideEnd") == null, "no burst")
 	kit.done(t, scene)
+
+
+func test_a_tap_mid_arrival_stops_the_arrival(t) -> void:
+	var scene: Node2D = await kit.make(t, SCENE, {"done_delay": 0.0, "hint_delay": 60.0, "moments": 2,
+		"arrive_time": 2.0, "gap": 5.0, "keep_thing": true}, "jack")
+	t.eq(scene.state, "arriving", "still coming in")
+	await kit.tap(t, Vector2(400, 300))
+	t.check(not scene._arrival.is_valid(), "the arrival tween is stopped")
+	var thing: Sprite2D = scene.get_node("Stage/Thing")
+	var at := thing.position
+	await kit.wait(t, 0.3)
+	t.eq(thing.position, at, "a kept thing stays put instead of carrying on")
+	kit.done(t, scene)

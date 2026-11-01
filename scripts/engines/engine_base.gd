@@ -441,7 +441,8 @@ func _character(feet: Variant, kid: KidProfile, mirrored: bool) -> Character:
 
 
 func _process(delta: float) -> void:
-	if finished or _busy() or _pressing:
+	# No idle hint until the start line, start sound and after-sound line are over.
+	if finished or _busy() or _pressing or not intro_done:
 		_idle = 0.0
 		return
 	_idle += delta

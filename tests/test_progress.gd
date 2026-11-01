@@ -178,3 +178,15 @@ func test_v05_save_migrates(t) -> void:
 	var saved: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(TMP))
 	t.check(not (saved["jack"] as Dictionary).has("car_done"), "old flags folded in")
 	_restore(t)
+
+
+func test_save_is_written_whole_then_moved_into_place(t) -> void:
+	var p := _progress(t)
+	p.mark_chapter_done("jack", "flight")
+	t.check(FileAccess.file_exists(TMP), "the save is there")
+	t.check(not FileAccess.file_exists(TMP + ".tmp"), "no temp file left behind")
+	p.mark_chapter_done("jack", "aboard")
+	t.check(not FileAccess.file_exists(TMP + ".tmp"), "still none after a second save over the first")
+	p.load_file()
+	t.check(p.chapter_done("jack", "flight") and p.chapter_done("jack", "aboard"), "both saves read back")
+	_restore(t)

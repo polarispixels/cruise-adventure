@@ -296,7 +296,7 @@ TEMPLATE = """<!DOCTYPE html>
 </div>
 <main>
 <nav class="toc"><a href="#where">Where we are</a><a href="#part1">Part 1: Packing</a><a href="#part2">Part 2: The trip</a>
-<a href="#storyboard">Storyboard</a><a href="#voices">Voices</a><a href="#characters">Characters</a><a href="#how">How we work</a></nav>
+<a href="#storyboard">Storyboard</a><a href="#voices">Voices</a><a href="media/">Media</a><a href="#characters">Characters</a><a href="#how">How we work</a></nav>
 
 <h2 id="where">Where we are</h2>
 <p class="lede">Every chapter's checklist, at a glance. Ticks come straight from the repo, so they update on every deploy.</p>
@@ -339,6 +339,273 @@ CHARACTERS = [("character-sheets", "Character Sheets v0.4"), ("game-jack-cheer",
               ("game-becca-cheer", "Becca in the game"), ("game-jack-card", "Jack-Jack's card"), ("game-becca-card", "Becca's card")]
 
 
+# ---------------------------------------------------------------------------------------------
+# Media page: every image, clip, voice line and sound, grouped by chapter, with its status.
+# The functions below are pure (data in, rows out) so tests can pin each rule.
+# ---------------------------------------------------------------------------------------------
+PACKING = "Packing (1-3)"
+SHARED = "Shared"
+CHAPTER_NAMES = {7: "7 To the car", 8: "8 The airport", 9: "9 The flight", 10: "10 Hello Florida", 11: "11 Welcome aboard",
+                 12: "12 Island days", 13: "13 Sea day", 14: "14 Beach hotel"}
+CHAPTER_ORDER = [PACKING] + [CHAPTER_NAMES[n] for n in range(7, 15)] + [SHARED]
+FOLDER_CHAPTER = {"backgrounds": PACKING, "props": PACKING, "cards": PACKING, "characters": PACKING,
+                  "car": CHAPTER_NAMES[7], "airport": CHAPTER_NAMES[8], "flight": CHAPTER_NAMES[9], "florida": CHAPTER_NAMES[10],
+                  "aboard": CHAPTER_NAMES[11], "island": CHAPTER_NAMES[12], "seaday": CHAPTER_NAMES[13], "beach": CHAPTER_NAMES[14]}
+SFX_FUNCTION_CHAPTER = {"florida": 10, "aboard": 11, "flight": 9, "seaday": 13, "beach": 14, "island": 12}
+ART_ROUND = {CHAPTER_NAMES[9]: "Art Round 7", CHAPTER_NAMES[10]: "Art Round 7", CHAPTER_NAMES[11]: "Art Round 8",
+             CHAPTER_NAMES[13]: "Art Round 8", CHAPTER_NAMES[12]: "Art Round 9", CHAPTER_NAMES[14]: "Art Round 9",
+             CHAPTER_NAMES[7]: "Art Round 5", CHAPTER_NAMES[8]: "Art Round 6"}
+NEW_CHAPTERS = {CHAPTER_NAMES[n] for n in range(9, 15)}
+TRUNK_LINES = {"load-car", "turn-it", "try-another-spot", "it-fits", "close-trunk", "lets-go"}
+AIRPORT_LINES = {"tag-bags", "needs-tag", "on-the-belt", "bye-suitcases", "in-a-tray", "tablet-tray", "push-it", "comes-back",
+                 "walk-through", "get-your-things", "find-gate", "match-airplane", "this-way", "not-this-one", "found-gate"}
+VOICE_PREFIX_CHAPTER = {"sea-": 13, "isle-": 12, "beach-": 14}
+NON_IMAGE = ("sfx", "music", "video", "voice")
+
+
+def chapter_for_asset(game: str, spec: str = "") -> str:
+    """'assets/<folder>/x.png' (or its spec file, for stills) -> the chapter group it belongs to."""
+    parts = game.split("/")
+    folder = parts[1] if len(parts) > 2 else ""
+    if folder == "stills" and spec:
+        m = re.search(r"data/chapters/([a-z]+)/", spec)
+        if m and m[1] in FOLDER_CHAPTER:
+            return FOLDER_CHAPTER[m[1]]
+    return FOLDER_CHAPTER.get(folder, SHARED)
+
+
+def art_round(chapter: str) -> str:
+    return ART_ROUND.get(chapter, "Art Rounds 1-4")
+
+
+def image_status(entry: dict) -> str:
+    if entry.get("approved"):
+        return "approved"
+    return "placeholder" if entry.get("generator") == "placeholder" else "provisional"
+
+
+def image_rows(manifest: list[dict]) -> list[dict]:
+    rows = []
+    for m in manifest:
+        if m.get("generator") in NON_IMAGE:
+            continue
+        chapter = chapter_for_asset(m["game"], m.get("spec", ""))
+        status = image_status(m)
+        rows.append({"name": m["game"].removeprefix("assets/"), "chapter": chapter, "status": status,
+                     "round": art_round(chapter), "done": status == "approved"})
+    return rows
+
+
+def clip_chapters(chapters: list[dict]) -> dict[str, tuple[str, list[str]]]:
+    """Clip file name -> (chapter group, kids) for every clip chapters.json lists. {kid} and {row} are expanded."""
+    out: dict[str, str] = {}
+    for ch in chapters:
+        if ch.get("dropped"):
+            continue
+        n = ch["number"]
+        group = PACKING if n <= 3 else CHAPTER_NAMES.get(n, SHARED)
+        for seg in ch.get("segments", []):
+            if seg.get("kind") != "clip":
+                continue
+            names = [seg["name"]]
+            if "{kid}" in seg["name"]:
+                names = [seg["name"].replace("{kid}", k) for k in ("jack", "becca")]
+            expanded = []
+            for nm in names:
+                if "{row}" in nm:
+                    expanded += [nm.replace("{row}", str(r + 1)) for r in ch.get("rows", [])]
+                else:
+                    expanded.append(nm)
+            for nm in expanded:
+                out[nm] = group
+    return out
+
+
+def video_round(chapter: str) -> str:
+    return "Video Round 4" if chapter in NEW_CHAPTERS else "Video Rounds 2-3"
+
+
+def video_rows(chapters: list[dict], manifest: list[dict], present: set[str]) -> list[dict]:
+    """Clips named in chapters.json or delivered; present = clip names that have an .ogv file."""
+    listed = clip_chapters(chapters)
+    approved = {Path(m["game"]).stem: bool(m.get("approved")) for m in manifest if m.get("generator") == "video"}
+    names = dict(listed)
+    for nm in list(approved) + sorted(present):
+        if nm not in names:
+            names[nm] = PACKING if nm.endswith("-done") else CHAPTER_NAMES[7] if nm.startswith("car-") else SHARED
+    rows = []
+    for nm, chapter in names.items():
+        if nm not in present:
+            status = "missing (still shown instead)"
+        elif approved.get(nm):
+            status = "approved"
+        else:
+            status = "delivered"
+        rows.append({"name": nm + ".ogv", "chapter": chapter, "status": status, "round": video_round(chapter),
+                     "done": status == "approved"})
+    return rows
+
+
+def voice_chapter(line_id: str, referenced: dict[str, str]) -> str:
+    if line_id in referenced:
+        return referenced[line_id]
+    for prefix, n in VOICE_PREFIX_CHAPTER.items():
+        if line_id.startswith(prefix):
+            return CHAPTER_NAMES[n]
+    if line_id in TRUNK_LINES:
+        return CHAPTER_NAMES[7]
+    if line_id in AIRPORT_LINES:
+        return CHAPTER_NAMES[8]
+    return PACKING
+
+
+def voice_round(line_id: str, chapter: str) -> str:
+    if chapter in NEW_CHAPTERS or chapter == CHAPTER_NAMES[8] or line_id == "next-stop":
+        return "Voice Lines v1.0"
+    return "Voice Lines v0.4" if chapter == CHAPTER_NAMES[7] else "Voice Lines v0.3"
+
+
+VOICE_LABEL = {"robot": "computer", "dad": "grown-up", "kid": "kid recording"}
+
+
+def voice_rows(table: list[dict], referenced: dict[str, str]) -> list[dict]:
+    """One row per line; it is done when both kids' voices are kid recordings."""
+    rows = []
+    for r in table:
+        chapter = voice_chapter(r["id"], referenced)
+        status = " / ".join(f"{KIDS[k]}: {VOICE_LABEL[r[k]]}" for k in KIDS)
+        rows.append({"name": r["id"], "chapter": chapter, "status": status, "round": voice_round(r["id"], chapter),
+                     "done": all(r[k] == "kid" for k in KIDS), "text": r["jack_text"]})
+    return rows
+
+
+def sfx_function_chapters(make_sfx_source: str) -> dict[str, str]:
+    """Sound name -> chapter group, from the *_sounds() function in tools/make_sfx.py that makes it."""
+    out, current = {}, None
+    for line in make_sfx_source.splitlines():
+        m = re.match(r"def (\w+)\(", line)
+        if m:
+            fn = m[1]
+            if fn == "sounds":
+                current = CHAPTER_NAMES[8]
+            elif fn.endswith("_sounds") and fn[:-7] in SFX_FUNCTION_CHAPTER:
+                current = CHAPTER_NAMES[SFX_FUNCTION_CHAPTER[fn[:-7]]]
+            else:
+                current = None
+            continue
+        k = re.match(r'\s+"([a-z0-9-]+)":', line)
+        if k and current:
+            out[k[1]] = current
+    return out
+
+
+def music_chapter(name: str) -> str:
+    for folder, group in FOLDER_CHAPTER.items():
+        if name == folder or name.startswith(folder + "-"):
+            return group
+    return SHARED
+
+
+def audio_rows(manifest: list[dict], sfx_chapters: dict[str, str]) -> list[dict]:
+    rows = []
+    for m in manifest:
+        gen = m.get("generator")
+        if gen not in ("sfx", "music") and not (m["game"].startswith(("assets/sfx/", "assets/music/")) and gen == "copy"):
+            continue
+        name = Path(m["game"]).stem
+        music = m["game"].startswith("assets/music/")
+        chapter = music_chapter(name) if music else sfx_chapters.get(name, SHARED)
+        final = gen == "copy"
+        rows.append({"name": ("music/" if music else "sfx/") + name + ".ogg", "chapter": chapter,
+                     "status": "final" if final else "synthesized stand-in", "round": "synthesized (no round)" if not final else "recorded",
+                     "done": final})
+    return rows
+
+
+def media_summary(*row_lists: list[dict]) -> list[tuple[int, int]]:
+    return [(sum(1 for r in rows if r["done"]), len(rows)) for rows in row_lists]
+
+
+def _referenced_voice_ids(root: Path) -> dict[str, str]:
+    """Voice line id -> chapter group, for ids named in a chapter's data files (data/chapters/<folder>/*.json)."""
+    ids = {l["id"] for l in _json(root, "data/voice_lines.json") or []}
+    out: dict[str, str] = {}
+    base = root / "data" / "chapters"
+    if not base.is_dir():
+        return out
+    for folder in sorted(p for p in base.iterdir() if p.is_dir() and p.name in FOLDER_CHAPTER):
+        for f in sorted(folder.glob("*.json")):
+            if f.name == "art.json":
+                continue
+            for lid in re.findall(r'"([a-z0-9-]+)"', f.read_text()):
+                if lid in ids:
+                    out.setdefault(lid, FOLDER_CHAPTER[folder.name])
+    return out
+
+
+def _media_table(rows: list[dict], voice: bool = False) -> str:
+    out = ""
+    for chapter in CHAPTER_ORDER:
+        group = [r for r in rows if r["chapter"] == chapter]
+        if not group:
+            continue
+        done = sum(1 for r in group if r["done"])
+        out += f'<h3>{e(chapter)} <span class="count">{done} of {len(group)}</span></h3><div class="tablewrap"><table class="media"><thead><tr><th>{"Line" if voice else "File"}</th>'
+        out += ("<th>Words</th>" if voice else "") + "<th>Status</th><th>Request</th></tr></thead><tbody>"
+        for r in group:
+            cls = "done" if r["done"] else "todo"
+            key = "".join(c if c.isalnum() else "-" for c in r["status"].split(" ")[0].split(":")[0])
+            out += (f'<tr class="{cls}"><td><code>{e(r["name"])}</code></td>' + (f'<td>{e(r.get("text", ""))}</td>' if voice else "")
+                    + f'<td class="st {e(key)}">{e(r["status"])}</td><td>{e(r["round"])}</td></tr>')
+        out += "</tbody></table></div>"
+    return out
+
+
+def render_media(root: Path) -> str:
+    manifest = _json(root, "data/art_manifest.json") or []
+    chapters = (_json(root, "data/chapters.json") or {}).get("chapters", [])
+    vdir = root / "assets" / "video"
+    present = {p.stem for p in vdir.glob("*.ogv")} if vdir.is_dir() else set()
+    sfx_src = (root / "tools" / "make_sfx.py")
+    sfx_map = sfx_function_chapters(sfx_src.read_text()) if sfx_src.exists() else {}
+    images = image_rows(manifest)
+    videos = video_rows(chapters, manifest, present)
+    audio = audio_rows(manifest, sfx_map) + voice_rows(voice_table(root), _referenced_voice_ids(root))
+    sound = audio_rows(manifest, sfx_map)
+    voices = voice_rows(voice_table(root), _referenced_voice_ids(root))
+    (di, ti), (dv, tv), (da, ta) = media_summary(images, videos, sound + voices)
+    summary = "".join(
+        f'<div class="ov {"shipped" if d == t and t else "going" if d else ""}"><b>{label}</b><small>{d} of {t}</small>{_progress(d, t)}</div>'
+        for label, d, t in (("Images", di, ti), ("Video", dv, tv), ("Audio", da, ta)))
+    css = TEMPLATE[TEMPLATE.index("<style>") + 7:TEMPLATE.index("</style>")].replace("{{", "{").replace("}}", "}")
+    built = updated_stamp(*_newest_commit(root))
+    return f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Media - Jack-Jack and Becca's Cruise Adventure</title>
+<style>{css}
+  .media td.st {{ font-weight:600; white-space:nowrap; }} .media tr.done td.st {{ color:var(--ok); }} .media tr.todo td.st {{ color:var(--later); }}
+  body.only-needed tr.done {{ display:none; }} .toggle {{ margin:16px 0; font-weight:600; }}
+  h3 {{ margin:26px 0 6px; }} h3 .count {{ font-weight:400; }}
+</style></head>
+<body>
+<div class="top"><h1>Media</h1><p>Every picture, clip, voice line and sound, and what is still needed.</p><p class="stamp">{built}</p>
+<div class="badges"><a href="../../">&#9654; Play in the browser</a><a class="alt" href="../">Project page</a></div></div>
+<main>
+<nav class="toc"><a href="#images">Images</a><a href="#video">Video</a><a href="#sounds">Sounds and music</a><a href="#voices">Voice lines</a></nav>
+<div class="overview">{summary}</div>
+<p class="lede">Done means approved art, an approved clip, a voice recorded by the kid, or a final sound. The page is generated on every deploy.</p>
+<label class="toggle"><input type="checkbox" id="needed"> Still needed only</label>
+<h2 id="images">Images</h2>{_media_table(images)}
+<h2 id="video">Video</h2>{_media_table(videos)}
+<h2 id="sounds">Sounds and music</h2>{_media_table(sound)}
+<h2 id="voices">Voice lines</h2>{_media_table(voices, voice=True)}
+<footer>{built}</footer>
+</main>
+<script>document.getElementById("needed").addEventListener("change",function(){{document.body.classList.toggle("only-needed",this.checked);}});</script>
+</body></html>
+"""
+
+
 def main() -> None:
     if len(sys.argv) != 2:
         sys.exit(__doc__)
@@ -348,6 +615,8 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(page, encoding="utf-8")
     shutil.copytree(SITE / "img", out / "img", dirs_exist_ok=True)
+    (out / "media").mkdir(exist_ok=True)
+    (out / "media" / "index.html").write_text(render_media(ROOT), encoding="utf-8")
     print("wrote", out / "index.html")
 
 

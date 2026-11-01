@@ -17,6 +17,8 @@ The game now runs the whole trip, from the car to the beach hotel, in 14 chapter
 - The journey map shows stops 7-14, says "Tap the next stop!", and every finished chapter can be replayed.
 - Framework: chapters run from data (`data/chapters.json`) through a segment player; six reusable engines (Match, Place, Fit, Maze, Moving targets, Tap moments); a media fallback so a missing clip or picture shows a placeholder card instead of stopping the game; saved progress carries over.
 - Size work: every video clip is 854x480 (video 41.9 to 18.9 MB), plus the other savings from the technical optimization spec (T2, T5, T6). Runtime tinting (T4) is skipped.
+- Candidate: `playtest-v1.0-4`, Nov 1 (title screen `v1.0.0 playtest 4`). 463 Godot tests and 33 Python tests, all passing.
+- A Media page at /docs/media/ lists every image, clip, voice line and sound by chapter with its status (placeholder, provisional, approved, missing, computer voice, kid recording) and its request round, with a "Still needed only" filter. It is generated on every deploy.
 - Still placeholder: the real art for chapters 9-14 (Art Requests Rounds 7-9), the video clips (Video Requests Round 4; a still with a slow zoom stands in) and the kids' recorded voices (Voice Lines v1.0, Nov 8); a computer voice is used until then.
 
 ### 0.5.0 - The airport (in playtest)

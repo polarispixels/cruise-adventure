@@ -463,3 +463,20 @@ func test_after_the_beach_the_map_offers_replays(t) -> void:
 	_done(t, map)
 	voice._ids.clear()
 	voice.enabled = true
+
+
+func test_the_closing_line_is_not_said_twice(t) -> void:
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = false
+	var game: Node = t.tree.root.get_node("Game")
+	_all_built(t)
+	game.closing_line = "beach-replay"
+	voice.last_line = ""
+	var map := await _map_with(t, "becca", ALL_STOPS)
+	t.eq(voice.last_line, "", "the celebration just said it")
+	_done(t, map)
+	_all_built(t)
+	map = await _map_with(t, "becca", ALL_STOPS)
+	t.eq(voice.last_line, "beach-replay", "next time the map says it")
+	_done(t, map)
+	voice.enabled = true
