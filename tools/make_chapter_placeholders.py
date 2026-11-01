@@ -139,6 +139,9 @@ def draw(entry: dict, dst: Path) -> None:
     img = img.resize((w, h), Image.LANCZOS)
     d = ImageDraw.Draw(img)
     _dashed_border(d, w, h, _ink(rgb) if opaque else (255, 0, 255))  # magenta: shows on any scene
+    for ln in e.get("lines", []):  # optional full-width marker lines, e.g. a height sign's red line
+        y = int(ln["y"])
+        d.rectangle((0, y - int(ln.get("width", 6)) // 2, w, y + int(ln.get("width", 6)) // 2), fill=_rgb(ln.get("color", "#e03030")))
     _caption(d, w, h, e)
     dst.parent.mkdir(parents=True, exist_ok=True)
     if opaque:

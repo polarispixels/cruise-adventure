@@ -156,6 +156,42 @@ func test_becca_hears_next_time_and_jack_hears_tall_enough(t) -> void:
 	_close(t, scene)
 
 
+func test_becca_does_not_jump_above_the_line_or_hear_tap_to_go(t) -> void:
+	var scene: Node2D = await _open(t, "sign", "becca")
+	await _until_ready(t, scene)
+	t.check(not kit.said.has("sea-tap-go"), "becca: no 'Tap to go!' at the sign")
+	await kit.tap(t, Vector2(300, 300))
+	for i in 20:
+		await kit.wait(t, 0.05)
+		t.check(scene.stage.to_local(scene.player.hit_rect().position).y > LINE_Y, "becca: head stays below the line through her tap")
+	_close(t, scene)
+
+
+func test_hint_and_wrong_lines_say_what_to_do(t) -> void:
+	var game := _game(t)
+	t.eq(str(game.merge_segment(_entry(game, "swimsuit"), "jack")["hint_line"]), "sea-swimsuit", "swimsuit hint")
+	t.eq(str(game.merge_segment(_entry(game, "dinner"), "becca")["hint_line"]), "sea-dinner", "dinner hint")
+	t.eq(str(game.merge_segment(_entry(game, "splash"), "jack")["wrong_line"]), "sea-ducks", "jack: a decoy toy says to catch the ducks")
+	var scene: Node2D = await _open(t, "splash", "jack")
+	_park(scene, 400.0)
+	await kit.tap(t, scene.item_point("ball"))
+	t.check(kit.said.has("sea-ducks"), "tapping a ball says 'Catch the ducks!'")
+	_close(t, scene)
+
+
+func test_becca_dinner_glows_only_the_active_slot(t) -> void:
+	var scene: Node2D = await _open(t, "dinner", "becca")
+	t.eq(scene.glows.shown().size(), 0, "nothing glows until she picks something up")
+	var p: Vector2 = scene.item_point("outfit")
+	await kit.touch(t, true, p)
+	await kit.move(t, p + Vector2(40, 40))
+	await kit.move(t, p + Vector2(80, 80))
+	await t.tree.process_frame
+	t.eq(scene.glows.shown().size(), 1, "holding the outfit lights only the kid, not the chair")
+	await kit.touch(t, false, p + Vector2(80, 80))
+	_close(t, scene)
+
+
 func test_next_time_wording_matches_the_build_spec(t) -> void:
 	var text := ""
 	for l: Variant in JSON.parse_string(FileAccess.get_file_as_string("res://data/voice_lines.json")):

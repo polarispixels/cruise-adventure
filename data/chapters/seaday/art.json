@@ -146,7 +146,15 @@
   ],
   "kind": "sprite",
   "color": "#E8453C",
-  "shape": "rounded"
+  "shape": "rounded",
+  "lines": [
+   {
+    "y": 184,
+    "color": "#e03030",
+    "width": 10
+   }
+  ],
+  "label": "red line at y 184"
  },
  {
   "file": "assets/seaday/slide-splash.png",

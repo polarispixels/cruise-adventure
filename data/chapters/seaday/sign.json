@@ -34,6 +34,8 @@
  "becca": {
   "kid_scale": 0.305,
   "start_line": "sea-height-becca",
-  "success_line": "sea-next-time"
+  "success_line": "sea-next-time",
+  "hop_height": 0,
+  "prompt_line": "sea-height-becca"
  }
 }

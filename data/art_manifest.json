@@ -2849,31 +2849,13 @@
   "generator": "placeholder",
   "source": "placeholder",
   "approved": false,
-  "placeholder": {
-   "kind": "still",
-   "canvas": [
-    854,
-    480
-   ],
-   "color": "#B9A6E0",
-   "shape": "rect",
-   "label": "still for sea-pool-deck"
-  }
+  "spec": "data/chapters/seaday/art.json"
  },
  {
   "game": "assets/stills/sea-evening-deck.png",
   "generator": "placeholder",
   "source": "placeholder",
   "approved": false,
-  "placeholder": {
-   "kind": "still",
-   "canvas": [
-    854,
-    480
-   ],
-   "color": "#B9A6E0",
-   "shape": "rect",
-   "label": "still for sea-evening-deck"
-  }
+  "spec": "data/chapters/seaday/art.json"
  }
 ]

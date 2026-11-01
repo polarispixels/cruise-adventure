@@ -59,7 +59,6 @@
  "jack": {
   "always_glow": false
  },
- "becca": {
-  "always_glow": true
- }
+ "becca": {},
+ "hint_line": "sea-dinner"
 }
