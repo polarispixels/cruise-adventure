@@ -218,5 +218,69 @@
  {
   "id": "found-gate",
   "text": "We found our gate!"
+ },
+ {
+  "id": "sea-swimsuit",
+  "text": "Put on your swimsuit!"
+ },
+ {
+  "id": "sea-height",
+  "text": "Are you tall enough?"
+ },
+ {
+  "id": "sea-height-becca",
+  "text": "Let's see how tall we are!"
+ },
+ {
+  "id": "sea-tall-enough",
+  "text": "You're tall enough! Hop on!"
+ },
+ {
+  "id": "sea-next-time",
+  "text": "When you're a little bigger, you can ride it! Let's splash!"
+ },
+ {
+  "id": "sea-watch-me",
+  "text": "Watch me go!"
+ },
+ {
+  "id": "sea-splash-me",
+  "text": "I'm going to splash!"
+ },
+ {
+  "id": "sea-tap-go",
+  "text": "Tap to go!"
+ },
+ {
+  "id": "sea-whee",
+  "text": "Wheee!"
+ },
+ {
+  "id": "sea-splash-time",
+  "text": "Tap the water and the toys!"
+ },
+ {
+  "id": "sea-toys",
+  "text": "Tap the toys!"
+ },
+ {
+  "id": "sea-ducks",
+  "text": "Catch the ducks!"
+ },
+ {
+  "id": "sea-what-a-splash",
+  "text": "What a splash!"
+ },
+ {
+  "id": "sea-dinner",
+  "text": "Time to dress up for dinner!"
+ },
+ {
+  "id": "sea-sit",
+  "text": "Now sit at the table!"
+ },
+ {
+  "id": "sea-yummy",
+  "text": "Yum! Dinner time!"
  }
 ]

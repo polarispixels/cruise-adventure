@@ -1,0 +1,43 @@
+{
+ "background": "res://assets/seaday/seaday-pool-deck.png",
+ "kid_scale": 0.36,
+ "helper_feet": [
+  1440,
+  930
+ ],
+ "start_line": "sea-swimsuit",
+ "place_line": "found",
+ "tap_places": true,
+ "items": [
+  {
+   "id": "swimsuit",
+   "texture": "res://assets/props/{kid}/swimsuit-card.png",
+   "pos": [
+    1090,
+    620
+   ],
+   "height": 240,
+   "slot": "kid",
+   "hide_on_place": true
+  }
+ ],
+ "slots": [
+  {
+   "id": "kid",
+   "rect": [
+    480,
+    340,
+    373,
+    560
+   ],
+   "texture": "res://assets/characters/{kid}/idle.png",
+   "fill_texture": "res://assets/seaday/{kid}-swimsuit.png"
+  }
+ ],
+ "jack": {
+  "always_glow": false
+ },
+ "becca": {
+  "always_glow": true
+ }
+}

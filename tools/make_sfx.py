@@ -61,6 +61,18 @@ def sounds():
         "arch-chime": np.concatenate([tone(659, 0.15, 9), tone(784, 0.15, 9), tone(1047, 0.5, 4)]),
         "step": mix(tone(140, 0.08, 45), 0.3 * noise(0.06, 50, rng, 30)),
         "whoosh": noise(0.9, 2.5, rng, 8) * np.sin(np.linspace(0, np.pi, int(0.9 * RATE))) ** 2,
+        **seaday_sounds(rng),
+    }
+
+
+def seaday_sounds(rng):
+    """Chapter 13 (sea day) stand-ins: splash, water jet, slide whoosh, toy pop."""
+    swell = lambda s: np.sin(np.linspace(0, np.pi, int(s * RATE)))
+    return {
+        "splash": env(noise(0.8, 4, rng, 6), 0.01, 4.0) * 0.9,
+        "water-jet": noise(0.5, 3, rng, 3) * swell(0.5),
+        "slide-whoosh": noise(1.6, 1.2, rng, 10) * swell(1.6) ** 1.5 * (0.6 + 0.4 * np.sin(2 * np.pi * 5 * t(1.6))),
+        "toy-pop": mix(tone(520, 0.12, 30), tone(780, 0.1, 35), 0.2 * noise(0.04, 80, rng)),
     }
 
 

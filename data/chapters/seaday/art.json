@@ -1,0 +1,253 @@
+[
+ {
+  "file": "assets/seaday/seaday-pool-deck.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#7FD0E8",
+  "label": "pool deck"
+ },
+ {
+  "file": "assets/seaday/seaday-slide.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#6FC4E0",
+  "label": "big slide"
+ },
+ {
+  "file": "assets/seaday/seaday-splash-zone.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#5BC0DE",
+  "label": "splash zone"
+ },
+ {
+  "file": "assets/seaday/seaday-dining.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#E8B878",
+  "label": "dining room"
+ },
+ {
+  "file": "assets/seaday/jack-swimsuit.png",
+  "canvas": [
+   614,
+   922
+  ],
+  "kind": "sprite",
+  "color": "#7A8F4A",
+  "shape": "silhouette-person",
+  "label": "jack swimsuit"
+ },
+ {
+  "file": "assets/seaday/jack-swimsuit-cheer.png",
+  "canvas": [
+   614,
+   922
+  ],
+  "kind": "sprite",
+  "color": "#7A8F4A",
+  "shape": "silhouette-person",
+  "label": "jack swimsuit cheer"
+ },
+ {
+  "file": "assets/seaday/jack-nice-outfit.png",
+  "canvas": [
+   614,
+   922
+  ],
+  "kind": "sprite",
+  "color": "#7A8F4A",
+  "shape": "silhouette-person",
+  "label": "jack nice outfit"
+ },
+ {
+  "file": "assets/seaday/jack-nice-outfit-sit.png",
+  "canvas": [
+   460,
+   460
+  ],
+  "kind": "sprite",
+  "color": "#7A8F4A",
+  "shape": "silhouette-person",
+  "label": "jack sitting"
+ },
+ {
+  "file": "assets/seaday/becca-swimsuit.png",
+  "canvas": [
+   614,
+   922
+  ],
+  "kind": "sprite",
+  "color": "#F08CB4",
+  "shape": "silhouette-person",
+  "label": "becca swimsuit"
+ },
+ {
+  "file": "assets/seaday/becca-swimsuit-cheer.png",
+  "canvas": [
+   614,
+   922
+  ],
+  "kind": "sprite",
+  "color": "#F08CB4",
+  "shape": "silhouette-person",
+  "label": "becca swimsuit cheer"
+ },
+ {
+  "file": "assets/seaday/becca-nice-outfit.png",
+  "canvas": [
+   614,
+   922
+  ],
+  "kind": "sprite",
+  "color": "#F08CB4",
+  "shape": "silhouette-person",
+  "label": "becca nice outfit"
+ },
+ {
+  "file": "assets/seaday/becca-nice-outfit-sit.png",
+  "canvas": [
+   460,
+   460
+  ],
+  "kind": "sprite",
+  "color": "#F08CB4",
+  "shape": "silhouette-person",
+  "label": "becca sitting"
+ },
+ {
+  "file": "assets/seaday/jack-swimsuit-ride.png",
+  "canvas": [
+   260,
+   260
+  ],
+  "kind": "sprite",
+  "color": "#7A8F4A",
+  "shape": "silhouette-person",
+  "label": "jack on slide"
+ },
+ {
+  "file": "assets/seaday/height-sign.png",
+  "canvas": [
+   300,
+   600
+  ],
+  "kind": "sprite",
+  "color": "#E8453C",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/seaday/slide-splash.png",
+  "canvas": [
+   400,
+   300
+  ],
+  "kind": "sprite",
+  "color": "#7FD0F0",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/seaday/water-jet.png",
+  "canvas": [
+   120,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#8899AA",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/seaday/water-spray.png",
+  "canvas": [
+   160,
+   260
+  ],
+  "kind": "sprite",
+  "color": "#9BE0F5",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/seaday/toy-duck.png",
+  "canvas": [
+   140,
+   140
+  ],
+  "kind": "sprite",
+  "color": "#FFD23F",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/seaday/toy-ball.png",
+  "canvas": [
+   140,
+   140
+  ],
+  "kind": "sprite",
+  "color": "#E8453C",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/seaday/toy-boat.png",
+  "canvas": [
+   140,
+   140
+  ],
+  "kind": "sprite",
+  "color": "#D83A3A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/seaday/toy-fish.png",
+  "canvas": [
+   140,
+   140
+  ],
+  "kind": "sprite",
+  "color": "#3A7BD5",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/seaday/toy-pop.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#BDEBFA",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/seaday/chair-glow.png",
+  "canvas": [
+   260,
+   320
+  ],
+  "kind": "sprite",
+  "color": "#FFF3A0",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/stills/sea-pool-deck.png",
+  "kind": "still",
+  "label": "pool deck, both kids look up at the slide",
+  "color": "#7FD0E8"
+ },
+ {
+  "file": "assets/stills/sea-evening-deck.png",
+  "kind": "still",
+  "label": "evening on deck, waving at the sea",
+  "color": "#E89A6A"
+ }
+]

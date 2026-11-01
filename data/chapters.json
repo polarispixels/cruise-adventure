@@ -25,6 +25,14 @@
   {"id": "aboard", "number": 11, "title": "Welcome aboard", "segments": []},
   {"id": "island1", "number": 12, "title": "Island day 1", "segments": []},
   {"id": "island2", "number": 12, "title": "Island day 2", "segments": []},
-  {"id": "seaday", "number": 13, "title": "Sea day", "segments": []},
+  {"id": "seaday", "number": 13, "title": "Sea day",
+   "segments": [
+     {"kind": "clip", "id": "seaday-intro", "name": "sea-pool-deck", "once": true},
+     {"kind": "scene", "id": "swimsuit", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/seaday/swimsuit.json"},
+     {"kind": "scene", "id": "sign", "scene": "res://scenes/engines/moments.tscn", "data": "res://data/chapters/seaday/sign.json"},
+     {"kind": "scene", "id": "ride", "scene": "res://scenes/engines/moments.tscn", "data": "res://data/chapters/seaday/ride.json"},
+     {"kind": "scene", "id": "splash", "scene": "res://scenes/engines/moving.tscn", "data": "res://data/chapters/seaday/splash.json"},
+     {"kind": "scene", "id": "dinner", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/seaday/dinner.json"},
+     {"kind": "clip", "id": "seaday-evening", "name": "sea-evening-deck"}]},
   {"id": "beach", "number": 14, "title": "Beach hotel", "segments": []}
 ]}

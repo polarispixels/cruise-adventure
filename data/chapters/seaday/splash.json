@@ -1,0 +1,171 @@
+{
+ "background": "res://assets/seaday/seaday-splash-zone.png",
+ "kid_scale": 0.2,
+ "path": "drift",
+ "lanes": [
+  600,
+  720,
+  840
+ ],
+ "item_height": 130,
+ "start_line": "sea-splash-time",
+ "done_line": "sea-what-a-splash",
+ "right_sound": "toy-pop",
+ "helper_feet": [
+  1500,
+  930
+ ],
+ "hint_line": "sea-toys",
+ "jack": {
+  "speed": 150,
+  "spacing": 240,
+  "hint_line": "sea-ducks",
+  "items": [
+   {
+    "id": "duck-0",
+    "texture": "res://assets/seaday/toy-duck.png",
+    "height": 130,
+    "target": true
+   },
+   {
+    "id": "duck-1",
+    "texture": "res://assets/seaday/toy-duck.png",
+    "height": 130,
+    "target": true
+   },
+   {
+    "id": "duck-2",
+    "texture": "res://assets/seaday/toy-duck.png",
+    "height": 130,
+    "target": true
+   },
+   {
+    "id": "duck-3",
+    "texture": "res://assets/seaday/toy-duck.png",
+    "height": 130,
+    "target": true
+   },
+   {
+    "id": "duck-4",
+    "texture": "res://assets/seaday/toy-duck.png",
+    "height": 130,
+    "target": true
+   },
+   {
+    "id": "ball",
+    "texture": "res://assets/seaday/toy-ball.png",
+    "height": 130
+   },
+   {
+    "id": "boat",
+    "texture": "res://assets/seaday/toy-boat.png",
+    "height": 130
+   },
+   {
+    "id": "fish",
+    "texture": "res://assets/seaday/toy-fish.png",
+    "height": 130
+   },
+   {
+    "id": "jet-0",
+    "texture": "res://assets/seaday/water-jet.png",
+    "height": 180,
+    "pos": [
+     300,
+     430
+    ],
+    "target": true
+   },
+   {
+    "id": "jet-1",
+    "texture": "res://assets/seaday/water-jet.png",
+    "height": 180,
+    "pos": [
+     620,
+     430
+    ],
+    "target": true
+   },
+   {
+    "id": "jet-2",
+    "texture": "res://assets/seaday/water-jet.png",
+    "height": 180,
+    "pos": [
+     940,
+     430
+    ],
+    "target": true
+   },
+   {
+    "id": "jet-3",
+    "texture": "res://assets/seaday/water-jet.png",
+    "height": 180,
+    "pos": [
+     1260,
+     430
+    ],
+    "target": true
+   }
+  ]
+ },
+ "becca": {
+  "speed": 90,
+  "spacing": 340,
+  "items": [
+   {
+    "id": "toy-0",
+    "texture": "res://assets/seaday/toy-duck.png",
+    "height": 150,
+    "target": true
+   },
+   {
+    "id": "toy-1",
+    "texture": "res://assets/seaday/toy-ball.png",
+    "height": 150,
+    "target": true
+   },
+   {
+    "id": "toy-2",
+    "texture": "res://assets/seaday/toy-boat.png",
+    "height": 150,
+    "target": true
+   },
+   {
+    "id": "toy-3",
+    "texture": "res://assets/seaday/toy-fish.png",
+    "height": 150,
+    "target": true
+   },
+   {
+    "id": "jet-0",
+    "texture": "res://assets/seaday/water-jet.png",
+    "height": 180,
+    "pos": [
+     450,
+     430
+    ],
+    "target": true
+   },
+   {
+    "id": "jet-1",
+    "texture": "res://assets/seaday/water-jet.png",
+    "height": 180,
+    "pos": [
+     836,
+     430
+    ],
+    "target": true
+   },
+   {
+    "id": "jet-2",
+    "texture": "res://assets/seaday/water-jet.png",
+    "height": 180,
+    "pos": [
+     1220,
+     430
+    ],
+    "target": true
+   }
+  ]
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "background": "res://assets/seaday/seaday-slide.png",
+ "kid_scale": 0.2,
+ "moments": 1,
+ "action": "ride",
+ "ride_path": [
+  [
+   1330,
+   420
+  ],
+  [
+   1180,
+   520
+  ],
+  [
+   1280,
+   640
+  ],
+  [
+   1020,
+   760
+  ],
+  [
+   900,
+   860
+  ]
+ ],
+ "ride_time": 2.2,
+ "textures": [
+  "res://assets/seaday/slide-splash.png"
+ ],
+ "arrive_height": 220,
+ "arrive_from": [
+  900,
+  700
+ ],
+ "arrive_to": [
+  900,
+  800
+ ],
+ "leave_to": [
+  900,
+  800
+ ],
+ "arrive_time": 0.8,
+ "prompt_line": "sea-tap-go",
+ "success_line": "sea-whee",
+ "success_sound": "slide-whoosh",
+ "done_sound": "splash",
+ "jack": {
+  "actor": "player",
+  "player_feet": [
+   1330,
+   420
+  ],
+  "helper_feet": [
+   430,
+   900
+  ],
+  "helper_mirrored": false,
+  "start_line": "sea-splash-me"
+ },
+ "becca": {
+  "actor": "helper",
+  "player_feet": [
+   430,
+   900
+  ],
+  "helper_feet": [
+   1330,
+   420
+  ],
+  "start_line": "sea-watch-me"
+ }
+}
