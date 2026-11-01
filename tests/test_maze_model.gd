@@ -101,3 +101,34 @@ func test_walls_block_and_neighbors_only(t) -> void:
 	var m := _kid_maze("becca", 5)
 	t.check(not m.open(Vector2i(0, 0), Vector2i(2, 0)), "not neighbors")
 	t.check(not m.open(Vector2i(0, 0), Vector2i(-1, 0)), "outside")
+
+
+# --- Fixed layouts (from_rows), used by the Maze engine ----------------------
+
+const FIXED := ["S.>.#A", "#.#...", "#...#G"]
+
+
+func test_fixed_layout_reads_walls_start_goals_and_arrows(t) -> void:
+	var m := MazeModel.from_rows(FIXED)
+	t.eq(m.size, Vector2i(6, 3), "size")
+	t.eq(m.start, Vector2i(0, 0), "start")
+	t.check(m.is_wall(Vector2i(4, 0)) and m.is_wall(Vector2i(0, 1)), "walls")
+	t.eq(m.gates, [Vector2i(5, 0), Vector2i(5, 2)] as Array[Vector2i], "goal cells in reading order")
+	t.eq(m.correct, 1, "G is the right goal")
+	t.eq(m.arrows.get(Vector2i(2, 0)), Vector2i.RIGHT, "an arrow sign")
+
+
+func test_fixed_layout_connects_floor_only(t) -> void:
+	var m := MazeModel.from_rows(FIXED)
+	t.check(m.open(Vector2i(0, 0), Vector2i(1, 0)), "floor to floor")
+	t.check(not m.open(Vector2i(0, 0), Vector2i(0, 1)), "not into a wall")
+	t.check(not m.open(Vector2i(3, 0), Vector2i(4, 0)), "not into a wall on the right")
+	var route := m.path(m.start, m.gates[m.correct])
+	t.check(route.size() > 0, "the right goal is reachable")
+	for c in route:
+		t.check(not m.is_wall(c), "the path never crosses a wall")
+
+
+func test_fixed_layout_named_goal(t) -> void:
+	var m := MazeModel.from_rows(FIXED, "A")
+	t.eq(m.correct, 0, "goal A is right when named")

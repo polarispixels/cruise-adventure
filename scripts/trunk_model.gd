@@ -20,21 +20,52 @@ var _reference := {}
 
 
 static func from_file(path := "res://data/trunk.json") -> TrunkModel:
-	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
+	return from_dict(JSON.parse_string(FileAccess.get_file_as_string(path)))
+
+
+## Builds a model from data: `cols`/`rows` or `grid` [cols, rows]; `blocked` [[x, y], ...];
+## the pieces as `bags` or `pieces` [{id, size [w, h], rotated}] (rotated: starts turned);
+## `solution` {id: {cell, turned}} is optional (a solver finds one when it's missing).
+static func from_dict(data: Dictionary) -> TrunkModel:
 	var m := TrunkModel.new()
-	m.cols = int(data["cols"])
-	m.rows = int(data["rows"])
-	for c in data["blocked"]:
+	if data.has("grid"):
+		m.cols = int(data["grid"][0])
+		m.rows = int(data["grid"][1])
+	else:
+		m.cols = int(data["cols"])
+		m.rows = int(data["rows"])
+	for c: Variant in data.get("blocked", []):
 		m._blocked[Vector2i(int(c[0]), int(c[1]))] = true
-	for bag in data["bags"]:
+	for bag: Variant in data.get("pieces", data.get("bags", [])):
 		var id: String = bag["id"]
 		m.bag_ids.append(id)
 		m._sizes[id] = Vector2i(int(bag["size"][0]), int(bag["size"][1]))
-		m._turned[id] = false
-	for id in data["solution"]:
-		var s: Dictionary = data["solution"][id]
-		m._reference[id] = {"cell": Vector2i(int(s["cell"][0]), int(s["cell"][1])), "turned": bool(s["turned"])}
+		m._turned[id] = bool(bag.get("rotated", false))
+	var solution: Variant = data.get("solution", null)
+	if solution is Dictionary and not (solution as Dictionary).is_empty():
+		for id: String in solution:
+			var s: Dictionary = solution[id]
+			m._reference[id] = {"cell": Vector2i(int(s["cell"][0]), int(s["cell"][1])), "turned": bool(s["turned"])}
+	else:
+		m._reference = m.solve()
 	return m
+
+
+func is_blocked(cell: Vector2i) -> bool:
+	return _blocked.has(cell)
+
+
+## Puts these pieces where the reference solution has them (turned as it says).
+## Returns false if one couldn't go in.
+func preplace(ids: PackedStringArray) -> bool:
+	var ok := true
+	for id in ids:
+		if not _reference.has(id):
+			ok = false
+			continue
+		_turned[id] = _reference[id]["turned"]
+		ok = place(id, _reference[id]["cell"]) and ok
+	return ok
 
 
 func size_of(id: String, turned: bool) -> Vector2i:
