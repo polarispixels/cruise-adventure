@@ -1,0 +1,314 @@
+[
+ {
+  "file": "assets/island/island-beach.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#F2E2B0",
+  "label": "island beach"
+ },
+ {
+  "file": "assets/island/island-sand.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#F0DDA8",
+  "label": "sand, top-down"
+ },
+ {
+  "file": "assets/island/island-beach-2.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#EFD9A0",
+  "label": "island cove"
+ },
+ {
+  "file": "assets/island/island-sand-2.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#E9D090",
+  "label": "golden sand, top-down"
+ },
+ {
+  "file": "assets/island/sunscreen.png",
+  "canvas": [
+   160,
+   240
+  ],
+  "kind": "sprite",
+  "color": "#F6C84C",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/sun-spot.png",
+  "canvas": [
+   120,
+   120
+  ],
+  "kind": "sprite",
+  "color": "#FFE86A",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/sun-dab.png",
+  "canvas": [
+   100,
+   100
+  ],
+  "kind": "sprite",
+  "color": "#FFFFFF",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/bucket.png",
+  "canvas": [
+   220,
+   220
+  ],
+  "kind": "sprite",
+  "color": "#3D8FE0",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/castle-flag.png",
+  "canvas": [
+   100,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#E0463A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/shell-spiral.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#F29EC0",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/shell-fan.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#F6D04D",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/shell-cone.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#EDE6D6",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/shell-star.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#F2933D",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/shell-clam.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#7E96B0",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/castle-outline.png",
+  "canvas": [
+   800,
+   600
+  ],
+  "kind": "sprite",
+  "color": "#EBD9A8",
+  "shape": "rounded",
+  "label": "castle outline"
+ },
+ {
+  "file": "assets/island/castle-piece-1.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D9B97A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/castle-piece-2.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D9B97A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/castle-piece-3.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D9B97A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/castle-piece-4.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D9B97A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/castle-piece-5.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D9B97A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/shell-conch-2.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#F29EC0",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/shell-scallop-2.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#F6D04D",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/shell-sand-dollar-2.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#EDE6D6",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/shell-snail-2.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#F2933D",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/shell-mussel-2.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#7E96B0",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/castle-outline-2.png",
+  "canvas": [
+   800,
+   600
+  ],
+  "kind": "sprite",
+  "color": "#EBD9A8",
+  "shape": "rounded",
+  "label": "castle outline"
+ },
+ {
+  "file": "assets/island/castle-piece-1-2.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D9B97A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/castle-piece-2-2.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D9B97A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/castle-piece-3-2.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D9B97A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/castle-piece-4-2.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D9B97A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/island/castle-piece-5-2.png",
+  "canvas": [
+   200,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#D9B97A",
+  "shape": "rounded"
+ }
+]
