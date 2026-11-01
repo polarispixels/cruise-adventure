@@ -78,6 +78,11 @@ func _play_from_map(t, kid_id: String, id: String) -> void:
 	map = await kit.make_map()
 	t.check(map.stop_button(id).get_node_or_null("Check") != null, "%s: the stop is checked" % kid_id)
 	t.eq(map.next_stop(), _next_built(id), "%s: the next stop is offered" % kid_id)
+	if id == "beach":
+		# After the finale every stop is checked and replayable.
+		for sid: String in map.stop_ids:
+			if map.stop_button(sid).visible:
+				t.check(map.stop_button(sid).get_node_or_null("Check") != null, "%s: after the finale %s is checked" % [kid_id, sid])
 	var next := _next_built(id)
 	if next != "":
 		t.check(map.stop_button(next).visible, "%s: the next stop shows" % kid_id)
