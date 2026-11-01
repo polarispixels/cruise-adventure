@@ -198,7 +198,7 @@ func test_all_done_map_cheers(t) -> void:
 	voice.enabled = false
 	voice.last_line = ""
 	var map := await _make(t, "becca", [0, 1, 2, 3])
-	t.eq(voice.last_line, "all-packed", "everything packed")
+	t.eq(voice.last_line, "next-stop", "the card is packed: tap the next stop (the car)")
 	voice.enabled = true
 	_done(t, map)
 
@@ -459,7 +459,7 @@ func test_after_the_beach_the_map_offers_replays(t) -> void:
 	voice.last_line = ""
 	_all_built(t)
 	map = await _map_with(t, "becca", ["car"])
-	t.eq(voice.last_line, "all-packed", "mid-trip without a next-stop line: the cheer")
+	t.eq(voice.last_line, "next-stop", "mid-trip: tap the next stop")
 	_done(t, map)
 	voice._ids.clear()
 	voice.enabled = true

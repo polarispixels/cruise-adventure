@@ -83,6 +83,10 @@
   "kind": "placeholder",
   "text": "Put the big bag up in the bin!"
  },
+ "becca/boosters-first": {
+  "kind": "placeholder",
+  "text": "Put the booster seats in!"
+ },
  "becca/buckle-becca": {
   "kind": "placeholder",
   "text": "Now help me buckle!"
@@ -219,9 +223,21 @@
   "kind": "placeholder",
   "text": "Get your things back!"
  },
+ "becca/got-our-bags": {
+  "kind": "placeholder",
+  "text": "We got all our bags!"
+ },
+ "becca/hello-florida": {
+  "kind": "placeholder",
+  "text": "Hello, Florida!"
+ },
  "becca/horn-warning": {
   "kind": "placeholder",
   "text": "The ship makes a big HONK sound. That's OK!"
+ },
+ "becca/hotel-night": {
+  "kind": "placeholder",
+  "text": "Good night, Florida!"
  },
  "becca/hug-buddy": {
   "kind": "recorded",
@@ -303,6 +319,14 @@
   "kind": "recorded",
   "text": "Let's put all the bags in the car!"
  },
+ "becca/load-minivan": {
+  "kind": "placeholder",
+  "text": "Now pack the minivan!"
+ },
+ "becca/look-there": {
+  "kind": "placeholder",
+  "text": "Look over there!"
+ },
  "becca/match-airplane": {
   "kind": "placeholder",
   "text": "Find the airplane on your ticket!"
@@ -327,9 +351,17 @@
   "kind": "placeholder",
   "text": "It needs a tag!"
  },
+ "becca/next-stop": {
+  "kind": "placeholder",
+  "text": "Tap the next stop!"
+ },
  "becca/nice-cloud": {
   "kind": "placeholder",
   "text": "A cloud shape! Nice!"
+ },
+ "becca/not-ours": {
+  "kind": "placeholder",
+  "text": "Hmm, that's not ours!"
  },
  "becca/not-this-door": {
   "kind": "placeholder",
@@ -451,6 +483,10 @@
   "kind": "placeholder",
   "text": "Yum! Dinner time!"
  },
+ "becca/seats-in": {
+  "kind": "placeholder",
+  "text": "The booster seats are in!"
+ },
  "becca/see-number": {
   "kind": "placeholder",
   "text": "That's our room number!"
@@ -462,6 +498,14 @@
  "becca/slide-hall": {
   "kind": "placeholder",
   "text": "Slide to walk down the hall!"
+ },
+ "becca/spot-bags": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find all three!"
+ },
+ "becca/spot-pink": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find the pink suitcase!"
  },
  "becca/tablet-tray": {
   "kind": "placeholder",
@@ -590,6 +634,10 @@
  "jack/bin-up": {
   "kind": "placeholder",
   "text": "Put the big bag up in the bin!"
+ },
+ "jack/boosters-first": {
+  "kind": "placeholder",
+  "text": "Put the booster seats in!"
  },
  "jack/buckle-becca": {
   "kind": "placeholder",
@@ -727,9 +775,21 @@
   "kind": "placeholder",
   "text": "Get your things back!"
  },
+ "jack/got-our-bags": {
+  "kind": "placeholder",
+  "text": "We got all our bags!"
+ },
+ "jack/hello-florida": {
+  "kind": "placeholder",
+  "text": "Hello, Florida!"
+ },
  "jack/horn-warning": {
   "kind": "placeholder",
   "text": "The ship makes a big HONK sound. That's OK!"
+ },
+ "jack/hotel-night": {
+  "kind": "placeholder",
+  "text": "Good night, Florida!"
  },
  "jack/hug-buddy": {
   "kind": "recorded",
@@ -811,6 +871,14 @@
   "kind": "recorded",
   "text": "Let's put all the bags in the car!"
  },
+ "jack/load-minivan": {
+  "kind": "placeholder",
+  "text": "Now pack the minivan!"
+ },
+ "jack/look-there": {
+  "kind": "placeholder",
+  "text": "Look over there!"
+ },
  "jack/match-airplane": {
   "kind": "placeholder",
   "text": "Find the airplane on your ticket!"
@@ -835,9 +903,17 @@
   "kind": "placeholder",
   "text": "It needs a tag!"
  },
+ "jack/next-stop": {
+  "kind": "placeholder",
+  "text": "Tap the next stop!"
+ },
  "jack/nice-cloud": {
   "kind": "placeholder",
   "text": "A cloud shape! Nice!"
+ },
+ "jack/not-ours": {
+  "kind": "placeholder",
+  "text": "Hmm, that's not ours!"
  },
  "jack/not-this-door": {
   "kind": "placeholder",
@@ -959,6 +1035,10 @@
   "kind": "placeholder",
   "text": "Yum! Dinner time!"
  },
+ "jack/seats-in": {
+  "kind": "placeholder",
+  "text": "The booster seats are in!"
+ },
  "jack/see-number": {
   "kind": "placeholder",
   "text": "That's our room number!"
@@ -970,6 +1050,14 @@
  "jack/slide-hall": {
   "kind": "placeholder",
   "text": "Slide to walk down the hall!"
+ },
+ "jack/spot-bags": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find all three!"
+ },
+ "jack/spot-pink": {
+  "kind": "placeholder",
+  "text": "Here come our bags! Find the pink suitcase!"
  },
  "jack/tablet-tray": {
   "kind": "placeholder",
@@ -1018,85 +1106,5 @@
  "title/who-do-you-want": {
   "kind": "recorded",
   "text": "Who do you want to play as?"
- },
- "becca/boosters-first": {
-  "kind": "placeholder",
-  "text": "Put the booster seats in!"
- },
- "becca/got-our-bags": {
-  "kind": "placeholder",
-  "text": "We got all our bags!"
- },
- "becca/hello-florida": {
-  "kind": "placeholder",
-  "text": "Hello, Florida!"
- },
- "becca/hotel-night": {
-  "kind": "placeholder",
-  "text": "Good night, Florida!"
- },
- "becca/load-minivan": {
-  "kind": "placeholder",
-  "text": "Now pack the minivan!"
- },
- "becca/look-there": {
-  "kind": "placeholder",
-  "text": "Look over there!"
- },
- "becca/not-ours": {
-  "kind": "placeholder",
-  "text": "Hmm, that's not ours!"
- },
- "becca/seats-in": {
-  "kind": "placeholder",
-  "text": "The booster seats are in!"
- },
- "becca/spot-bags": {
-  "kind": "placeholder",
-  "text": "Here come our bags! Find all three!"
- },
- "becca/spot-pink": {
-  "kind": "placeholder",
-  "text": "Here come our bags! Find the pink suitcase!"
- },
- "jack/boosters-first": {
-  "kind": "placeholder",
-  "text": "Put the booster seats in!"
- },
- "jack/got-our-bags": {
-  "kind": "placeholder",
-  "text": "We got all our bags!"
- },
- "jack/hello-florida": {
-  "kind": "placeholder",
-  "text": "Hello, Florida!"
- },
- "jack/hotel-night": {
-  "kind": "placeholder",
-  "text": "Good night, Florida!"
- },
- "jack/load-minivan": {
-  "kind": "placeholder",
-  "text": "Now pack the minivan!"
- },
- "jack/look-there": {
-  "kind": "placeholder",
-  "text": "Look over there!"
- },
- "jack/not-ours": {
-  "kind": "placeholder",
-  "text": "Hmm, that's not ours!"
- },
- "jack/seats-in": {
-  "kind": "placeholder",
-  "text": "The booster seats are in!"
- },
- "jack/spot-bags": {
-  "kind": "placeholder",
-  "text": "Here come our bags! Find all three!"
- },
- "jack/spot-pink": {
-  "kind": "placeholder",
-  "text": "Here come our bags! Find the pink suitcase!"
  }
 }

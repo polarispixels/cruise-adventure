@@ -231,7 +231,7 @@ func _line() -> String:
 		return "pick-a-row"
 	if Progress.chapter_done(kid_id, "beach") and Voice.has_line(REPLAY_LINE):
 		return REPLAY_LINE
-	if Voice.has_line(NEXT_STOP_LINE):
+	if Voice.has_line(NEXT_STOP_LINE) and next_stop() != "":
 		return NEXT_STOP_LINE
 	return "all-packed"
 

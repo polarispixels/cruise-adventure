@@ -554,5 +554,9 @@
  {
   "id": "hotel-night",
   "text": "Good night, Florida!"
+ },
+ {
+  "id": "next-stop",
+  "text": "Tap the next stop!"
  }
 ]
