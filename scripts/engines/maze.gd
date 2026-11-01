@@ -50,7 +50,7 @@ func _defaults() -> Dictionary:
 
 func _build() -> void:
 	if data.has("fixed"):
-		maze = MazeModel.from_rows(data["fixed"] as Array, str(data.get("goal", "G")))
+		maze = MazeModel.from_rows(data["fixed"] as Array, str(data.get("goal", "G")), bool(data.get("fixed_thin_walls", false)))
 	else:
 		var g: Dictionary = data.get("generate", {})
 		var rng := RandomNumberGenerator.new()
@@ -133,6 +133,8 @@ func sibling_position() -> Vector2:
 
 
 func _press(local: Vector2) -> bool:
+	if bool(data.get("hold_input_until_intro", false)) and not intro_done:
+		return false
 	return local.distance_to(token_local()) <= GRAB_CELLS * _cell
 
 
@@ -283,7 +285,11 @@ func _draw_board() -> void:
 	var whole := Rect2(_origin, Vector2(maze.size) * _cell)
 	if fill.a > 0.0:
 		_board.add_child(_rect_poly(whole, fill))
-	if data.has("fixed"):
+	if data.has("fixed") and bool(data.get("fixed_thin_walls", false)):
+		for c: Vector2i in maze.walls:
+			_board.add_child(_rect_poly(Rect2(_origin + Vector2(c) * _cell, Vector2.ONE * _cell).grow(-2), wall))
+		_draw_edge_walls(wall)
+	elif data.has("fixed"):
 		for c: Vector2i in maze.walls:
 			_board.add_child(_rect_poly(Rect2(_origin + Vector2(c) * _cell, Vector2.ONE * _cell).grow(-2), wall))
 		var frame := Line2D.new()
