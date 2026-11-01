@@ -589,7 +589,7 @@ def render_media(root: Path) -> str:
 </style></head>
 <body>
 <div class="top"><h1>Media</h1><p>Every picture, clip, voice line and sound, and what is still needed.</p><p class="stamp">{built}</p>
-<div class="badges"><a href="../">&#9654; Play in the browser</a><a class="alt" href="../docs/">Project page</a></div></div>
+<div class="badges"><a href="../../">&#9654; Play in the browser</a><a class="alt" href="../">Project page</a></div></div>
 <main>
 <nav class="toc"><a href="#images">Images</a><a href="#video">Video</a><a href="#sounds">Sounds and music</a><a href="#voices">Voice lines</a></nav>
 <div class="overview">{summary}</div>
