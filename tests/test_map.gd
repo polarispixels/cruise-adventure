@@ -17,6 +17,7 @@ func _make(t, kid_id := "becca", done: Array = []) -> Node2D:
 	game.navigate = false
 	game.last_scene_request = ""
 	game.level = -1
+	game.stop_chapter()
 	_requests.clear()
 	if not game.scene_requested.is_connected(_on_request):
 		game.scene_requested.connect(_on_request)
@@ -31,6 +32,9 @@ func _make(t, kid_id := "becca", done: Array = []) -> Node2D:
 
 func _done(t, map: Node) -> void:
 	map.free()
+	var game: Node = t.tree.root.get_node("Game")
+	game.stop_chapter()
+	game.use_chapters([])
 	var progress: Node = t.tree.root.get_node("Progress")
 	progress.reset()
 	progress.path = "user://progress.json"
@@ -96,7 +100,6 @@ func test_tap_next_row_plays_it(t) -> void:
 	var game: Node = t.tree.root.get_node("Game")
 	t.eq(game.last_scene_request, game.INTRO, "a new row starts with its video, then the room")
 	t.eq(game.level, 1, "level 1")
-	game.intro_level = -1
 	_done(t, map)
 
 
@@ -253,4 +256,154 @@ func test_airport_button_only_after_the_car(t) -> void:
 	t.check(not Rect2(button.global_position, button.size).intersects(Rect2(car.global_position, car.size)), "clear of the car button")
 	await _tap(t, button.global_position + button.size / 2)
 	t.eq(game.last_scene_request, "res://scenes/checkin.tscn", "to the airport")
+	_done(t, map)
+
+
+## Every chapter as built: the real registry, with a placeholder segment in each empty one.
+func _all_built(t) -> void:
+	var game: Node = t.tree.root.get_node("Game")
+	game.use_chapters([])
+	var list: Array = game.chapters().duplicate(true)
+	for c: Dictionary in list:
+		if (c["segments"] as Array).is_empty() and not c.get("dropped", false):
+			c["segments"] = [{"kind": "clip", "name": "placeholder-" + c["id"]}]
+	game.use_chapters(list)
+
+
+func _map_with(t, kid_id: String, chapters_done: Array) -> Node2D:
+	var progress: Node = t.tree.root.get_node("Progress")
+	progress.path = TMP
+	progress.reset()
+	for row in 4:
+		progress.mark_done(kid_id, row)
+	for id: String in chapters_done:
+		progress.mark_chapter_done(kid_id, id)
+	var game: Node = t.tree.root.get_node("Game")
+	game.navigate = false
+	game.last_scene_request = ""
+	game.kid = load("res://data/%s.tres" % kid_id)
+	var map: Node2D = load("res://scenes/map.tscn").instantiate()
+	t.tree.root.add_child(map)
+	await t.tree.process_frame
+	await t.tree.process_frame
+	_to_screen = t.tree.root.get_final_transform() * map.get_canvas_transform()
+	return map
+
+
+const ALL_STOPS := ["car", "airport", "flight", "florida", "aboard", "island1", "island2", "seaday", "beach"]
+
+
+func test_journey_has_a_stop_per_chapter_7_to_14(t) -> void:
+	_all_built(t)
+	var map := await _map_with(t, "jack", [])
+	t.eq(map.stop_ids, ALL_STOPS as Array[String], "every stop from the car to the beach, in order")
+	t.eq(map.stop_button("car"), map.get_node("CarButton"), "the SUV is the car stop")
+	t.eq(map.stop_button("airport"), map.get_node("AirportButton"), "the boarding pass is the airport stop")
+	t.eq(map.next_stop(), "car", "the car is next")
+	_done(t, map)
+
+
+func test_unbuilt_chapters_have_no_stop(t) -> void:
+	var map := await _map_with(t, "jack", ["car", "airport"])
+	t.eq(map.stop_ids, ["car", "airport"] as Array[String], "only chapters with segments")
+	_done(t, map)
+
+
+func test_stops_fit_the_tablet_and_never_overlap(t) -> void:
+	_all_built(t)
+	var window: Window = t.tree.root
+	var old_size := window.size
+	for size in [Vector2i(1920, 1200), Vector2i(1920, 1080)]:
+		window.size = size
+		var map := await _map_with(t, "becca", ALL_STOPS)
+		var view_size := map.get_viewport().get_visible_rect().size
+		var view := Rect2(Vector2(960, 540) - view_size / 2, view_size)
+		var card: Node2D = map.get_node("Card")
+		var card_rect := Rect2(card.global_position, Vector2(1200, 1600) * card.scale)
+		var helper: Character = map.get_node("Helper")
+		var rects: Array[Rect2] = []
+		for id in map.stop_ids:
+			var b: TextureButton = map.stop_button(id)
+			var r := Rect2(b.global_position, b.size)
+			t.check(b.visible, "%s shows" % id)
+			t.check(view.encloses(r), "%s on screen at %s: %s in %s" % [id, size, r, view])
+			t.check(not r.intersects(card_rect), "%s clear of the card" % id)
+			t.check(not r.has_point(helper.global_position), "%s clear of the helper's feet" % id)
+			t.check(b.size.y >= 120.0, "%s big enough to tap" % id)
+			for other in rects:
+				t.check(not r.intersects(other), "%s clear of the other stops" % id)
+			rects.append(r)
+		_done(t, map)
+	window.size = old_size
+
+
+func test_next_stop_wiggles_done_stops_have_a_check(t) -> void:
+	_all_built(t)
+	var map := await _map_with(t, "becca", ["car", "airport", "flight"])
+	t.eq(map.next_stop(), "florida", "florida is next")
+	for id in ["car", "airport", "flight"]:
+		t.check(map.stop_button(id).get_node_or_null("Check") != null, "%s has a check" % id)
+	t.check(map.stop_button("florida").get_node_or_null("Check") == null, "florida has none")
+	t.check(map.stop_button("florida").visible, "florida shows")
+	t.check(not map.stop_button("aboard").visible, "later stops wait")
+	await t.tree.create_timer(0.3).timeout
+	t.check(absf(map.stop_button("florida").rotation) > 0.01, "florida wiggles")
+	t.eq(map.stop_button("flight").rotation, 0.0, "a done stop stays still")
+	_done(t, map)
+
+
+func test_tap_next_stop_plays_it(t) -> void:
+	_all_built(t)
+	var map := await _map_with(t, "jack", ["car", "airport"])
+	await _tap(t, map.stop_point("flight"))
+	var game: Node = t.tree.root.get_node("Game")
+	t.eq(game.last_scene_request, "res://scenes/intro.tscn", "the flight starts")
+	t.eq(game.segment.get("chapter"), "flight", "in the flight chapter")
+	_done(t, map)
+
+
+func test_tap_done_stop_replays_it(t) -> void:
+	_all_built(t)
+	var map := await _map_with(t, "becca", ["car", "airport", "flight", "florida"])
+	await _tap(t, map.stop_point("car"))
+	var game: Node = t.tree.root.get_node("Game")
+	t.eq(game.last_scene_request, "res://scenes/trunk.tscn", "a done chapter replays, without its once-only clip")
+	_done(t, map)
+
+
+func test_light_up_route_lights_every_stop(t) -> void:
+	_all_built(t)
+	var map := await _map_with(t, "jack", ["car"])
+	t.check(not map.route_lit(), "not lit yet")
+	map.light_up_route()
+	await t.tree.create_timer(0.1).timeout
+	t.check(map.route_lit(), "the route is lit")
+	for id in map.stop_ids:
+		t.check(map.stop_button(id).visible, "%s shows" % id)
+	t.eq((map.get_node("Route") as Line2D).points.size(), ALL_STOPS.size(), "the route runs through every stop")
+	_done(t, map)
+
+
+func test_finale_segment_lights_up_and_goes_on(t) -> void:
+	_all_built(t)
+	var game: Node = t.tree.root.get_node("Game")
+	var list: Array = game.chapters()
+	for c: Dictionary in list:
+		if c["id"] == "beach":
+			c["segments"] = [{"kind": "scene", "scene": "res://scenes/map.tscn", "finale": true},
+				{"kind": "clip", "name": "placeholder-celebration"}]
+	var progress: Node = t.tree.root.get_node("Progress")
+	progress.path = TMP
+	progress.reset()
+	game.navigate = false
+	game.kid = load("res://data/becca.tres")
+	game.play_chapter("beach")
+	t.eq(game.last_scene_request, "res://scenes/map.tscn", "the map is the finale's first segment")
+	var map := await _map_with(t, "becca", ALL_STOPS.slice(0, 8))
+	t.check(map.route_lit(), "the finale lights the route")
+	game.last_scene_request = ""
+	await _tap(t, map.stop_point("car"))
+	t.eq(game.last_scene_request, "", "taps don't start anything during the finale")
+	await t.tree.create_timer(ALL_STOPS.size() * 0.35 + 2.5).timeout
+	t.eq(game.last_scene_request, "res://scenes/intro.tscn", "then the celebration")
 	_done(t, map)
