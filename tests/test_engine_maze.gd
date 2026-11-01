@@ -108,3 +108,50 @@ func test_layout_fits_the_tablet(t) -> void:
 		var scene: Node2D = await kit.make(t, SCENE, data, "jack", Vector2i(1920, 1200))
 		t.check(kit.on_screen(scene, scene.board_rect()), "the board is on screen: %s" % scene.board_rect())
 		kit.done(t, scene)
+
+
+## Chapter 11's drill as thin walls: a 13x7 text is a 6x3 maze with big cells.
+func _thin() -> Dictionary:
+	return {"done_delay": 0.0, "hint_delay": 60.0, "fixed_thin_walls": true,
+		"fixed": [
+			"#############",
+			"#S.>..|.....#",
+			"#-+-+.+.+-+.#",
+			"#...|.....|A#",
+			"#.+-+-+.+.+.#",
+			"#.......|..G#",
+			"#############"],
+		"becca": {"footprints": true}}
+
+
+func test_thin_walls_play_on_big_cells(t) -> void:
+	for kid_id in ["becca", "jack"]:
+		var scene: Node2D = await kit.make(t, SCENE, _thin(), kid_id)
+		t.eq(scene.maze.size, Vector2i(6, 3), "6x3 cells")
+		t.check(scene.cell_px() >= 180.0, "big cells: %s" % scene.cell_px())
+		t.check(kit.on_screen(scene, scene.board_rect()), "on screen")
+		var before: Vector2i = scene.token_cell()
+		await kit.drag(t, scene.token_position(), scene.cell_center(Vector2i(0, 1)))
+		t.eq(scene.token_cell(), before, "the thin wall below the start stops the token")
+		await kit.drag_through(t, _route(scene, scene.right_goal()))
+		t.check(kit.finished(t), "%s reached the right goal" % kid_id)
+		kit.done(t, scene)
+
+
+func test_hold_input_until_intro(t) -> void:
+	var data := _drill()
+	data["hold_input_until_intro"] = true
+	var scene: Node2D = await kit.make(t, SCENE, data, "jack")
+	scene.intro_done = false  # as if the start line were still playing
+	var before: Vector2i = scene.token_cell()
+	await kit.drag(t, scene.token_position(), scene.cell_center(Vector2i(1, 0)))
+	t.eq(scene.token_cell(), before, "drags wait for the intro")
+	scene.intro_done = true
+	await kit.drag(t, scene.token_position(), scene.cell_center(Vector2i(1, 0)))
+	t.eq(scene.token_cell(), Vector2i(1, 0), "then the token moves")
+	kit.done(t, scene)
+	scene = await kit.make(t, SCENE, _drill(), "jack")
+	scene.intro_done = false
+	await kit.drag(t, scene.token_position(), scene.cell_center(Vector2i(1, 0)))
+	t.eq(scene.token_cell(), Vector2i(1, 0), "without the key, drags work at once")
+	kit.done(t, scene)

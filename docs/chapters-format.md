@@ -80,6 +80,9 @@ A clip or still segment's `name` (after placeholders) names both files:
 else a plain placeholder card showing the segment's `id` or `name` (developer placeholder). A tap
 skips any of the three. A missing clip never blocks a chapter.
 
+A clip or still segment may have `"line": "<voice id>"`: the sibling says it when the picture ends
+(or is skipped), and the chapter goes on once the line is over ("We landed!" over a still).
+
 Per-kid clips: `"name": "{kid}-airport"`, or a kid block `"jack": {"name": "jack-car"}`.
 
 ## The contract for a segment scene
@@ -218,7 +221,13 @@ safe area, **x 100-1572** (all of y 0-941 shows).
 | `player_feet` | none (Tap moments: `[700, 900]`) | Where the kid's `Character` stands. Absent: no kid on screen. |
 | `helper_feet` | `[1480, 930]` (Maze: none) | Where the sibling stands. `null`: no sibling. Hints point from here. |
 | `kid_scale` | `0.16` | Character size (as at security). `helper_mirrored` (default true) faces the sibling left. |
+| `foreground`, `foreground_rect` | none, the whole stage | A picture drawn over the stage (and the characters), under the Home button: a window frame, a car interior edge. `foreground_rect` `[x, y, w, h]`. |
+| `lines` | `[]` | `[{"y", "from_x", "to_x", "color", "width"}]` drawn across the stage under the characters (the height line). Defaults: the safe area's width, `#e03030`, 8. |
+| `done_overlay`, `done_overlay_sound` | none | `{"texture", "pos", "size"}` (`pos` is its center) fades in when the segment is done (the seatbelt sign lights up), with an optional sound. |
+| `helper_scale` | `kid_scale` | The sibling's size, when it differs from the kid's (the height sign). |
 | `start_line` | `""` | Voice line id said at the start. `start_sound`: an `Sfx` name played at the start. |
+| `start_sound_after_line` | `false` | `true`: `start_sound` waits until `start_line` has finished (otherwise both start together). |
+| `after_sound_line` | `""` | Said when `start_sound` ends. The music dips under the start sound as under a voice line. `intro_done` (and the `intro_finished` signal) follow when the start line, start sound and this line are all over. |
 | `done_line` | `""` | Said at the end (waits for the line before it). `done_sound`: an `Sfx` name. |
 | `done_delay` | `1.6` | Seconds of cheering between finishing and `Game.segment_done()`. Tests use `0`. |
 | `hint_delay` | `Game.kid.hint_delay` (6 Becca, 8 Jack-Jack) | Seconds without a touch before the idle hint; it repeats every `hint_delay`. |
@@ -243,6 +252,9 @@ After two misses, or the idle delay, the sibling points and the right choice pul
 | `layout` | `row` | `row` (across the safe area at `row_y`), `grid` (`columns`, `grid_rect`), `doors` (a hallway `door_spacing` apart at `row_y`, wider than the screen; dragging scrolls it, a tap picks; also right for an aisle of seat rows), or per-choice `pos`. |
 | `choice_height` | `220` | Choice height; a choice wider than its place shrinks to fit. |
 | `target_pos`, `target_height`, `target_texture` | `[836, 150]`, `200`, none | Where the target shows; `target_texture` is a card behind the sticker or number (boarding pass, key card). |
+| `label_at`, `label_size` | `[0, 0]`, `0.32 x` the choice height | Where a choice's `label` sits, as `[dx, dy]` from its texture center in background pixels, and its font size. A choice may set its own. |
+| `overlay`, `overlay_scale` (per choice) | none, `0.5` | A picture drawn centered on the choice (a face on a key card), `overlay_scale` x the choice height. `overlay_scale` may also be set for all choices. |
+| `target_overlay`, `target_label` (per round, or for all) | none | The same face and number on the target card, centered and at `label_at` / `label_size` scaled to the target's height. |
 | `shuffle`, `seed` | `false` | Shuffle the choices (fixed by `seed`). |
 | `right_line`, `wrong_line`, `round_line` | `found`, `""`, `""` | Lines. `right_sound` (`tag-snap`), `wrong_sound` (none). `round_delay` (0.6 s) between rounds. |
 
@@ -277,6 +289,11 @@ slides back. A tap sends a thing to the next slot that takes it.
 | `always_glow` | `false` | Glow every free slot even when nothing is held (sunscreen spots). |
 | `tap_places` | `true` | A tap places a thing in its next slot. |
 | `place_line`, `wrong_line` | `found`, `""` | `place_sound`: `tag-snap`. |
+
+Swimsuit on: slot `texture` the kid, `fill_texture` the kid in the swimsuit, slot
+`hide_marker_on_fill: true` (the slot's own `texture` disappears as the fill shows; without it,
+the fill is drawn over it), and the item's `hide_on_place: true` puts the swimsuit away. An item's
+`appears_after: "<slot id>"` keeps it hidden (and untouchable) until that slot is filled.
 
 Done when every non-reusable thing is placed, and with a reusable thing, every slot is filled.
 
@@ -331,6 +348,8 @@ token toward the way and, with `footprints`, shows the next three steps.
 
 | Key | Default | Meaning |
 | --- | --- | --- |
+| `fixed_thin_walls` | `false` | `true`: `fixed` is a (2w+1) x (2h+1) grid; odd-indexed characters are the cells (`S`, `G`, `A`-`F`, arrows, `.`, `#` for a solid cell) and the characters between two cells are the wall between them (`#`, `|`, `-`, `+` closed, anything else open). A 13x7 text is a 6x3 maze with big cells. `MazeModel.from_rows(rows, goal, true)`. |
+| `hold_input_until_intro` | `false` | Drags do nothing until the start line, start sound and `after_sound_line` have finished. |
 | `fixed` | | Rows of text, one character per cell: `#` wall, `.` floor, `S` start, `G` the right goal, `A`-`F` other goals, `>` `<` `^` `v` floor with an arrow sign. |
 | `goal` | `G` | Which goal letter is right (fixed layouts). |
 | `generate` | | `{size: [w, h], braid, loops, max_turns, gates, seed}`: a fresh maze like the airport's; the goals are in the right column. |
@@ -367,6 +386,8 @@ tapped.
 | `loop_rect` | `[300, 380, 1072, 380]` | The loop. `track_texture` (+ `track_rect`): a carousel picture under it. |
 | `speed` | `120` | Background pixels per second. Becca's data is slower. |
 | `item_height` | `170` | |
+| (drift spacing) | | Drifting things are spaced among themselves; things with a `pos` (jets) don't count. The hint points at an on-screen moving target, and at a still one only when no moving target is left. |
+| `tap_effect`, `tap_effect_sound` | none | A picture shown for 0.4 s where a target is tapped (a water-jet spray; `tap_effect_height`, default `item_height`), and a sound with it. |
 | `collect_point` | none | Where tapped targets go (in a row). Absent: they pop away. |
 | `right_line`, `wrong_line` | `found`, `""` | `right_sound`: `tag-snap`; `wrong_sound`: none. |
 
@@ -395,6 +416,8 @@ the thing pulses and the sibling points. Taps between moments do nothing.
 | `arrive_from`, `arrive_to`, `leave_to`, `arrive_time` | `[1800, 700]`, `[1100, 700]`, `[-200, 700]`, `1.5` | The arrival. |
 | `action` | `hop` | `hop` (up `hop_height`, 140, and down) or `ride` (along `ride_path` `[[x, y], ...]` in `ride_time`, 1.6 s). `action_pose`: `arms-up`. |
 | `actor` | `player` | `player` or `helper` (the sibling does it while the kid watches). |
+| `keep_thing` | `false` | The arrived thing stays after the tap instead of leaving and fading. |
+| `ride_end_texture`, `ride_end_size`, `ride_end_sound` | none, `[300, 200]`, none | A burst (a splash) shown for 0.8 s at the last `ride_path` point when a ride ends. |
 | `prompt_line`, `success_line` | `""`, `found` | `arrive_sound` (none), `success_sound` (`whoosh`). |
 
 ```json

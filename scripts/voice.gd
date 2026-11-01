@@ -2,6 +2,8 @@
 extends Node
 
 signal said(line_id: String)
+## A line stopped playing: it ended, or another line or stop() cut it off.
+signal line_finished(line_id: String)
 
 ## Tests may turn this off: say() then only records last_line and emits said.
 var enabled := true
@@ -18,7 +20,7 @@ var _pending_speaker: KidProfile
 
 func _ready() -> void:
 	add_child(_player)
-	_player.finished.connect(_play_pending)
+	_player.finished.connect(_on_finished)
 
 
 ## wait: let the line that's playing finish first (an instruction after a cheer).
@@ -36,6 +38,11 @@ func say(line_id: String, speaker: KidProfile, wait := false) -> void:
 	_play(line_id, speaker)
 
 
+func _on_finished() -> void:
+	line_finished.emit(current_line)
+	_play_pending()
+
+
 func _play_pending() -> void:
 	if _pending == "":
 		return
@@ -45,6 +52,9 @@ func _play_pending() -> void:
 
 
 func _play(line_id: String, speaker: KidProfile) -> void:
+	if _player.playing:
+		_player.stop()
+		line_finished.emit(current_line)
 	current_line = line_id
 	var path := "res://assets/voice/%s/%s.ogg" % [speaker.id, line_id]
 	if not ResourceLoader.exists(path):
@@ -57,7 +67,9 @@ func _play(line_id: String, speaker: KidProfile) -> void:
 
 func stop() -> void:
 	_pending = ""
-	_player.stop()
+	if _player.playing:
+		_player.stop()
+		line_finished.emit(current_line)
 
 
 func is_speaking() -> bool:

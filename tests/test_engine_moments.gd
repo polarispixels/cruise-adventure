@@ -100,3 +100,36 @@ func test_layout_fits_the_tablet(t) -> void:
 	t.check(kit.on_screen(scene, scene.thing_rect()), "the wave arrives on screen")
 	t.check(kit.on_screen(scene, scene.player.hit_rect()), "the kid is on screen")
 	kit.done(t, scene)
+
+
+func test_keep_thing_and_ride_end(t) -> void:
+	var data := {"done_delay": 0.0, "hint_delay": 60.0, "moments": 1, "arrive_time": 0.1, "action": "ride",
+		"ride_path": [[700, 600], [900, 800]], "ride_time": 0.2, "keep_thing": true,
+		"ride_end_texture": "res://assets/art/star.png", "ride_end_size": [300, 200], "ride_end_sound": "whoosh",
+		"textures": ["res://assets/art/star.png"]}
+	var sfx: Node = t.tree.root.get_node("Sfx")
+	var scene: Node2D = await kit.make(t, SCENE, data, "jack")
+	await kit.wait(t, 0.2)
+	await kit.tap(t, Vector2(400, 300))
+	var thing: Sprite2D = scene.get_node("Stage/Thing")
+	await kit.wait(t, 0.35)
+	t.check(thing.visible and thing.modulate.a > 0.99, "the thing stays")
+	var burst: Sprite2D = scene.get_node_or_null("Stage/RideEnd")
+	t.check(burst != null, "the splash shows at the end of the ride")
+	if burst:
+		t.check(burst.position.distance_to(Vector2(900, 800)) < 1.0, "at the last ride point")
+	t.eq(sfx.last, "whoosh", "with its sound")
+	await kit.wait(t, 1.0)
+	t.check(scene.get_node_or_null("Stage/RideEnd") == null, "and goes")
+	kit.done(t, scene)
+
+
+func test_thing_leaves_without_keep_thing(t) -> void:
+	var scene: Node2D = await kit.make(t, SCENE, {"done_delay": 0.0, "hint_delay": 60.0, "moments": 2,
+		"arrive_time": 0.1, "gap": 5.0}, "jack")
+	await kit.wait(t, 0.2)
+	await kit.tap(t, Vector2(400, 300))
+	await kit.wait(t, 0.3)
+	t.check((scene.get_node("Stage/Thing") as Sprite2D).modulate.a < 0.05, "faded as before")
+	t.check(scene.get_node_or_null("Stage/RideEnd") == null, "no burst")
+	kit.done(t, scene)
