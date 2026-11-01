@@ -239,3 +239,49 @@ func test_buddy_on_the_backpack_still_gets_a_hug(t) -> void:
 	await _drag(t, scene.item_point("buddy"), scene.backpack_point())
 	t.check(_said.has("hug-buddy"), "the buddy gets a hug either way")
 	_done(t, scene)
+
+
+func _glows(scene: Node2D) -> Array:
+	return scene.get_node("Stage/Glows").shown()
+
+
+func _local(scene: Node2D, world: Vector2) -> Vector2:
+	return scene.get_node("Stage").to_local(world)
+
+
+func test_trays_glow_while_things_wait(t) -> void:
+	var scene := await _make(t, "becca")
+	var glows: Array = _glows(scene)
+	t.eq(glows.size(), 3, "every tray glows at the start")
+	for i in 3:
+		t.check(glows.any(func(r): return r.has_point(_local(scene, scene.tray_point(i)))), "tray %d glows" % i)
+	_done(t, scene)
+
+
+func test_loaded_trays_glow_to_be_tapped_then_the_arch(t) -> void:
+	var scene := await _make(t, "becca")
+	for pair in [["becca-backpack", 0], ["tablet", 0], ["buddy", 1]]:
+		await _drag(t, scene.item_point(pair[0]), scene.tray_point(pair[1]))
+	var glows: Array = _glows(scene)
+	t.eq(glows.size(), 2, "the two loaded trays glow, not the empty one")
+	await _tap(t, scene.tray_point(0))
+	await t.tree.create_timer(scene.SCAN_TIME + 0.6).timeout
+	await _tap(t, scene.tray_point(1))
+	await t.tree.create_timer(scene.SCAN_TIME + 0.6).timeout
+	glows = _glows(scene)
+	t.eq(glows.size(), 1, "then just the arch")
+	if glows.size() == 1:
+		t.check(glows[0].has_point(scene.ARCH.get_center()), "around the arch")
+	_done(t, scene)
+
+
+func test_backpack_glows_when_collecting(t) -> void:
+	var scene := await _make(t, "becca")
+	await _scan_all(t, scene, {"becca-backpack": 0, "tablet": 1, "buddy": 2})
+	await _tap(t, scene.arch_point())
+	await t.tree.create_timer(scene.WALK_TIME + 0.5).timeout
+	var glows: Array = _glows(scene)
+	t.eq(glows.size(), 1, "one glow")
+	if glows.size() == 1:
+		t.check(glows[0].has_point(_local(scene, scene.backpack_point())), "around the backpack")
+	_done(t, scene)
