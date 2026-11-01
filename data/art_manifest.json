@@ -3699,5 +3699,135 @@
    "shape": "rect",
    "label": "still for beach-celebration"
   }
+ },
+ {
+  "game": "assets/florida/baggage-claim.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/minivan-interior.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/minivan-open.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/minivan-closed.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/booster-blue.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/booster-pink.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/decoy-blue-case.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/decoy-pink-case.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/decoy-yellow-bag.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/decoy-brown-box.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/decoy-green-backpack.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/decoy-black-case.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/florida/decoy-red-case.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/stills/florida-arrival.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/stills/florida-drive.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/stills/hotel-night.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/florida/art.json"
+ },
+ {
+  "game": "assets/sfx/carousel-start.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/seatbelt-click.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/hatch-close.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
  }
 ]
