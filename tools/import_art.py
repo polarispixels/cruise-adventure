@@ -10,7 +10,7 @@ Generators:
   music       - synthesize the placeholder background tunes (tools/make_music.py)
   sfx         - synthesize the placeholder sound effects (tools/make_sfx.py)
 
-Usage: python3 tools/import_art.py        (idempotent; ART_ROOT overrides the art project path)
+Usage: python3 tools/import_art.py [--only <path text>]   (idempotent; ART_ROOT overrides the art project path)
 """
 import colorsys
 import json
@@ -31,6 +31,7 @@ import make_placeholders  # noqa: E402
 import make_tokens  # noqa: E402
 import make_sfx  # noqa: E402
 import make_voice  # noqa: E402
+import video_encode  # noqa: E402
 
 ART_ROOT = Path(os.environ.get("ART_ROOT", "/mnt/c/Users/rgris/Documents/ChatGPT/Kids Packing Video"))
 MANIFEST = ROOT / "data" / "art_manifest.json"
@@ -69,27 +70,23 @@ def docker():
 
 
 def convert_video(src: Path, dst: Path, start: float = 0.0, cover: list | None = None) -> None:
-    """MP4 -> 720p Theora. start: skip this many seconds (a clip delivered with
-    another stuck on the front). cover: [x, y, w, h] in the source's pixels to
-    blur away (burned-in caption text)."""
+    """MP4 -> Theora sized for the tablet (settings in tools/video_encode.py)."""
     cli, mount = docker()
     work = dst.parent
     shutil.copyfile(src, work / "_src.mp4")
-    vf = "scale=1280:720"
-    if cover:
-        vf = "delogo=x=%d:y=%d:w=%d:h=%d," % tuple(cover) + vf
     try:
-        subprocess.run(cli + [
-            "run", "--rm", "-v", f"{mount(work)}:/a", FFMPEG_IMAGE, "-y", "-loglevel", "error",
-            "-ss", str(start), "-i", "/a/_src.mp4", "-vf", vf, "-c:v", "libtheora", "-q:v", "7",
-            "-c:a", "libvorbis", "-q:a", "4", f"/a/{dst.name}",
-        ], check=True)
+        subprocess.run(cli + ["run", "--rm", "-v", f"{mount(work)}:/a", FFMPEG_IMAGE]
+                       + video_encode.ffmpeg_args("/a/_src.mp4", f"/a/{dst.name}", start, cover), check=True)
     finally:
         (work / "_src.mp4").unlink(missing_ok=True)
 
 
 def main() -> None:
     entries = json.loads(MANIFEST.read_text())
+    # --only <text>: just the entries whose game path contains the text.
+    if "--only" in sys.argv:
+        only = sys.argv[sys.argv.index("--only") + 1]
+        entries = [e for e in entries if only in e["game"]]
     # Copies first, so recolors can read the card items they derive from.
     order = {"copy": 0, "recolor": 1, "placeholder": 2, "token": 3, "voice": 4, "video": 5, "music": 6, "sfx": 7}
     for e in sorted(entries, key=lambda e: order[e["generator"]]):
