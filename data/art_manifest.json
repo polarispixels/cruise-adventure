@@ -2682,5 +2682,254 @@
   "source": "placeholder",
   "approved": false,
   "spec": "data/chapters/map-art.json"
+ },
+ {
+  "game": "assets/island/island-beach.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/island-sand.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/island-beach-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/island-sand-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/sunscreen.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/sun-spot.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/sun-dab.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/bucket.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-flag.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-spiral.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-fan.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-cone.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-star.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-clam.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-outline.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-piece-1.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-piece-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-piece-3.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-piece-4.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-piece-5.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-conch-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-scallop-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-sand-dollar-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-snail-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/shell-mussel-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-outline-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-piece-1-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-piece-2-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-piece-3-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-piece-4-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/island/castle-piece-5-2.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/island/art.json"
+ },
+ {
+  "game": "assets/stills/island-arrival.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "placeholder": {
+   "kind": "still",
+   "canvas": [
+    854,
+    480
+   ],
+   "color": "#B9A6E0",
+   "shape": "rect",
+   "label": "still for island-arrival"
+  }
+ },
+ {
+  "game": "assets/stills/island-splash.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "placeholder": {
+   "kind": "still",
+   "canvas": [
+    854,
+    480
+   ],
+   "color": "#B9A6E0",
+   "shape": "rect",
+   "label": "still for island-splash"
+  }
  }
 ]
