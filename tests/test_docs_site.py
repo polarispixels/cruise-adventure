@@ -114,6 +114,15 @@ class CheckTest(unittest.TestCase):
         self.assertIn("Game last updated 12:30:00 AM, Thursday, July 9",
                       site.updated_stamp("2026-07-09T04:30:00+00:00", "abc1234"))
 
+    def test_not_started_status_uses_the_quiet_pill_but_in_playtest_stays_going(self):
+        def pill(status):
+            ch = {"number": 9, "part": 1, "title": "T", "checks": [{"label": "a"}], "status": status}
+            return site._chapter(ch, self.root)
+        self.assertIn("later", pill("Not started"))
+        self.assertNotIn("going", pill("Not started"))
+        self.assertIn("going", pill("In playtest"))
+        self.assertIn("In playtest", pill("In playtest"))
+
 
 if __name__ == "__main__":
     unittest.main()

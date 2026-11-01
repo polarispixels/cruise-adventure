@@ -100,7 +100,8 @@ def _chapter(ch: dict, root: Path) -> str:
     done = sum(1 for _, d in ticks if d)
     cls, label = _status(done, len(ticks))
     if ch.get("status") and cls != "shipped":
-        cls, label = "going", ch["status"]
+        # "Not started" keeps the quiet "later" color; any other status is work in motion.
+        cls, label = ("later" if ch["status"].strip().lower() == "not started" else "going"), ch["status"]
     items = "".join(f'<li class="{"yes" if d else "no"}">{e(c["label"])}</li>' for c, d in ticks)
     pics = "".join(_img(n, c) for n, c in ch.get("images", []))
     panels = f' · storyboard panels {e(ch["panels"])}' if ch.get("panels") else ""
