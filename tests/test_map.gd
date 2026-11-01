@@ -304,6 +304,14 @@ func test_journey_has_a_stop_per_chapter_7_to_14(t) -> void:
 
 
 func test_unbuilt_chapters_have_no_stop(t) -> void:
+	# Only chapters 7 and 8 count as built here, whatever the later chapters have grown since.
+	var game: Node = t.tree.root.get_node("Game")
+	game.use_chapters([])
+	var list: Array = game.chapters().duplicate(true)
+	for c: Dictionary in list:
+		if not c["id"] in ["car", "airport"]:
+			c["segments"] = []
+	game.use_chapters(list)
 	var map := await _map_with(t, "jack", ["car", "airport"])
 	t.eq(map.stop_ids, ["car", "airport"] as Array[String], "only chapters with segments")
 	_done(t, map)
