@@ -1,5 +1,10 @@
 {
  "start_line": "",
+ "kid_scale": 0.28,
+ "player_feet": [
+  260,
+  720
+ ],
  "hint_line": "isle-decorate",
  "place_line": "found",
  "place_sound": "shell-clink",

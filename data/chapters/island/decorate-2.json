@@ -1,5 +1,10 @@
 {
  "start_line": "",
+ "kid_scale": 0.28,
+ "player_feet": [
+  260,
+  720
+ ],
  "hint_line": "isle-decorate",
  "place_line": "found",
  "place_sound": "shell-clink",
@@ -82,27 +87,27 @@
   "items": [
    {
     "id": "sh1",
-    "texture": "res://assets/island/shell-conch-2.png",
+    "texture": "res://assets/island/shell-scallop-2.png",
     "height": 130
    },
    {
     "id": "sh2",
-    "texture": "res://assets/island/shell-conch-2.png",
+    "texture": "res://assets/island/shell-scallop-2.png",
     "height": 130
    },
    {
     "id": "sh3",
-    "texture": "res://assets/island/shell-conch-2.png",
+    "texture": "res://assets/island/shell-scallop-2.png",
     "height": 130
    },
    {
     "id": "sh4",
-    "texture": "res://assets/island/shell-conch-2.png",
+    "texture": "res://assets/island/shell-scallop-2.png",
     "height": 130
    },
    {
     "id": "sh5",
-    "texture": "res://assets/island/shell-conch-2.png",
+    "texture": "res://assets/island/shell-scallop-2.png",
     "height": 130
    }
   ],
@@ -218,17 +223,17 @@
   "items": [
    {
     "id": "sh1",
-    "texture": "res://assets/island/shell-conch-2.png",
+    "texture": "res://assets/island/shell-scallop-2.png",
     "height": 170
    },
    {
     "id": "sh2",
-    "texture": "res://assets/island/shell-conch-2.png",
+    "texture": "res://assets/island/shell-scallop-2.png",
     "height": 170
    },
    {
     "id": "sh3",
-    "texture": "res://assets/island/shell-conch-2.png",
+    "texture": "res://assets/island/shell-scallop-2.png",
     "height": 170
    }
   ],

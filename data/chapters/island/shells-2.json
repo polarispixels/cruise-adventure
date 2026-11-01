@@ -15,35 +15,40 @@
   150
  ],
  "target_height": 200,
+ "kid_scale": 0.3,
+ "player_feet": [
+  230,
+  900
+ ],
  "choices": [
   {
    "id": "s1",
    "match": "shell",
-   "texture": "res://assets/island/shell-conch-2.png"
+   "texture": "res://assets/island/shell-scallop-2.png"
   },
   {
    "id": "s2",
    "match": "shell",
-   "texture": "res://assets/island/shell-conch-2.png"
+   "texture": "res://assets/island/shell-scallop-2.png"
   },
   {
    "id": "s3",
    "match": "shell",
-   "texture": "res://assets/island/shell-conch-2.png"
+   "texture": "res://assets/island/shell-scallop-2.png"
   },
   {
    "id": "s4",
    "match": "shell",
-   "texture": "res://assets/island/shell-conch-2.png"
+   "texture": "res://assets/island/shell-scallop-2.png"
   },
   {
    "id": "s5",
    "match": "shell",
-   "texture": "res://assets/island/shell-conch-2.png"
+   "texture": "res://assets/island/shell-scallop-2.png"
   },
   {
    "id": "d1",
-   "texture": "res://assets/island/shell-scallop-2.png"
+   "texture": "res://assets/island/shell-conch-2.png"
   },
   {
    "id": "d2",
@@ -59,7 +64,7 @@
   },
   {
    "id": "d5",
-   "texture": "res://assets/island/shell-scallop-2.png"
+   "texture": "res://assets/island/shell-limpet-2.png"
   }
  ],
  "shuffle": true,
@@ -75,9 +80,9 @@
   "count": 10,
   "columns": 5,
   "grid_rect": [
-   150,
+   360,
    330,
-   1200,
+   1000,
    520
   ],
   "choice_height": 150,

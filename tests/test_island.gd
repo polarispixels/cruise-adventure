@@ -223,10 +223,21 @@ func test_sandcastle(t) -> void:
 	await kit.wait(t, 0.5)
 	t.check(not scene.is_placed("p2"), "jack: not placed")
 	t.check(scene.item_point("p2").distance_to(home) < 2.0, "jack: slid back")
-	# Dropped on the outline (an inert slot) is not a wrong slot either: it just slides back.
-	await kit.drag(t, home, scene.slot_point("outline"))
+	# Dropped on the outline (an inert slot) but outside every piece slot: it just slides back.
+	var inside := Vector2(500, 250)
+	var outline: Rect2 = scene.slot_rects["outline"]
+	t.check(outline.has_point(inside), "the test point is inside the outline")
+	for slot_id in scene.slot_ids():
+		if slot_id != "outline":
+			t.check(not (scene.slot_rects[slot_id] as Rect2).grow(60.0).has_point(inside), "and clear of slot " + slot_id)
+	await kit.drag(t, home, scene.stage.to_global(inside))
 	await kit.wait(t, 0.5)
 	t.check(not scene.is_placed("p2"), "jack: the outline takes nothing")
+	t.check(scene.item_point("p2").distance_to(home) < 2.0, "jack: slid back from the outline")
+	# Ordered: the top waits for the keep.
+	await kit.drag(t, scene.item_point("p5"), scene.slot_point("p5"))
+	await kit.wait(t, 0.5)
+	t.check(not scene.is_placed("p5"), "jack: the top waits for the keep")
 	await _solve(t, scene, "castle")
 	t.check(kit.finished(t), "jack: castle built")
 	t.check(kit.said.has("isle-decorate"), "jack: now decorate it")
@@ -258,7 +269,25 @@ func test_decorate(t) -> void:
 		await kit.wait(t, 0.5)
 		t.check(not scene.is_placed("sh1"), kid_id + ": a shell dropped in the air slides back")
 		t.check(scene.item_point("sh1").distance_to(home) < 2.0, kid_id + ": slid back")
-		await _solve(t, scene, "decorate")
+		var dots: Array[String] = []
+		for slot_id in scene.slot_ids():
+			if slot_id.begins_with("dot-"):
+				dots.append(slot_id)
+		for i in dots.size():
+			var from: Vector2 = scene.item_point("sh%d" % (i + 1))
+			var to: Vector2 = scene.slot_point(dots[i])
+			await kit.touch(t, true, from)
+			for k in range(1, 5):
+				await kit.move(t, from.lerp(to, k / 4.0))
+			t.check(scene.glows.shown().size() > 0, kid_id + ": the dots glow while a shell is held")
+			for rect in scene.glows.shown():
+				for slot_id in scene.slot_ids():
+					if slot_id.begins_with("b"):
+						t.check(not rect.is_equal_approx(scene.slot_rects[slot_id]), "%s: no glow on built piece %s" % [kid_id, slot_id])
+			await kit.touch(t, false, to)
+			await kit.wait(t, 0.3)
+			t.check(scene.is_filled(dots[i]), "%s: %s is filled" % [kid_id, dots[i]])
+			t.check(not scene.is_filled("b1"), kid_id + ": the built castle takes no shell")
 		t.check(kit.finished(t), kid_id + ": done")
 		t.check(kit.said.has("isle-great-castle"), kid_id + ": what a sandcastle")
 		t.check(scene.stage.get_node_or_null("DoneOverlay") != null, kid_id + ": the flag pops up")
@@ -310,6 +339,13 @@ func test_day_two_is_data_only(t) -> void:
 	var shells2: Dictionary = game.merge_segment(_entry(game, "island2", "shells"), "jack")
 	t.check(str(shells1["choices"][0]["texture"]) != str(shells2["choices"][0]["texture"]), "day 2: a different shell set")
 	t.check(str(shells1["choices"][9]["texture"]) != str(shells2["choices"][9]["texture"]), "day 2: different decoys")
+	t.check(str(shells2["choices"][0]["texture"]).ends_with("shell-scallop-2.png"), "day 2: the target is the scallop")
+	for shells: Dictionary in [shells1, shells2]:
+		var seen := {}
+		for c: Dictionary in shells["choices"]:
+			if not c.has("match"):
+				seen[str(c["texture"])] = true
+		t.eq(seen.size(), 5, "five distinct decoy shapes")
 	var c1: Dictionary = game.merge_segment(_entry(game, "island1", "castle"), "jack")
 	var c2: Dictionary = game.merge_segment(_entry(game, "island2", "castle"), "jack")
 	t.check(str(c1["slots"][0]["texture"]) != str(c2["slots"][0]["texture"]), "day 2: a different castle outline")
@@ -347,6 +383,25 @@ func test_everything_is_on_screen_at_1920x1200(t) -> void:
 				t.check(kit.on_screen(scene, scene.player.hit_rect()), "%s %s: the kid is on screen" % [kid_id, id])
 			if scene.helper:
 				t.check(kit.on_screen(scene, scene.helper.hit_rect()), "%s %s: the sibling is on screen" % [kid_id, id])
+			_close(t, scene)
+
+
+func test_the_kid_is_there_to_cheer_and_stands_clear(t) -> void:
+	for kid_id in ["becca", "jack"]:
+		for id in ["shells", "castle", "decorate"]:
+			var scene: Node2D = await _open(t, id, kid_id, "island1", Vector2i(1920, 1200))
+			var label := "%s %s" % [kid_id, id]
+			t.check(scene.player != null, label + ": the kid is on screen")
+			var kid: Rect2 = scene.player.hit_rect()
+			t.check(kit.on_screen(scene, kid), label + ": the kid is fully on screen")
+			if id == "shells":
+				for c in scene.choice_ids():
+					t.check(not kid.intersects(scene.choice_rect(c)), "%s: the kid is clear of %s" % [label, c])
+			else:
+				for slot_id in scene.slot_ids():
+					t.check(not kid.intersects(scene.slot_rect(slot_id)), "%s: the kid is clear of slot %s" % [label, slot_id])
+				for item_id in scene.item_ids():
+					t.check(not kid.intersects(scene.item_rect(item_id)), "%s: the kid is clear of %s" % [label, item_id])
 			_close(t, scene)
 
 

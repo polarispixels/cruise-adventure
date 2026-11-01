@@ -142,7 +142,7 @@ func takes(slot: Dictionary, id: String) -> bool:
 		return false
 	if bool(data["ordered"]):
 		for s in _slots:
-			if not _filled.has(str(s.get("id", ""))):
+			if not _filled.has(str(s.get("id", ""))) and not bool(s.get("inert", false)):
 				if s != slot:
 					return false
 				break
@@ -295,7 +295,7 @@ func _all_done() -> bool:
 			return false
 	if reusable:
 		for s in _slots:
-			if not _filled.has(str(s.get("id", ""))):
+			if not _filled.has(str(s.get("id", ""))) and not bool(s.get("inert", false)):
 				return false
 	return true
 

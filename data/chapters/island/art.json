@@ -140,6 +140,16 @@
   "shape": "circle"
  },
  {
+  "file": "assets/island/shell-moon.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#C9A0DC",
+  "shape": "circle"
+ },
+ {
   "file": "assets/island/castle-outline.png",
   "canvas": [
    800,
@@ -201,7 +211,7 @@
   "shape": "rounded"
  },
  {
-  "file": "assets/island/shell-conch-2.png",
+  "file": "assets/island/shell-scallop-2.png",
   "canvas": [
    160,
    160
@@ -211,7 +221,7 @@
   "shape": "circle"
  },
  {
-  "file": "assets/island/shell-scallop-2.png",
+  "file": "assets/island/shell-conch-2.png",
   "canvas": [
    160,
    160
@@ -248,6 +258,16 @@
   ],
   "kind": "sprite",
   "color": "#7E96B0",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/island/shell-limpet-2.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#C9A0DC",
   "shape": "circle"
  },
  {

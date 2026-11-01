@@ -1,5 +1,10 @@
 {
  "start_line": "isle-castle",
+ "kid_scale": 0.28,
+ "player_feet": [
+  260,
+  720
+ ],
  "hint_line": "isle-in-castle",
  "place_line": "it-fits",
  "wrong_line": "try-another-spot",
@@ -69,6 +74,7 @@
   }
  ],
  "jack": {
+  "ordered": true,
   "items": [
    {
     "id": "p1",
@@ -103,6 +109,7 @@
   ]
  },
  "becca": {
+  "always_glow": true,
   "slots": [
    {
     "id": "outline",
