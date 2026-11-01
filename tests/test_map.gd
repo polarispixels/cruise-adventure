@@ -304,6 +304,13 @@ func test_journey_has_a_stop_per_chapter_7_to_14(t) -> void:
 
 
 func test_unbuilt_chapters_have_no_stop(t) -> void:
+	var game: Node = t.tree.root.get_node("Game")
+	game.use_chapters([])
+	var list: Array = game.chapters().duplicate(true)
+	for c: Dictionary in list:
+		if c["id"] not in ["car", "airport"]:
+			c["segments"] = []
+	game.use_chapters(list)
 	var map := await _map_with(t, "jack", ["car", "airport"])
 	t.eq(map.stop_ids, ["car", "airport"] as Array[String], "only chapters with segments")
 	_done(t, map)
@@ -357,7 +364,7 @@ func test_tap_next_stop_plays_it(t) -> void:
 	var map := await _map_with(t, "jack", ["car", "airport"])
 	await _tap(t, map.stop_point("flight"))
 	var game: Node = t.tree.root.get_node("Game")
-	t.eq(game.last_scene_request, "res://scenes/intro.tscn", "the flight starts")
+	t.eq(game.last_scene_request, "res://scenes/engines/match.tscn", "the flight starts at the seat")
 	t.eq(game.segment.get("chapter"), "flight", "in the flight chapter")
 	_done(t, map)
 

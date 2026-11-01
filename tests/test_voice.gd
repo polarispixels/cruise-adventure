@@ -11,6 +11,8 @@ const EXPECTED_IDS := [
 	"tag-bags", "needs-tag", "on-the-belt", "bye-suitcases", "in-a-tray", "tablet-tray", "push-it",
 	"comes-back", "walk-through", "get-your-things", "find-gate", "match-airplane", "this-way",
 	"not-this-one", "found-gate",
+	"find-seat", "match-number", "match-sticker", "our-seats", "bin-up", "bin-shut", "under-seat", "buckle-up",
+	"buckle-becca", "light-on", "pick-snack", "yum", "find-cloud", "nice-cloud", "flight-done",
 ]
 
 
