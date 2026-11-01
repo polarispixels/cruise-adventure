@@ -654,16 +654,17 @@
      ]
     },
     {
-     "label": "Voice Lines v1.0: the 15 flight lines recorded by both kids",
+     "label": "Voice Lines v1.0: the 15 new lines recorded",
      "voice": [
       "becca/bin-shut",
       "becca/bin-up",
+      "becca/buckle-becca",
       "becca/buckle-up",
       "becca/find-cloud",
       "becca/find-seat",
       "becca/flight-done",
       "becca/light-on",
-      "becca/match-sticker",
+      "becca/match-number",
       "becca/nice-cloud",
       "becca/our-seats",
       "becca/pick-snack",
@@ -671,13 +672,12 @@
       "becca/yum",
       "jack/bin-shut",
       "jack/bin-up",
-      "jack/buckle-becca",
       "jack/buckle-up",
       "jack/find-cloud",
       "jack/find-seat",
       "jack/flight-done",
       "jack/light-on",
-      "jack/match-number",
+      "jack/match-sticker",
       "jack/nice-cloud",
       "jack/our-seats",
       "jack/pick-snack",
@@ -712,17 +712,16 @@
      "label": "Chapter design reviewed by Ryan (the chapter spec)"
     },
     {
-     "label": "Art: baggage claim, minivan inside, open and closed, hotel room at night",
+     "label": "Art: baggage claim, minivan inside, open and closed",
      "files": [
       "assets/florida/baggage-claim.png",
       "assets/florida/minivan-interior.png",
       "assets/florida/minivan-open.png",
-      "assets/florida/minivan-closed.png",
-      "assets/florida/hotel-room-night.png"
+      "assets/florida/minivan-closed.png"
      ]
     },
     {
-     "label": "Art: boosters, seven decoy bags, luggage cart",
+     "label": "Art: boosters, seven decoy bags",
      "files": [
       "assets/florida/booster-blue.png",
       "assets/florida/booster-pink.png",
@@ -732,8 +731,7 @@
       "assets/florida/decoy-brown-box.png",
       "assets/florida/decoy-green-backpack.png",
       "assets/florida/decoy-black-case.png",
-      "assets/florida/decoy-red-case.png",
-      "assets/florida/luggage-cart.png"
+      "assets/florida/decoy-red-case.png"
      ]
     },
     {
@@ -757,34 +755,22 @@
      ]
     },
     {
-     "label": "Voice Lines v1.0: the 14 new Florida lines recorded by both kids",
+     "label": "Voice Lines v1.0: the 8 new lines recorded",
      "voice": [
-      "becca/bags-coming",
-      "becca/blue-seat",
       "becca/boosters-first",
-      "becca/comes-around",
       "becca/got-our-bags",
-      "becca/hello-florida",
-      "becca/hotel-night",
       "becca/load-minivan",
       "becca/look-there",
       "becca/not-ours",
-      "becca/pink-seat",
       "becca/seats-in",
-      "becca/spot-pink",
-      "jack/bags-coming",
-      "jack/blue-seat",
+      "becca/spot-bags",
       "jack/boosters-first",
-      "jack/comes-around",
       "jack/got-our-bags",
-      "jack/hello-florida",
-      "jack/hotel-night",
       "jack/load-minivan",
       "jack/look-there",
       "jack/not-ours",
-      "jack/pink-seat",
       "jack/seats-in",
-      "jack/spot-bags"
+      "jack/spot-pink"
      ]
     },
     {
@@ -868,28 +854,28 @@
      ]
     },
     {
-     "label": "Voice Lines v1.0: the 13 aboard lines recorded by both kids",
+     "label": "Voice Lines v1.0: the 13 new lines recorded",
      "voice": [
       "becca/all-together",
       "becca/find-room",
       "becca/follow-arrows",
-      "becca/follow-feet",
       "becca/get-keycard",
       "becca/horn-warning",
-      "becca/match-door-sticker",
+      "becca/match-door-number",
       "becca/not-this-door",
       "becca/our-room",
-      "becca/see-sticker",
+      "becca/see-number",
       "becca/slide-hall",
       "jack/all-together",
       "jack/find-room",
       "jack/follow-arrows",
+      "jack/follow-feet",
       "jack/get-keycard",
       "jack/horn-warning",
-      "jack/match-door-number",
+      "jack/match-door-sticker",
       "jack/not-this-door",
       "jack/our-room",
-      "jack/see-number",
+      "jack/see-sticker",
       "jack/slide-hall"
      ]
     },
@@ -993,7 +979,7 @@
      ]
     },
     {
-     "label": "Voice Lines v1.0: the 12 island lines recorded by both kids",
+     "label": "Voice Lines v1.0: the 12 new lines recorded",
      "voice": [
       "becca/isle-all-shells",
       "becca/isle-castle",
@@ -1100,30 +1086,30 @@
      ]
     },
     {
-     "label": "Voice Lines v1.0: the 16 sea-day lines recorded by both kids",
+     "label": "Voice Lines v1.0: the 16 new lines recorded",
      "voice": [
       "becca/sea-dinner",
-      "becca/sea-height-becca",
-      "becca/sea-next-time",
+      "becca/sea-ducks",
+      "becca/sea-height",
       "becca/sea-sit",
+      "becca/sea-splash-me",
       "becca/sea-splash-time",
       "becca/sea-swimsuit",
+      "becca/sea-tall-enough",
       "becca/sea-tap-go",
       "becca/sea-toys",
-      "becca/sea-watch-me",
       "becca/sea-what-a-splash",
       "becca/sea-whee",
       "becca/sea-yummy",
       "jack/sea-dinner",
-      "jack/sea-ducks",
-      "jack/sea-height",
+      "jack/sea-height-becca",
+      "jack/sea-next-time",
       "jack/sea-sit",
-      "jack/sea-splash-me",
       "jack/sea-splash-time",
       "jack/sea-swimsuit",
-      "jack/sea-tall-enough",
       "jack/sea-tap-go",
       "jack/sea-toys",
+      "jack/sea-watch-me",
       "jack/sea-what-a-splash",
       "jack/sea-whee",
       "jack/sea-yummy"
@@ -1209,7 +1195,7 @@
      ]
     },
     {
-     "label": "Voice Lines v1.0: the 16 beach lines recorded by both kids",
+     "label": "Voice Lines v1.0: the 16 new lines recorded",
      "voice": [
       "becca/beach-build",
       "becca/beach-castle-done",
@@ -1217,7 +1203,7 @@
       "becca/beach-ding",
       "becca/beach-elevator",
       "becca/beach-find-room",
-      "becca/beach-floor-color",
+      "becca/beach-floor-number",
       "becca/beach-jump",
       "becca/beach-jumped",
       "becca/beach-look-back",
@@ -1232,7 +1218,7 @@
       "jack/beach-ding",
       "jack/beach-elevator",
       "jack/beach-find-room",
-      "jack/beach-floor-number",
+      "jack/beach-floor-color",
       "jack/beach-jump",
       "jack/beach-jumped",
       "jack/beach-look-back",
