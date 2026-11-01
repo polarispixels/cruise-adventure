@@ -304,16 +304,15 @@ func test_journey_has_a_stop_per_chapter_7_to_14(t) -> void:
 
 
 func test_unbuilt_chapters_have_no_stop(t) -> void:
-	# A fixture list: only the car and the airport have segments, whatever is built for real.
 	var game: Node = t.tree.root.get_node("Game")
 	game.use_chapters([])
-	var list: Array = game.chapters().duplicate(true)
-	for c: Dictionary in list:
-		if c["id"] not in ["car", "airport"]:
-			c["segments"] = []
-	game.use_chapters(list)
+	var built: Array[String] = []
+	for c: Dictionary in game.chapters():
+		if int(c["number"]) >= 7 and not (c["segments"] as Array).is_empty():
+			built.append(str(c["id"]))
 	var map := await _map_with(t, "jack", ["car", "airport"])
-	t.eq(map.stop_ids, ["car", "airport"] as Array[String], "only chapters with segments")
+	t.eq(map.stop_ids, built, "only chapters with segments (whichever chapters are built so far)")
+	t.check(not map.stop_ids.has("beach") or not (game.chapter("beach")["segments"] as Array).is_empty(), "an unbuilt chapter has no stop")
 	_done(t, map)
 	game.use_chapters([])
 

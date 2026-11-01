@@ -3121,5 +3121,187 @@
   "source": "placeholder",
   "approved": false,
   "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/seaday/seaday-pool-deck.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/seaday-slide.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/seaday-splash-zone.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/seaday-dining.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/jack-swimsuit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/jack-swimsuit-cheer.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/jack-nice-outfit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/jack-nice-outfit-sit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/becca-swimsuit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/becca-swimsuit-cheer.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/becca-nice-outfit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/becca-nice-outfit-sit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/jack-swimsuit-ride.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/height-sign.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/slide-splash.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/water-jet.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/water-spray.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/toy-duck.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/toy-ball.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/toy-boat.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/toy-fish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/toy-pop.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/chair-glow.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/stills/sea-pool-deck.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/stills/sea-evening-deck.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/slide-mouth.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
  }
 ]
