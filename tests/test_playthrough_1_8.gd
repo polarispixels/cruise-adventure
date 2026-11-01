@@ -52,6 +52,12 @@ func _play_1_to_3(kit, kid_id: String) -> void:
 func _playthrough(t, kid_id: String) -> void:
 	var kit := Kit.new()
 	kit.begin(t)
+	# Chapters 9-14 are being built; this test is about 1-8, so they are blank here.
+	var list: Array = kit.game.chapters().duplicate(true)
+	for c: Dictionary in list:
+		if int(c.get("number", 0)) >= 9:
+			c["segments"] = []
+	kit.game.use_chapters(list)
 	await _play_1_to_3(kit, kid_id)
 	t.check(kit.progress.chapter_done(kid_id, "routine"), "%s: chapter 2 done" % kid_id)
 	t.check(kit.progress.chapter_done(kid_id, "your-turn"), "%s: chapter 3 done" % kid_id)
