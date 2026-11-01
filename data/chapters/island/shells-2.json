@@ -1,0 +1,107 @@
+{
+ "start_line": "isle-shells",
+ "hint_line": "isle-this-one",
+ "done_line": "isle-all-shells",
+ "right_sound": "shell-clink",
+ "helper_feet": [
+  1500,
+  930
+ ],
+ "key": "picture",
+ "layout": "grid",
+ "target": "shell",
+ "target_pos": [
+  836,
+  150
+ ],
+ "target_height": 200,
+ "kid_scale": 0.3,
+ "player_feet": [
+  230,
+  900
+ ],
+ "choices": [
+  {
+   "id": "s1",
+   "match": "shell",
+   "texture": "res://assets/island/shell-scallop-2.png"
+  },
+  {
+   "id": "s2",
+   "match": "shell",
+   "texture": "res://assets/island/shell-scallop-2.png"
+  },
+  {
+   "id": "s3",
+   "match": "shell",
+   "texture": "res://assets/island/shell-scallop-2.png"
+  },
+  {
+   "id": "s4",
+   "match": "shell",
+   "texture": "res://assets/island/shell-scallop-2.png"
+  },
+  {
+   "id": "s5",
+   "match": "shell",
+   "texture": "res://assets/island/shell-scallop-2.png"
+  },
+  {
+   "id": "d1",
+   "texture": "res://assets/island/shell-conch-2.png"
+  },
+  {
+   "id": "d2",
+   "texture": "res://assets/island/shell-sand-dollar-2.png"
+  },
+  {
+   "id": "d3",
+   "texture": "res://assets/island/shell-snail-2.png"
+  },
+  {
+   "id": "d4",
+   "texture": "res://assets/island/shell-mussel-2.png"
+  },
+  {
+   "id": "d5",
+   "texture": "res://assets/island/shell-limpet-2.png"
+  }
+ ],
+ "shuffle": true,
+ "seed": 7,
+ "jack": {
+  "rounds": [
+   "shell",
+   "shell",
+   "shell",
+   "shell",
+   "shell"
+  ],
+  "count": 10,
+  "columns": 5,
+  "grid_rect": [
+   360,
+   330,
+   1000,
+   520
+  ],
+  "choice_height": 150,
+  "wrong_line": "try-again"
+ },
+ "becca": {
+  "rounds": [
+   "shell",
+   "shell",
+   "shell"
+  ],
+  "count": 3,
+  "columns": 3,
+  "grid_rect": [
+   350,
+   380,
+   800,
+   420
+  ],
+  "choice_height": 180
+ }
+}

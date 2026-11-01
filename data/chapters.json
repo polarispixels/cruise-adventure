@@ -31,7 +31,14 @@
     {"kind": "scene", "id": "snack", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/flight/snack.json"},
     {"kind": "scene", "id": "clouds", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/flight/clouds.json"},
     {"kind": "clip", "id": "landing", "name": "flight-landing", "line": "flight-done"}]},
-  {"id": "florida", "number": 10, "title": "Hello Florida", "segments": []},
+  {"id": "florida", "number": 10, "title": "Hello Florida",
+   "segments": [
+     {"kind": "still", "id": "arrival", "name": "florida-arrival", "line": "hello-florida", "once": true},
+     {"kind": "scene", "id": "bags", "scene": "res://scenes/engines/moving.tscn", "data": "res://data/chapters/florida/bags.json"},
+     {"kind": "scene", "id": "boosters", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/florida/boosters.json"},
+     {"kind": "scene", "id": "trunk", "scene": "res://scenes/engines/fit.tscn", "data": "res://data/chapters/florida/trunk.json"},
+     {"kind": "clip", "id": "drive", "name": "florida-drive", "once": true},
+     {"kind": "clip", "id": "hotel", "name": "hotel-night", "line": "hotel-night"}]},
   {"id": "aboard", "number": 11, "title": "Welcome aboard",
    "segments": [
      {"kind": "clip", "id": "aboard-intro", "name": "aboard-walk-on", "once": true},
@@ -40,8 +47,24 @@
      {"kind": "scene", "id": "room", "scene": "res://scenes/engines/moments.tscn", "data": "res://data/chapters/aboard/room.json"},
      {"kind": "scene", "id": "drill", "scene": "res://scenes/engines/maze.tscn", "data": "res://data/chapters/aboard/drill.json"},
      {"kind": "clip", "id": "aboard-sail", "name": "aboard-sail-away"}]},
-  {"id": "island1", "number": 12, "title": "Island day 1", "segments": []},
-  {"id": "island2", "number": 12, "title": "Island day 2", "segments": []},
+  {"id": "island1", "number": 12, "title": "Island day 1",
+   "segments": [
+     {"kind": "clip", "id": "island-arrival", "name": "island-arrival", "once": true, "line": "isle-arrive"},
+     {"kind": "scene", "id": "sunscreen", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/island/sunscreen.json", "background": "res://assets/island/island-beach.png"},
+     {"kind": "scene", "id": "dress", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/island/dress.json", "background": "res://assets/island/island-beach.png"},
+     {"kind": "scene", "id": "shells", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/island/shells.json", "background": "res://assets/island/island-sand.png"},
+     {"kind": "scene", "id": "castle", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/island/castle.json", "background": "res://assets/island/island-beach.png"},
+     {"kind": "scene", "id": "decorate", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/island/decorate.json", "background": "res://assets/island/island-beach.png"},
+     {"kind": "clip", "id": "island-splash", "name": "island-splash", "line": "isle-splash"}]},
+  {"id": "island2", "number": 12, "title": "Island day 2",
+   "segments": [
+     {"kind": "clip", "id": "island-arrival", "name": "island-arrival", "once": true, "line": "isle-day2"},
+     {"kind": "scene", "id": "sunscreen", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/island/sunscreen.json", "background": "res://assets/island/island-beach-2.png"},
+     {"kind": "scene", "id": "dress", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/island/dress.json", "background": "res://assets/island/island-beach-2.png"},
+     {"kind": "scene", "id": "shells", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/island/shells-2.json", "background": "res://assets/island/island-sand-2.png"},
+     {"kind": "scene", "id": "castle", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/island/castle-2.json", "background": "res://assets/island/island-beach-2.png"},
+     {"kind": "scene", "id": "decorate", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/island/decorate-2.json", "background": "res://assets/island/island-beach-2.png"},
+     {"kind": "clip", "id": "island-splash", "name": "island-splash", "line": "isle-splash"}]},
   {"id": "seaday", "number": 13, "title": "Sea day",
    "segments": [
      {"kind": "clip", "id": "seaday-intro", "name": "sea-pool-deck", "once": true},
@@ -51,5 +74,16 @@
      {"kind": "scene", "id": "splash", "scene": "res://scenes/engines/moving.tscn", "data": "res://data/chapters/seaday/splash.json"},
      {"kind": "scene", "id": "dinner", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/seaday/dinner.json"},
      {"kind": "clip", "id": "seaday-evening", "name": "sea-evening-deck"}]},
-  {"id": "beach", "number": 14, "title": "Beach hotel", "segments": []}
+  {"id": "beach", "number": 14, "title": "Beach hotel",
+   "segments": [
+     {"kind": "clip", "id": "beach-intro", "name": "beach-walk-sand", "once": true, "line": "beach-arrive"},
+     {"kind": "scene", "id": "trunk", "scene": "res://scenes/engines/fit.tscn", "data": "res://data/chapters/beach/trunk.json"},
+     {"kind": "scene", "id": "elevator", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/beach/elevator.json"},
+     {"kind": "scene", "id": "hallway", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/beach/hallway.json"},
+     {"kind": "scene", "id": "room", "scene": "res://scenes/engines/moments.tscn", "data": "res://data/chapters/beach/room.json"},
+     {"kind": "scene", "id": "waves", "scene": "res://scenes/engines/moments.tscn", "data": "res://data/chapters/beach/waves.json"},
+     {"kind": "scene", "id": "castle", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/beach/castle.json"},
+     {"kind": "scene", "id": "decorate", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/beach/decorate.json"},
+     {"kind": "scene", "id": "finale-map", "scene": "res://scenes/map.tscn", "finale": true, "finale_sound": "celebration-fanfare"},
+     {"kind": "clip", "id": "celebration", "name": "beach-celebration", "line": "beach-replay"}]}
 ]}

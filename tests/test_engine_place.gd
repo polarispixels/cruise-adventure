@@ -111,6 +111,29 @@ func test_ordered_slots_fill_in_order(t) -> void:
 	kit.done(t, scene)
 
 
+## An inert slot (an outline) listed first doesn't hold up an ordered set, and doesn't block done.
+func test_inert_slot_is_skipped_when_ordered(t) -> void:
+	var data := _castle()
+	data["slots"] = [{"id": "outline", "rect": [600, 300, 700, 400], "inert": true}] + data["slots"]
+	var scene: Node2D = await kit.make(t, SCENE, data, "jack")
+	await kit.drag(t, scene.item_point("a"), scene.slot_point("base"))
+	await kit.wait(t, 0.3)
+	t.check(scene.is_placed("a"), "the first real slot takes the first piece")
+	await kit.drag(t, scene.item_point("b"), scene.slot_point("top"))
+	t.check(kit.finished(t), "done without filling the inert slot")
+	kit.done(t, scene)
+	# With a reusable thing, an inert slot doesn't have to be filled either.
+	var sun := _sun()
+	sun["slots"] = [{"id": "outline", "rect": [100, 100, 200, 200], "inert": true}] + sun["slots"]
+	scene = await kit.make(t, SCENE, sun, "becca")
+	for sid: String in scene.slot_ids():
+		if sid != "outline":
+			await kit.drag(t, scene.item_point("sunscreen"), scene.slot_point(sid))
+			await kit.wait(t, 0.35)
+	t.check(kit.finished(t), "sunscreen done with an inert slot present")
+	kit.done(t, scene)
+
+
 func test_tap_sends_a_thing_to_its_slot(t) -> void:
 	var scene: Node2D = await kit.make(t, SCENE, _dress(), "becca")
 	await kit.tap(t, scene.item_point("sandals"))

@@ -390,5 +390,169 @@
  {
   "id": "sea-yummy",
   "text": "Yum! Dinner time!"
+ },
+ {
+  "id": "spot-bags",
+  "text": "Here come our bags! Find all three!"
+ },
+ {
+  "id": "spot-pink",
+  "text": "Here come our bags! Find the pink suitcase!"
+ },
+ {
+  "id": "look-there",
+  "text": "Look over there!"
+ },
+ {
+  "id": "not-ours",
+  "text": "Hmm, that's not ours!"
+ },
+ {
+  "id": "got-our-bags",
+  "text": "We got all our bags!"
+ },
+ {
+  "id": "boosters-first",
+  "text": "Put the booster seats in!"
+ },
+ {
+  "id": "seats-in",
+  "text": "The booster seats are in!"
+ },
+ {
+  "id": "load-minivan",
+  "text": "Now pack the minivan!"
+ },
+ {
+  "id": "hello-florida",
+  "text": "Hello, Florida!"
+ },
+ {
+  "id": "hotel-night",
+  "text": "Good night, Florida!"
+ },
+ {
+  "id": "isle-arrive",
+  "text": "We're on the island!"
+ },
+ {
+  "id": "isle-day2",
+  "text": "Another island day!"
+ },
+ {
+  "id": "isle-sunscreen",
+  "text": "Put on sunscreen!"
+ },
+ {
+  "id": "isle-dab",
+  "text": "Dab it here!"
+ },
+ {
+  "id": "isle-hat-sandals",
+  "text": "Now your hat and sandals!"
+ },
+ {
+  "id": "isle-sun-safe",
+  "text": "Now we're sun safe!"
+ },
+ {
+  "id": "isle-shells",
+  "text": "Find the shells that match!"
+ },
+ {
+  "id": "isle-this-one",
+  "text": "Look for this one!"
+ },
+ {
+  "id": "isle-all-shells",
+  "text": "Look at all our shells!"
+ },
+ {
+  "id": "isle-castle",
+  "text": "Let's build a sandcastle!"
+ },
+ {
+  "id": "isle-in-castle",
+  "text": "Put it in the castle!"
+ },
+ {
+  "id": "isle-decorate",
+  "text": "Now decorate it with shells!"
+ },
+ {
+  "id": "isle-great-castle",
+  "text": "What a sandcastle!"
+ },
+ {
+  "id": "isle-splash",
+  "text": "Splash, splash!"
+ },
+ {
+  "id": "beach-arrive",
+  "text": "We made it to the beach hotel!"
+ },
+ {
+  "id": "beach-pack-again",
+  "text": "Pack the minivan again!"
+ },
+ {
+  "id": "beach-packed",
+  "text": "All packed! Off we go!"
+ },
+ {
+  "id": "beach-elevator",
+  "text": "Ride the elevator!"
+ },
+ {
+  "id": "beach-floor-number",
+  "text": "Push the number on your key!"
+ },
+ {
+  "id": "beach-floor-color",
+  "text": "Push the color on your key!"
+ },
+ {
+  "id": "beach-ding",
+  "text": "Ding! Here's our floor!"
+ },
+ {
+  "id": "beach-find-room",
+  "text": "Now find our room!"
+ },
+ {
+  "id": "beach-our-room",
+  "text": "Our room! I can see the ocean!"
+ },
+ {
+  "id": "beach-waves",
+  "text": "Here come the waves!"
+ },
+ {
+  "id": "beach-jump",
+  "text": "Tap to jump!"
+ },
+ {
+  "id": "beach-jumped",
+  "text": "Splash! You jumped them all!"
+ },
+ {
+  "id": "beach-build",
+  "text": "Let's build a sandcastle!"
+ },
+ {
+  "id": "beach-decorate",
+  "text": "Put shells on the castle!"
+ },
+ {
+  "id": "beach-castle-done",
+  "text": "What a beautiful castle!"
+ },
+ {
+  "id": "beach-replay",
+  "text": "Tap any stop to play it again!"
+ },
+ {
+  "id": "beach-tap-window",
+  "text": "Tap the window!"
  }
 ]
