@@ -52,6 +52,13 @@ func _play_1_to_3(kit, kid_id: String) -> void:
 func _playthrough(t, kid_id: String) -> void:
 	var kit := Kit.new()
 	kit.begin(t)
+	# This is the playthrough of chapters 1-8: chapters 9 and up count as unbuilt here, however far they are.
+	kit.game.use_chapters([])
+	var list: Array = kit.game.chapters().duplicate(true)
+	for c: Dictionary in list:
+		if int(c["number"]) >= 9:
+			c["segments"] = []
+	kit.game.use_chapters(list)
 	await _play_1_to_3(kit, kid_id)
 	t.check(kit.progress.chapter_done(kid_id, "routine"), "%s: chapter 2 done" % kid_id)
 	t.check(kit.progress.chapter_done(kid_id, "your-turn"), "%s: chapter 3 done" % kid_id)
@@ -96,6 +103,7 @@ func _playthrough(t, kid_id: String) -> void:
 	kit.game.play_chapter("car")
 	t.eq(kit.game.last_scene_request, kit.game.TRUNK, "%s: replaying the car goes straight to the trunk" % kid_id)
 	kit.game.stop_chapter()
+	kit.game.use_chapters([])
 	kit.end()
 
 

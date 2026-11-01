@@ -304,9 +304,18 @@ func test_journey_has_a_stop_per_chapter_7_to_14(t) -> void:
 
 
 func test_unbuilt_chapters_have_no_stop(t) -> void:
+	# Whatever chapters are built by now, an empty one gets no stop: empty all but car and airport.
+	var game: Node = t.tree.root.get_node("Game")
+	game.use_chapters([])
+	var list: Array = game.chapters().duplicate(true)
+	for c: Dictionary in list:
+		if not ["car", "airport"].has(c["id"]):
+			c["segments"] = []
+	game.use_chapters(list)
 	var map := await _map_with(t, "jack", ["car", "airport"])
 	t.eq(map.stop_ids, ["car", "airport"] as Array[String], "only chapters with segments")
 	_done(t, map)
+	game.use_chapters([])
 
 
 func test_stops_fit_the_tablet_and_never_overlap(t) -> void:
