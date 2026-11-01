@@ -1,0 +1,47 @@
+{
+ "background": "res://assets/aboard/aboard-welcome-desk.png",
+ "layout": "row",
+ "row_y": 600,
+ "choice_height": 230,
+ "shuffle": true,
+ "seed": 3,
+ "key": "picture",
+ "target": "{kid}",
+ "rounds": [
+  {
+   "target": "{kid}",
+   "texture": "res://assets/airport/token-{kid}.png"
+  }
+ ],
+ "target_height": 180,
+ "choices": [
+  {
+   "id": "{kid}",
+   "texture": "res://assets/airport/token-{kid}.png"
+  },
+  {
+   "id": "{sibling}",
+   "texture": "res://assets/airport/token-{sibling}.png"
+  },
+  {
+   "id": "mommy",
+   "texture": "res://assets/aboard/token-mommy.png"
+  },
+  {
+   "id": "daddy",
+   "texture": "res://assets/aboard/token-daddy.png"
+  }
+ ],
+ "player_feet": [
+  260,
+  920
+ ],
+ "start_line": "get-keycard",
+ "right_sound": "keycard-beep",
+ "wrong_line": "try-again",
+ "done_line": "see-number",
+ "becca": {
+  "count": 2,
+  "done_line": "see-sticker"
+ }
+}

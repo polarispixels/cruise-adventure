@@ -2682,5 +2682,191 @@
   "source": "placeholder",
   "approved": false,
   "spec": "data/chapters/map-art.json"
+ },
+ {
+  "game": "assets/aboard/aboard-welcome-desk.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/aboard-hallway.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/aboard-room.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/aboard-drill-floor.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/aboard-ship-outside.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/keycard-blank.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/token-mommy.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/token-daddy.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/door-closed.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/door-open.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/sticker-fish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/door-fish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/sticker-starfish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/door-starfish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/sticker-crab.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/door-crab.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-sign-arrow.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-meeting-spot.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-decor-lifering.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-decor-bench.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-decor-crate.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-decor-lifeboat.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/stills/aboard-walk-on.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "placeholder": {
+   "kind": "still",
+   "canvas": [
+    854,
+    480
+   ],
+   "color": "#B9A6E0",
+   "shape": "rect",
+   "label": "still for aboard-walk-on"
+  }
+ },
+ {
+  "game": "assets/stills/aboard-sail-away.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "placeholder": {
+   "kind": "still",
+   "canvas": [
+    854,
+    480
+   ],
+   "color": "#B9A6E0",
+   "shape": "rect",
+   "label": "still for aboard-sail-away"
+  }
  }
 ]

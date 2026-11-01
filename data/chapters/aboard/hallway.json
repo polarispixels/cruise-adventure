@@ -1,0 +1,97 @@
+{
+ "background": "res://assets/aboard/aboard-hallway.png",
+ "layout": "doors",
+ "door_spacing": 420,
+ "row_y": 520,
+ "key": "number",
+ "target_texture": "res://assets/aboard/keycard-blank.png",
+ "target_height": 200,
+ "target_pos": [
+  836,
+  150
+ ],
+ "choices": [
+  {
+   "id": "d8312",
+   "texture": "res://assets/aboard/door-closed.png",
+   "label": "8312",
+   "height": 480
+  },
+  {
+   "id": "d8313",
+   "texture": "res://assets/aboard/door-closed.png",
+   "label": "8313",
+   "height": 480
+  },
+  {
+   "id": "d8314",
+   "texture": "res://assets/aboard/door-closed.png",
+   "label": "8314",
+   "height": 480
+  },
+  {
+   "id": "d8315",
+   "texture": "res://assets/aboard/door-closed.png",
+   "label": "8315",
+   "height": 480
+  },
+  {
+   "id": "d8316",
+   "texture": "res://assets/aboard/door-closed.png",
+   "label": "8316",
+   "height": 480
+  },
+  {
+   "id": "d8317",
+   "texture": "res://assets/aboard/door-closed.png",
+   "label": "8317",
+   "height": 480
+  }
+ ],
+ "rounds": [
+  {
+   "target": "d8315",
+   "label": "8315",
+   "line": "match-door-number"
+  }
+ ],
+ "player_feet": [
+  260,
+  920
+ ],
+ "start_line": "find-room",
+ "round_line": "match-door-number",
+ "hint_line": "slide-hall",
+ "right_sound": "door-open",
+ "wrong_sound": "door-click",
+ "wrong_line": "not-this-door",
+ "becca": {
+  "layout": "doors",
+  "door_spacing": 420,
+  "key": "picture",
+  "round_line": "match-door-sticker",
+  "rounds": [
+   {
+    "target": "crab",
+    "texture": "res://assets/aboard/sticker-crab.png"
+   }
+  ],
+  "choices": [
+   {
+    "id": "fish",
+    "texture": "res://assets/aboard/door-fish.png",
+    "height": 480
+   },
+   {
+    "id": "crab",
+    "texture": "res://assets/aboard/door-crab.png",
+    "height": 480
+   },
+   {
+    "id": "starfish",
+    "texture": "res://assets/aboard/door-starfish.png",
+    "height": 480
+   }
+  ]
+ }
+}

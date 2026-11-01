@@ -1,0 +1,235 @@
+[
+ {
+  "file": "assets/aboard/aboard-welcome-desk.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#E6EEF5",
+  "label": "ship welcome desk"
+ },
+ {
+  "file": "assets/aboard/aboard-hallway.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#C9B8A6",
+  "label": "seamless ship hallway"
+ },
+ {
+  "file": "assets/aboard/aboard-room.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#F0DDBB",
+  "label": "cabin with round porthole"
+ },
+ {
+  "file": "assets/aboard/aboard-drill-floor.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#D9BE92",
+  "label": "top-down deck planking"
+ },
+ {
+  "file": "assets/aboard/aboard-ship-outside.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#BFE0F5",
+  "label": "generic white ship at the pier"
+ },
+ {
+  "file": "assets/aboard/keycard-blank.png",
+  "canvas": [
+   320,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#FFFFFF",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/aboard/token-mommy.png",
+  "canvas": [
+   120,
+   120
+  ],
+  "kind": "sprite",
+  "color": "#E8A0B5",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/aboard/token-daddy.png",
+  "canvas": [
+   120,
+   120
+  ],
+  "kind": "sprite",
+  "color": "#7FA6D6",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/aboard/door-closed.png",
+  "canvas": [
+   280,
+   480
+  ],
+  "kind": "sprite",
+  "color": "#C8A074",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/aboard/door-open.png",
+  "canvas": [
+   280,
+   480
+  ],
+  "kind": "sprite",
+  "color": "#F4D9A0",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/aboard/sticker-fish.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#F28C28",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/aboard/door-fish.png",
+  "canvas": [
+   280,
+   480
+  ],
+  "kind": "sprite",
+  "color": "#C8A074",
+  "shape": "rounded",
+  "label": "door with fish sticker"
+ },
+ {
+  "file": "assets/aboard/sticker-starfish.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#F06AA8",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/aboard/door-starfish.png",
+  "canvas": [
+   280,
+   480
+  ],
+  "kind": "sprite",
+  "color": "#C8A074",
+  "shape": "rounded",
+  "label": "door with starfish sticker"
+ },
+ {
+  "file": "assets/aboard/sticker-crab.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#6CC04A",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/aboard/door-crab.png",
+  "canvas": [
+   280,
+   480
+  ],
+  "kind": "sprite",
+  "color": "#C8A074",
+  "shape": "rounded",
+  "label": "door with crab sticker"
+ },
+ {
+  "file": "assets/aboard/drill-sign-arrow.png",
+  "canvas": [
+   150,
+   150
+  ],
+  "kind": "sprite",
+  "color": "#2E9E5B",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/aboard/drill-meeting-spot.png",
+  "canvas": [
+   220,
+   220
+  ],
+  "kind": "sprite",
+  "color": "#3DB36B",
+  "shape": "circle"
+ },
+ {
+  "file": "assets/aboard/drill-decor-lifering.png",
+  "canvas": [
+   150,
+   150
+  ],
+  "kind": "sprite",
+  "color": "#B88B5A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/aboard/drill-decor-bench.png",
+  "canvas": [
+   150,
+   150
+  ],
+  "kind": "sprite",
+  "color": "#B88B5A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/aboard/drill-decor-crate.png",
+  "canvas": [
+   150,
+   150
+  ],
+  "kind": "sprite",
+  "color": "#B88B5A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/aboard/drill-decor-lifeboat.png",
+  "canvas": [
+   150,
+   150
+  ],
+  "kind": "sprite",
+  "color": "#B88B5A",
+  "shape": "rounded"
+ },
+ {
+  "file": "assets/stills/aboard-walk-on.png",
+  "kind": "still",
+  "label": "walking onto the ship"
+ },
+ {
+  "file": "assets/stills/aboard-sail-away.png",
+  "kind": "still",
+  "label": "sail away waving"
+ }
+]
