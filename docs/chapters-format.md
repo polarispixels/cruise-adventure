@@ -290,6 +290,8 @@ slides back. A tap sends a thing to the next slot that takes it.
 | `tap_places` | `true` | A tap places a thing in its next slot. |
 | `place_line`, `wrong_line` | `found`, `""` | `place_sound`: `tag-snap`. |
 
+A slot with `"inert": true` is only a picture (its `texture`, at its `rect`): it takes nothing, never glows and is never a drop target (the castle outline, pieces already built).
+
 Swimsuit on: slot `texture` the kid, `fill_texture` the kid in the swimsuit, slot
 `hide_marker_on_fill: true` (the slot's own `texture` disappears as the fill shows; without it,
 the fill is drawn over it), and the item's `hide_on_place: true` puts the swimsuit away. An item's
