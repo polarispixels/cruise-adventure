@@ -2,11 +2,11 @@
  "background": "res://assets/aboard/aboard-drill-floor.png",
  "fixed": [
   "#############",
-  "#S>.>v#.....#",
-  "#.#.#.#.#####",
-  "#.#.#>.>.>.v#",
-  "#.#.###.###.#",
-  "#...#...###G#",
+  "#S > . v#. .#",
+  "# ##### # ###",
+  "#. . .#v#. .#",
+  "# # ### # ###",
+  "#.#. .#> . G#",
   "#############"
  ],
  "goal_textures": [
@@ -22,18 +22,28 @@
  ],
  "start_line": "horn-warning",
  "start_sound": "ship-horn",
- "hint_line": "follow-arrows",
+ "hint_line": "this-way",
  "done_line": "all-together",
  "done_sound": "arch-chime",
  "becca": {
   "fixed": [
    "#########",
-   "#S>.>.>v#",
-   "#.#.###.#",
-   "#.....#G#",
+   "#S > > v#",
+   "### ### #",
+   "#. .#. G#",
    "#########"
   ],
   "footprints": true,
-  "hint_line": "follow-feet"
- }
+  "hint_line": "follow-feet",
+  "area": [
+   336,
+   230,
+   1000,
+   500
+  ]
+ },
+ "fixed_thin_walls": true,
+ "start_sound_after_line": true,
+ "after_sound_line": "follow-arrows",
+ "hold_input_until_intro": true
 }

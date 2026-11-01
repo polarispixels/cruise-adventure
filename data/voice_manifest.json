@@ -55,10 +55,6 @@
   "kind": "recorded",
   "text": "Find your pajamas!"
  },
- "becca/find-room": {
-  "kind": "placeholder",
-  "text": "Let's find our room!"
- },
  "becca/find-sandals": {
   "kind": "recorded",
   "text": "Find your sandals!"
@@ -318,10 +314,6 @@
  "jack/find-pajamas": {
   "kind": "recorded",
   "text": "Find your pajamas!"
- },
- "jack/find-room": {
-  "kind": "placeholder",
-  "text": "Let's find our room!"
  },
  "jack/find-sandals": {
   "kind": "recorded",

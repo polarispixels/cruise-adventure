@@ -2842,31 +2842,20 @@
   "generator": "placeholder",
   "source": "placeholder",
   "approved": false,
-  "placeholder": {
-   "kind": "still",
-   "canvas": [
-    854,
-    480
-   ],
-   "color": "#B9A6E0",
-   "shape": "rect",
-   "label": "still for aboard-walk-on"
-  }
+  "spec": "data/chapters/aboard/art.json"
  },
  {
   "game": "assets/stills/aboard-sail-away.png",
   "generator": "placeholder",
   "source": "placeholder",
   "approved": false,
-  "placeholder": {
-   "kind": "still",
-   "canvas": [
-    854,
-    480
-   ],
-   "color": "#B9A6E0",
-   "shape": "rect",
-   "label": "still for aboard-sail-away"
-  }
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/keycard-crab.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
  }
 ]

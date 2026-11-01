@@ -10,26 +10,35 @@
  "rounds": [
   {
    "target": "{kid}",
-   "texture": "res://assets/airport/token-{kid}.png"
+   "target_overlay": "res://assets/airport/token-{kid}.png",
+   "target_label": "8315"
   }
  ],
- "target_height": 180,
+ "target_height": 200,
  "choices": [
   {
    "id": "{kid}",
-   "texture": "res://assets/airport/token-{kid}.png"
+   "overlay": "res://assets/airport/token-{kid}.png",
+   "texture": "res://assets/aboard/keycard-blank.png",
+   "label": "8315"
   },
   {
    "id": "{sibling}",
-   "texture": "res://assets/airport/token-{sibling}.png"
+   "overlay": "res://assets/airport/token-{sibling}.png",
+   "texture": "res://assets/aboard/keycard-blank.png",
+   "label": "8315"
   },
   {
    "id": "mommy",
-   "texture": "res://assets/aboard/token-mommy.png"
+   "overlay": "res://assets/aboard/token-mommy.png",
+   "texture": "res://assets/aboard/keycard-blank.png",
+   "label": "8315"
   },
   {
    "id": "daddy",
-   "texture": "res://assets/aboard/token-daddy.png"
+   "overlay": "res://assets/aboard/token-daddy.png",
+   "texture": "res://assets/aboard/keycard-blank.png",
+   "label": "8315"
   }
  ],
  "player_feet": [
@@ -42,6 +51,42 @@
  "done_line": "see-number",
  "becca": {
   "count": 2,
-  "done_line": "see-sticker"
- }
+  "done_line": "see-sticker",
+  "choices": [
+   {
+    "id": "{kid}",
+    "overlay": "res://assets/airport/token-{kid}.png",
+    "texture": "res://assets/aboard/keycard-crab.png"
+   },
+   {
+    "id": "{sibling}",
+    "overlay": "res://assets/airport/token-{sibling}.png",
+    "texture": "res://assets/aboard/keycard-crab.png"
+   },
+   {
+    "id": "mommy",
+    "overlay": "res://assets/aboard/token-mommy.png",
+    "texture": "res://assets/aboard/keycard-crab.png"
+   },
+   {
+    "id": "daddy",
+    "overlay": "res://assets/aboard/token-daddy.png",
+    "texture": "res://assets/aboard/keycard-crab.png"
+   }
+  ],
+  "target_texture": "res://assets/aboard/keycard-crab.png",
+  "rounds": [
+   {
+    "target": "{kid}",
+    "target_overlay": "res://assets/airport/token-{kid}.png"
+   }
+  ]
+ },
+ "target_texture": "res://assets/aboard/keycard-blank.png",
+ "label_at": [
+  0,
+  78
+ ],
+ "label_size": 36,
+ "overlay_scale": 0.5
 }

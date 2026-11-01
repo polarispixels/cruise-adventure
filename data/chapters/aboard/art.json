@@ -57,7 +57,19 @@
   ],
   "kind": "sprite",
   "color": "#FFFFFF",
-  "shape": "rounded"
+  "shape": "rounded",
+  "label": "face centered, number strip below"
+ },
+ {
+  "file": "assets/aboard/keycard-crab.png",
+  "canvas": [
+   320,
+   200
+  ],
+  "kind": "sprite",
+  "color": "#FFFFFF",
+  "shape": "rounded",
+  "label": "card with crab sticker strip"
  },
  {
   "file": "assets/aboard/token-mommy.png",
