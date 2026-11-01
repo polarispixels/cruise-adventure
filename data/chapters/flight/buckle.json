@@ -95,5 +95,16 @@
    }
   ]
  },
- "music": "res://assets/music/flight.ogg"
+ "music": "res://assets/music/flight.ogg",
+ "done_overlay": {
+  "texture": "res://assets/flight/seatbelt-sign-on.png",
+  "pos": [
+   836,
+   130
+  ],
+  "size": [
+   160,
+   160
+  ]
+ }
 }

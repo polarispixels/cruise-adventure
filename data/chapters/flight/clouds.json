@@ -69,5 +69,6 @@
   "count": 2
  },
  "music": "res://assets/music/flight.ogg",
- "wrong_line": "try-again"
+ "wrong_line": "try-again",
+ "foreground": "res://assets/flight/window-frame.png"
 }

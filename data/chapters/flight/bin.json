@@ -67,5 +67,17 @@
    }
   ]
  },
- "music": "res://assets/music/flight.ogg"
+ "music": "res://assets/music/flight.ogg",
+ "done_overlay": {
+  "texture": "res://assets/flight/bin-door.png",
+  "pos": [
+   836,
+   290
+  ],
+  "size": [
+   1000,
+   330
+  ]
+ },
+ "done_overlay_sound": "bin-latch"
 }

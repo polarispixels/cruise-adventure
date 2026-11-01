@@ -130,6 +130,7 @@ func test_bin_both_kids(t) -> void:
 	await kit.wait(t, 0.2)
 	t.check(kit.finished(t), "becca's bin is full")
 	t.check(kit.said.has("it-fits"), "it fits")
+	t.check(scene.get_node_or_null("Stage/DoneOverlay") != null, "the bin door closes")
 	kit.done(t, scene)
 
 
@@ -190,6 +191,7 @@ func test_buckle_up(t) -> void:
 	await kit.wait(t, 0.2)
 	t.check(kit.finished(t), "becca buckled")
 	t.check(kit.said.has("light-on"), "the light line")
+	t.check(scene.get_node_or_null("Stage/DoneOverlay") != null, "the seatbelt sign lights")
 	kit.done(t, scene)
 
 
@@ -307,3 +309,17 @@ func test_playthrough_both_kids(t) -> void:
 	progress.path = "user://progress.json"
 	game.segment = {}
 	game.last_segment_done = false
+
+
+func test_landing_clip_says_the_closing_line(t) -> void:
+	t.eq(_entry("landing").get("line"), "flight-done", "the chapter does not end in silence")
+	t.eq(_entry("takeoff").get("name"), "takeoff-window", "takeoff clip")
+
+
+func test_window_frame_and_bin_door_are_set(t) -> void:
+	var scene := await _make(t, "clouds", "becca")
+	t.eq(scene.data.get("foreground"), "res://assets/flight/window-frame.png", "the window frame is drawn over the sky")
+	kit.done(t, scene)
+	scene = await _make(t, "bin", "jack")
+	t.eq(scene.data["done_overlay"]["texture"], "res://assets/flight/bin-door.png", "the door closes over the bin")
+	kit.done(t, scene)
