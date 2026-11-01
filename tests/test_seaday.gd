@@ -202,7 +202,7 @@ func test_next_time_wording_matches_the_build_spec(t) -> void:
 
 # --- The big slide: the ride (Tap moments) ----------------------------------
 
-func test_jack_rides_the_slide_and_becca_waves_from_the_pool(t) -> void:
+func test_jack_rides_the_slide_and_becca_stands_at_the_pool(t) -> void:
 	var scene: Node2D = await _open(t, "ride", "jack")
 	await _until_ready(t, scene)
 	t.check(kit.said.has("sea-splash-me"), "becca's line plays in jack's game")
@@ -211,7 +211,7 @@ func test_jack_rides_the_slide_and_becca_waves_from_the_pool(t) -> void:
 	await kit.tap(t, Vector2(960, 540))
 	await kit.wait(t, 1.0)
 	t.check(scene.player.position.distance_to(home) > 50.0, "jack is sliding")
-	t.check(scene.helper.position.distance_to(pool_helper) < 1.0, "becca stays at the pool")
+	t.check(scene.helper.position.distance_to(pool_helper) < 1.0, "becca stays standing at the pool (she does not ride)")
 	await _until_finished(t)
 	t.check(kit.finished(t), "the ride is over")
 	t.check(kit.said.has("sea-whee"), "wheee")
