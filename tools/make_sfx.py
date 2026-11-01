@@ -66,6 +66,7 @@ def sounds():
         "whoosh": noise(0.9, 2.5, rng, 8) * np.sin(np.linspace(0, np.pi, int(0.9 * RATE))) ** 2,
         **aboard_sounds(rng),
         **seaday_sounds(rng),
+        **island_sounds(rng),
     }
 
 
@@ -107,6 +108,17 @@ def seaday_sounds(rng):
         "water-jet": noise(0.5, 3, rng, 3) * swell(0.5),
         "slide-whoosh": noise(1.6, 1.2, rng, 10) * swell(1.6) ** 1.5 * (0.6 + 0.4 * np.sin(2 * np.pi * 5 * t(1.6))),
         "toy-pop": mix(tone(520, 0.12, 30), tone(780, 0.1, 35), 0.2 * noise(0.04, 80, rng)),
+    }
+
+
+def island_sounds(rng):
+    """Chapter 12, Island days: waves, a sunscreen squirt, a sandy plop, a shell clink."""
+    swell = np.sin(np.linspace(0, 2 * np.pi, int(2.6 * RATE))) * 0.5 + 0.5
+    return {
+        "waves": noise(2.6, 0.4, rng, 14) * (0.25 + 0.75 * swell),
+        "sunscreen-squirt": mix(noise(0.22, 14, rng, 6) * np.sin(np.linspace(0, np.pi, int(0.22 * RATE))), 0.2 * tone(520, 0.12, 25)),
+        "sand-plop": mix(tone(150, 0.14, 26, ((1, 1.0), (2, 0.2))), 0.5 * noise(0.12, 28, rng, 18)),
+        "shell-clink": mix(tone(2100, 0.2, 30, ((1, 1.0), (2.4, 0.4))), tone(2800, 0.12, 40)),
     }
 
 

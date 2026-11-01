@@ -1,0 +1,323 @@
+{
+ "start_line": "",
+ "hint_line": "isle-decorate",
+ "place_line": "found",
+ "place_sound": "shell-clink",
+ "done_line": "isle-great-castle",
+ "tray_y": 835,
+ "helper_feet": [
+  1500,
+  930
+ ],
+ "tap_places": true,
+ "done_overlay": {
+  "texture": "res://assets/island/castle-flag.png",
+  "pos": [
+   836,
+   70
+  ],
+  "size": [
+   70,
+   112
+  ]
+ },
+ "slots": [
+  {
+   "id": "b1",
+   "rect": [
+    736,
+    500,
+    200,
+    200
+   ],
+   "texture": "res://assets/island/castle-piece-1.png",
+   "inert": true
+  },
+  {
+   "id": "b2",
+   "rect": [
+    526,
+    500,
+    200,
+    200
+   ],
+   "texture": "res://assets/island/castle-piece-2.png",
+   "inert": true
+  },
+  {
+   "id": "b3",
+   "rect": [
+    946,
+    500,
+    200,
+    200
+   ],
+   "texture": "res://assets/island/castle-piece-3.png",
+   "inert": true
+  },
+  {
+   "id": "b4",
+   "rect": [
+    736,
+    300,
+    200,
+    200
+   ],
+   "texture": "res://assets/island/castle-piece-4.png",
+   "inert": true
+  },
+  {
+   "id": "b5",
+   "rect": [
+    736,
+    100,
+    200,
+    200
+   ],
+   "texture": "res://assets/island/castle-piece-5.png",
+   "inert": true
+  }
+ ],
+ "jack": {
+  "items": [
+   {
+    "id": "sh1",
+    "texture": "res://assets/island/shell-spiral.png",
+    "height": 130
+   },
+   {
+    "id": "sh2",
+    "texture": "res://assets/island/shell-spiral.png",
+    "height": 130
+   },
+   {
+    "id": "sh3",
+    "texture": "res://assets/island/shell-spiral.png",
+    "height": 130
+   },
+   {
+    "id": "sh4",
+    "texture": "res://assets/island/shell-spiral.png",
+    "height": 130
+   },
+   {
+    "id": "sh5",
+    "texture": "res://assets/island/shell-spiral.png",
+    "height": 130
+   }
+  ],
+  "slots": [
+   {
+    "id": "b1",
+    "rect": [
+     736,
+     500,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-1.png",
+    "inert": true
+   },
+   {
+    "id": "b2",
+    "rect": [
+     526,
+     500,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-2.png",
+    "inert": true
+   },
+   {
+    "id": "b3",
+    "rect": [
+     946,
+     500,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-3.png",
+    "inert": true
+   },
+   {
+    "id": "b4",
+    "rect": [
+     736,
+     300,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-4.png",
+    "inert": true
+   },
+   {
+    "id": "b5",
+    "rect": [
+     736,
+     100,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-5.png",
+    "inert": true
+   },
+   {
+    "id": "dot-1",
+    "point": [
+     836,
+     600
+    ],
+    "size": 110,
+    "texture": "res://assets/ui/target-slot.png",
+    "accepts": "any"
+   },
+   {
+    "id": "dot-2",
+    "point": [
+     626,
+     600
+    ],
+    "size": 110,
+    "texture": "res://assets/ui/target-slot.png",
+    "accepts": "any"
+   },
+   {
+    "id": "dot-3",
+    "point": [
+     1046,
+     600
+    ],
+    "size": 110,
+    "texture": "res://assets/ui/target-slot.png",
+    "accepts": "any"
+   },
+   {
+    "id": "dot-4",
+    "point": [
+     836,
+     400
+    ],
+    "size": 110,
+    "texture": "res://assets/ui/target-slot.png",
+    "accepts": "any"
+   },
+   {
+    "id": "dot-5",
+    "point": [
+     836,
+     200
+    ],
+    "size": 110,
+    "texture": "res://assets/ui/target-slot.png",
+    "accepts": "any"
+   }
+  ]
+ },
+ "becca": {
+  "items": [
+   {
+    "id": "sh1",
+    "texture": "res://assets/island/shell-spiral.png",
+    "height": 170
+   },
+   {
+    "id": "sh2",
+    "texture": "res://assets/island/shell-spiral.png",
+    "height": 170
+   },
+   {
+    "id": "sh3",
+    "texture": "res://assets/island/shell-spiral.png",
+    "height": 170
+   }
+  ],
+  "slots": [
+   {
+    "id": "b1",
+    "rect": [
+     736,
+     500,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-1.png",
+    "inert": true
+   },
+   {
+    "id": "b2",
+    "rect": [
+     526,
+     500,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-2.png",
+    "inert": true
+   },
+   {
+    "id": "b3",
+    "rect": [
+     946,
+     500,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-3.png",
+    "inert": true
+   },
+   {
+    "id": "b4",
+    "rect": [
+     736,
+     300,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-4.png",
+    "inert": true
+   },
+   {
+    "id": "b5",
+    "rect": [
+     736,
+     100,
+     200,
+     200
+    ],
+    "texture": "res://assets/island/castle-piece-5.png",
+    "inert": true
+   },
+   {
+    "id": "dot-1",
+    "point": [
+     836,
+     600
+    ],
+    "size": 140,
+    "texture": "res://assets/ui/target-slot.png",
+    "accepts": "any"
+   },
+   {
+    "id": "dot-2",
+    "point": [
+     836,
+     400
+    ],
+    "size": 140,
+    "texture": "res://assets/ui/target-slot.png",
+    "accepts": "any"
+   },
+   {
+    "id": "dot-3",
+    "point": [
+     836,
+     200
+    ],
+    "size": 140,
+    "texture": "res://assets/ui/target-slot.png",
+    "accepts": "any"
+   }
+  ]
+ }
+}

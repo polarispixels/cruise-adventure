@@ -138,7 +138,7 @@ func is_filled(slot_id: String) -> bool:
 ## Whether `slot` would take thing `id` now (free, accepts it, and its turn when ordered).
 func takes(slot: Dictionary, id: String) -> bool:
 	var sid := str(slot.get("id", ""))
-	if _filled.has(sid):
+	if _filled.has(sid) or bool(slot.get("inert", false)):
 		return false
 	if bool(data["ordered"]):
 		for s in _slots:
@@ -217,7 +217,7 @@ func _update_glows() -> void:
 	var who := _held if _held != "" else _hint_item
 	for s in _slots:
 		var sid := str(s.get("id", ""))
-		if _filled.has(sid):
+		if _filled.has(sid) or bool(s.get("inert", false)):
 			continue
 		if who != "":
 			if takes(s, who):
@@ -351,6 +351,8 @@ func _slot_under(local: Vector2) -> Dictionary:
 	var best := {}
 	var best_d := INF
 	for s in _slots:
+		if bool(s.get("inert", false)):
+			continue
 		var r: Rect2 = slot_rects[str(s.get("id", ""))]
 		if r.grow(DROP_SLACK).has_point(local):
 			var d := local.distance_to(r.get_center())
