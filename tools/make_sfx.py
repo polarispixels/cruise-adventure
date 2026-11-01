@@ -69,14 +69,14 @@ def sounds():
 
 
 def aboard_sounds(rng):
-    """Chapter 11: a soft two-tone ship horn (it starts after a pause so the helper's warning
-    line finishes first), a door click, a key-card beep and a door opening."""
+    """Chapter 11: a soft two-tone ship horn (the Maze engine starts it after the helper's warning
+    line), a door click, a key-card beep and a door opening."""
     n = int(1.6 * RATE)
     swell = np.minimum(1, np.arange(n) / (0.25 * RATE)) * np.minimum(1, (n - np.arange(n)) / (0.4 * RATE))
     horn = np.concatenate([tone(196, 0.8, 0.0, ((1, 1.0), (2, 0.4), (3, 0.15))), tone(147, 0.8, 0.0, ((1, 1.0), (2, 0.4), (3, 0.15)))])
     horn = horn / max(1e-9, np.max(np.abs(horn))) * swell * 0.35
     return {
-        "ship-horn": np.concatenate([np.zeros(int(3.6 * RATE)), horn]),
+        "ship-horn": horn,
         "door-click": mix(tone(900, 0.04, 80), 0.5 * noise(0.03, 90, rng, 4)),
         "keycard-beep": tone(1319, 0.18, 12),
         "door-open": np.concatenate([noise(0.4, 6, rng, 20) * 0.5, tone(784, 0.15, 9), tone(1047, 0.4, 5)]),

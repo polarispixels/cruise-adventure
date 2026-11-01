@@ -18,7 +18,7 @@
   560
  ],
  "action": "hop",
- "prompt_line": "our-room",
  "success_line": "found",
- "arrive_sound": "door-open"
+ "arrive_sound": "door-open",
+ "start_line": "our-room"
 }

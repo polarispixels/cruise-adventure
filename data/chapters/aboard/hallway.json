@@ -59,9 +59,9 @@
   260,
   920
  ],
- "start_line": "find-room",
+ "start_line": "slide-hall",
  "round_line": "match-door-number",
- "hint_line": "slide-hall",
+ "hint_line": "this-way",
  "right_sound": "door-open",
  "wrong_sound": "door-click",
  "wrong_line": "not-this-door",

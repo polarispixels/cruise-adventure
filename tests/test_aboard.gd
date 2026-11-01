@@ -73,7 +73,7 @@ func test_hallway_jack_six_doors(t) -> void:
 	t.eq(ids.size(), 6, "six doors")
 	t.eq(scene.target(), "d8315", "the number on his card")
 	t.check(scene.get_node("Stage/Target").get_node_or_null("Label") != null, "the card shows the number")
-	t.check(kit.said.has("find-room"), "start line")
+	t.check(kit.said.has("slide-hall"), "start line")
 	await kit.drag(t, Vector2(1500, 300), Vector2(700, 300))
 	t.check(not kit.finished(t), "a drag picks nothing")
 	await kit.tap(t, scene.choice_point("d8312"))
@@ -89,7 +89,7 @@ func test_hallway_becca_three_doors(t) -> void:
 	var scene: Node2D = await kit.make(t, MATCH, _seg("hallway"), "becca")
 	t.eq(scene.choice_ids().size(), 3, "three doors")
 	t.eq(scene.target(), "crab", "the sticker on her card")
-	t.check(kit.said.has("find-room"), "start line")
+	t.check(kit.said.has("slide-hall"), "start line")
 	await kit.tap(t, scene.choice_point("fish"))
 	t.check(not kit.finished(t), "wrong door stays shut")
 	await kit.tap(t, scene.choice_point("crab"))
@@ -101,6 +101,7 @@ func test_room_reveal_both_kids(t) -> void:
 	for kid_id in ["jack", "becca"]:
 		var scene: Node2D = await kit.make(t, MOMENTS, _seg("room"), kid_id)
 		t.eq(scene.moments(), 1, kid_id + ": one reveal")
+		t.check(kit.said.has("our-room"), kid_id + ": the line is the start line, never skipped")
 		await kit.tap(t, scene.thing_point())
 		for i in 90:
 			if kit.finished(t):
@@ -136,9 +137,9 @@ func test_drill_jack_and_becca(t) -> void:
 		t.check(kit.finished(t), kid_id + ": meeting spot reached")
 		t.check(kit.said.has("all-together"), kid_id + ": together")
 		kit.done(t, scene)
-	var becca: Node2D = await kit.make(t, MAZE, _seg("drill"), "becca")
-	t.check(becca.footprints_shown() >= 0, "footprints option accepted")
-	kit.done(t, becca)
+	var game: Node = t.tree.root.get_node("Game")
+	t.check(bool(game.merge_segment({"data": DIR + "drill.json"}, "becca").get("footprints", false)), "Becca gets footprints")
+	t.check(not bool(game.merge_segment({"data": DIR + "drill.json"}, "jack").get("footprints", false)), "Jack-Jack does not")
 
 
 func test_fits_1920_by_1200(t) -> void:
