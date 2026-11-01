@@ -250,5 +250,13 @@
  {
   "id": "load-minivan",
   "text": "Now pack the minivan!"
+ },
+ {
+  "id": "hello-florida",
+  "text": "Hello, Florida!"
+ },
+ {
+  "id": "hotel-night",
+  "text": "Good night, Florida!"
  }
 ]

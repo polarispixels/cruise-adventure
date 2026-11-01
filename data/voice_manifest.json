@@ -115,6 +115,14 @@
   "kind": "placeholder",
   "text": "We got all our bags!"
  },
+ "becca/hello-florida": {
+  "kind": "placeholder",
+  "text": "Hello, Florida!"
+ },
+ "becca/hotel-night": {
+  "kind": "placeholder",
+  "text": "Good night, Florida!"
+ },
  "becca/hug-buddy": {
   "kind": "recorded",
   "text": "Give it a big hug!"
@@ -358,6 +366,14 @@
  "jack/got-our-bags": {
   "kind": "placeholder",
   "text": "We got all our bags!"
+ },
+ "jack/hello-florida": {
+  "kind": "placeholder",
+  "text": "Hello, Florida!"
+ },
+ "jack/hotel-night": {
+  "kind": "placeholder",
+  "text": "Good night, Florida!"
  },
  "jack/hug-buddy": {
   "kind": "recorded",

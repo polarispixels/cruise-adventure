@@ -54,6 +54,8 @@ func test_registry_has_the_segments_in_order(t) -> void:
 	for s: Dictionary in c["segments"]:
 		names.append(s["id"])
 	t.eq(names, ["arrival", "bags", "boosters", "trunk", "drive", "hotel"], "chapter 10 segments")
+	t.eq(c["segments"][0].get("line"), "hello-florida", "the chapter opens with a hello")
+	t.eq(c["segments"][5].get("line"), "hotel-night", "and closes with a goodnight")
 	t.check(not (c["segments"][5] as Dictionary).get("once", false), "the hotel night is the payoff: it plays on replay")
 
 
