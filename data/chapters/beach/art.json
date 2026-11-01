@@ -1,0 +1,127 @@
+[
+ {
+  "file": "assets/beach/beach-hotel-front.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#F3E6C8",
+  "label": "beach hotel front, clear center"
+ },
+ {
+  "file": "assets/beach/beach-elevator.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#D9DDE3",
+  "label": "elevator inside"
+ },
+ {
+  "file": "assets/beach/beach-hallway.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#F2E8D5",
+  "label": "sunny hotel hallway, seamless"
+ },
+ {
+  "file": "assets/beach/beach-room.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#F6EFE0",
+  "label": "beach hotel room, ocean window"
+ },
+ {
+  "file": "assets/beach/beach-waves.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#8FD0EA",
+  "label": "beach with rolling waves"
+ },
+ {
+  "file": "assets/beach/beach-sand.png",
+  "canvas": [
+   1672,
+   941
+  ],
+  "kind": "background",
+  "color": "#F0DDA8",
+  "label": "sand, top-down"
+ },
+ {
+  "file": "assets/beach/elevator-button-blank.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#E8E8EC",
+  "shape": "circle",
+  "label": "elevator button blank"
+ },
+ {
+  "file": "assets/beach/elevator-button-red.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#E0443C",
+  "shape": "circle",
+  "label": "elevator button red"
+ },
+ {
+  "file": "assets/beach/elevator-button-blue.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#3A7BD5",
+  "shape": "circle",
+  "label": "elevator button blue"
+ },
+ {
+  "file": "assets/beach/elevator-button-green.png",
+  "canvas": [
+   160,
+   160
+  ],
+  "kind": "sprite",
+  "color": "#3FAE5A",
+  "shape": "circle",
+  "label": "elevator button green"
+ },
+ {
+  "file": "assets/beach/wave.png",
+  "canvas": [
+   560,
+   300
+  ],
+  "kind": "sprite",
+  "color": "#5BB7E6",
+  "shape": "rounded",
+  "label": "rolling wave with foam"
+ },
+ {
+  "file": "assets/stills/beach-walk-sand.png",
+  "kind": "still",
+  "label": "still for beach-walk-sand"
+ },
+ {
+  "file": "assets/stills/beach-celebration.png",
+  "kind": "still",
+  "label": "still for beach-celebration"
+ }
+]
