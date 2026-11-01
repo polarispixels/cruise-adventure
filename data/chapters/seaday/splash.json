@@ -168,5 +168,8 @@
     "target": true
    }
   ]
- }
+ },
+ "tap_effect": "res://assets/seaday/water-spray.png",
+ "tap_effect_height": 220,
+ "tap_effect_sound": "water-jet"
 }

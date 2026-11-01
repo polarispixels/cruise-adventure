@@ -27,26 +27,25 @@
  ],
  "ride_time": 2.2,
  "textures": [
-  "res://assets/seaday/slide-splash.png"
+  "res://assets/seaday/slide-mouth.png"
  ],
- "arrive_height": 220,
+ "arrive_height": 240,
  "arrive_from": [
-  900,
-  700
+  1330,
+  330
  ],
  "arrive_to": [
-  900,
-  800
+  1330,
+  400
  ],
  "leave_to": [
-  900,
-  800
+  1330,
+  400
  ],
  "arrive_time": 0.8,
  "prompt_line": "sea-tap-go",
  "success_line": "sea-whee",
  "success_sound": "slide-whoosh",
- "done_sound": "splash",
  "jack": {
   "actor": "player",
   "player_feet": [
@@ -71,5 +70,12 @@
    420
   ],
   "start_line": "sea-watch-me"
- }
+ },
+ "keep_thing": true,
+ "ride_end_texture": "res://assets/seaday/slide-splash.png",
+ "ride_end_size": [
+  400,
+  300
+ ],
+ "ride_end_sound": "splash"
 }

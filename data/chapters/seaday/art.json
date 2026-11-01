@@ -247,6 +247,17 @@
   "shape": "rounded"
  },
  {
+  "file": "assets/seaday/slide-mouth.png",
+  "canvas": [
+   300,
+   240
+  ],
+  "kind": "sprite",
+  "color": "#F0A030",
+  "shape": "rounded",
+  "label": "slide mouth"
+ },
+ {
   "file": "assets/stills/sea-pool-deck.png",
   "kind": "still",
   "label": "pool deck, both kids look up at the slide",

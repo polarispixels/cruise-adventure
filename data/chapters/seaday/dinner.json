@@ -28,7 +28,8 @@
     800
    ],
    "height": 220,
-   "slot": "chair"
+   "slot": "chair",
+   "appears_after": "kid"
   }
  ],
  "slots": [
@@ -42,7 +43,8 @@
    ],
    "texture": "res://assets/characters/{kid}/idle.png",
    "fill_texture": "res://assets/seaday/{kid}-nice-outfit.png",
-   "line": "sea-sit"
+   "line": "sea-sit",
+   "hide_marker_on_fill": true
   },
   {
    "id": "chair",

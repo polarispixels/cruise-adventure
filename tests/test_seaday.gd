@@ -117,6 +117,7 @@ func test_swimsuit_on(t) -> void:
 		t.check(not kit.finished(t), kid_id + ": not done")
 		await kit.drag(t, start, scene.slot_point("kid"))
 		t.check(scene.is_filled("kid"), kid_id + ": the swimsuit is on")
+		t.check(not scene.stage.get_node("Slots/kid").visible and scene.stage.get_node("Slots/Filled-kid").visible, kid_id + ": one kid visible after dressing")
 		t.check(kit.finished(t), kid_id + ": done")
 		_close(t, scene)
 
@@ -128,14 +129,19 @@ func test_height_sign_jack_is_above_the_line_becca_below(t) -> void:
 	for kid_id in ["jack", "becca"]:
 		var scene: Node2D = await _open(t, "sign", kid_id)
 		await _until_ready(t, scene)
-		t.check(scene.helper == null, kid_id + ": the sign compares one kid at a time")
 		tops[kid_id] = scene.stage.to_local(scene.player.hit_rect().position).y
+		# The sibling stands at the sign too, at their own size, so each kid sees the other's height.
+		var sib_top: float = scene.stage.to_local(scene.helper.hit_rect().position).y
+		t.eq(sib_top < LINE_Y, kid_id == "becca", kid_id + ": the sibling is on the other side of the line")
+		var line_node: Line2D = scene.stage.get_node("Lines").get_child(0)
+		t.check(absf(line_node.points[0].y - LINE_Y) < 1.0 and line_node.points[0].x < tops.size() * 0 + 500.0 and line_node.points[1].x > 900.0, kid_id + ": a red line crosses the kid and the sign")
 		var sign_h: float = scene.thing_rect().size.y / scene.stage.scale.y
 		t.check(abs(sign_h - 560.0) < 2.0, "the sign is 560 px tall")
 		t.check(abs(scene.stage.to_local(scene.thing_rect().position).y - SIGN_TOP_Y) < 2.0, "the sign top is where the line is measured from")
 		await kit.tap(t, Vector2(960, 540))
 		await _until_finished(t)
 		t.check(kit.finished(t), kid_id + ": one tap finishes the sign")
+		t.check(scene.thing_rect().size.y > 0 and scene.get_node("Stage/Thing").visible and scene.get_node("Stage/Thing").modulate.a > 0.9, kid_id + ": the sign stays after the tap")
 		_close(t, scene)
 	t.check(float(tops["jack"]) < LINE_Y, "jack-jack's head is above the line")
 	t.check(float(tops["becca"]) > LINE_Y, "becca's head is below the line")
@@ -235,6 +241,26 @@ func test_becca_never_rides_she_watches_jack(t) -> void:
 	_close(t, scene)
 
 
+func test_splash_bursts_at_the_pool_after_the_ride(t) -> void:
+	for kid_id in ["jack", "becca"]:
+		var scene: Node2D = await _open(t, "ride", kid_id)
+		await _until_ready(t, scene)
+		t.check(scene.stage.get_node_or_null("RideEnd") == null, kid_id + ": no splash before the ride")
+		await kit.tap(t, Vector2(960, 540))
+		await kit.wait(t, 0.5)
+		t.check(scene.stage.get_node_or_null("RideEnd") == null, kid_id + ": none while he is still sliding")
+		var seen := false
+		for i in 80:
+			if scene.stage.get_node_or_null("RideEnd") != null:
+				seen = true
+				break
+			await kit.wait(t, 0.05)
+		t.check(seen, kid_id + ": the splash bursts when the ride ends")
+		if seen:
+			t.check(scene.stage.get_node("RideEnd").position.distance_to(Vector2(900, 860)) < 2.0, kid_id + ": at the end of the slide")
+		_close(t, scene)
+
+
 func test_slide_waits_for_a_tap_without_failing(t) -> void:
 	var scene: Node2D = await _open(t, "ride", "becca")
 	await _until_ready(t, scene)
@@ -269,7 +295,7 @@ func test_splash_decoy_only_wiggles_and_misses_come_around(t) -> void:
 	t.check(not scene.is_tapped("ball"), "a ball is a decoy: it wiggles, no count")
 	t.check(not kit.finished(t), "not done")
 	# A missed duck drifts off and comes around again, still untapped.
-	var span := maxf(240.0 * scene.item_ids().size(), 1472.0 + 240.0)
+	var span := maxf(240.0 * 8, 1472.0 + 240.0)  # the 8 drifting toys; the jets have a fixed place
 	var before: float = scene.item_nodes["duck-0"].position.x
 	scene._phase += span
 	scene._move(0.0)
@@ -295,15 +321,20 @@ func test_dress_for_dinner(t) -> void:
 	for kid_id in ["becca", "jack"]:
 		var scene: Node2D = await _open(t, "dinner", kid_id)
 		t.check(kit.said.has("sea-dinner"), kid_id + ": start line")
-		# Wrong moves: sitting down in the street clothes, or the outfit on the chair.
+		# Wrong moves: sitting down in the street clothes (the sit picture isn't there yet), or the outfit on the chair.
+		t.check(not scene.item_nodes["me"].visible, kid_id + ": the seated kid is hidden until the kid is dressed")
 		await kit.drag(t, scene.item_point("me"), scene.slot_point("chair"))
 		await kit.wait(t, 0.5)
 		t.check(not scene.is_placed("me"), kid_id + ": the chair waits for the outfit")
+		t.check(scene.stage.get_node("Slots/kid").visible, kid_id + ": the street-clothes kid shows before dressing")
 		await kit.drag(t, scene.item_point("outfit"), scene.slot_point("chair"))
 		await kit.wait(t, 0.5)
 		t.check(not scene.is_placed("outfit"), kid_id + ": the outfit does not go on the chair")
 		await kit.drag(t, scene.item_point("outfit"), scene.slot_point("kid"))
 		t.check(scene.is_filled("kid"), kid_id + ": dressed")
+		t.check(not scene.stage.get_node("Slots/kid").visible, kid_id + ": the street-clothes kid is gone")
+		t.check(scene.stage.get_node("Slots/Filled-kid").visible, kid_id + ": only the dressed kid shows")
+		t.check(scene.item_nodes["me"].visible, kid_id + ": now the seated kid can go to the chair")
 		t.check(not kit.finished(t), kid_id + ": still has to sit")
 		await kit.drag(t, scene.item_point("me"), scene.slot_point("chair"))
 		t.check(scene.is_filled("chair"), kid_id + ": sitting at the table")

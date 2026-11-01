@@ -2857,5 +2857,12 @@
   "source": "placeholder",
   "approved": false,
   "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/slide-mouth.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
  }
 ]

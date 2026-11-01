@@ -31,7 +31,8 @@
     560
    ],
    "texture": "res://assets/characters/{kid}/idle.png",
-   "fill_texture": "res://assets/seaday/{kid}-swimsuit.png"
+   "fill_texture": "res://assets/seaday/{kid}-swimsuit.png",
+   "hide_marker_on_fill": true
   }
  ],
  "jack": {
