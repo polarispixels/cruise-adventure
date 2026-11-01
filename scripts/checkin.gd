@@ -33,6 +33,7 @@ const PLAYER_FEET := Vector2(1400, 900)
 const HELPER_FEET := Vector2(1500, 900)
 const KID_SCALE := 0.16
 
+var _kid: KidProfile
 var _bags := {}
 var _tags := {}
 var _home := {}
@@ -48,6 +49,7 @@ var _finishing := false
 @onready var _bag_layer: Node2D = $Stage/Bags
 @onready var _tag_layer: Node2D = $Stage/Tags
 @onready var _belt: Sprite2D = $Stage/Belt
+@onready var _glows: Glows = $Stage/Glows
 @onready var _player: Character = $Stage/Player
 @onready var _helper: Character = $Stage/Helper
 @onready var _play_home: TextureButton = $PlayHome
@@ -56,6 +58,7 @@ var _finishing := false
 func _ready() -> void:
 	Music.want(Music.AIRPORT)
 	var kid := Game.kid
+	_kid = kid
 	var ids := bag_ids()
 	for i in ids.size():
 		var id := ids[i]
@@ -91,8 +94,8 @@ func _ready() -> void:
 ## The bags on the floor: the kid's own to tag, then any that go by themselves.
 func bag_ids() -> Array[String]:
 	var out: Array[String] = []
-	out.append_array(Game.kid.airport_bags)
-	out.append_array(Game.kid.airport_auto_bags)
+	out.append_array(Game.kid.airport_bags if _kid == null else _kid.airport_bags)
+	out.append_array(Game.kid.airport_auto_bags if _kid == null else _kid.airport_auto_bags)
 	return out
 
 
@@ -118,6 +121,10 @@ func tag_point(color: String) -> Vector2:
 
 func scale_point() -> Vector2:
 	return _stage.to_global(SCALE_DROP.get_center())
+
+
+func belt_point() -> Vector2:
+	return _stage.to_global(BELT.get_center())
 
 
 func _exit_tree() -> void:
@@ -173,12 +180,30 @@ func _process(delta: float) -> void:
 		tag.visible = bag.visible
 	if _riding > 0:
 		_belt.region_rect.position.x -= BELT_SPEED * delta
+	_update_glows()
 	if _finishing:
 		return
 	_idle += delta
-	if _idle >= Game.kid.hint_delay:
+	if _idle >= _kid.hint_delay:
 		_idle = 0.0
 		_hint()
+
+
+## Light up where things go: a tag being dragged lights its bag; a tagged bag
+## waiting lights the scale and the belt.
+func _update_glows() -> void:
+	var rects: Array[Rect2] = []
+	if _held and _tags.values().has(_held):
+		var color := String(_held.name).trim_prefix("tag-")
+		for id in _kid.airport_bags:
+			if TAG_COLOR[id] == color and not _tagged.has(id):
+				rects.append(_rect(_bags[id]))
+	else:
+		for id in _kid.airport_bags:
+			if _tagged.has(id) and not _sent.has(id) and not _riding_bag(_bags[id]):
+				rects.append(SCALE_DROP.merge(BELT))
+				break
+	_glows.show_rects(rects)
 
 
 ## A free tag first (they're smaller and sit on top), then a bag on the floor.
@@ -187,7 +212,7 @@ func _pick(local: Vector2) -> Sprite2D:
 		var tag: Sprite2D = _tags[color]
 		if not _tagged.values().has(tag) and _rect(tag).grow(20).has_point(local):
 			return tag
-	for id in Game.kid.airport_bags:
+	for id in _kid.airport_bags:
 		var bag: Sprite2D = _bags[id]
 		if not _sent.has(id) and _riding_bag(bag) == false and _rect(bag).grow(20).has_point(local):
 			return bag
@@ -197,7 +222,7 @@ func _pick(local: Vector2) -> Sprite2D:
 func _drop(item: Sprite2D) -> void:
 	if _tags.values().has(item):
 		var color := String(item.name).trim_prefix("tag-")
-		for id in Game.kid.airport_bags:
+		for id in _kid.airport_bags:
 			if not _tagged.has(id) and _rect(_bags[id]).grow(DROP_SLACK / 2).has_point(item.position):
 				if TAG_COLOR[id] == color:
 					_tagged[id] = item
@@ -209,7 +234,7 @@ func _drop(item: Sprite2D) -> void:
 		_glide(item, _home[item])
 		return
 	var id := String(item.name)
-	if SCALE_DROP.grow(DROP_SLACK).has_point(item.position):
+	if SCALE_DROP.grow(DROP_SLACK).has_point(item.position) or BELT.grow(DROP_SLACK).has_point(item.position):
 		if _tagged.has(id):
 			_ride(id)
 			return
@@ -259,7 +284,7 @@ func _goodbye() -> void:
 
 
 func _hint() -> void:
-	for id in Game.kid.airport_bags:
+	for id in _kid.airport_bags:
 		if _sent.has(id) or _riding_bag(_bags[id]):
 			continue
 		if not _tagged.has(id):

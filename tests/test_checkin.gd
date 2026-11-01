@@ -139,3 +139,43 @@ func test_everything_on_screen_on_the_tablet(t) -> void:
 		t.check(view.encloses(scene.get_node(kid).hit_rect()), "%s on screen" % kid)
 	_done(t, scene)
 	t.tree.root.size = Vector2i(1920, 1080)
+
+
+func _glows(scene: Node2D) -> Array:
+	return scene.get_node("Stage/Glows").shown()
+
+
+func test_tagged_bag_can_go_on_the_belt_too(t) -> void:
+	var scene := await _make(t, "jack")
+	await _drag(t, scene.tag_point("blue"), scene.bag_point("jack-suitcase"))
+	await _drag(t, scene.bag_point("jack-suitcase"), scene.belt_point())
+	await t.tree.create_timer(scene.RIDE_TIME + 0.8).timeout
+	t.check(scene.sent().has("jack-suitcase"), "on the belt works as well as the scale")
+	_done(t, scene)
+
+
+func test_a_tagged_bag_makes_the_belt_glow(t) -> void:
+	var scene := await _make(t, "jack")
+	t.eq(_glows(scene).size(), 0, "nothing to show before a tag is on")
+	await _drag(t, scene.tag_point("blue"), scene.bag_point("jack-suitcase"))
+	var glows: Array = _glows(scene)
+	t.eq(glows.size(), 1, "one glow")
+	if glows.size() == 1:
+		t.check(glows[0].has_point(scene.SCALE_DROP.get_center()) and glows[0].has_point(scene.BELT.get_center()), "over the scale and the belt")
+	_done(t, scene)
+
+
+func test_dragging_a_tag_lights_up_its_bag(t) -> void:
+	var scene := await _make(t, "jack")
+	var from: Vector2 = scene.tag_point("pink")
+	await _touch(t, true, from)
+	var e := InputEventScreenDrag.new()
+	e.position = _to_screen * (from + Vector2(0, -60))
+	e.relative = Vector2(1, 1)
+	await _send(t, e)
+	var glows: Array = _glows(scene)
+	t.eq(glows.size(), 1, "one glow while dragging")
+	if glows.size() == 1:
+		t.check(glows[0].has_point(scene.get_node("Stage/Bags/becca-suitcase").position), "around the pink suitcase")
+	await _touch(t, false, from)
+	_done(t, scene)

@@ -97,6 +97,8 @@ def _chapter(ch: dict, root: Path) -> str:
     ticks = [(c, is_done(c, root)) for c in ch.get("checks", [])]
     done = sum(1 for _, d in ticks if d)
     cls, label = _status(done, len(ticks))
+    if ch.get("status") and cls != "shipped":
+        cls, label = "going", ch["status"]
     items = "".join(f'<li class="{"yes" if d else "no"}">{e(c["label"])}</li>' for c, d in ticks)
     pics = "".join(_img(n, c) for n, c in ch.get("images", []))
     panels = f' · storyboard panels {e(ch["panels"])}' if ch.get("panels") else ""
@@ -125,12 +127,13 @@ def _panel(p: dict) -> str:
   <p class="pn">Panel {e(p['n'])} · Ch {p['chapter']}{note}</p><p>{e(p['picture'])}</p><p class="dad">Dad: “{e(p['dad'])}”</p></div>"""
 
 
-VOICE_NAMES = {"kid": "recorded", "dad": "Dad (shared)", "robot": "robot"}
+VOICE_NAMES = {"kid": "kid", "dad": "grown-up", "robot": "computer"}
 
 
 def _voices(root: Path) -> str:
     rows = voice_table(root)
-    counts = {kid: sum(1 for r in rows if r[kid] != "robot") for kid in KIDS}
+    def tally(kid: str) -> str:
+        return ", ".join(f"{sum(1 for r in rows if r[kid] == v)} {VOICE_NAMES[v]}" for v in ("kid", "dad", "robot"))
     body = ""
     for r in rows:
         cells = "".join(f'<td class="v {r[k]}">{VOICE_NAMES[r[k]]}</td>' for k in ("becca", "jack"))
@@ -138,8 +141,8 @@ def _voices(root: Path) -> str:
         body += f"<tr><td><code>{e(r['id'])}</code></td><td>{e(text)}</td>{cells}</tr>"
     return f"""
 <p>The helper sibling does the talking, so <b>Becca's voice plays in Jack-Jack's game</b> and <b>Jack-Jack's voice plays in Becca's game</b>.
-Real voices so far: Becca's side {counts['becca']} of {len(rows)}, Jack-Jack's side {counts['jack']} of {len(rows)}.
-“Dad (shared)” is one grown-up take used for both kids until a kid records their own.</p>
+Of {len(rows)} lines, Becca's side: {tally('becca')}. Jack-Jack's side: {tally('jack')}.
+“Grown-up” is one grown-up take used for both kids until a kid records their own; “computer” is the computer voice.</p>
 <div class="tablewrap"><table class="voices"><thead><tr><th>Line</th><th>Words (Becca says / Jack-Jack says)</th>
 <th>Becca's voice<br><small>in Jack-Jack's game</small></th><th>Jack-Jack's voice<br><small>in Becca's game</small></th></tr></thead>
 <tbody>{body}</tbody></table></div>"""
@@ -150,7 +153,14 @@ def _version(root: Path) -> str:
     return m.group(1) if m else "?"
 
 
-def render(story: dict, root: Path) -> str:
+def _apk_badge(tag: str, version: str) -> str:
+    """The newest release (playtests included); without one, the list of all builds."""
+    if tag:
+        return f'<a class="alt" href="{REPO}/releases/tag/{e(tag)}">Tablet APK ({e(tag)})</a>'
+    return f'<a class="alt" href="{REPO}/releases">Tablet APK (v{e(version)})</a>'
+
+
+def render(story: dict, root: Path, latest_release: str = "") -> str:
     chapters = story.get("chapters", [])
     parts_html = ""
     for i, part in enumerate(story.get("parts", [])):
@@ -175,7 +185,7 @@ def render(story: dict, root: Path) -> str:
     built = f"Built {stamp}" + (f' from <a href="{REPO}/commit/{sha}">{sha}</a>' if sha else "")
     return TEMPLATE.format(
         title=e(story.get("title", "")), tagline=e(story.get("tagline", "")), routine=routine,
-        version=e(_version(root)), repo=REPO, overview=overview, parts=parts_html, panels=panels,
+        apk=_apk_badge(latest_release, _version(root)), repo=REPO, overview=overview, parts=parts_html, panels=panels,
         voices=_voices(root), built=built, characters="".join(_img(n, c) for n, c in CHARACTERS))
 
 
@@ -258,7 +268,7 @@ TEMPLATE = """<!DOCTYPE html>
   <h1>{title}</h1>
   <p>“{tagline}”</p>
   <p class="routine">{routine}</p>
-  <div class="badges"><a href="../">▶ Play in the browser</a><a class="alt" href="{repo}/releases/latest">Tablet APK (v{version})</a><a class="alt" href="{repo}">GitHub</a></div>
+  <div class="badges"><a href="../">▶ Play in the browser</a>{apk}<a class="alt" href="{repo}">GitHub</a></div>
 </div>
 <main>
 <nav class="toc"><a href="#where">Where we are</a><a href="#part1">Part 1: Packing</a><a href="#part2">Part 2: The trip</a>
@@ -310,7 +320,7 @@ def main() -> None:
         sys.exit(__doc__)
     out = Path(sys.argv[1])
     story = json.loads((SITE / "story.json").read_text())
-    page = render(story, ROOT)
+    page = render(story, ROOT, os.environ.get("LATEST_RELEASE", ""))
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(page, encoding="utf-8")
     shutil.copytree(SITE / "img", out / "img", dirs_exist_ok=True)

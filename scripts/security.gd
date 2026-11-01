@@ -38,6 +38,7 @@ const SILHOUETTE := Color(0.35, 0.65, 1.0, 0.75)
 ## "trays" (loading and scanning), "arch" (everything's through), "collect", "done".
 var phase := "trays"
 
+var _kid: KidProfile
 var _ids: Array[String] = []
 var _items := {}
 var _home := {}
@@ -55,6 +56,7 @@ var _idle := 0.0
 @onready var _tray_layer: Node2D = $Stage/Trays
 @onready var _item_layer: Node2D = $Stage/Items
 @onready var _screen: Node2D = $Stage/Screen
+@onready var _glows: Glows = $Stage/Glows
 @onready var _player: Character = $Stage/Player
 @onready var _helper: Character = $Stage/Helper
 @onready var _play_home: TextureButton = $PlayHome
@@ -63,6 +65,7 @@ var _idle := 0.0
 func _ready() -> void:
 	Music.want(Music.AIRPORT)
 	var kid := Game.kid
+	_kid = kid
 	_ids.append_array(kid.security_items)
 	for i in TRAYS:
 		var tray := Sprite2D.new()
@@ -139,7 +142,7 @@ func done() -> void:
 
 func _texture(id: String) -> Texture2D:
 	if id == "tablet" or id == "buddy":
-		return Game.kid.prop(id + "-card")
+		return _kid.prop(id + "-card")
 	return load("res://assets/car/bag-%s.png" % id)
 
 
@@ -184,10 +187,11 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+	_update_glows()
 	if phase == "done":
 		return
 	_idle += delta
-	if _idle >= Game.kid.hint_delay:
+	if _idle >= _kid.hint_delay:
 		_idle = 0.0
 		_hint()
 
@@ -233,7 +237,7 @@ func _drop(item: Sprite2D) -> void:
 
 
 func _put_in_tray(id: String, i: int) -> void:
-	if Game.kid.tablet_own_tray:
+	if _kid.tablet_own_tray:
 		var has_tablet: bool = _tray_items[i].has("tablet")
 		if (id == "tablet" and not _tray_items[i].is_empty()) or (id != "tablet" and has_tablet):
 			var other := _free_tray(id)
@@ -246,6 +250,29 @@ func _put_in_tray(id: String, i: int) -> void:
 	if not _told_push and _all_in_trays():
 		_told_push = true
 		_say("push-it", true)
+
+
+## Light up where things go next: the trays while things wait on the floor,
+## then the loaded trays to tap, then the arch, then the backpack (and the
+## kid, while the buddy is being carried).
+func _update_glows() -> void:
+	var rects: Array[Rect2] = []
+	match phase:
+		"trays":
+			var loading := not _all_in_trays()
+			for i in TRAYS:
+				if _tray_sent[i]:
+					continue
+				if loading or (not _tray_items[i].is_empty() and _scanning == 0):
+					rects.append(_rect(_trays[i]))
+		"arch":
+			rects.append(ARCH)
+		"collect":
+			rects.append(Rect2(BACKPACK_SPOT - Vector2(90, 90), Vector2(180, 180)))
+			if _held and String(_held.name) == "buddy":
+				var r := _player.hit_rect()
+				rects.append(Rect2(_stage.to_local(r.position), r.size / _stage.scale))
+	_glows.show_rects(rects)
 
 
 func _all_in_trays() -> bool:

@@ -356,7 +356,7 @@
    "number": 7,
    "part": 1,
    "title": "To the car",
-   "release": "next",
+   "release": "v0.4",
    "panels": "",
    "video": "Pushing suitcases into the car",
    "play": "Fit the suitcases into the trunk (drag and snap, no rotation at first), buckle up, drive off toward the airport.",
@@ -437,7 +437,8 @@
     {
      "label": "Buckle up and drive off"
     }
-   ]
+   ],
+   "status": "In playtest"
   },
   {
    "number": 8,
@@ -568,13 +569,14 @@
     {
      "label": "Ryan's OK to tag the release"
     }
-   ]
+   ],
+   "status": "In playtest"
   },
   {
    "number": 9,
    "part": 1,
    "title": "The flight",
-   "release": "v0.5+",
+   "release": "v0.6+",
    "panels": "",
    "video": "Takeoff out the window",
    "play": "Calm activities in the seat: buckle up, pick a snack, look out the window.",
@@ -596,7 +598,7 @@
    "number": 10,
    "part": 1,
    "title": "The ship",
-   "release": "v0.5+",
+   "release": "v0.6+",
    "panels": "",
    "video": "Boarding the ship",
    "play": "Find the stateroom by matching the key card number to the doors.",
@@ -618,7 +620,7 @@
    "number": 11,
    "part": 1,
    "title": "Ship and beach",
-   "release": "v0.5+",
+   "release": "v0.6+",
    "panels": "",
    "video": "Water slides, the beach",
    "play": "A playground of mini games that grows over time.",
