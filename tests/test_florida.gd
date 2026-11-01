@@ -180,6 +180,18 @@ func test_trunk_done_for_both_kids(t) -> void:
 
 # --- on the tablet ---
 
+func test_waiting_bags_clear_of_the_grid_and_the_helper(t) -> void:
+	for kid_id in ["becca", "jack"]:
+		var scene: Node2D = await kit.make(t, "res://scenes/engines/fit.tscn", _seg("trunk"), kid_id, Vector2i(1920, 1200))
+		var helper_rect: Rect2 = scene.helper.hit_rect()
+		for id: String in scene.model.bag_ids:
+			if scene.is_locked(id):
+				continue
+			var r: Rect2 = scene.piece_rect(id)
+			t.check(not r.intersects(scene.grid_rect()), "%s %s waits off the grid" % [kid_id, id])
+			t.check(not r.intersects(helper_rect), "%s %s waits clear of the helper" % [kid_id, id])
+		kit.done(t, scene)
+
 func test_layout_fits_the_tablet(t) -> void:
 	for kid_id in ["becca", "jack"]:
 		var scene: Node2D = await kit.make(t, "res://scenes/engines/fit.tscn", _seg("trunk"), kid_id, Vector2i(1920, 1200))
@@ -193,8 +205,10 @@ func test_layout_fits_the_tablet(t) -> void:
 		for sid: String in scene.slot_ids():
 			t.check(kit.on_screen(scene, scene.slot_rect(sid)), "%s %s on screen" % [kid_id, sid])
 		kit.done(t, scene)
-		scene = await kit.make(t, "res://scenes/engines/moving.tscn", _seg("bags"), kid_id, Vector2i(1920, 1200))
-		for i in 30:
+		var laps := _seg("bags")
+		laps[kid_id]["speed"] = 800  # a full lap in about four seconds
+		scene = await kit.make(t, "res://scenes/engines/moving.tscn", laps, kid_id, Vector2i(1920, 1200))
+		for i in 100:
 			await t.tree.process_frame
 			for id: String in scene.item_ids():
 				t.check(kit.on_screen(scene, scene.item_rect(id)), "%s %s on screen" % [kid_id, id])

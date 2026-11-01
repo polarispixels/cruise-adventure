@@ -2,14 +2,14 @@
  "background": "res://assets/florida/baggage-claim.png",
  "path": "loop",
  "loop_rect": [
-  276,
+  316,
   400,
-  1120,
+  1040,
   340
  ],
  "collect_point": [
-  300,
-  860
+  420,
+  880
  ],
  "player_feet": [
   220,
