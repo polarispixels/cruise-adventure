@@ -117,3 +117,52 @@ func test_hint_follows_the_reference_while_it_still_can(t) -> void:
 		if hint["cell"] != ref[id]["cell"] or hint["turned"] != ref[id]["turned"]:
 			misses.append("%d:%s" % [mask, id])
 	t.eq(misses.size(), 0, "hints off their shadow: %s" % [misses.slice(0, 5)])
+
+
+# --- The generalized model (from_dict), used by the Fit engine ---------------
+
+func _minivan() -> Dictionary:
+	var bags: Array = (JSON.parse_string(FileAccess.get_file_as_string("res://data/trunk.json")) as Dictionary)["bags"]
+	return {"grid": [6, 6], "blocked": [[0, 5], [2, 5], [5, 5]], "pieces": bags}
+
+
+func test_from_dict_blocked_cells(t) -> void:
+	var m := TrunkModel.from_dict({"grid": [3, 2], "blocked": [[2, 1]], "pieces": [{"id": "a", "size": [1, 1]}],
+		"solution": {"a": {"cell": [0, 0], "turned": false}}})
+	t.eq(Vector2i(m.cols, m.rows), Vector2i(3, 2), "grid")
+	t.check(m.is_blocked(Vector2i(2, 1)), "blocked cell")
+	t.check(not m.can_place("a", Vector2i(2, 1)), "nothing goes on a blocked cell")
+	t.check(m.can_place("a", Vector2i(2, 0)), "next to it is fine")
+
+
+func test_from_dict_solves_when_no_solution_is_given(t) -> void:
+	var m := TrunkModel.from_dict(_minivan())
+	var ref := m.reference_solution()
+	t.eq(ref.size(), 8, "the minivan's 8 bags have a full arrangement")
+	for id: String in ref:
+		m.set_turned(id, ref[id]["turned"])
+		t.check(m.place(id, ref[id]["cell"]), "reference place " + id)
+	t.check(m.is_full(), "full")
+
+
+func test_preplace_puts_pieces_at_the_reference(t) -> void:
+	var m := TrunkModel.from_dict(_minivan())
+	t.check(m.preplace(PackedStringArray(["mommy-yellow", "daddy-gray"])), "preplaced")
+	var ref := m.reference_solution()
+	t.eq(m.cell_of("daddy-gray"), ref["daddy-gray"]["cell"], "at its reference cell")
+	t.eq(m.is_turned("daddy-gray"), ref["daddy-gray"]["turned"], "turned as the reference says")
+	t.eq(m.solve().size(), 8, "still solvable")
+	t.check(not m.preplace(PackedStringArray(["nobody"])), "an unknown piece reports false")
+
+
+func test_rotated_pieces_start_turned(t) -> void:
+	var m := TrunkModel.from_dict({"grid": [3, 2], "pieces": [{"id": "case", "size": [2, 2]},
+		{"id": "pack", "size": [2, 1], "rotated": true}]})
+	t.check(m.is_turned("pack"), "starts turned")
+	t.eq(m.size_of("pack", m.is_turned("pack")), Vector2i(1, 2), "covers 1 x 2 turned")
+	t.eq(m.reference_solution().size(), 2, "solvable")
+
+
+func test_from_file_still_matches_from_dict(t) -> void:
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/trunk.json"))
+	t.eq(TrunkModel.from_dict(data).reference_solution(), TrunkModel.from_file().reference_solution(), "same model")
