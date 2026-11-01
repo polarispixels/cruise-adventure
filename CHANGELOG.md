@@ -6,11 +6,11 @@ All notable changes to this project are documented here.
 
 ### 1.0.0 - The whole trip (in progress)
 
-- Planned: chapter 9, The flight (find our seat, stow the bag, buckle up, snack, clouds, takeoff and landing).
+- In playtest: chapter 9, The flight (find our seat, stow the bag, buckle up, snack, clouds, takeoff and landing).
 - Planned: chapter 10, Hello Florida (bags on the carousel, booster seats, the minivan, a sleepy hotel night).
-- Planned: chapter 11, Welcome aboard (key card, find our room, the safety drill, sail away).
+- In playtest: chapter 11, Welcome aboard (key card, find our room, the safety drill, sail away).
 - Planned: chapter 12, Island days (sun safe, shell hunt, sandcastle; played twice).
-- Planned: chapter 13, Sea day (swimsuit, the big slide, splash zone, dinner).
+- In playtest: chapter 13, Sea day (swimsuit, the big slide, splash zone, dinner).
 - Planned: chapter 14, Beach hotel (the minivan again, the hotel room, waves, the finale on the journey map).
 - Done: chapters now run from data. A segment player drives chapters 1-8 exactly as before, and the journey map shows stops 7-14.
 - Done: six reusable play engines (Match, Place, Fit, Maze, Moving targets, Tap moments) with tests.

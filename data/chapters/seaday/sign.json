@@ -1,0 +1,56 @@
+{
+ "background": "res://assets/seaday/seaday-slide.png",
+ "player_feet": [
+  400,
+  900
+ ],
+ "moments": 1,
+ "action": "hop",
+ "textures": [
+  "res://assets/seaday/height-sign.png"
+ ],
+ "arrive_height": 560,
+ "arrive_from": [
+  1000,
+  620
+ ],
+ "arrive_to": [
+  700,
+  620
+ ],
+ "leave_to": [
+  700,
+  620
+ ],
+ "arrive_time": 0.8,
+ "prompt_line": "sea-tap-go",
+ "success_sound": "arch-chime",
+ "jack": {
+  "kid_scale": 0.36,
+  "start_line": "sea-height",
+  "success_line": "sea-tall-enough",
+  "helper_scale": 0.305
+ },
+ "becca": {
+  "kid_scale": 0.305,
+  "start_line": "sea-height-becca",
+  "success_line": "sea-next-time",
+  "hop_height": 0,
+  "prompt_line": "sea-height-becca",
+  "helper_scale": 0.36
+ },
+ "keep_thing": true,
+ "helper_feet": [
+  1050,
+  900
+ ],
+ "lines": [
+  {
+   "y": 512,
+   "from_x": 150,
+   "to_x": 1250,
+   "color": "#e03030",
+   "width": 8
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "background": "res://assets/flight/flight-seats.png",
+ "key": "picture",
+ "layout": "row",
+ "row_y": 600,
+ "choice_height": 260,
+ "target": "snack",
+ "target_pos": [
+  836,
+  220
+ ],
+ "target_height": 260,
+ "target_texture": "res://assets/flight/snack-tray.png",
+ "start_line": "pick-snack",
+ "round_line": "",
+ "right_line": "yum",
+ "right_sound": "scanner-chime",
+ "player_feet": [
+  420,
+  930
+ ],
+ "choices": [
+  {
+   "id": "apple",
+   "match": "snack",
+   "texture": "res://assets/flight/snack-apple.png"
+  },
+  {
+   "id": "crackers",
+   "match": "snack",
+   "texture": "res://assets/flight/snack-crackers.png"
+  },
+  {
+   "id": "juice",
+   "match": "snack",
+   "texture": "res://assets/flight/snack-juice.png"
+  }
+ ],
+ "music": "res://assets/music/flight.ogg"
+}

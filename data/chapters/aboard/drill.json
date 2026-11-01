@@ -1,0 +1,49 @@
+{
+ "background": "res://assets/aboard/aboard-drill-floor.png",
+ "fixed": [
+  "#############",
+  "#S > . v#. .#",
+  "# ##### # ###",
+  "#. . .#v#. .#",
+  "# # ### # ###",
+  "#.#. .#> . G#",
+  "#############"
+ ],
+ "goal_textures": [
+  "res://assets/aboard/drill-meeting-spot.png"
+ ],
+ "arrow_texture": "res://assets/aboard/drill-sign-arrow.png",
+ "wall_color": "#5E7C8A",
+ "decor": [
+  "res://assets/aboard/drill-decor-lifering.png",
+  "res://assets/aboard/drill-decor-bench.png",
+  "res://assets/aboard/drill-decor-crate.png",
+  "res://assets/aboard/drill-decor-lifeboat.png"
+ ],
+ "start_line": "horn-warning",
+ "start_sound": "ship-horn",
+ "hint_line": "this-way",
+ "done_line": "all-together",
+ "done_sound": "arch-chime",
+ "becca": {
+  "fixed": [
+   "#########",
+   "#S > > v#",
+   "### ### #",
+   "#. .#. G#",
+   "#########"
+  ],
+  "footprints": true,
+  "hint_line": "follow-feet",
+  "area": [
+   336,
+   230,
+   1000,
+   500
+  ]
+ },
+ "fixed_thin_walls": true,
+ "start_sound_after_line": true,
+ "after_sound_line": "follow-arrows",
+ "hold_input_until_intro": true
+}

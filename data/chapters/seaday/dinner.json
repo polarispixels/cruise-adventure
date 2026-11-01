@@ -1,0 +1,66 @@
+{
+ "background": "res://assets/seaday/seaday-dining.png",
+ "kid_scale": 0.36,
+ "helper_feet": [
+  1500,
+  930
+ ],
+ "start_line": "sea-dinner",
+ "done_line": "sea-yummy",
+ "ordered": true,
+ "items": [
+  {
+   "id": "outfit",
+   "texture": "res://assets/props/{kid}/nice-outfit-card.png",
+   "pos": [
+    760,
+    560
+   ],
+   "height": 240,
+   "slot": "kid",
+   "hide_on_place": true
+  },
+  {
+   "id": "me",
+   "texture": "res://assets/seaday/{kid}-nice-outfit-sit.png",
+   "pos": [
+    760,
+    800
+   ],
+   "height": 220,
+   "slot": "chair",
+   "appears_after": "kid"
+  }
+ ],
+ "slots": [
+  {
+   "id": "kid",
+   "rect": [
+    250,
+    340,
+    373,
+    560
+   ],
+   "texture": "res://assets/characters/{kid}/idle.png",
+   "fill_texture": "res://assets/seaday/{kid}-nice-outfit.png",
+   "line": "sea-sit",
+   "hide_marker_on_fill": true
+  },
+  {
+   "id": "chair",
+   "rect": [
+    1080,
+    430,
+    300,
+    400
+   ],
+   "texture": "res://assets/seaday/chair-glow.png",
+   "shrink": true
+  }
+ ],
+ "jack": {
+  "always_glow": false
+ },
+ "becca": {},
+ "hint_line": "sea-dinner"
+}

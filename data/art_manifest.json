@@ -2684,6 +2684,627 @@
   "spec": "data/chapters/map-art.json"
  },
  {
+  "game": "assets/flight/flight-aisle.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/flight-seats.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/flight-bin.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/window-sky.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/window-frame.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/seat-row.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/row-sign.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/sticker-red.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/sticker-green.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/sticker-blue.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/flight-pass.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/bin-door.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/belt-tab.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/belt-buckle.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/seatbelt-sign-off.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/seatbelt-sign-on.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/snack-cart.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/snack-tray.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/snack-apple.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/snack-crackers.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/snack-juice.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-heart.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-star.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-fish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-bunny.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-boat.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/cloud-bubble.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/flight/plane-wing.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/stills/takeoff-window.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/stills/flight-landing.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/flight/art.json"
+ },
+ {
+  "game": "assets/music/flight.ogg",
+  "generator": "music",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/bin-latch.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/buckle-click.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/engine-hum.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/takeoff-roar.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/cart-rattle.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/crunch.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/cloud-puff.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/sfx/landing-thud.ogg",
+  "generator": "sfx",
+  "source": null,
+  "approved": true
+ },
+ {
+  "game": "assets/aboard/aboard-welcome-desk.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/aboard-hallway.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/aboard-room.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/aboard-drill-floor.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/aboard-ship-outside.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/keycard-blank.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/token-mommy.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/token-daddy.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/door-closed.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/door-open.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/sticker-fish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/door-fish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/sticker-starfish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/door-starfish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/sticker-crab.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/door-crab.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-sign-arrow.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-meeting-spot.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-decor-lifering.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-decor-bench.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-decor-crate.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/drill-decor-lifeboat.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/stills/aboard-walk-on.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/stills/aboard-sail-away.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/aboard/keycard-crab.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/aboard/art.json"
+ },
+ {
+  "game": "assets/seaday/seaday-pool-deck.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/seaday-slide.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/seaday-splash-zone.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/seaday-dining.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/jack-swimsuit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/jack-swimsuit-cheer.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/jack-nice-outfit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/jack-nice-outfit-sit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/becca-swimsuit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/becca-swimsuit-cheer.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/becca-nice-outfit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/becca-nice-outfit-sit.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/jack-swimsuit-ride.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/height-sign.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/slide-splash.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/water-jet.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/water-spray.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/toy-duck.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/toy-ball.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/toy-boat.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/toy-fish.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/toy-pop.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/chair-glow.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/stills/sea-pool-deck.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/stills/sea-evening-deck.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
+  "game": "assets/seaday/slide-mouth.png",
+  "generator": "placeholder",
+  "source": "placeholder",
+  "approved": false,
+  "spec": "data/chapters/seaday/art.json"
+ },
+ {
   "game": "assets/florida/baggage-claim.png",
   "generator": "placeholder",
   "source": "placeholder",

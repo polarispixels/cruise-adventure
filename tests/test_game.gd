@@ -463,9 +463,10 @@ func test_empty_chapter_returns_to_the_map_unfinished(t) -> void:
 	var game := _setup(t)
 	var progress := _temp_progress(t)
 	game.kid = load("res://data/jack.tres")
-	game.play_chapter("flight")
+	game.use_chapters([{"id": "empty-test", "number": 99, "title": "t", "segments": []}])
+	game.play_chapter("empty-test")
 	t.eq(game.last_scene_request, game.MAP, "nothing to play yet")
-	t.check(not progress.chapter_done("jack", "flight"), "not marked done")
+	t.check(not progress.chapter_done("jack", "empty-test"), "not marked done")
 	_restore_progress(t)
 
 

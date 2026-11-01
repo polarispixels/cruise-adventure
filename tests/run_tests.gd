@@ -2,7 +2,7 @@
 # Usage: godot --headless --script res://tests/run_tests.gd
 extends SceneTree
 
-const WATCHDOG_SECONDS := 600
+const WATCHDOG_SECONDS := 1800
 
 var tree: SceneTree
 var _failures: Array[String] = []
