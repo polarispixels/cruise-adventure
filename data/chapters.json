@@ -26,12 +26,5 @@
   {"id": "island1", "number": 12, "title": "Island day 1", "segments": []},
   {"id": "island2", "number": 12, "title": "Island day 2", "segments": []},
   {"id": "seaday", "number": 13, "title": "Sea day", "segments": []},
-  {"id": "beach", "number": 14, "title": "Beach hotel", "segments": []},
-  {"id": "dummy", "number": 15, "title": "Dummy (Phase 0 integration test, deleted after)",
-   "segments": [
-     {"kind": "clip", "id": "dummy-intro", "name": "dummy-intro"},
-     {"kind": "scene", "id": "match", "scene": "res://scenes/engines/match.tscn", "data": "res://data/chapters/dummy/match.json"},
-     {"kind": "scene", "id": "place", "scene": "res://scenes/engines/place.tscn", "data": "res://data/chapters/dummy/place.json"},
-     {"kind": "scene", "id": "moments", "scene": "res://scenes/engines/moments.tscn", "data": "res://data/chapters/dummy/moments.json"},
-     {"kind": "scene", "id": "finale", "scene": "res://scenes/map.tscn", "finale": true}]}
+  {"id": "beach", "number": 14, "title": "Beach hotel", "segments": []}
 ]}

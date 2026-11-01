@@ -2682,40 +2682,5 @@
   "source": "placeholder",
   "approved": false,
   "spec": "data/chapters/map-art.json"
- },
- {
-  "game": "assets/dummy/bg.png",
-  "generator": "placeholder",
-  "source": "placeholder",
-  "approved": false,
-  "spec": "data/chapters/dummy/art.json"
- },
- {
-  "game": "assets/dummy/shell.png",
-  "generator": "placeholder",
-  "source": "placeholder",
-  "approved": false,
-  "spec": "data/chapters/dummy/art.json"
- },
- {
-  "game": "assets/dummy/hat.png",
-  "generator": "placeholder",
-  "source": "placeholder",
-  "approved": false,
-  "spec": "data/chapters/dummy/art.json"
- },
- {
-  "game": "assets/stills/dummy-intro.png",
-  "generator": "placeholder",
-  "source": "placeholder",
-  "approved": false,
-  "spec": "data/chapters/dummy/art.json"
- },
- {
-  "game": "assets/map/stop-dummy.png",
-  "generator": "placeholder",
-  "source": "placeholder",
-  "approved": false,
-  "spec": "data/chapters/dummy/art.json"
  }
 ]

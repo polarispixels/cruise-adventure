@@ -1,3 +1,0 @@
-{"background": "res://assets/dummy/bg.png", "textures": ["res://assets/dummy/shell.png"], "action": "hop",
- "done_delay": 0, "hint_delay": 60, "arrive_time": 0.3,
- "jack": {"moments": 2}, "becca": {"moments": 1}}
