@@ -468,3 +468,47 @@ func test_empty_chapter_returns_to_the_map_unfinished(t) -> void:
 	t.eq(game.last_scene_request, game.MAP, "nothing to play yet")
 	t.check(not progress.chapter_done("jack", "empty-test"), "not marked done")
 	_restore_progress(t)
+
+
+func test_clip_segment_line_is_said_before_going_on(t) -> void:
+	_temp_progress(t)
+	var game := _setup(t)
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.stop()
+	voice.enabled = true
+	game.kid = load("res://data/jack.tres")
+	game.stills_dir = "res://tests/fixtures/"
+	game.use_chapters([{"id": "test-media", "number": 99, "title": "t", "segments": [
+		{"kind": "still", "name": "test-still", "seconds": 30, "line": "lets-go"},
+		{"kind": "scene", "scene": "res://scenes/trunk.tscn"}]}])
+	game.play_chapter("test-media")
+	var intro := await _intro(t)
+	await _click(t, t.tree.root.get_visible_rect().get_center())
+	t.eq(voice.last_line, "lets-go", "the sibling says the line after the skip")
+	t.check(voice.is_speaking(), "it plays")
+	t.eq(game.last_scene_request, game.INTRO, "and the chapter waits for it")
+	var end := Time.get_ticks_msec() + 8000
+	while game.last_scene_request == game.INTRO and Time.get_ticks_msec() < end:
+		await t.tree.process_frame
+	t.eq(game.last_scene_request, game.TRUNK, "then goes on")
+	intro.queue_free()
+	voice.stop()
+	_restore_progress(t)
+
+
+func test_clip_segment_line_with_the_voice_off_goes_on_at_once(t) -> void:
+	_temp_progress(t)
+	var game := _setup(t)
+	var voice: Node = t.tree.root.get_node("Voice")
+	voice.enabled = false
+	game.kid = load("res://data/jack.tres")
+	_media_chapter(game, "car-intro")
+	game.chapter("test-media")["segments"][0]["line"] = "lets-go"
+	game.play_chapter("test-media")
+	var intro := await _intro(t)
+	await _click(t, t.tree.root.get_visible_rect().get_center())
+	t.eq(voice.last_line, "lets-go", "said")
+	t.eq(game.last_scene_request, game.TRUNK, "and on")
+	intro.queue_free()
+	voice.enabled = true
+	_restore_progress(t)

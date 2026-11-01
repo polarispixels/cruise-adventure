@@ -47,7 +47,9 @@ static func generate(maze_size: Vector2i, braid: float, loops: int, max_turns: i
 ## "#" wall, "." floor, "S" start, "G" the right goal, "A"-"F" other goals
 ## (or the right one, when `right_goal` names it), and ">" "<" "^" "v" floor
 ## with an arrow sign. Floor cells next to each other are always connected.
-static func from_rows(rows: Array, right_goal := "G") -> MazeModel:
+static func from_rows(rows: Array, right_goal := "G", thin_walls := false) -> MazeModel:
+	if thin_walls:
+		return _from_thin_rows(rows, right_goal)
 	var m := MazeModel.new()
 	var width := 0
 	for r: Variant in rows:
@@ -77,6 +79,49 @@ static func from_rows(rows: Array, right_goal := "G") -> MazeModel:
 			for d: Vector2i in [Vector2i.RIGHT, Vector2i.DOWN]:
 				var n := c + d
 				if m._inside(n) and not m.walls.has(n):
+					m._set_open(c, n)
+	return m
+
+
+## Thin-wall text: a (2w+1) x (2h+1) grid whose odd (x, y) characters are the
+## cells (S, G, A-F, arrows, `.`, or `#` for a solid cell) and the characters
+## between two cells are the wall between them (`#`, `|`, `-`, `+` closed;
+## anything else open). Even-even characters are corners and are ignored.
+static func _from_thin_rows(rows: Array, right_goal: String) -> MazeModel:
+	var m := MazeModel.new()
+	var width := 0
+	for r: Variant in rows:
+		width = maxi(width, str(r).length())
+	m.size = Vector2i(maxi(int((width - 1) / 2.0), 0), maxi(int((rows.size() - 1) / 2.0), 0))
+	var arrow_dirs := {">": Vector2i.RIGHT, "<": Vector2i.LEFT, "^": Vector2i.UP, "v": Vector2i.DOWN}
+	var at := func(x: int, y: int) -> String:
+		if y < 0 or y >= rows.size():
+			return "#"
+		var row := str(rows[y])
+		return row[x] if x >= 0 and x < row.length() else "#"
+	for y in m.size.y:
+		for x in m.size.x:
+			var c := Vector2i(x, y)
+			var ch: String = at.call(2 * x + 1, 2 * y + 1)
+			if ch == "#":
+				m.walls[c] = true
+			elif ch == "S":
+				m.start = c
+			elif ch == "G" or "ABCDEF".contains(ch):
+				m.gates.append(c)
+				m.goal_names.append(ch)
+			elif arrow_dirs.has(ch):
+				m.arrows[c] = arrow_dirs[ch]
+	m.correct = maxi(m.goal_names.find(right_goal), 0)
+	for y in m.size.y:
+		for x in m.size.x:
+			var c := Vector2i(x, y)
+			if m.walls.has(c):
+				continue
+			for d: Vector2i in [Vector2i.RIGHT, Vector2i.DOWN]:
+				var n := c + d
+				var between: String = at.call(2 * x + 1 + d.x, 2 * y + 1 + d.y)
+				if m._inside(n) and not m.walls.has(n) and not "#|-+".contains(between):
 					m._set_open(c, n)
 	return m
 

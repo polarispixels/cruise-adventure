@@ -107,3 +107,53 @@ func test_layout_fits_the_tablet(t) -> void:
 		for id: String in scene.item_ids():
 			t.check(kit.on_screen(scene, scene.item_rect(id)), "%s stays on screen" % id)
 	kit.done(t, scene)
+
+
+func test_tap_effect_shows_briefly_where_the_target_was(t) -> void:
+	var data := _toys()
+	data["path"] = "still"
+	data["speed"] = 0
+	data["items"] = [{"id": "jet", "texture": "res://assets/art/star.png", "target": true, "pos": [600, 500]},
+		{"id": "jet2", "texture": "res://assets/art/star.png", "target": true, "pos": [1000, 500]}]
+	data["tap_effect"] = "res://assets/art/star.png"
+	data["tap_effect_sound"] = "whoosh"
+	var sfx: Node = t.tree.root.get_node("Sfx")
+	var scene: Node2D = await kit.make(t, SCENE, data, "becca")
+	var at: Vector2 = scene.item_point("jet")
+	await kit.tap(t, at)
+	var fx: Sprite2D = scene.get_node_or_null("Stage/TapEffect")
+	t.check(fx != null, "the spray shows")
+	if fx:
+		t.check(scene.stage.to_global(fx.position).distance_to(at) < 2.0, "where the jet was tapped")
+	t.eq(sfx.last, "whoosh", "with its sound")
+	await kit.wait(t, 0.6)
+	t.check(scene.get_node_or_null("Stage/TapEffect") == null, "and goes after a moment")
+	kit.done(t, scene)
+
+
+func test_no_tap_effect_without_the_key(t) -> void:
+	var scene: Node2D = await kit.make(t, SCENE, _carousel(), "jack")
+	await kit.tap(t, scene.item_point("jack-suitcase"))
+	t.check(scene.get_node_or_null("Stage/TapEffect") == null, "nothing extra")
+	kit.done(t, scene)
+
+
+## The splash zone: two still jets plus drifting toys. The toys are spaced among
+## themselves, so each comes on screen; the hint never points at a jet or off screen.
+func test_drift_span_counts_only_drifting_things(t) -> void:
+	var data := {"done_delay": 0.0, "hint_delay": 60.0, "path": "drift", "lanes": [600], "spacing": 380, "speed": 0,
+		"items": [{"id": "jet-1", "texture": "res://assets/art/star.png", "pos": [300, 300], "target": true},
+			{"id": "jet-2", "texture": "res://assets/art/star.png", "pos": [1300, 300], "target": true},
+			{"id": "jet-3", "texture": "res://assets/art/star.png", "pos": [800, 300]},
+			{"id": "duck", "texture": "res://assets/art/star.png", "target": true},
+			{"id": "ball", "texture": "res://assets/art/star.png", "target": true},
+			{"id": "boat", "texture": "res://assets/art/star.png", "target": true}]}
+	var scene: Node2D = await kit.make(t, SCENE, data, "jack")
+	var xs: Array = []
+	for id in ["duck", "ball", "boat"]:
+		xs.append(scene.stage.to_local(scene.item_point(id)).x)
+	t.eq(xs, [0.0 + 100 - 380, 100.0, 100.0 + 380], "spaced among the drifting ones only")
+	scene._show_hint()
+	t.check(not ["jet-1", "jet-2"].has(scene._hint), "no jet while a toy is left: %s" % scene._hint)
+	t.check(scene._hint != "duck", "never a toy off screen")
+	kit.done(t, scene)

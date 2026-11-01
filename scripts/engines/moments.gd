@@ -5,6 +5,9 @@
 # the prompt again and points while the thing pulses. Done after `moments`.
 extends EngineBase
 
+## How long the ride_end burst shows.
+const RIDE_END_TIME := 0.8
+
 ## Which moment is playing (0-based); equals `moments` when all are done.
 var moment := 0
 ## "gap" (between moments, taps ignored), "arriving", "ready" (arrived, waiting), "acting".
@@ -114,10 +117,11 @@ func _success() -> void:
 	sound(str(data["success_sound"]))
 	moment += 1
 	var last := moment >= moments()
-	var t := create_tween()
-	t.tween_property(_thing, "position", vec(data["leave_to"]), float(data["arrive_time"]) * 0.7) \
-			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	t.parallel().tween_property(_thing, "modulate:a", 0.0, float(data["arrive_time"]) * 0.7)
+	if not bool(data.get("keep_thing", false)):
+		var t := create_tween()
+		t.tween_property(_thing, "position", vec(data["leave_to"]), float(data["arrive_time"]) * 0.7) \
+				.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		t.parallel().tween_property(_thing, "modulate:a", 0.0, float(data["arrive_time"]) * 0.7)
 	var act := _act()
 	say(line("success_line"))
 	if last:
@@ -139,12 +143,35 @@ func _act() -> Tween:
 		var each := float(data["ride_time"]) / maxf(pts.size(), 1)
 		for p: Variant in pts:
 			t.tween_property(_actor, "position", vec(p), each).set_trans(Tween.TRANS_SINE)
+		if not pts.is_empty():
+			t.tween_callback(_ride_end.bind(vec(pts.back())))
 	else:
 		var up := _actor_home - Vector2(0, float(data["hop_height"]))
 		t.tween_property(_actor, "position", up, 0.22).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 		t.tween_property(_actor, "position", _actor_home, 0.22).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	t.tween_callback(func() -> void: _actor.set_pose("idle"))
 	return t
+
+
+## The splash where a ride ends (ride_end_texture, about RIDE_END_TIME seconds).
+func _ride_end(at: Vector2) -> void:
+	sound(str(data.get("ride_end_sound", "")))
+	var path := str(data.get("ride_end_texture", ""))
+	if path == "":
+		return
+	var size := vec(data.get("ride_end_size"), Vector2(300, 200))
+	var burst := Sprite2D.new()
+	burst.name = "RideEnd"
+	burst.texture = texture_or(path, size, Color(0.6, 0.85, 1.0))
+	burst.scale = size / burst.texture.get_size()
+	burst.position = at
+	burst.z_index = 2
+	stage.add_child(burst)
+	pop(burst)
+	var t := create_tween()
+	t.tween_interval(RIDE_END_TIME * 0.6)
+	t.tween_property(burst, "modulate:a", 0.0, RIDE_END_TIME * 0.4)
+	t.tween_callback(burst.queue_free)
 
 
 func _show_hint() -> void:
