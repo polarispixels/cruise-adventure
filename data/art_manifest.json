@@ -2395,6 +2395,24 @@
   "note": "bags-packed.mp4 arrived with ready-to-pack-the-car.mp4 stuck on the front: start skips it; cover blurs a burned-in caption"
  },
  {
+  "game": "assets/video/beach-celebration.ogv",
+  "generator": "video",
+  "source": "Videos/beach-celebration.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/aboard-walk-on.ogv",
+  "generator": "video",
+  "source": "Videos/abord-walk-on.mp4",
+  "approved": true
+ },
+ {
+  "game": "assets/video/sea-pool-deck.ogv",
+  "generator": "video",
+  "source": "Videos/sea-pool-deck.mp4",
+  "approved": true
+ },
+ {
   "game": "assets/characters/jack/lift.png",
   "generator": "copy",
   "source": "Game Assets/Characters/Jack-Jack/Jack-Jack - lift v0.1 - PROVISIONAL.png",
